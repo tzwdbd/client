@@ -81,7 +81,7 @@ public class NordstromAutoBuy extends AutoBuy {
 			logger.error("--->没有找到登录框", e);
 			
 		}
-		Utils.sleep(3000);
+		//Utils.sleep(3000);
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_mainContentPlaceHolder_signIn_email")));
 		} catch (Exception e) {
@@ -216,7 +216,13 @@ public class NordstromAutoBuy extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ctl00_mainContentPlaceHolder_shoppingBagHeader_bagEmptyNeedInspiration")));
 		} catch (Exception e) {
 			logger.debug("--->购物车不为空！");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			try {
+				logger.error("--->确认购物车是否清空");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ctl00_mainContentPlaceHolder_shoppingBagList_orderItemRepeater_ctl00_orderItemTableRow")));
+				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			} catch (Exception e1) {
+				logger.debug("--->购物车为空！");
+			}
 		}
 
 		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;

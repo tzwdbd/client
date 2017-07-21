@@ -737,7 +737,8 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				TimeUnit.SECONDS.sleep(2);
 				
 				WebElement checkBalance = driver.findElement((By.id("checkBalance")));
-				checkBalance.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", checkBalance);
+				//checkBalance.click();
 				logger.debug("--->checkBalance click");
 				TimeUnit.SECONDS.sleep(2);
 				//比较真实余额是否正确
@@ -765,7 +766,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 						continue;
 					}
 					WebElement apply = driver.findElement(By.cssSelector("#giftCard button[name='Apply Gift Card']"));
-					apply.click();
+					driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
 					logger.debug("--->apply click");
 					TimeUnit.SECONDS.sleep(2);
 					driver.executeScript("(function(){window.scrollBy(1,50);})();");
