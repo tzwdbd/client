@@ -762,8 +762,8 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					BigDecimal x = new BigDecimal(card.getRealBalance());
 					if(x.doubleValue()!=y.doubleValue()){
 						logger.debug("--->x = " + x+"--->y = "+y);
-						card.setIsSuspect("yes");
-						continue;
+						//card.setIsSuspect("yes");
+						//continue;
 					}
 					WebElement apply = driver.findElement(By.cssSelector("#giftCard button[name='Apply Gift Card']"));
 					driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
