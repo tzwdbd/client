@@ -1,0 +1,57 @@
+2017-06-22 23:17:49,167 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作true
+2017-06-22 23:17:52,650 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-22 23:18:04,629 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到登录页面
+2017-06-22 23:18:45,128 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->没有找到输入框
+org.openqa.selenium.TimeoutException: Timed out after 40 seconds waiting for element to be clickable: By.xpath: //input[@id = 'UserName' and @placeholder = 'Email Address']
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.103', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 2f0d535f-0e42-2d47-919b-0c84a0d07a42
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.IherbAutoBuy.login(IherbAutoBuy.java:73)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:909)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//input[@id = 'UserName' and @placeholder = 'Email Address']"}
+Command duration or timeout: 16 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.103', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//input[@id = 'UserName' and @placeholder = 'Email Address']}
+Session ID: 2f0d535f-0e42-2d47-919b-0c84a0d07a42
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:661)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:654)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//input[@id = 'UserName' and @placeholder = 'Email Address']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.103', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8213508502510582217webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8213508502510582217webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8213508502510582217webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8213508502510582217webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8213508502510582217webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-22 23:19:48,917 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作true
+2017-06-22 23:19:51,909 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-22 23:23:09,449 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-22 23:23:12,473 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-22 23:24:53,047 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-22 23:24:56,132 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置

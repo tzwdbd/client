@@ -1,0 +1,194 @@
+2017-06-23 18:48:11,630 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-23 18:48:14,918 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-23 18:50:52,117 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-23 18:50:55,289 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-23 18:52:22,746 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->没有找到登陆按钮
+org.openqa.selenium.TimeoutException: Timed out after 40 seconds waiting for visibility of element located by By.className: iherb-my-account
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 48623d42-f89f-3541-8a86-c2e4b669d78a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.IherbAutoBuy.login(IherbAutoBuy.java:68)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:916)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"iherb-my-account"}
+Command duration or timeout: 4.87 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=class name, value=iherb-my-account}
+Session ID: 48623d42-f89f-3541-8a86-c2e4b669d78a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:467)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"iherb-my-account"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6223819713356781027webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6223819713356781027webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6223819713356781027webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6223819713356781027webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6223819713356781027webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-23 18:53:16,247 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-23 18:53:19,156 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-23 18:54:08,729 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码出错
+org.openqa.selenium.TimeoutException: Timed out after 40 seconds waiting for visibility of element located by By.cssSelector: .dropdown-icon
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 51d53039-9913-0740-a98f-e1bb5ae8822b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.IherbAutoBuy.login(IherbAutoBuy.java:64)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:926)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".dropdown-icon"}
+Command duration or timeout: 12 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=.dropdown-icon}
+Session ID: 51d53039-9913-0740-a98f-e1bb5ae8822b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".dropdown-icon"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5225242563063718796webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5225242563063718796webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5225242563063718796webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5225242563063718796webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5225242563063718796webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-23 18:54:40,782 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-23 18:54:43,876 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-23 18:54:51,146 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击1
+2017-06-23 18:54:51,238 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击2
+2017-06-23 18:55:33,493 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码出错
+org.openqa.selenium.TimeoutException: Timed out after 40 seconds waiting for visibility of element located by By.cssSelector: .dropdown-icon
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 592b6a31-53e5-4d43-8d37-03343c98a6da
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.IherbAutoBuy.login(IherbAutoBuy.java:66)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:931)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".dropdown-icon"}
+Command duration or timeout: 17 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=.dropdown-icon}
+Session ID: 592b6a31-53e5-4d43-8d37-03343c98a6da
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".dropdown-icon"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5182531612921605640webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5182531612921605640webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5182531612921605640webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5182531612921605640webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5182531612921605640webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-23 18:56:13,087 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-23 18:56:16,144 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-23 18:56:23,389 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击1
+2017-06-23 18:56:23,501 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击2
+2017-06-23 18:56:25,614 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击3
+2017-06-23 18:56:27,715 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击4
+2017-06-23 18:59:31,551 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击5
+2017-06-23 19:00:08,938 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到登录页面
+2017-06-23 19:00:09,026 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->输入账号
+2017-06-23 19:00:14,042 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->没有找到密码框
+org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Command duration or timeout: 11 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//input[@id = 'Password' and @placeholder = 'Password']}
+Session ID: 2ca7034f-9d60-fb4b-9652-7cd07b05cb0e
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.IherbAutoBuy.login(IherbAutoBuy.java:109)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:931)
+Caused by: org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.nsCommandProcessor.prototype.execute(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12602)
+	at <anonymous class>.Dispatcher.executeAs/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9455)
+	at <anonymous class>.Resource.prototype.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9602)
+	at <anonymous class>.Dispatcher.prototype.dispatch(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9549)
+	at <anonymous class>.WebDriverServer/<.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:12390)
+	at <anonymous class>.createHandlerFunc/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2054)
+	at <anonymous class>.ServerHandler.prototype.handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2387)
+	at <anonymous class>.Connection.prototype.process(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1223)
+	at <anonymous class>.RequestReader.prototype._handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1677)
+	at <anonymous class>.RequestReader.prototype._processBody(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1525)
+	at <anonymous class>.RequestReader.prototype.onInputStreamReady(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8102606395518816861webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1393)

@@ -1,0 +1,25 @@
+2017-05-27 16:49:56,957 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->启动驱动并做清理工作true
+2017-05-27 16:52:13,302 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->启动驱动并做清理工作true
+2017-05-27 16:52:33,720 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->跳转到登录页面
+2017-05-27 16:52:45,798 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->输入账号
+2017-05-27 16:52:47,415 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->输入密码
+2017-05-27 16:52:52,491 DEBUG [com.oversea.task.service.order.VitacostAutoBuy] - --->开始提交
+2017-05-27 16:53:02,089 INFO [com.oversea.task.service.order.VitacostAutoBuy] - --->登录成功
+2017-05-27 18:20:49,774 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->启动驱动并做清理工作true
+2017-05-27 18:20:52,804 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-27 18:26:58,015 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->启动驱动并做清理工作true
+2017-05-27 18:27:00,953 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-27 18:27:10,610 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始输入账号
+2017-05-27 18:27:12,174 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始输入密码
+2017-05-27 18:27:13,728 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始提交
+2017-05-27 18:27:19,167 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->等待登录完成
+2017-05-27 18:27:19,185 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->登录完成
+2017-05-27 18:27:19,186 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始跳转到my account页面
+2017-05-27 18:27:23,195 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 打开订单页面
+2017-05-27 18:27:25,492 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 打开物流弹窗
+2017-05-27 18:27:31,770 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - SHIPMENTS
+Tracking Number: RS742380374NL
+Carrier: SG
+Tracking Link: Please click here to track your parcel using SG's website.
+CLOSE WINDOW
+2017-05-27 18:27:32,023 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 找到物流单号：RS742380374NL

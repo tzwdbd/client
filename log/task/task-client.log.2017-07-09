@@ -1,0 +1,126 @@
+2017-07-09 15:15:32,206 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-09 15:15:35,586 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-09 15:15:44,706 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-09 15:15:46,128 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-09 15:15:47,778 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-09 15:15:49,369 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-09 15:15:53,996 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-09 15:15:56,013 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 15:15:59,106 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-09 15:15:59,119 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-09 15:15:59,119 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-09 15:16:03,193 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-09 15:16:10,178 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-09 15:16:10,178 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-09 15:16:10,178 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-09 15:16:22,759 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-09 15:16:22,762 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-09 15:16:24,891 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-09 15:16:26,948 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-09 15:16:26,949 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-09 15:16:52,038 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-09 15:16:52,038 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-09 15:16:54,054 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 15:16:56,761 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-09 15:17:01,628 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-09 15:17:06,087 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull
+2017-07-09 15:17:15,720 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - 填写地址break
+2017-07-09 15:17:22,736 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->IdCard=330726199511251119
+2017-07-09 15:17:23,763 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->ExpireDate=20260216
+2017-07-09 15:17:28,239 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->front=/Users/taofen8/Downloads/1499584648.png
+2017-07-09 15:17:52,636 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->back=/Users/taofen8/Downloads/1499584672.png
+2017-07-09 15:18:22,604 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->设置身份证完成
+2017-07-09 15:18:22,615 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->选择支付方式失败
+org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Command duration or timeout: 11 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=div.a-box.payment-box.payment-box-aui-template}
+Session ID: 2df2ccfb-466e-be40-b439-dbfb7852b175
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:378)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByCssSelector(RemoteWebDriver.java:486)
+	at org.openqa.selenium.By$ByCssSelector.findElements(By.java:441)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:341)
+	at com.oversea.task.service.order.ZcnAutoBuy.pay(ZcnAutoBuy.java:720)
+	at com.oversea.task.service.order.ZcnAutoBuy.main(ZcnAutoBuy.java:1287)
+Caused by: org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.nsCommandProcessor.prototype.execute(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12602)
+	at <anonymous class>.Dispatcher.executeAs/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9455)
+	at <anonymous class>.Resource.prototype.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9602)
+	at <anonymous class>.Dispatcher.prototype.dispatch(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9549)
+	at <anonymous class>.WebDriverServer/<.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:12390)
+	at <anonymous class>.createHandlerFunc/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2054)
+	at <anonymous class>.ServerHandler.prototype.handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2387)
+	at <anonymous class>.Connection.prototype.process(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1223)
+	at <anonymous class>.RequestReader.prototype._handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1677)
+	at <anonymous class>.RequestReader.prototype._processBody(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1525)
+	at <anonymous class>.RequestReader.prototype.onInputStreamReady(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7203821184740996718webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1393)
+2017-07-09 22:08:55,904 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-09 22:08:59,462 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-09 22:09:10,356 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-09 22:09:13,047 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-09 22:09:14,657 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-09 22:09:16,228 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-09 22:09:20,372 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-09 22:09:22,388 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 22:09:26,189 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-09 22:09:26,203 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-09 22:09:26,203 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-09 22:09:30,284 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-09 22:09:45,370 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-09 22:09:45,370 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-09 22:09:45,370 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-09 22:09:58,532 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-09 22:09:58,535 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-09 22:10:00,671 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-09 22:10:02,733 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-09 22:10:02,733 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-09 22:10:27,966 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-09 22:10:27,967 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-09 22:10:29,978 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 22:10:32,697 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-09 22:10:37,355 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-09 22:10:41,747 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull
+2017-07-09 22:10:51,301 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - 填写地址break
+2017-07-09 22:10:59,076 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->IdCard=330726199511251119
+2017-07-09 22:11:00,100 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->ExpireDate=20260216
+2017-07-09 23:48:52,045 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-09 23:48:55,118 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-09 23:50:41,353 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-09 23:50:44,299 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-09 23:50:52,959 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-09 23:50:54,693 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-09 23:50:56,331 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-09 23:50:57,906 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-09 23:51:01,012 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-09 23:51:03,037 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 23:51:07,035 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-09 23:51:07,050 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-09 23:51:07,050 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-09 23:51:11,130 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-09 23:51:18,762 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-09 23:51:18,762 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-09 23:51:18,762 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-09 23:51:31,546 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-09 23:51:31,549 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-09 23:51:33,673 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-09 23:51:35,733 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-09 23:51:35,733 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-09 23:52:00,236 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-09 23:52:00,236 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-09 23:52:02,254 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-09 23:52:04,954 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-09 23:52:09,880 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-09 23:52:14,301 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull

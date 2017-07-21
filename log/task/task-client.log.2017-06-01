@@ -1,0 +1,19 @@
+2017-06-01 14:37:31,567 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->启动驱动并做清理工作true
+2017-06-01 14:37:34,855 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-01 17:41:48,082 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->启动驱动并做清理工作true
+2017-06-01 17:41:51,128 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-01 17:42:05,848 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始输入账号
+2017-06-01 17:42:09,273 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始输入密码
+2017-06-01 17:42:17,136 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始提交
+2017-06-01 17:42:24,407 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->等待登录完成
+2017-06-01 17:42:24,430 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->登录完成
+2017-06-01 17:42:24,431 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - --->开始跳转到my account页面
+2017-06-01 17:42:32,876 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 打开订单页面
+2017-06-01 17:42:35,423 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 打开物流弹窗
+2017-06-01 17:42:46,715 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - SHIPMENTS
+Tracking Number: RS831401632NL
+Carrier: SG
+Tracking Link: Please click here to track your parcel using SG's website.
+CLOSE WINDOW
+2017-06-01 17:42:46,963 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 找到物流公司：postnl
+2017-06-01 17:42:47,023 DEBUG [com.oversea.task.service.order.EscentualAutoBuy] - 找到物流单号：RS831401632NL

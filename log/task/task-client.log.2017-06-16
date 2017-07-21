@@ -1,0 +1,106 @@
+2017-06-16 10:07:17,636 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-06-16 10:07:21,134 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-16 10:07:55,053 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->没有找到登录框
+org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of element located by By.linkText: Sign In
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 1b6a1415-1736-c042-844f-7db745602a6f
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.NordstromAutoBuy.login(NordstromAutoBuy.java:75)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1414)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"link text","selector":"Sign In"}
+Command duration or timeout: 10 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=link text, value=Sign In}
+Session ID: 1b6a1415-1736-c042-844f-7db745602a6f
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByLinkText(RemoteWebDriver.java:418)
+	at org.openqa.selenium.By$ByLinkText.findElement(By.java:246)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"link text","selector":"Sign In"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-16 10:09:00,334 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->没有找到输入框
+org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: By.id: ctl00_mainContentPlaceHolder_signIn_email
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 1b6a1415-1736-c042-844f-7db745602a6f
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.NordstromAutoBuy.login(NordstromAutoBuy.java:100)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1414)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"ctl00_mainContentPlaceHolder_signIn_email"}
+Command duration or timeout: 10 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=id, value=ctl00_mainContentPlaceHolder_signIn_email}
+Session ID: 1b6a1415-1736-c042-844f-7db745602a6f
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:403)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:661)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:654)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"ctl00_mainContentPlaceHolder_signIn_email"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5469894991125102077webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-16 10:09:00,337 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车
+2017-06-16 10:10:34,811 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车失败
+2017-06-16 10:23:54,914 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-06-16 10:23:57,874 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-16 10:24:11,058 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->打开登录框
+2017-06-16 10:24:57,239 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->输入账号
+2017-06-16 10:25:00,304 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->输入密码
+2017-06-16 10:25:03,430 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始登陆
+2017-06-16 10:25:16,702 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车
+2017-06-16 10:25:20,881 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车成功

@@ -1,0 +1,18 @@
+2017-07-05 09:37:08,749 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-05 09:37:12,250 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-05 09:37:12,250 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=WKRU4400
+2017-07-05 09:41:48,459 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-05 09:41:48,521 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-05 09:41:54,483 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=2
+2017-07-05 09:41:54,539 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-05 09:41:55,562 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+pumice/surprise coral
+2017-07-05 09:41:55,646 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-05 09:41:56,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-05 09:41:56,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-05 09:41:59,193 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-05 09:41:59,214 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-05 09:41:59,244 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-05 09:42:00,265 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-05 09:42:00,277 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-05 09:42:02,472 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT

@@ -1,0 +1,142 @@
+2017-06-29 18:05:55,077 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 18:05:58,351 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 18:05:58,351 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:05:58,352 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:05:58,352 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 18:05:58,352 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 18:06:58,790 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 18:06:58,795 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 18:06:58,882 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 18:06:58,882 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 18:06:58,882 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 18:06:58,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 0 && skuList.size/2 = 3 && skuChooseElements.size=0
+2017-06-29 18:06:58,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 0 && skuList.size()/2 = 3
+2017-06-29 18:16:12,483 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 18:16:15,595 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 18:16:15,595 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:16:15,596 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:16:15,596 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 18:16:15,596 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 18:18:04,195 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 18:18:04,201 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 18:18:04,302 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 18:18:04,302 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 18:18:04,302 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 18:18:04,311 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 18:18:04,323 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 0 && skuList.size/2 = 3 && skuChooseElements.size=0
+2017-06-29 18:18:04,323 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 0 && skuList.size()/2 = 3
+2017-06-29 18:29:40,286 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 18:29:45,746 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 18:29:45,747 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:29:45,747 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:29:45,747 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 18:29:45,748 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 18:30:08,864 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 18:30:08,871 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 18:30:08,983 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 18:30:08,983 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 18:30:08,983 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 18:30:14,540 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 18:54:30,299 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 18:54:33,377 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 18:54:33,377 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:54:33,378 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:54:33,378 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 18:54:33,379 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 18:55:54,317 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 18:55:54,322 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 18:55:54,428 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 18:55:54,429 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 18:55:54,429 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 18:56:03,535 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 18:56:16,899 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 18:59:10,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 18:59:10,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:59:10,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 18:59:10,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 18:59:10,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 18:59:22,359 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 18:59:22,366 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 18:59:22,432 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 18:59:22,433 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 18:59:22,433 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 18:59:25,449 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 18:59:25,530 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 19:02:23,124 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 19:02:23,125 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:02:23,125 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:02:23,125 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 19:02:23,125 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 19:02:36,221 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 19:02:36,227 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 19:02:36,294 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 19:02:36,294 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 19:02:36,294 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 19:02:36,304 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 19:02:36,395 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 19:02:46,461 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:length:Regular
+2017-06-29 19:02:48,753 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:S
+2017-06-29 19:24:35,284 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 19:24:38,375 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 19:24:38,375 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:24:38,376 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:24:38,376 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 19:24:38,377 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 19:25:06,053 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 19:25:06,059 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 19:25:06,167 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 19:25:06,167 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 19:25:06,167 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 19:25:06,182 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 19:25:06,269 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 19:25:08,643 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:length:Regular
+2017-06-29 19:25:10,867 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:S
+2017-06-29 19:25:13,122 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 1 && skuList.size/2 = 3 && skuChooseElements.size=3
+2017-06-29 19:25:13,122 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 1 && skuList.size()/2 = 3
+2017-06-29 19:28:54,061 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 19:28:57,165 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 19:28:57,166 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:28:57,166 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:28:57,167 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 19:28:57,167 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 19:29:19,533 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 19:29:19,539 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 19:29:19,653 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 19:29:19,653 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 19:29:19,653 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 19:29:19,662 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 19:29:19,747 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 19:29:22,136 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:length:Regular
+2017-06-29 19:29:24,359 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:S
+2017-06-29 19:29:41,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 19:29:41,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:29:41,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:29:41,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 19:29:41,914 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 19:30:47,054 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-06-29 19:30:50,026 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-06-29 19:30:50,026 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:30:50,027 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利原链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB&extrabux=1
+2017-06-29 19:30:50,027 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux的返利链接http://www.dpbolvw.net/click-1915435-10596045?cm_mmc=CJ-_-1720273-_-1915435-_-Victorias%20Secret%20Logo&afsrc=1&sid=1662305_474_1498728793_5954c95994f88_SUB
+2017-06-29 19:30:50,027 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->找到extrabux对应的商品返利https://www.victoriassecret.com/sleepwear/shop-all-sleep/the-sleepover-knit-pajama?ProductID=318357&CatalogueType=OLS
+2017-06-29 19:31:31,789 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:The Sleepover Knit Pajama - Victoria's Secret
+2017-06-29 19:31:31,795 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-06-29 19:31:31,902 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-06-29 19:31:31,902 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-06-29 19:31:31,903 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-06-29 19:31:31,916 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-06-29 19:31:31,998 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:angel pink
+2017-06-29 19:31:34,371 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:length:Regular
+2017-06-29 19:31:36,596 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:S
+2017-06-29 19:31:38,903 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-06-29 19:31:38,924 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->length加1
+2017-06-29 19:31:38,945 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-06-29 19:31:38,945 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 3 && skuList.size/2 = 3 && skuChooseElements.size=3
+2017-06-29 19:31:38,945 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-06-29 19:31:38,945 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-06-29 19:31:38,956 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 48.00
+2017-06-29 19:31:38,957 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-06-29 19:31:43,260 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-06-29 19:31:43,269 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-06-29 19:31:46,407 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-06-29 19:31:48,261 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物

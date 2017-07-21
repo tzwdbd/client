@@ -1,0 +1,100 @@
+2017-07-20 15:09:34,467 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->启动驱动并做清理工作true
+2017-07-20 15:09:38,070 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-20 15:09:50,045 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到登录页面
+2017-07-20 15:09:50,048 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待登录完成
+2017-07-20 15:09:50,071 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->登录完成
+2017-07-20 15:09:51,156 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始跳转到购物车
+2017-07-20 15:09:51,156 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车加载
+2017-07-20 15:09:54,309 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始清理购物车
+2017-07-20 15:10:11,773 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->购物车页面清理完成
+2017-07-20 15:10:11,773 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->确认购物车是否清空
+2017-07-20 15:10:15,289 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->购物车不为空！
+2017-07-20 15:11:53,601 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->启动驱动并做清理工作true
+2017-07-20 15:11:56,591 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-20 15:12:04,984 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到登录页面
+2017-07-20 15:12:04,987 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待登录完成
+2017-07-20 15:12:05,017 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->登录完成
+2017-07-20 15:12:05,017 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到商品页面
+2017-07-20 15:12:05,017 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=f0903Vc56mbnKwUA1RH4i0P_au3DQ70PG6ojanQyvCpW_bUt4ut51Y4uGSGsA_c&new=http%3A%2F%2Fcn.royyoungchemist.com.au%2F1129731.html&tag=
+2017-07-20 15:12:07,492 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始等待商品页面加载
+2017-07-20 15:12:09,223 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->关闭广告
+2017-07-20 15:12:09,239 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->商品页面加载完成
+2017-07-20 15:12:11,244 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始选择sku
+2017-07-20 15:12:11,244 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择sku完成
+2017-07-20 15:12:11,244 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始寻找商品单价
+2017-07-20 15:12:11,491 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价text = AU$21.99
+2017-07-20 15:12:11,491 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价productEntityId = 4241869
+2017-07-20 15:12:11,492 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->找到商品单价 = 21.99
+2017-07-20 15:12:11,492 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始加购物车
+2017-07-20 15:12:13,076 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车页面加载
+2017-07-20 15:12:29,707 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->启动驱动并做清理工作true
+2017-07-20 15:12:32,679 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-20 15:12:40,465 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到登录页面
+2017-07-20 15:12:40,468 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待登录完成
+2017-07-20 15:12:40,493 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->登录完成
+2017-07-20 15:12:40,494 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到商品页面
+2017-07-20 15:12:40,494 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=f0903Vc56mbnKwUA1RH4i0P_au3DQ70PG6ojanQyvCpW_bUt4ut51Y4uGSGsA_c&new=http%3A%2F%2Fcn.royyoungchemist.com.au%2F1129731.html&tag=
+2017-07-20 15:12:41,859 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始等待商品页面加载
+2017-07-20 15:12:43,949 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->关闭广告
+2017-07-20 15:12:43,966 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->商品页面加载完成
+2017-07-20 15:12:45,969 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始选择sku
+2017-07-20 15:12:45,969 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择sku完成
+2017-07-20 15:12:45,969 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始寻找商品单价
+2017-07-20 15:12:46,028 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价text = AU$21.99
+2017-07-20 15:12:46,028 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价productEntityId = 4241869
+2017-07-20 15:12:46,029 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->找到商品单价 = 21.99
+2017-07-20 15:12:46,029 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始加购物车
+2017-07-20 15:12:47,617 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车页面加载
+2017-07-20 15:13:12,394 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->启动驱动并做清理工作true
+2017-07-20 15:13:15,353 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-20 15:13:24,848 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到登录页面
+2017-07-20 15:13:24,852 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待登录完成
+2017-07-20 15:13:24,882 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->登录完成
+2017-07-20 15:13:25,966 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始跳转到购物车
+2017-07-20 15:13:25,966 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车加载
+2017-07-20 15:13:26,864 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始清理购物车
+2017-07-20 15:13:28,875 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->购物车页面清理完成
+2017-07-20 15:13:28,875 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->确认购物车是否清空
+2017-07-20 15:13:28,889 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到商品页面
+2017-07-20 15:13:28,890 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=f0903Vc56mbnKwUA1RH4i0P_au3DQ70PG6ojanQyvCpW_bUt4ut51Y4uGSGsA_c&new=http%3A%2F%2Fcn.royyoungchemist.com.au%2F1129731.html&tag=
+2017-07-20 15:13:28,928 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始等待商品页面加载
+2017-07-20 15:13:29,939 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->关闭广告
+2017-07-20 15:13:36,394 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->商品页面加载完成
+2017-07-20 15:13:38,397 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始选择sku
+2017-07-20 15:13:38,398 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择sku完成
+2017-07-20 15:13:38,398 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始寻找商品单价
+2017-07-20 15:13:38,422 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价text = AU$21.99
+2017-07-20 15:13:38,422 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价productEntityId = 4241869
+2017-07-20 15:13:38,423 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->找到商品单价 = 21.99
+2017-07-20 15:13:38,423 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始加购物车
+2017-07-20 15:13:40,028 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车页面加载
+2017-07-20 15:26:56,594 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟start
+2017-07-20 15:26:56,594 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟run
+2017-07-20 15:27:49,736 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->启动驱动并做清理工作true
+2017-07-20 15:27:52,805 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-20 15:28:03,547 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到登录页面
+2017-07-20 15:28:03,550 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待登录完成
+2017-07-20 15:28:03,574 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->登录完成
+2017-07-20 15:28:04,657 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始跳转到购物车
+2017-07-20 15:28:04,658 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车加载
+2017-07-20 15:28:05,554 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始清理购物车
+2017-07-20 15:28:07,568 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->购物车页面清理完成
+2017-07-20 15:28:07,568 ERROR [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->确认购物车是否清空
+2017-07-20 15:28:07,586 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->跳转到商品页面
+2017-07-20 15:28:07,587 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=f0903Vc56mbnKwUA1RH4i0P_au3DQ70PG6ojanQyvCpW_bUt4ut51Y4uGSGsA_c&new=http%3A%2F%2Fcn.royyoungchemist.com.au%2F1129731.html&tag=
+2017-07-20 15:28:07,613 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始等待商品页面加载
+2017-07-20 15:28:10,846 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->商品页面加载完成
+2017-07-20 15:28:12,849 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始选择sku
+2017-07-20 15:28:12,849 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->选择sku完成
+2017-07-20 15:28:12,849 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始寻找商品单价
+2017-07-20 15:28:13,082 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价text = AU$21.99
+2017-07-20 15:28:13,082 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->寻找单价productEntityId = 4241869
+2017-07-20 15:28:13,083 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->找到商品单价 = 21.99
+2017-07-20 15:28:13,083 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->开始加购物车
+2017-07-20 15:28:14,672 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - --->等待购物车页面加载
+2017-07-20 15:28:15,358 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟start
+2017-07-20 15:28:15,358 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟run
+2017-07-20 15:28:15,541 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟end
+2017-07-20 15:42:52,807 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟start
+2017-07-20 15:42:52,807 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟run
+2017-07-20 15:42:52,976 DEBUG [com.oversea.task.service.order.CnroyyoungchemistAutoBuy] - 15分钟end

@@ -1,0 +1,213 @@
+2017-05-18 16:34:45,120 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 16:34:48,550 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 16:36:38,129 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 16:36:38,210 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 16:36:38,303 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 16:36:40,200 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 16:36:47,386 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 16:42:28,857 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 16:42:31,885 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 16:42:39,207 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 16:42:50,980 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 16:42:51,130 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 16:42:53,868 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 16:42:59,850 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 16:43:01,091 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 16:43:01,091 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->商品页面打开失败
+2017-05-18 16:43:01,102 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:My Account - Jomashop
+2017-05-18 16:43:04,063 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 16:43:04,835 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 16:43:09,850 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 16:43:09,980 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 16:43:12,499 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 16:43:17,972 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流
+2017-05-18 16:43:22,900 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - --->查询订单异常,找不到该订单
+2017-05-18 16:44:19,019 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 16:44:21,985 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 16:44:35,492 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 16:44:57,676 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 16:44:57,826 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 16:44:59,524 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 16:45:08,688 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 16:45:10,038 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 16:45:10,039 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->商品页面打开失败
+2017-05-18 16:45:10,046 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:My Account - Jomashop
+2017-05-18 16:45:14,121 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 16:45:14,812 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 16:45:19,827 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 16:45:19,941 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 16:45:22,462 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 16:45:27,985 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流
+2017-05-18 16:46:31,498 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->商品页面打开失败
+2017-05-18 16:46:31,505 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Order # 15W5249 - Jomashop
+2017-05-18 16:46:35,108 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 16:46:36,553 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 16:46:41,565 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 16:46:41,682 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 16:46:44,202 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 16:46:50,209 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 16:49:19,813 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 16:49:22,832 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 16:49:44,652 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 16:49:47,672 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 16:49:47,820 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 16:49:49,415 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 16:49:57,814 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 16:49:59,053 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 16:50:11,682 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Citizen Eco Drive Axiom Black Dial Black Leather Men's Watch AU1065-07E - Eco-Drive - Citizen - Watches - Jomashop
+2017-05-18 16:50:14,812 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 16:50:15,589 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 16:50:20,605 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 16:50:20,768 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 16:50:23,289 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 16:50:32,106 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 16:58:39,509 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Citizen Eco Drive Axiom Black Dial Black Leather Men's Watch AU1065-07E - Eco-Drive - Citizen - Watches - Jomashop
+2017-05-18 16:58:56,764 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 16:58:58,652 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 16:59:03,666 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 16:59:03,785 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 16:59:06,304 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 16:59:11,682 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:00:43,270 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:00:46,289 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:00:56,154 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:01:07,290 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:01:07,466 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:01:10,104 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:01:16,554 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:01:16,993 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:01:26,871 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Citizen Eco Drive Axiom Black Dial Black Leather Men's Watch AU1065-07E - Eco-Drive - Citizen - Watches - Jomashop
+2017-05-18 17:01:30,056 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:01:31,594 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:01:36,609 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:01:36,715 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 17:01:39,237 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:01:44,536 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:01:49,390 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - 该订单还没发货,没产生物流单号
+2017-05-18 17:03:09,025 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:03:12,063 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:03:18,581 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:03:29,563 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:03:29,678 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:03:31,281 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:03:43,287 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:03:44,406 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:03:54,926 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Citizen Eco Drive Axiom Black Dial Black Leather Men's Watch AU1065-07E - Eco-Drive - Citizen - Watches - Jomashop
+2017-05-18 17:03:58,857 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:03:59,648 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:04:04,663 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:04:04,774 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 17:04:07,296 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:04:12,591 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:04:20,844 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - 该订单还没发货,没产生物流单号
+2017-05-18 17:04:58,493 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:05:01,438 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:05:11,252 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:05:24,161 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:05:24,297 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:05:26,954 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:05:33,185 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:05:34,606 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:05:48,794 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Citizen Eco Drive Axiom Black Dial Black Leather Men's Watch AU1065-07E - Eco-Drive - Citizen - Watches - Jomashop
+2017-05-18 17:05:52,002 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:05:53,066 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:05:58,079 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:05:58,193 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:true
+2017-05-18 17:06:00,712 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:06:05,950 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:06:14,625 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - expressNo = 9405511898489823746999
+2017-05-18 17:06:14,666 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - expressCompany = USPS
+2017-05-18 17:09:03,735 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:09:06,821 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:09:28,039 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:09:33,254 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:09:33,361 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:09:35,977 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:09:46,250 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:09:47,464 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:10:04,979 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Gucci Glitter Red Blue Gradient Sunglasses - Gucci - Sunglasses - Jomashop
+2017-05-18 17:10:09,034 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:10:10,085 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:10:15,101 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:10:15,209 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:false
+2017-05-18 17:10:15,299 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/12/17 15T6618 jtdbcywB HHHT $68.98 Processing View Order对比结果:false
+2017-05-18 17:10:15,391 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/8/17 15R9130 jtdbcywB HHHT $72.98 Processing View Order对比结果:false
+2017-05-18 17:10:15,484 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/1/17 15Q4377 jtdbcywB HHHT $107.28 Shipped View Order对比结果:false
+2017-05-18 17:10:15,574 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/17/17 15H0630 jtdbcywB HHHT $94.99 Shipped View Order对比结果:false
+2017-05-18 17:10:15,666 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/5/17 15D1988 jtdbcywA HHHT $49.90 Shipped View Order对比结果:false
+2017-05-18 17:10:15,755 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:3/24/17 15B3282 jtdbcywA HHHT $143.16 Partially Shipped View Order对比结果:true
+2017-05-18 17:10:18,275 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:10:24,283 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:10:34,751 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - 该订单还没发货,没产生物流单号
+2017-05-18 17:10:49,058 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Swarovski Stardust Black Bracelet 5102552 - Swarovski - Ladies Jewelry - Jewelry - Jomashop
+2017-05-18 17:10:52,651 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:10:53,935 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:10:58,952 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:10:59,083 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:false
+2017-05-18 17:10:59,184 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/12/17 15T6618 jtdbcywB HHHT $68.98 Processing View Order对比结果:false
+2017-05-18 17:10:59,300 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/8/17 15R9130 jtdbcywB HHHT $72.98 Processing View Order对比结果:false
+2017-05-18 17:10:59,419 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/1/17 15Q4377 jtdbcywB HHHT $107.28 Shipped View Order对比结果:false
+2017-05-18 17:10:59,505 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/17/17 15H0630 jtdbcywB HHHT $94.99 Shipped View Order对比结果:false
+2017-05-18 17:10:59,597 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/5/17 15D1988 jtdbcywA HHHT $49.90 Shipped View Order对比结果:false
+2017-05-18 17:10:59,717 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:3/24/17 15B3282 jtdbcywA HHHT $143.16 Partially Shipped View Order对比结果:true
+2017-05-18 17:11:02,233 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:11:08,431 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:11:12,550 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - --->查询订单异常,找不到该订单
+2017-05-18 17:13:54,699 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:13:57,654 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:14:16,257 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:14:32,315 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:14:32,416 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:14:35,054 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:14:45,309 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:14:46,479 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:14:59,929 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Gucci Glitter Red Blue Gradient Sunglasses - Gucci - Sunglasses - Jomashop
+2017-05-18 17:15:03,720 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:15:04,402 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:15:09,415 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:15:09,522 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:false
+2017-05-18 17:15:09,620 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/12/17 15T6618 jtdbcywB HHHT $68.98 Processing View Order对比结果:false
+2017-05-18 17:15:09,712 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/8/17 15R9130 jtdbcywB HHHT $72.98 Processing View Order对比结果:false
+2017-05-18 17:15:09,803 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/1/17 15Q4377 jtdbcywB HHHT $107.28 Shipped View Order对比结果:false
+2017-05-18 17:15:09,902 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/17/17 15H0630 jtdbcywB HHHT $94.99 Shipped View Order对比结果:false
+2017-05-18 17:15:10,012 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/5/17 15D1988 jtdbcywA HHHT $49.90 Shipped View Order对比结果:false
+2017-05-18 17:15:10,111 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:3/24/17 15B3282 jtdbcywA HHHT $143.16 Partially Shipped View Order对比结果:true
+2017-05-18 17:15:12,632 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:15:18,357 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:32:18,240 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作
+2017-05-18 17:32:21,208 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-18 17:32:29,004 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-18 17:32:40,443 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-18 17:32:40,553 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-18 17:32:43,185 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-18 17:32:49,224 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-18 17:32:49,620 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-18 17:32:59,901 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Gucci Glitter Red Blue Gradient Sunglasses - Gucci - Sunglasses - Jomashop
+2017-05-18 17:33:03,118 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:33:04,025 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:33:09,037 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:33:09,177 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:false
+2017-05-18 17:33:09,284 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/12/17 15T6618 jtdbcywB HHHT $68.98 Processing View Order对比结果:false
+2017-05-18 17:33:09,382 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/8/17 15R9130 jtdbcywB HHHT $72.98 Processing View Order对比结果:false
+2017-05-18 17:33:09,491 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/1/17 15Q4377 jtdbcywB HHHT $107.28 Shipped View Order对比结果:false
+2017-05-18 17:33:09,589 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/17/17 15H0630 jtdbcywB HHHT $94.99 Shipped View Order对比结果:false
+2017-05-18 17:33:09,691 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/5/17 15D1988 jtdbcywA HHHT $49.90 Shipped View Order对比结果:false
+2017-05-18 17:33:09,790 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:3/24/17 15B3282 jtdbcywA HHHT $143.16 Partially Shipped View Order对比结果:true
+2017-05-18 17:33:12,307 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:33:17,558 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:33:31,226 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - expressNo = 9400111898489821685846
+2017-05-18 17:33:31,257 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - expressCompany = USPS
+2017-05-18 17:33:41,133 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->页面title:Swarovski Stardust Black Bracelet 5102552 - Swarovski - Ladies Jewelry - Jewelry - Jomashop
+2017-05-18 17:33:44,822 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待订单页面加载
+2017-05-18 17:33:45,483 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找对应订单
+2017-05-18 17:33:50,498 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->找到对应的table
+2017-05-18 17:33:50,609 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/17/17 15W5249 jtdbcywA HHHT $102.99 Shipped View Order对比结果:false
+2017-05-18 17:33:50,700 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/12/17 15T6618 jtdbcywB HHHT $68.98 Processing View Order对比结果:false
+2017-05-18 17:33:50,787 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/8/17 15R9130 jtdbcywB HHHT $72.98 Processing View Order对比结果:false
+2017-05-18 17:33:50,879 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:5/1/17 15Q4377 jtdbcywB HHHT $107.28 Shipped View Order对比结果:false
+2017-05-18 17:33:50,968 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/17/17 15H0630 jtdbcywB HHHT $94.99 Shipped View Order对比结果:false
+2017-05-18 17:33:51,055 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:4/5/17 15D1988 jtdbcywA HHHT $49.90 Shipped View Order对比结果:false
+2017-05-18 17:33:51,144 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->orderNo text:3/24/17 15B3282 jtdbcywA HHHT $143.16 Partially Shipped View Order对比结果:true
+2017-05-18 17:33:53,667 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->点击查看物流详情
+2017-05-18 17:33:59,471 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始查找物流 
+2017-05-18 17:34:02,885 ERROR [com.oversea.task.service.order.JomashopAutoBuy] - --->查询订单异常,找不到该订单

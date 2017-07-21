@@ -1,0 +1,30 @@
+{
+  "itemId": "206600048f084db100160912",
+  "manMadeTitle": "",
+  "title": "KISSKISS<br />亲亲唇膏 (1piece) (325 Rouge Kiss)",
+  "parentCode": "107500603004",
+  "description": "",
+  "homeUrl": "http://web1.sasa.com/SasaWeb/sch/product/viewProductDetail.jspa?itemno=107500603004",
+  "brand": "娇兰",
+  "tag": "",
+  "unit": "HK$",
+  "productEntitys": [
+    {
+      "code": "107500603004",
+      "listPrice": "28000",
+      "price": "23800",
+      "images": [
+        "http://cdn.sasa.com/shop/pimage/70/107500603004l.jpg"
+      ],
+      "weight": "839",
+      "currencyCode": "HKD",
+      "storeNumber": "100"
+    }
+  ],
+  "productAttibutes": [],
+  "productAttibuteEntitys": {},
+  "homeFreight": 0,
+  "spiderId": "product:743222",
+  "partnerId": "haihu",
+  "spiderType": 3
+}

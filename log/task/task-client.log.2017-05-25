@@ -1,0 +1,17 @@
+2017-05-25 17:55:30,893 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 18:49:45,385 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 18:50:31,123 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 18:50:52,271 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 18:51:37,607 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 18:52:00,646 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 18:52:56,654 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 19:00:29,484 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 19:00:56,318 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 21:40:27,623 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 21:42:08,281 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 21:47:47,821 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 21:48:55,893 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-05-25 22:07:52,664 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 23:26:47,215 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 23:41:11,612 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-25 23:41:36,266 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true

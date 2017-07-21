@@ -1,0 +1,1 @@
+java -jar -Dtask.config.path=C:/auto/config/system-client-default.properties -Dlog.path=C:/auto/log/ taskClient.jar

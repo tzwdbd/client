@@ -1,0 +1,756 @@
+2017-07-04 09:38:09,402 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:38:12,856 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-04 09:39:30,529 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始登陆
+2017-07-04 09:39:42,838 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 登录成功
+2017-07-04 09:50:14,861 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:50:17,879 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:50:17,879 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:50:18,477 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 09:50:44,835 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:50:47,810 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:50:47,810 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:50:49,902 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 09:51:19,594 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 09:51:21,609 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 09:51:21,609 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 09:51:47,592 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:51:56,077 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 09:52:02,585 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 09:52:51,353 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 41 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 27531404-6489-ca4d-ae63-77cbf20c224e
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6276721504736765101webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6276721504736765101webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6276721504736765101webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6276721504736765101webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous6276721504736765101webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-04 09:53:39,392 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:53:42,304 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:53:42,305 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:53:43,884 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 09:54:06,931 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 09:54:12,860 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 09:54:12,860 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 09:54:28,978 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:54:33,795 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 09:54:37,952 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 09:54:47,702 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:54:53,039 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 09:55:00,590 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 09:55:29,616 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:55:32,613 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:55:32,613 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:55:34,027 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 09:56:04,125 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 09:56:06,143 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 09:56:06,143 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 09:56:06,572 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:56:06,906 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 09:56:06,944 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:56:07,044 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 09:56:07,129 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 09:56:07,137 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 09:56:07,137 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 09:56:09,214 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 09:56:09,233 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 09:56:09,294 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 09:56:10,320 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 09:56:10,330 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 09:56:10,343 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 09:56:10,356 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 09:58:21,273 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:58:24,281 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:58:24,282 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:58:25,718 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 09:58:53,590 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 09:58:55,809 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 09:58:55,809 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 09:58:56,607 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:58:56,739 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 09:58:56,810 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 09:58:56,916 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 09:58:57,772 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 09:58:57,781 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 09:58:57,781 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 09:58:59,873 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 09:58:59,892 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 09:58:59,954 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 09:59:00,983 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 09:59:00,992 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 09:59:00,998 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 09:59:01,023 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 09:59:44,430 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 09:59:47,283 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 09:59:47,283 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 09:59:48,738 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:00:15,074 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:00:17,118 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:00:17,118 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:00:17,161 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:00:17,271 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:00:17,325 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:00:17,437 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:00:18,497 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:00:18,505 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 10:00:18,505 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 10:00:20,623 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 10:00:20,645 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 10:00:20,711 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 10:00:21,845 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 10:00:21,879 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 10:00:22,090 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 10:00:22,102 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 10:01:52,213 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:01:55,210 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:01:55,210 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:01:57,038 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:02:32,202 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:02:34,219 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:02:34,219 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:02:44,171 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:02:48,314 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:02:55,014 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:03:02,413 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:03:10,459 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:04:08,156 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:04:11,027 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:04:11,028 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:04:14,235 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:04:43,540 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:04:45,551 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:04:45,551 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:04:45,597 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:04:46,767 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:04:48,217 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:04:48,301 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:04:48,396 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:04:49,717 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 10:04:49,717 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 10:04:52,475 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 10:04:52,501 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 10:04:52,617 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 10:04:55,532 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 10:04:55,562 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 10:04:56,016 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 10:05:32,313 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:05:35,189 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:05:35,189 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:05:36,784 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:06:03,662 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:06:05,675 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:06:05,675 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:06:05,716 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:06:05,818 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:06:07,025 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:06:08,994 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 533 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 568b4813-1fa4-2141-857a-842347a8df63
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-04 10:06:09,368 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 11 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 568b4813-1fa4-2141-857a-842347a8df63
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3978299972083620231webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-04 10:06:09,369 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - findCount = 1 && skuList.size() = 4
+2017-07-04 10:24:46,770 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:24:49,784 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:24:49,784 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:24:51,499 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:25:11,247 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:25:13,263 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:25:13,263 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:25:13,670 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:25:14,388 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:25:49,471 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:25:50,521 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:25:50,622 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:25:51,635 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 10:25:51,635 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 10:25:53,702 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 10:25:53,726 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 10:25:53,848 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 10:25:57,406 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 10:25:57,418 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 10:25:57,460 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 10:26:14,168 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:26:17,173 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:26:17,173 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:26:19,612 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:26:37,603 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:26:42,147 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:26:42,148 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:26:42,620 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:26:42,790 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:26:43,842 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:26:43,939 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:26:44,050 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:26:45,467 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 10:26:45,467 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 10:26:48,309 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 10:26:48,330 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 10:26:48,435 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 10:26:51,460 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 10:26:51,474 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 10:26:51,519 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 10:27:04,407 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:27:07,374 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:27:07,374 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:27:09,621 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:27:30,817 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:27:32,831 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:27:32,831 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:27:33,362 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:27:33,496 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:27:34,560 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:27:34,681 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+2017-07-04 10:27:34,744 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->找不到指定的sku no success= size:9
+2017-07-04 10:29:01,070 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 10:29:04,114 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 10:29:04,114 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 10:29:05,563 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 10:29:22,502 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 10:29:27,536 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 10:30:11,810 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 10:30:11,810 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 10:30:12,125 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:30:13,274 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 10:30:14,627 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-04 10:30:14,724 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-04 10:30:14,815 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-04 10:30:15,826 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 10:30:15,826 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 10:30:19,009 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 10:30:19,028 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 10:30:19,148 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 10:30:22,009 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 10:30:22,044 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 10:30:22,095 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 20:13:42,407 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-07-04 20:13:45,843 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:13:45,843 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:13:51,634 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:13:51,642 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:13:51,646 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:13:56,668 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待主页面加载完成出错
+org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.105', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:641)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:467)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	at com.oversea.task.service.order.NordstromAutoBuy.whenMainPanelReady(NordstromAutoBuy.java:234)
+	at com.oversea.task.service.order.NordstromAutoBuy.selectProduct(NordstromAutoBuy.java:283)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1431)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 127.0.0.1:7055 [/127.0.0.1] failed: Connection refused
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:353)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:380)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:184)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:88)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:71)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.openqa.selenium.remote.internal.ApacheHttpClient.fallBackExecute(ApacheHttpClient.java:143)
+	at org.openqa.selenium.remote.internal.ApacheHttpClient.execute(ApacheHttpClient.java:89)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.execute(NewProfileExtensionConnection.java:170)
+	at org.openqa.selenium.firefox.FirefoxDriver$LazyCommandExecutor.execute(FirefoxDriver.java:380)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:620)
+	... 12 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:74)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:134)
+	... 27 more
+2017-07-04 20:13:56,671 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:13:59,674 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:14:11,667 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-07-04 20:14:14,582 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:14:14,582 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:14:41,263 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:14:41,523 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:14:41,526 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:14:54,881 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-07-04 20:15:05,052 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-07-04 20:15:08,045 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:15:08,045 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:15:26,884 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:15:26,902 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:15:26,908 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:15:39,949 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:15:42,965 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:15:46,548 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Core White/ Green
+2017-07-04 20:15:54,058 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:4.2
+(5)
+'Stan Smith' Leather Sneaker
+ADIDAS
+$64.95$40.0035% offFree shipping
+Perforated stripes detail the sides of an iconic tennis shoe updated in full-grain leather and finished with a moisture-wicking OrthoLite® insole.
+2017-07-04 20:15:56,161 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-07-04 20:18:30,921 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:18:30,922 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:18:41,239 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:18:41,325 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:18:41,326 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:18:46,353 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:18:49,376 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:18:53,205 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Core White/ Green
+2017-07-04 20:18:57,082 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:4.2
+(5)
+'Stan Smith' Leather Sneaker
+ADIDAS
+$64.95$40.0035% offFree shipping
+Perforated stripes detail the sides of an iconic tennis shoe updated in full-grain leather and finished with a moisture-wicking OrthoLite® insole.
+2017-07-04 20:20:33,550 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:20:33,550 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:20:44,857 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:20:44,913 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:20:44,913 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:20:49,940 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:20:52,954 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:20:55,667 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Core White/ Green
+2017-07-04 20:20:59,046 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:4.2
+(5)
+'Stan Smith' Leather Sneaker
+ADIDAS
+$64.95$40.0035% offFree shipping
+Perforated stripes detail the sides of an iconic tennis shoe updated in full-grain leather and finished with a moisture-wicking OrthoLite® insole.
+2017-07-04 20:21:00,303 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-07-04 20:21:33,776 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sku:Core White/ Green
+2017-07-04 20:21:55,113 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式5 M
+2017-07-04 20:21:57,673 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->size:不是下拉框不能点击5 M
+2017-07-04 20:22:08,576 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:5 M
+2017-07-04 20:22:12,904 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-07-04 20:30:42,817 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:30:42,817 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:30:52,583 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:30:52,664 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:30:52,664 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:30:57,691 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:31:00,701 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:31:03,688 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Core White/ Green
+2017-07-04 20:31:07,347 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:4.2
+(5)
+'Stan Smith' Leather Sneaker
+ADIDAS
+$64.95$40.0035% offFree shipping
+Perforated stripes detail the sides of an iconic tennis shoe updated in full-grain leather and finished with a moisture-wicking OrthoLite® insole.
+2017-07-04 20:31:09,295 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-07-04 20:31:15,847 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sku:Core White/ Green
+2017-07-04 20:31:39,754 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式5 M
+2017-07-04 20:31:41,370 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->size:不是下拉框不能点击5 M
+2017-07-04 20:31:50,611 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:5 M
+2017-07-04 20:32:27,459 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-07-04 20:32:30,516 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-07-04 20:32:30,516 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826
+2017-07-04 20:33:03,512 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-07-04 20:33:03,554 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-07-04 20:33:03,558 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-07-04 20:34:05,450 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-07-04 20:34:08,468 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-07-04 20:34:08,501 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Core White/ Green
+2017-07-04 20:34:08,590 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:4.2
+(5)
+'Stan Smith' Leather Sneaker
+ADIDAS
+$64.95$40.0035% offFree shipping
+Perforated stripes detail the sides of an iconic tennis shoe updated in full-grain leather and finished with a moisture-wicking OrthoLite® insole.
+2017-07-04 20:34:08,600 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-07-04 20:34:08,619 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sku:Core White/ Green
+2017-07-04 20:34:24,510 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式7 M
+2017-07-04 20:34:26,456 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->size:不是下拉框不能点击7 M
+2017-07-04 20:34:33,294 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:7 M
+2017-07-04 20:34:56,340 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-07-04 20:34:56,340 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-07-04 20:34:56,386 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-07-04 20:34:56,414 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-07-04 20:34:56,428 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4-2]找到商品单价  = 40.00
+2017-07-04 20:35:02,431 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-07-04 20:35:02,623 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->确认是否加购物车成功
+2017-07-04 22:33:27,853 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:33:30,900 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:33:30,900 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:35:26,568 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:35:29,612 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:35:29,612 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:35:49,367 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:35:49,433 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:35:55,059 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 22:35:56,523 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:35:56,523 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:35:56,853 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:35:57,351 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:35:59,283 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:35:59,283 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:36:01,458 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:36:01,485 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:36:02,726 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:36:08,811 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:36:08,841 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:36:08,879 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 22:37:55,136 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:37:58,197 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:37:58,197 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:39:22,188 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:39:22,252 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:39:27,289 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:39:27,289 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:39:27,339 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:39:27,441 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:39:29,365 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:39:29,365 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:39:31,481 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:39:31,504 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:39:33,420 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:39:36,337 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:39:36,363 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:39:36,398 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-04 22:45:01,017 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:45:03,977 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:45:03,977 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:45:34,596 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:45:34,663 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:45:39,692 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 22:45:40,479 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:45:40,479 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:45:41,339 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:45:41,641 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:45:42,959 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:45:42,959 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:45:42,991 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:45:43,009 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:45:43,183 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:45:44,215 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:45:44,215 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:45:44,221 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 22:45:44,221 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 22:47:26,111 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:47:29,099 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:47:29,099 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:48:13,013 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:48:13,084 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:48:18,106 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 22:48:20,450 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:48:20,450 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:48:20,500 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:48:21,041 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:48:22,561 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:48:22,562 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:48:22,591 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:48:22,604 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:48:23,214 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:48:24,241 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:48:24,241 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:48:24,247 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 22:48:24,247 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 22:49:50,814 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:49:53,797 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:49:53,797 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:50:26,455 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:50:26,526 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:50:31,553 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 22:50:32,638 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:50:32,638 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:50:32,692 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:50:33,159 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:50:34,779 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:50:34,779 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:50:34,807 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:50:34,822 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:50:35,845 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:52:06,732 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:52:06,732 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:52:06,757 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-04 22:52:06,758 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-04 22:53:53,663 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:53:56,696 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:53:56,696 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 22:54:39,604 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:54:42,527 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:54:42,527 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-04 22:56:46,279 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-04 22:56:49,225 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-04 22:56:49,225 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898
+2017-07-04 22:57:22,022 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-04 22:57:22,089 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-04 22:57:27,121 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-04 22:57:27,138 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-04 22:57:27,138 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-04 22:57:27,243 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+neutral multi
+2017-07-04 22:57:27,562 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-04 22:57:29,192 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-04 22:57:29,193 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-04 22:57:31,253 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-04 22:57:31,272 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-04 22:57:32,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-04 22:57:37,165 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-04 22:57:37,202 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-04 22:57:37,264 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT

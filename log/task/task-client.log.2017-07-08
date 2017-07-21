@@ -1,0 +1,345 @@
+2017-07-08 16:46:16,704 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 16:46:20,024 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 16:46:20,024 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/crochet-lace-triangle-bralette-the-bralette-collection?ProductID=341063&CatalogueType=OLS
+2017-07-08 16:46:35,061 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Victoria's Secret: Lingerie and Women's Clothing, Accessories & more.
+2017-07-08 16:46:35,067 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 16:46:35,146 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 16:46:35,146 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 16:46:35,146 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 16:46:35,155 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 16:46:35,164 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 0 && skuList.size/2 = 2 && skuChooseElements.size=0
+2017-07-08 16:46:35,165 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 0 && skuList.size()/2 = 2
+2017-07-08 17:12:20,499 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 17:12:23,454 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 17:12:23,454 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/crochet-lace-triangle-bralette-the-bralette-collection?ProductID=341063&CatalogueType=OLS
+2017-07-08 17:13:14,501 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Crochet Lace Triangle Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 17:13:14,508 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 17:13:14,612 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 17:13:14,612 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 17:13:14,613 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 17:13:14,625 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 17:13:14,715 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Chintz Rose Wrap
+2017-07-08 17:13:17,093 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:XS
+2017-07-08 17:13:19,415 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-07-08 17:13:19,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 17:13:19,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 17:13:19,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 17:13:19,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 17:13:19,462 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 9.99
+2017-07-08 17:13:19,462 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 17:13:27,181 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 17:13:27,193 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 17:13:30,334 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 17:13:33,256 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 18:24:21,732 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:24:24,729 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:24:24,729 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:25:13,938 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:25:13,945 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:25:14,057 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:25:14,057 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:25:14,057 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:25:14,066 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:25:14,120 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Black
+2017-07-08 18:25:16,439 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:M
+2017-07-08 18:25:18,609 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 18:25:18,609 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 1 && skuList.size/2 = 2 && skuChooseElements.size=1
+2017-07-08 18:25:18,609 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 1 && skuList.size()/2 = 2
+2017-07-08 18:28:10,785 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:28:13,659 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:28:13,659 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:29:11,849 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:29:11,855 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:29:11,969 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:29:11,969 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:29:11,969 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:29:11,979 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:29:12,033 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Black
+2017-07-08 18:29:14,165 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:M
+2017-07-08 18:29:16,443 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-07-08 18:29:16,467 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 18:29:16,467 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 18:29:16,467 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 18:29:16,467 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 18:29:16,479 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 7.99
+2017-07-08 18:29:16,479 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 18:29:21,350 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 18:29:21,359 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 18:29:24,485 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 18:29:25,408 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 18:29:46,374 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:29:49,271 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:29:49,271 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:30:11,077 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:30:11,083 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:30:11,200 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:30:11,200 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:30:11,200 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:30:11,209 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:30:11,299 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Coconut White
+2017-07-08 18:30:11,305 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku碰到异常
+java.lang.NullPointerException
+	at com.oversea.task.service.order.VictoriassecretAutoBuy.selectProduct(VictoriassecretAutoBuy.java:306)
+	at com.oversea.task.service.order.VictoriassecretAutoBuy.main(VictoriassecretAutoBuy.java:1026)
+2017-07-08 18:31:21,575 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:31:24,544 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:31:24,544 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:31:43,870 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:31:43,876 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:31:43,990 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:31:43,990 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:31:43,990 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:31:44,000 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:31:44,088 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Coconut White
+2017-07-08 18:31:46,187 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:M
+2017-07-08 18:31:48,505 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 18:31:48,505 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 1 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 18:31:48,505 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 1 && skuList.size()/2 = 2
+2017-07-08 18:33:51,838 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:33:54,718 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:33:54,718 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:34:24,516 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:34:24,521 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:34:24,628 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:34:24,628 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:34:24,628 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:34:24,639 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:34:24,726 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Coconut White
+2017-07-08 18:34:27,363 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:M
+2017-07-08 18:34:29,578 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-07-08 18:34:29,603 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 18:34:29,603 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 18:34:29,603 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 18:34:29,603 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 18:34:29,615 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 7.99
+2017-07-08 18:34:29,615 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 18:34:33,947 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 18:34:33,955 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 18:34:37,048 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 18:34:38,641 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 18:34:53,025 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 18:34:55,992 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 18:34:55,992 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/bandeau-flounce-bralette-the-bralette-collection?ProductID=337364&CatalogueType=OLS
+2017-07-08 18:35:12,666 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Bandeau Flounce Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 18:35:12,673 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 18:35:12,777 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 18:35:12,777 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 18:35:12,777 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 18:35:12,788 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 18:35:12,843 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Black
+2017-07-08 18:35:15,009 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:M
+2017-07-08 18:35:17,414 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-07-08 18:35:17,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->size加1
+2017-07-08 18:35:17,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 18:35:17,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 18:35:17,440 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 18:35:17,457 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 7.99
+2017-07-08 18:35:17,457 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 18:35:21,870 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 18:35:21,879 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 18:35:25,048 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 18:35:27,174 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 19:13:04,256 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 19:13:07,214 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 19:13:07,214 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/mesh-plunge-bralette-the-bralette-collection?ProductID=337567&CatalogueType=OLS
+2017-07-08 19:13:49,058 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Mesh Plunge Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 19:13:49,064 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 19:13:49,168 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 19:13:49,168 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 19:13:49,168 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 19:13:49,179 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 19:13:49,266 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Sterling Pewter Two Tone Print
+2017-07-08 19:13:51,668 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->颜色加1
+2017-07-08 19:13:51,668 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 1 && skuList.size/2 = 2 && skuChooseElements.size=1
+2017-07-08 19:13:51,668 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 1 && skuList.size()/2 = 2
+2017-07-08 19:26:50,073 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 19:26:53,071 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 19:26:53,071 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/mesh-plunge-bralette-the-bralette-collection?ProductID=337567&CatalogueType=OLS
+2017-07-08 19:28:01,133 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Mesh Plunge Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 19:28:01,140 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 19:28:01,245 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 19:28:01,246 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 19:28:01,246 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 19:28:01,255 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 19:28:01,342 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Sterling Pewter Two Tone Print
+2017-07-08 19:28:03,843 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->Sterling Pewter Two Tone Print加1
+2017-07-08 19:28:03,851 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->XS加1
+2017-07-08 19:28:03,851 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 19:28:03,851 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 19:28:03,851 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 19:28:03,864 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 9.99
+2017-07-08 19:28:03,864 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 19:28:08,401 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 19:28:08,410 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 19:28:11,507 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 19:28:13,186 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 19:29:15,964 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 19:29:18,941 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 19:29:18,941 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/lace-scoopneck-bralette-the-bralette-collection?ProductID=337322&CatalogueType=OLS
+2017-07-08 19:30:09,327 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Lace Scoopneck Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 19:30:09,334 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 19:30:09,448 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 19:30:09,448 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 19:30:09,448 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 19:30:09,458 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 19:30:09,517 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Lipsmacker
+2017-07-08 19:30:11,829 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择:size:XS
+2017-07-08 19:30:14,050 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->Lipsmacker加1
+2017-07-08 19:30:14,058 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->XS加1
+2017-07-08 19:30:14,058 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 2 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 19:30:14,058 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择sku完成
+2017-07-08 19:30:14,058 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1]开始寻找商品单价
+2017-07-08 19:30:14,072 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->[1-1]找到商品单价  = 9.99
+2017-07-08 19:30:14,072 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择数量:3
+2017-07-08 19:30:18,396 ERROR [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->数量为:3
+2017-07-08 19:30:18,404 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始加购物车
+2017-07-08 19:30:21,494 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->确认是否加购物车成功
+2017-07-08 19:30:34,556 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->点击继续购物
+2017-07-08 19:31:11,829 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 19:31:14,780 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->跳转到商品页面
+2017-07-08 19:31:14,780 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - productUrl = https://www.victoriassecret.com/clearance/bras/mesh-plunge-bralette-the-bralette-collection?ProductID=337567&CatalogueType=OLS
+2017-07-08 19:31:36,635 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->页面title:Mesh Plunge Bralette - The Bralette Collection - Victoria's Secret
+2017-07-08 19:31:36,641 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始等待商品页面加载
+2017-07-08 19:31:36,752 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品可用
+2017-07-08 19:31:36,752 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->商品页面加载完成
+2017-07-08 19:31:36,752 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->开始选择sku
+2017-07-08 19:31:36,764 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->样式换了
+2017-07-08 19:31:36,847 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->选择Color:Sterling Pewter Two Tone Print
+2017-07-08 19:31:40,796 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->Sterling Pewter Two Tone Print加1
+2017-07-08 19:31:40,805 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->sku findCount = 1 && skuList.size/2 = 2 && skuChooseElements.size=2
+2017-07-08 19:31:40,805 DEBUG [com.oversea.task.service.order.VictoriassecretAutoBuy] - --->缺少匹配的sku findCount = 1 && skuList.size()/2 = 2
+2017-07-08 21:23:31,515 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 21:23:34,520 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-08 21:23:43,440 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-08 21:23:44,997 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-08 21:23:46,619 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-08 21:23:48,197 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-08 21:23:52,681 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-08 21:23:54,699 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-08 21:23:59,472 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-08 21:23:59,486 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-08 21:23:59,486 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-08 21:24:03,568 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-08 21:24:11,066 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-08 21:24:11,067 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-08 21:24:11,067 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-08 21:24:22,913 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-08 21:24:22,916 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-08 21:24:25,060 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-08 21:24:27,114 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-08 21:24:27,114 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-08 21:24:51,627 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-08 21:24:51,627 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-08 21:24:53,641 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-08 21:24:56,355 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-08 21:24:58,481 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-08 21:25:02,787 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull
+2017-07-08 21:25:12,321 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - 填写地址break
+2017-07-08 21:25:19,393 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->IdCard=330726199511251119
+2017-07-08 21:25:20,416 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->ExpireDate=20160216
+2017-07-08 21:25:20,425 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->选择地址失败
+org.openqa.selenium.NoSuchElementException: Cannot locate element with text: 2016
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.104', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:150)
+	at com.oversea.task.service.order.ZcnAutoBuy.chooseAddress(ZcnAutoBuy.java:955)
+	at com.oversea.task.service.order.ZcnAutoBuy.pay(ZcnAutoBuy.java:714)
+	at com.oversea.task.service.order.ZcnAutoBuy.main(ZcnAutoBuy.java:1285)
+2017-07-08 21:26:03,156 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-08 21:26:06,148 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-08 21:26:15,194 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-08 21:26:16,987 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-08 21:26:18,627 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-08 21:26:20,219 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-08 21:26:23,742 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-08 21:26:25,760 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-08 21:26:30,200 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-08 21:26:30,212 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-08 21:26:30,212 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-08 21:26:34,291 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-08 21:26:41,502 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-08 21:26:41,502 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-08 21:26:41,502 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-08 21:26:53,880 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-08 21:26:53,883 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-08 21:26:56,008 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-08 21:26:58,064 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-08 21:26:58,065 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-08 21:27:23,131 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-08 21:27:23,131 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-08 21:27:25,147 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-08 21:27:27,908 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-08 21:27:32,684 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-08 21:27:37,135 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull
+2017-07-08 21:27:46,697 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - 填写地址break
+2017-07-08 21:27:53,913 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->IdCard=330726199511251119
+2017-07-08 21:27:54,940 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->ExpireDate=20260216
+2017-07-08 21:27:59,421 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->front=/Users/taofen8/Downloads/1499520479.png
+2017-07-08 21:28:02,201 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->back=/Users/taofen8/Downloads/1499520482.png
+2017-07-08 21:28:06,918 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->设置身份证完成
+2017-07-08 21:28:06,938 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - 输入优惠码的时候错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"spc-gcpromoinput"}
+Command duration or timeout: 6 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.104', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=id, value=spc-gcpromoinput}
+Session ID: b6956bc5-8f64-2b4a-9930-5e7d0e5ca5bf
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:403)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZcnAutoBuy.pay(ZcnAutoBuy.java:746)
+	at com.oversea.task.service.order.ZcnAutoBuy.main(ZcnAutoBuy.java:1285)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"spc-gcpromoinput"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.104', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-08 21:28:07,242 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->查找除去运费的总价失败
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//td[contains(text(), '订单总计：')]/following-sibling::td[1]"}
+Command duration or timeout: 13 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.104', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//td[contains(text(), '订单总计：')]/following-sibling::td[1]}
+Session ID: b6956bc5-8f64-2b4a-9930-5e7d0e5ca5bf
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZcnAutoBuy.pay(ZcnAutoBuy.java:771)
+	at com.oversea.task.service.order.ZcnAutoBuy.main(ZcnAutoBuy.java:1285)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//td[contains(text(), '订单总计：')]/following-sibling::td[1]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '192.168.2.104', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8676446762912156939webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)

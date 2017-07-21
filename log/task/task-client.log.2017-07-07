@@ -1,0 +1,43 @@
+2017-07-07 16:36:48,177 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-07 16:37:04,637 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-07 16:37:27,542 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-07 16:37:28,728 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-07 16:37:30,472 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-07 16:37:32,078 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-07 16:37:35,618 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-07 16:37:37,630 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-07 16:37:40,839 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-07 16:37:40,852 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-07 16:37:40,852 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-07 16:37:44,925 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-07 16:37:52,170 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-07 16:37:52,170 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-07 16:37:52,170 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-07 17:12:36,468 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->启动驱动并做清理工作true
+2017-07-07 17:12:39,462 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-07 17:12:51,411 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到登录页面
+2017-07-07 17:12:52,461 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入账号
+2017-07-07 17:12:54,091 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->输入密码
+2017-07-07 17:12:55,674 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始登陆
+2017-07-07 17:12:59,194 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->登陆成功,开始跳转
+2017-07-07 17:13:01,208 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-07 17:13:04,421 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->清空购物车
+2017-07-07 17:13:04,437 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->购物车有 [1]件商品
+2017-07-07 17:13:04,437 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->删除购物车第[1]件商品
+2017-07-07 17:13:08,528 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->继续购物,再次跳转
+2017-07-07 17:13:15,990 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->跳转到商品页面
+2017-07-07 17:13:15,990 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - productUrl = https://www.amazon.cn/dp/B01N7A59PF
+2017-07-07 17:13:15,990 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->选择商品
+2017-07-07 17:13:28,245 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->开始选择sku
+2017-07-07 17:13:28,249 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku表带颜色:玫瑰金表圈 DW00100148
+2017-07-07 17:13:30,384 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - find one key first~~
+2017-07-07 17:13:32,437 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - productEntityId = null
+2017-07-07 17:13:32,437 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - singlePriceStr:819.00
+2017-07-07 17:13:57,655 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - 选择sku成功
+2017-07-07 17:13:57,656 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->myPrice = 819.00
+2017-07-07 17:13:59,669 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去购物车
+2017-07-07 17:14:02,546 DEBUG [com.oversea.task.service.order.ZcnAutoBuy] - --->去付款
+2017-07-07 17:14:04,662 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - --->没有地址，自动跳转到购物车
+2017-07-07 17:14:07,040 ERROR [com.oversea.task.service.order.ZcnAutoBuy] - disablednull
+2017-07-07 17:30:01,201 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-07-07 17:30:04,170 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置

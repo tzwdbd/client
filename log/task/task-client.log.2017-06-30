@@ -1,0 +1,312 @@
+2017-06-30 11:15:11,739 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作true
+2017-06-30 11:15:15,102 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-30 14:10:04,419 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->启动驱动并做清理工作false
+2017-06-30 14:10:07,411 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-30 14:10:12,922 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击1
+2017-06-30 14:10:13,035 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击2
+2017-06-30 14:10:15,156 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击3
+2017-06-30 14:10:17,259 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击4
+2017-06-30 14:11:43,415 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->保存编码点击5
+2017-06-30 14:11:55,103 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到登录页面
+2017-06-30 14:11:55,195 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->输入账号
+2017-06-30 14:12:00,275 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->输入密码
+2017-06-30 14:12:12,857 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->开始登陆
+2017-06-30 14:12:12,891 INFO [com.oversea.task.service.order.IherbAutoBuy] - --->登录成功
+2017-06-30 14:12:32,536 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->开始清理购物车
+2017-06-30 14:12:34,554 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->购物车页面清理完成
+2017-06-30 14:12:34,554 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->确认购物车是否清理完成
+2017-06-30 14:12:34,575 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到商品页面
+2017-06-30 14:12:34,575 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->url:http://www.iherb.com/Now-Foods-Maca-Raw-750-mg-90-Veg-Caps/18046
+2017-06-30 14:12:50,446 WARN [com.oversea.task.service.order.IherbAutoBuy] - --->单价 :14.06
+2017-06-30 14:12:50,447 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->productEntityId  is Null
+2017-06-30 14:13:46,484 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->添加到购物车
+2017-06-30 14:13:46,919 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - 找到商品，是第1个
+2017-06-30 14:13:46,940 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - 这个商品的数量：1
+2017-06-30 14:13:46,946 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - 调整数量
+2017-06-30 14:13:49,113 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到购物车
+2017-06-30 14:14:19,681 INFO [com.oversea.task.service.order.IherbAutoBuy] - --->跳转到结算页面
+2017-06-30 14:14:36,281 DEBUG [com.oversea.task.service.order.IherbAutoBuy] - --->没找到需要输入卡号的input
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":"input[name='cardNumber']"}
+Command duration or timeout: 11.31 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=input[name='cardNumber']}
+Session ID: d4bd201c-370f-6449-834b-9336657ab71b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.IherbAutoBuy.ensureCard(IherbAutoBuy.java:698)
+	at com.oversea.task.service.order.IherbAutoBuy.pay(IherbAutoBuy.java:534)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:943)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":"input[name='cardNumber']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 14:14:43,621 ERROR [com.oversea.task.service.order.IherbAutoBuy] - --->找不到 edit地址按钮
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"shipAddrChng"}
+Command duration or timeout: 11 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=id, value=shipAddrChng}
+Session ID: d4bd201c-370f-6449-834b-9336657ab71b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.findElement(RemoteWebElement.java:197)
+	at org.openqa.selenium.remote.RemoteWebElement.findElementById(RemoteWebElement.java:231)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebElement.findElement(RemoteWebElement.java:193)
+	at com.oversea.task.service.order.IherbAutoBuy.pay(IherbAutoBuy.java:555)
+	at com.oversea.task.service.order.IherbAutoBuy.main(IherbAutoBuy.java:943)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"shipAddrChng"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findChildElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10671)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8408274778893018210webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 16:33:15,928 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-06-30 16:33:18,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 16:33:18,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-cami/PWRU4450-3.html?pid=PWRU4450-3
+2017-06-30 16:49:46,130 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 16:49:46,480 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待商品页面加载
+2017-06-30 17:07:08,705 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-06-30 17:07:11,719 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 17:07:11,720 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-cami/PWRU4450-3.html?pid=PWRU4450-3
+2017-06-30 17:07:45,641 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 17:07:45,726 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-06-30 17:07:49,511 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-06-30 17:07:49,538 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查找iframe错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+Command duration or timeout: 23 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//iframe[@class='scroll-frame-iframe']}
+Session ID: 730de9b7-b18a-5047-ab63-20f0b1e947fc
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:620)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 17:08:05,051 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+rouge pink
+2017-06-30 17:08:37,555 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:make it personal
+this product variation is not available for monogramming. please select another color.
+2017-06-30 17:10:13,133 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 17:10:13,133 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-cami/PWRU4450-3.html?pid=PWRU4450-3
+2017-06-30 17:10:43,372 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 17:10:43,403 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-06-30 17:10:45,415 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-06-30 17:10:45,436 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查找iframe错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+Command duration or timeout: 19 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//iframe[@class='scroll-frame-iframe']}
+Session ID: 730de9b7-b18a-5047-ab63-20f0b1e947fc
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:620)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 17:10:56,531 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 17:10:56,531 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-cami/PWRU4450-3.html?pid=PWRU4450-3
+2017-06-30 17:11:04,390 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 17:11:04,429 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-06-30 17:11:06,441 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-06-30 17:11:06,463 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查找iframe错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+Command duration or timeout: 21 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//iframe[@class='scroll-frame-iframe']}
+Session ID: 730de9b7-b18a-5047-ab63-20f0b1e947fc
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:620)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8821880216336023539webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 17:11:12,321 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+rouge pink
+2017-06-30 17:11:30,893 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:make it personal
+this product variation is not available for monogramming. please select another color.
+2017-06-30 17:11:40,948 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-06-30 17:11:43,695 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-06-30 17:11:45,804 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-06-30 17:11:45,825 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-06-30 17:11:47,839 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-06-30 17:11:50,864 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-06-30 17:11:50,875 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-06-30 17:11:50,912 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-06-30 17:55:20,153 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-06-30 17:55:23,166 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 17:55:23,166 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=WKRU4370
+2017-06-30 17:56:18,042 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 17:56:18,096 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-06-30 17:56:20,111 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-06-30 17:56:20,125 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查找iframe错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+Command duration or timeout: 10 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//iframe[@class='scroll-frame-iframe']}
+Session ID: 7135f12e-dbba-5e4b-82f3-f3b7d13569a5
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:620)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous9184625622729680593webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous9184625622729680593webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous9184625622729680593webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous9184625622729680593webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous9184625622729680593webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 17:56:20,414 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - findCount = 0 && skuList.size() = 2
+2017-06-30 17:58:26,617 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-06-30 17:58:29,661 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-06-30 17:58:29,661 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=WKRU4370
+2017-06-30 18:00:38,667 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-06-30 18:00:38,726 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-06-30 18:00:40,744 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-06-30 18:00:40,745 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-06-30 18:00:40,757 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查找iframe错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+Command duration or timeout: 9 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//iframe[@class='scroll-frame-iframe']}
+Session ID: 237ab44b-edd1-4e49-a623-76243c828917
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:621)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//iframe[@class='scroll-frame-iframe']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8441212140278739619webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8441212140278739619webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8441212140278739619webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8441212140278739619webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8441212140278739619webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-06-30 18:00:41,111 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - findCount = 0 && skuList.size() = 2

@@ -1,0 +1,63 @@
+2017-06-27 18:38:58,557 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:39:01,975 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:39:01,975 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:39:01,975 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:39:30,475 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:39:33,408 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:39:33,408 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:39:33,409 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:39:46,686 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 选择sku出现异常:
+com.google.gson.JsonSyntaxException: java.io.EOFException: End of input at line 1 column 25
+	at com.google.gson.Gson.fromJson(Gson.java:764)
+	at com.google.gson.Gson.fromJson(Gson.java:721)
+	at com.google.gson.Gson.fromJson(Gson.java:670)
+	at com.google.gson.Gson.fromJson(Gson.java:642)
+	at com.oversea.task.utils.Utils.getSku(Utils.java:50)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectProduct(AmazonAutoBuy.java:445)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2753)
+Caused by: java.io.EOFException: End of input at line 1 column 25
+	at com.google.gson.stream.JsonReader.nextNonWhitespace(JsonReader.java:943)
+	at com.google.gson.stream.JsonReader.nextInArray(JsonReader.java:664)
+	at com.google.gson.stream.JsonReader.peek(JsonReader.java:376)
+	at com.google.gson.stream.JsonReader.hasNext(JsonReader.java:349)
+	at com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read(CollectionTypeAdapterFactory.java:80)
+	at com.google.gson.internal.bind.CollectionTypeAdapterFactory$Adapter.read(CollectionTypeAdapterFactory.java:60)
+	at com.google.gson.Gson.fromJson(Gson.java:755)
+	... 6 more
+2017-06-27 18:40:12,925 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:40:15,968 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:40:15,968 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:40:15,968 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:40:30,686 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 选择sku出现异常:
+java.lang.ClassCastException: java.lang.String cannot be cast to java.util.List
+	at com.oversea.task.utils.Utils.getSku(Utils.java:52)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectProduct(AmazonAutoBuy.java:445)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2753)
+2017-06-27 18:41:28,450 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:41:31,434 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:41:31,435 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:41:31,435 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:41:45,700 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - size:6.5  B(M) US
+2017-06-27 18:41:50,065 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->自动选择:[size = 6.5  B(M) US]
+2017-06-27 18:41:53,409 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 找到选sku新样式-底部弹出样式
+2017-06-27 18:42:04,402 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->领红包出错
+2017-06-27 18:42:04,468 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - productEntityId = 7516441
+2017-06-27 18:42:04,468 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - singlePriceStr:30.00
+-.$.99.95
+2017-06-27 18:45:24,323 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 等待购物车加载完成出错,e
+2017-06-27 18:45:45,917 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:45:48,937 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:45:48,937 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:45:48,937 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:46:10,376 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:46:16,339 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:46:16,339 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:46:16,339 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:46:31,199 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - size:6.5  B(M) US
+2017-06-27 18:46:37,985 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->自动选择:[size = 6.5  B(M) US]
+2017-06-27 18:47:21,652 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 找到选sku新样式-底部弹出样式
+2017-06-27 18:54:40,291 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-06-27 18:54:43,611 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到商品页面
+2017-06-27 18:54:43,611 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - productUrl = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D
+2017-06-27 18:54:43,611 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->选择商品
+2017-06-27 18:54:46,128 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->打开商品页面失败 = http://www.lustrelife.com/it.php?udid=832&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBCVVRQUUtPP3RhZz1obHMxYjAtMjA%3D

@@ -1,0 +1,94 @@
+2017-07-14 11:48:08,520 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 11:48:12,127 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-14 11:49:29,563 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始登陆
+2017-07-14 11:49:51,237 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 登录成功
+2017-07-14 11:49:51,319 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始清空购物车
+2017-07-14 11:49:54,515 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 跳转到商品页面
+2017-07-14 11:49:54,518 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 选择商品 productUrl = http://www.ralphlauren.com/product/index.jsp?productId=119352126
+2017-07-14 11:50:00,669 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始选择大小：10 D
+2017-07-14 11:50:01,787 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 选择大小完成
+2017-07-14 11:50:01,788 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始选择颜色：Newport Navy
+2017-07-14 11:50:02,955 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 选择颜色完成
+2017-07-14 11:50:05,013 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 单价：39.99
+2017-07-14 11:50:05,013 ERROR [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->productEntityId  is Null
+2017-07-14 11:50:05,013 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 还有的
+2017-07-14 11:50:05,013 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 加入购物车
+2017-07-14 11:50:12,776 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 检查数量：10 d 119352126 newport navy
+2017-07-14 11:50:13,199 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 数量ok
+2017-07-14 11:53:01,829 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 11:53:04,755 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-14 11:53:22,008 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始登陆
+2017-07-14 11:53:37,549 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 登录成功
+2017-07-14 11:53:37,638 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始清空购物车
+2017-07-14 18:08:27,922 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 18:09:24,517 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 18:11:06,085 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 18:11:09,099 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-14 18:11:23,908 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-14 18:11:27,672 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-14 18:11:28,213 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-14 18:11:28,286 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-14 18:11:36,306 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-14 18:22:47,745 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 18:22:50,755 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-14 18:23:03,662 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-14 18:23:05,459 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-14 18:23:05,987 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-14 18:23:06,062 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-14 18:23:09,597 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-14 18:23:14,284 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-14 18:27:53,536 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-14 18:27:56,653 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-14 18:28:10,152 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-14 18:28:11,969 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-14 18:28:12,509 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-14 18:28:12,593 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-14 18:28:15,243 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-14 18:28:20,253 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-14 18:30:07,596 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 选择sku出现异常:
+org.openqa.selenium.TimeoutException: Timed out after 90 seconds waiting for visibility of element located by By.xpath: //div[@id='ppd']
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 123874d4-2b7c-9148-8173-4fbbb10dd41a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.AmazonAutoBuy.waitForMainPanel(AmazonAutoBuy.java:349)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectBrushProduct(AmazonAutoBuy.java:3471)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2998)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='ppd']"}
+Command duration or timeout: 17 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//div[@id='ppd']}
+Session ID: 123874d4-2b7c-9148-8173-4fbbb10dd41a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 3 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='ppd']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7912610004460563265webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7912610004460563265webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7912610004460563265webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7912610004460563265webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7912610004460563265webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)

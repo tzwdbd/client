@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
+       default-autowire="byName">
+       
+       
+    <context:annotation-config />
+    <context:component-scan base-package="com.oversea.task"/>
+
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+        <property name="locations">
+            <list>
+                <value>classpath*:system-client.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- 启动日志清理程序-->
+    <bean id="cleanLogFileProcessor" class="com.oversea.task.client.CleanLogFileProcessor"
+          init-method="doProcessor"></bean>
+          
+    <bean id="versionCheckProcessor" class="com.oversea.task.update.VersionCheckProcessor" init-method="init" depends-on="springObjectFactory"></bean>
+    
+    <bean id="taskService" class="com.oversea.task.service.TaskServiceImpl"></bean>
+   
+
+</beans>

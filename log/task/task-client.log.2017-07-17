@@ -1,0 +1,465 @@
+2017-07-17 09:55:44,170 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 09:55:47,808 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-17 09:56:00,497 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-17 09:56:02,295 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-17 09:56:02,813 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-17 09:56:02,883 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-17 09:56:14,433 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-17 09:56:24,700 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:02:16,743 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:02:19,899 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-17 10:02:36,041 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-17 10:02:38,165 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-17 10:02:38,708 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-17 10:02:38,815 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-17 10:02:44,577 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-17 10:02:48,738 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:02:52,830 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->点击下一页异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".sx-title"}
+Command duration or timeout: 10 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=.sx-title}
+Session ID: b40269f5-5e5c-3e47-9748-335a0d7b2e51
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.findElement(RemoteWebElement.java:197)
+	at org.openqa.selenium.remote.RemoteWebElement.findElementByCssSelector(RemoteWebElement.java:286)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebElement.findElement(RemoteWebElement.java:193)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectBrushProduct(AmazonAutoBuy.java:3259)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2998)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".sx-title"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3784481678956095904webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findChildElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3784481678956095904webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10671)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3784481678956095904webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3784481678956095904webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3784481678956095904webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-17 10:04:44,946 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:04:48,118 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-17 10:05:02,969 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->跳转到登录页面
+2017-07-17 10:05:05,031 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入账号
+2017-07-17 10:05:05,532 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->输入密码
+2017-07-17 10:05:05,636 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->开始登陆
+2017-07-17 10:05:08,203 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->登陆成功,开始跳转
+2017-07-17 10:05:14,699 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:15:20,286 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:20:59,250 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:21:28,045 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:21:39,900 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:22:30,864 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:27:49,643 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:28:29,328 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:28:40,962 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:30:21,990 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:30:34,520 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:33:06,777 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - 选择sku出现异常:
+org.openqa.selenium.TimeoutException: Timed out after 90 seconds waiting for visibility of element located by By.xpath: //div[@id='ppd']
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 144bf0b3-eb33-7d4e-8589-8bbd43eff43c
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.AmazonAutoBuy.waitForMainPanel(AmazonAutoBuy.java:349)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectBrushProduct(AmazonAutoBuy.java:3490)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2999)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='ppd']"}
+Command duration or timeout: 12 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//div[@id='ppd']}
+Session ID: 144bf0b3-eb33-7d4e-8589-8bbd43eff43c
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 3 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='ppd']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1745933184343466826webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1745933184343466826webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1745933184343466826webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1745933184343466826webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1745933184343466826webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-17 10:40:59,516 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:41:32,971 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:41:44,648 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:43:33,529 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:43:46,824 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:43:51,303 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant...
+2017-07-17 10:43:51,303 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,337 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Plain Dome Tarnish Resistant Comfort Fit...
+2017-07-17 10:43:51,337 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,368 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Eternity Infinity Ring
+2017-07-17 10:43:51,368 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,405 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Wave Design .925 Sterling Silver Ring Sizes 2-12 CHOOSE your Color
+2017-07-17 10:43:51,405 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,431 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Natural Moonstone White Gold Plated 925 Sterling Silver Victorian Style Solitaire...
+2017-07-17 10:43:51,431 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,455 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=2MM 925 Sterling Silver Ring, Boruo Cubic Zirconia CZ Wedding Band Stackable...
+2017-07-17 10:43:51,455 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,479 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Metal Factory Sterling Silver 2MM High Polish Plain Dome Tarnish Resistant Comfort...
+2017-07-17 10:43:51,479 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,504 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Eternity Rope Tarnish Resistant Comfort...
+2017-07-17 10:43:51,504 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,534 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Round Ring
+2017-07-17 10:43:51,534 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,561 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Chevron Thumb Ring
+2017-07-17 10:43:51,561 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,595 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Teardrop Ring
+2017-07-17 10:43:51,595 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,658 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR WIDTH Sterling Silver Wedding Band Men's Women's Plain Ring
+2017-07-17 10:43:51,658 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,718 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Ring for Women S925 Sterling Silver Adjustable Wrap CZ Open Ring -SILVER MOUNTAIN
+2017-07-17 10:43:51,718 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,760 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:43:51,760 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:43:51,789 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:43:51,789 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:21,368 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:48:33,718 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:48:36,836 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant...
+2017-07-17 10:48:36,836 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,872 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Plain Dome Tarnish Resistant Comfort Fit...
+2017-07-17 10:48:36,872 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,900 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Eternity Infinity Ring
+2017-07-17 10:48:36,900 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,929 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Wave Design .925 Sterling Silver Ring Sizes 2-12 CHOOSE your Color
+2017-07-17 10:48:36,929 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,953 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Natural Moonstone White Gold Plated 925 Sterling Silver Victorian Style Solitaire...
+2017-07-17 10:48:36,954 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,973 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=2MM 925 Sterling Silver Ring, Boruo Cubic Zirconia CZ Wedding Band Stackable...
+2017-07-17 10:48:36,973 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:36,994 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Metal Factory Sterling Silver 2MM High Polish Plain Dome Tarnish Resistant Comfort...
+2017-07-17 10:48:36,994 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,011 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Eternity Rope Tarnish Resistant Comfort...
+2017-07-17 10:48:37,011 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,026 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Round Ring
+2017-07-17 10:48:37,026 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,041 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Chevron Thumb Ring
+2017-07-17 10:48:37,041 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,064 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Teardrop Ring
+2017-07-17 10:48:37,064 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,079 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR WIDTH Sterling Silver Wedding Band Men's Women's Plain Ring
+2017-07-17 10:48:37,079 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,099 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Ring for Women S925 Sterling Silver Adjustable Wrap CZ Open Ring -SILVER MOUNTAIN
+2017-07-17 10:48:37,099 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,111 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:48:37,111 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:48:37,126 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:48:37,126 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:49:00,466 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:49:12,201 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:49:15,407 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant
+2017-07-17 10:49:15,407 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:49:15,421 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant...
+2017-07-17 10:49:22,323 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->点击下一页异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Next →')]"}
+Command duration or timeout: 230 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'Next →')]}
+Session ID: 444126b9-7d74-7442-b780-6a0c4b870aba
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectBrushProduct(AmazonAutoBuy.java:3280)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2999)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Next →')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1424857393495795867webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1424857393495795867webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1424857393495795867webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1424857393495795867webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1424857393495795867webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-17 10:52:28,940 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:52:40,968 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:52:43,887 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant
+2017-07-17 10:52:43,887 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,909 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Plain Dome Tarnish Resistant Comfort Fit
+2017-07-17 10:52:43,909 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,925 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Eternity Infinity Ring
+2017-07-17 10:52:43,925 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,942 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Wave Design .925 Sterling Silver Ring Sizes 2-12 CHOOSE your Color
+2017-07-17 10:52:43,942 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,959 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Natural Moonstone White Gold Plated 925 Sterling Silver Victorian Style Solitaire
+2017-07-17 10:52:43,960 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,977 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=2MM 925 Sterling Silver Ring, Boruo Cubic Zirconia CZ Wedding Band Stackable
+2017-07-17 10:52:43,977 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:43,995 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Metal Factory Sterling Silver 2MM High Polish Plain Dome Tarnish Resistant Comfort
+2017-07-17 10:52:43,995 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,011 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Eternity Rope Tarnish Resistant Comfort
+2017-07-17 10:52:44,011 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,025 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Round Ring
+2017-07-17 10:52:44,025 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,040 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Chevron Thumb Ring
+2017-07-17 10:52:44,040 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,059 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Teardrop Ring
+2017-07-17 10:52:44,059 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,072 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR WIDTH Sterling Silver Wedding Band Men's Women's Plain Ring
+2017-07-17 10:52:44,072 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,086 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Ring for Women S925 Sterling Silver Adjustable Wrap CZ Open Ring -SILVER MOUNTAIN
+2017-07-17 10:52:44,086 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,100 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:44,100 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:44,115 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:44,115 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,532 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver "X" Criss Cross Eternity Ring
+2017-07-17 10:52:48,532 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,546 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Thin High Polish Criss Cross Open Bar Ring .925 Sterling Silver Band Sizes 2-10
+2017-07-17 10:52:48,546 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,559 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Knot Ring
+2017-07-17 10:52:48,559 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,575 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Infinity Symbol Tarnish Resistant Comfort
+2017-07-17 10:52:48,575 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,588 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Open Leaf Branch Tree Vine Women's Ring New .925 Sterling Silver Band Sizes 5-11
+2017-07-17 10:52:48,588 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,603 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Lab Created White Opal & Cz .925 Sterling Silver Ring sizes 4-12
+2017-07-17 10:52:48,603 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,618 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Metal Factory 925 Sterling Silver Victorian Leaf Filigree Ring
+2017-07-17 10:52:48,618 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,635 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=ELBLUVF 925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift
+2017-07-17 10:52:48,635 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,652 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Beautiful Women Natural Crystal 925 solid sterling silver Ring R570 Size 7/8
+2017-07-17 10:52:48,653 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,667 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Mytys Rhodium Plating Retro Vintage Silver Interwined Design Fashion Rings
+2017-07-17 10:52:48,667 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,681 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Rongxing 925 sterling silver Wave geometry chic ring,Professional for female
+2017-07-17 10:52:48,681 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,695 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=apop nyc Thin Band Ring Sterling Silver Hammered 1.5mm (Size 3 - 9)
+2017-07-17 10:52:48,695 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,712 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=316L Stainless Steel White Cubic Zirconia 3mm Eternity Ring
+2017-07-17 10:52:48,712 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,725 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Oval Ring
+2017-07-17 10:52:48,725 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,737 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:48,738 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:48,750 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:48,750 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,058 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Sun Moon Universe Ring
+2017-07-17 10:52:53,058 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,086 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring High Polish Plain Dome Tarnish Resistant Comfort Fit
+2017-07-17 10:52:53,086 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,110 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Boruo Celtic Knot Heart High Polish Tarnish Resistant
+2017-07-17 10:52:53,110 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,135 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Chevron Thumb Ring
+2017-07-17 10:52:53,135 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,152 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Crooked Lines Filigree Ring (Sizes 5-13)
+2017-07-17 10:52:53,152 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,177 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Omos Women Fashion Jewelry 925 Sterling Silver Rings Lovely Contracted Teardrop
+2017-07-17 10:52:53,177 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,195 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Chevron Stackable Ring
+2017-07-17 10:52:53,195 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,217 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Criss Cross Rings CZ Eternity Engagement Wedding Band
+2017-07-17 10:52:53,217 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,233 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Foreveryang One Pair Elegant Orchid Earrings 925 Sterling Silver Women Gift Wedding
+2017-07-17 10:52:53,233 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,248 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Alex and Ani Wrap Birth Month Adjustable Ring, Size 5-7
+2017-07-17 10:52:53,248 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,269 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Celtic Knot Eternity Band Ring
+2017-07-17 10:52:53,269 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,284 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=MIMI 925 Sterling Silver 7 Day 7 Band Stacked Ring
+2017-07-17 10:52:53,284 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,306 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Women's Simulated Turquoise Filigree Ring (Sizes 4-10)
+2017-07-17 10:52:53,306 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,320 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Women Wedding Ring 2 Carat Round Brilliant Cubic Zirconia Engagement Promise
+2017-07-17 10:52:53,320 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,339 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:53,339 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:52:53,407 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:52:53,407 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,099 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Women's Bali Ring Wide 925 Band Rope Milgrain Look Sizes 5-12
+2017-07-17 10:53:01,099 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,116 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Infinity Knot Ring
+2017-07-17 10:53:01,116 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,134 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Princess Queen Crown 925 Sterling Silver Plated Ring Design Wedding Crystal Size7
+2017-07-17 10:53:01,134 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,152 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterting Silver Toe Ring, BoRuo Daisy Flower Hawaiian Adjustable Band Ring
+2017-07-17 10:53:01,152 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,172 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Beadaholique 20-Piece Sterling Open Jump Rings, 3mm, 22-Gauge, Silver
+2017-07-17 10:53:01,172 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,187 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Heart Promise Ring
+2017-07-17 10:53:01,187 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,204 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring, BoRuo Wedding Engagement Celtic Love Knot Plain Heart
+2017-07-17 10:53:01,204 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,218 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Silver Cube Drop Dangle Earrings for Women Girl Earrings Set Plated Sterling
+2017-07-17 10:53:01,219 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,233 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Celtic Knot Ring
+2017-07-17 10:53:01,233 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,248 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=MIMI Sterling Silver Cool Plain 22MM Wide Front Design Band Ring
+2017-07-17 10:53:01,248 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,265 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Happy Gogou Fashion 925 Silver Plated Jewelry Chic Curvy Starfish Lovely Party
+2017-07-17 10:53:01,265 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,280 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Psiroy 925 Sterling Silver 6mm Garnet Filled Ring Flower Shaped Band
+2017-07-17 10:53:01,280 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,296 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Feather Oxidized Twisted Band Celtic .925 Sterling Silver Ring Sizes 3-13
+2017-07-17 10:53:01,296 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,309 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=DZT1968 Women girl Elegant Fashion 925 Sterling Silver Ear Stud droplets Earrings
+2017-07-17 10:53:01,309 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,321 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:01,322 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:01,334 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:01,335 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,730 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Cubic Zirconia Princess Crown Tiara CZ Band Ring
+2017-07-17 10:53:05,730 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,758 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Kitty Cat Ring Adjustable - Pet Animal Fashion Jewelry - Perfect
+2017-07-17 10:53:05,758 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,775 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Best selling Nautical Sea Foam Green Sea Glass Earrings with Charming Handmade
+2017-07-17 10:53:05,775 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,795 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Boruo Celtic Knot Heart High Polish Tarnish Resistant
+2017-07-17 10:53:05,795 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,811 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=5mm 20inches 925 Sterling Silver Chain Necklace Men/ Women Fashion Jewelry New
+2017-07-17 10:53:05,811 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,829 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Morenitor[TM] Jewelry Earrings Stud 18k Gold-plated 100% 925 Sterling Silver
+2017-07-17 10:53:05,829 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,846 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Celtic Trinity Knot Heart Ring(Sizes 3,4,5,6,7,8,9,10,11,
+2017-07-17 10:53:05,846 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,866 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Abalone Shell Adjustable Ring
+2017-07-17 10:53:05,866 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,880 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=AllenCOCO Round Cubic Zirconia Eternity Stackable 925 Sterling Silver Ring Engagement
+2017-07-17 10:53:05,881 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,893 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Women's Chic Sterling Silver Crystal Heart Shaped Love Wedding Ring (8)
+2017-07-17 10:53:05,893 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,907 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Liuanan™ Fashion Jewelry 925 Sterling Silver Platinum Plating Cat Eye Opal Stone
+2017-07-17 10:53:05,907 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,924 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Small Sterling Silver Detailed Rose Flower Ring(Sizes 3,4,5,6,7,8,9,10)
+2017-07-17 10:53:05,924 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,937 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Ring, Women's Elegant Genuine Sterling Silver Cute Dragon Cat Opening Mouth Diamond
+2017-07-17 10:53:05,938 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,951 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Alicenter(TM) Women 925 Sterling Silver Vintage Hollow Heart Dangle Hook Earrings
+2017-07-17 10:53:05,951 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,964 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:05,964 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:05,975 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:05,975 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,581 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Rope Eternity Braid Bali Thumb Ring New .925 Sterling Silver Band Sizes 3-10
+2017-07-17 10:53:10,581 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,599 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=1MATCH Love Struck Arrow Wrap Ring - Mother's Day Gift, Size 5-7
+2017-07-17 10:53:10,599 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,615 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Purple Crystal Star Drop Earring Ear Hoop For Women Girl
+2017-07-17 10:53:10,615 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,632 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Triple Interlocked Rolling High Polish Plain Dome Tarnish Resistant
+2017-07-17 10:53:10,632 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,652 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=jacob alex ring Pink Sapphire & Fire Opal Engagement Wedding Ring 925 Sterling
+2017-07-17 10:53:10,652 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,668 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Jewelry: 16 Amazing Things You Need to Know
+2017-07-17 10:53:10,668 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,687 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver 2MM Eternity Rope Wedding Band Ring
+2017-07-17 10:53:10,687 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,701 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Gifts for Women Sterling Silver Earrings Exquisite&Fancy Design Stud Fashion
+2017-07-17 10:53:10,701 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,716 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver Salmon Paddle Earrings. Made in USA.
+2017-07-17 10:53:10,716 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,732 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Newshe Jewellery Alice 2.4 Carat Round White CZ 925 Solid Sterling Silver Wedding
+2017-07-17 10:53:10,732 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,747 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=CHOOSE YOUR COLOR Sterling Silver Knot Ring
+2017-07-17 10:53:10,747 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,761 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Purple Moon Gifts and Jewelry
+2017-07-17 10:53:10,761 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,775 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Magazine Print Ad: 1996 Tiffany Atlas Collection, Sterling Silver, 2 pages
+2017-07-17 10:53:10,775 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,788 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sterling Silver "Faith Makes All Things Possible" Ring
+2017-07-17 10:53:10,788 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,801 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:10,801 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:53:10,812 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=Sponsored
+2017-07-17 10:53:10,812 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Elephant Animal Lucky Ring Jewelry Bridesmaid Gift Favor
+2017-07-17 10:55:29,573 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 10:55:41,482 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->查找sterling silver ring
+2017-07-17 10:55:44,509 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title1=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant
+2017-07-17 10:55:44,509 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title2=925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant Wedding Band Stackable Ring
+2017-07-17 10:55:44,521 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->title925 Sterling Silver Ring Triple Interlocked Rolling High Polish Tarnish Resistant...
+2017-07-17 10:56:51,891 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->加载商品详情页异常
+2017-07-17 11:01:37,036 DEBUG [com.oversea.task.service.order.AmazonAutoBuy] - --->启动驱动并做清理工作true
+2017-07-17 11:03:12,773 ERROR [com.oversea.task.service.order.AmazonAutoBuy] - --->没有找到查找
+org.openqa.selenium.TimeoutException: Timed out after 45 seconds waiting for visibility of element located by By.id: nav-search-keywords
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 31679c2a-495d-7540-8099-70e1c384a2b0
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.AmazonAutoBuy.selectBrushProduct(AmazonAutoBuy.java:3242)
+	at com.oversea.task.service.order.AmazonAutoBuy.main(AmazonAutoBuy.java:2999)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"nav-search-keywords"}
+Command duration or timeout: 11 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=id, value=nav-search-keywords}
+Session ID: 31679c2a-495d-7540-8099-70e1c384a2b0
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:403)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"nav-search-keywords"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7121685645389157558webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7121685645389157558webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7121685645389157558webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7121685645389157558webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7121685645389157558webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)

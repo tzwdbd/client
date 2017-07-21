@@ -1,0 +1,17 @@
+2017-06-09 09:52:05,022 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-06-09 09:52:50,843 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-09 10:19:19,730 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-06-09 10:19:22,835 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-09 10:20:11,826 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-06-09 10:20:14,763 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-06-09 10:20:51,905 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->打开登录框
+2017-06-09 10:21:27,665 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->输入账号
+2017-06-09 10:21:32,737 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->输入密码
+2017-06-09 10:21:37,878 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始登陆
+2017-06-09 10:21:57,538 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车
+2017-06-09 10:22:08,863 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到购物车成功
+2017-06-09 10:22:08,864 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->清空购物车
+2017-06-09 10:22:11,505 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->购物车页面加载完成
+2017-06-09 10:22:11,506 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->开始清理购物车
+2017-06-09 10:22:13,537 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->购物车页面清理完成
+2017-06-09 10:22:13,537 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->确认购物车是否清空

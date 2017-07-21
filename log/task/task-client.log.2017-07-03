@@ -1,0 +1,841 @@
+2017-07-03 15:02:53,862 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 15:02:57,499 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-03 15:03:53,982 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 15:03:56,946 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-03 15:04:32,769 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 开始登陆
+2017-07-03 15:04:50,794 DEBUG [com.oversea.task.service.order.RalphlaurenAutoBuy] - 登录成功
+2017-07-03 16:12:25,954 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:12:29,023 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:12:29,024 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/eleni-flex-flats/S1512122N-1.html?pid=S1512122N-1
+2017-07-03 16:12:57,709 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:12:57,783 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:12:59,801 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:12:59,801 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:12:59,897 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:13:01,601 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:13:01,757 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:13:01,781 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5
+2017-07-03 16:13:01,802 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5.5
+2017-07-03 16:13:01,824 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6
+2017-07-03 16:13:01,878 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6.5
+2017-07-03 16:13:01,911 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7
+2017-07-03 16:13:01,943 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7.5
+2017-07-03 16:13:01,977 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8
+2017-07-03 16:13:02,010 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8.5
+2017-07-03 16:13:02,032 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9
+2017-07-03 16:13:02,054 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9.5
+2017-07-03 16:13:02,071 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10
+2017-07-03 16:13:02,090 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10.5
+2017-07-03 16:13:02,112 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:11
+2017-07-03 16:13:02,566 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:13:02,588 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:13:02,690 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:13:03,281 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5
+2017-07-03 16:13:03,306 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5.5
+2017-07-03 16:13:03,331 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6
+2017-07-03 16:13:03,367 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6.5
+2017-07-03 16:13:03,403 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7
+2017-07-03 16:13:03,432 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7.5
+2017-07-03 16:13:03,470 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8
+2017-07-03 16:13:03,494 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8.5
+2017-07-03 16:13:03,512 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9
+2017-07-03 16:13:03,534 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9.5
+2017-07-03 16:13:03,552 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10
+2017-07-03 16:13:03,573 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10.5
+2017-07-03 16:13:03,592 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:11
+2017-07-03 16:13:03,597 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 16:13:03,597 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 16:13:03,790 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->查询商品单价异常
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 173 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: b3cb39bd-d287-c643-a621-b7f566752db1
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:678)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous191806972477758199webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous191806972477758199webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous191806972477758199webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous191806972477758199webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous191806972477758199webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+	at <anonymous class>.Ua(https://www.katespade.com/instartlogic/nv/ii/nv-8.0.6/monitor.html_streaming/instart.js:10)
+	at <anonymous class>.<anonymous method>(https://www.katespade.com/instartlogic/nv/ii/nv-8.0.6/monitor.html_streaming/instart.js:91)
+	at <anonymous class>.I10CRequest_bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:1)
+	at <anonymous class>.Ca__bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:1)
+	at <anonymous class>.evalScript__bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.evalScript(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..each(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..domManip(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..append(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..html(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.<anonymous method>(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval line 1 > eval:1)
+	at <anonymous class>.FN_P4xif(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval:1)
+	at <anonymous class>.FF_P4xif(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval:1)
+	at <anonymous class>.app.ajax.load/<(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js:3)
+	at <anonymous class>.jQuery.Callbacks/fire(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.jQuery.Callbacks/self.fireWith(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.done(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..send/callback(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+2017-07-03 16:13:07,412 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 16:13:07,437 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 16:13:07,883 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 16:13:14,510 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 16:13:14,529 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 16:13:14,578 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-03 16:20:53,171 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:20:56,270 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:20:56,271 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/eleni-flex-flats/S1512122N-1.html?pid=S1512122N-1
+2017-07-03 16:23:35,984 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:23:38,988 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:23:38,988 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/eleni-flex-flats/S1512122N-1.html?pid=S1512122N-1
+2017-07-03 16:24:37,267 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:24:37,335 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:24:39,349 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:24:39,349 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:24:39,418 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:24:40,768 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 16:24:40,789 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:24:40,894 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:24:40,909 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5
+2017-07-03 16:24:40,923 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:5.5
+2017-07-03 16:24:40,935 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6
+2017-07-03 16:24:40,950 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:6.5
+2017-07-03 16:24:40,963 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7
+2017-07-03 16:24:40,977 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:7.5
+2017-07-03 16:24:40,992 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8
+2017-07-03 16:24:41,003 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:8.5
+2017-07-03 16:24:41,015 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9
+2017-07-03 16:24:41,025 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:9.5
+2017-07-03 16:24:41,034 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10
+2017-07-03 16:24:41,049 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:10.5
+2017-07-03 16:24:41,061 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:11
+2017-07-03 16:24:41,097 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:24:41,112 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:24:41,210 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:24:41,314 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 16:24:42,291 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 977 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+	at <anonymous class>.Ua(https://www.katespade.com/instartlogic/nv/ii/nv-8.0.6/monitor.html_streaming/instart.js:10)
+	at <anonymous class>.<anonymous method>(https://www.katespade.com/instartlogic/nv/ii/nv-8.0.6/monitor.html_streaming/instart.js:91)
+	at <anonymous class>.I10CRequest_bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:1)
+	at <anonymous class>.Ca__bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:1)
+	at <anonymous class>.evalScript__bFzKfA(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.evalScript(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..each(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..domManip(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..append(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..html(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.<anonymous method>(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval line 1 > eval:1)
+	at <anonymous class>.FN_P4xif(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval:1)
+	at <anonymous class>.FF_P4xif(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js line 3 > eval:1)
+	at <anonymous class>.app.ajax.load/<(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/js/app.js:3)
+	at <anonymous class>.jQuery.Callbacks/fire(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.jQuery.Callbacks/self.fireWith(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>.done(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+	at <anonymous class>..send/callback(https://www.katespade.com/on/demandware.static/Sites-Shop-Site/-/en_US/v1499062084835/lib/jquery/jquery-1.7.1.js:15)
+2017-07-03 16:24:43,706 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 1.15 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,716 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,726 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 7 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,734 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,744 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,754 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,763 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,772 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 8 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,780 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 7 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,790 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 9 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,800 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 9 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,808 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 7 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,816 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择sku出错
+org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+Command duration or timeout: 7 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: c57e080a-772d-4944-87c3-d945c64f0da7
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:178)
+	at com.oversea.task.service.order.KatespadeAutoBuy.selectProduct(KatespadeAutoBuy.java:637)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:167)
+Caused by: org.openqa.selenium.StaleElementReferenceException: Element is no longer attached to the DOM
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.cache.getElementAt(resource://fxdriver/modules/web-element-cache.js:9354)
+	at <anonymous class>.Utils.getElementAt(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:8978)
+	at <anonymous class>.WebElement.getElementText(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:11965)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous8740765499937307919webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-03 16:24:43,817 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 16:24:43,817 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 16:24:45,900 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 16:24:45,920 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 16:24:46,334 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 16:24:49,911 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 16:24:49,939 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 16:24:49,979 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-03 16:25:49,007 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:25:52,074 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:25:52,074 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/eleni-flex-flats/S1512122N-1.html?pid=S1512122N-1
+2017-07-03 16:26:22,479 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:26:24,748 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:26:26,766 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:26:26,766 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:27:08,145 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:27:21,046 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 16:28:01,771 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:28:01,771 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/eleni-flex-flats/S1512122N-1.html?pid=S1512122N-1
+2017-07-03 16:28:22,441 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:28:22,470 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:28:24,485 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:28:24,485 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:28:54,333 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:29:11,877 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 16:29:55,928 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:30:17,342 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:30:47,751 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:31:12,613 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 16:31:26,224 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 16:31:30,419 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 16:31:32,523 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 16:31:32,544 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 16:31:32,983 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 16:31:39,566 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 16:31:39,588 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 16:31:39,634 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-03 16:49:15,064 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:49:18,059 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:49:18,059 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-03 16:49:21,949 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:50:03,651 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:50:05,667 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:50:05,667 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:50:05,774 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:50:06,049 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 16:50:06,297 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:50:06,317 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:50:06,426 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:50:06,508 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 16:50:06,508 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 16:50:06,508 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 16:50:09,412 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 16:50:09,437 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 16:50:09,498 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 16:50:10,534 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 16:50:10,559 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 16:50:10,566 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-03 16:50:10,583 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-03 16:50:53,443 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 16:50:56,532 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 16:50:56,533 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-03 16:50:59,578 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 16:51:30,087 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 16:51:32,101 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 16:51:32,101 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 16:51:47,692 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:51:49,429 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 16:51:54,683 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 16:52:00,190 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:navy
+2017-07-03 16:52:09,434 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 16:52:09,527 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 16:52:09,527 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 16:52:09,527 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 16:52:12,417 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 16:52:12,439 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 16:52:12,817 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 16:52:16,525 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 16:52:16,543 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 16:52:16,625 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT
+2017-07-03 18:30:51,088 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 18:30:54,511 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 18:30:54,512 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-03 18:33:03,858 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 18:33:06,795 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 18:33:06,796 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-03 18:33:08,709 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 18:33:30,361 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 18:33:32,531 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 18:33:32,531 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 18:33:32,905 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 18:33:32,998 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 18:33:33,030 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 18:33:33,136 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 18:33:33,220 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 18:33:33,221 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 18:33:33,221 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 18:33:35,298 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 18:33:36,174 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 18:33:36,267 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 18:33:37,296 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 18:33:37,307 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 18:33:37,312 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
+2017-07-03 18:33:37,338 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
+2017-07-03 18:33:58,314 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-03 18:34:01,272 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
+2017-07-03 18:34:01,272 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=c692zKLgZOYSKGpqU5rIqUeMlDP_aXdA_a103RLTd3_aF5Z_bHAeNHHTvDRmt_b4btJo8EFE_c&new=https%3A%2F%2Fwww.katespade.com%2Fproducts%2Feleni-flex-flats%2FS1512122N-1.html%3Fpid%3DS1512122N-1&tag=
+2017-07-03 18:34:02,703 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
+2017-07-03 18:34:21,484 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
+2017-07-03 18:34:23,500 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
+2017-07-03 18:34:23,500 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
+2017-07-03 18:34:23,822 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 18:34:23,987 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
+2017-07-03 18:34:24,044 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
+navy
+2017-07-03 18:34:24,162 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:size
+5
+5.5
+6
+6.5
+7
+7.5
+8
+8.5
+9
+9.5
+10
+10.5
+11
+2017-07-03 18:34:24,303 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:size
+2017-07-03 18:34:24,303 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
+2017-07-03 18:34:24,303 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
+2017-07-03 18:34:27,389 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
+2017-07-03 18:34:27,417 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
+2017-07-03 18:34:27,557 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
+2017-07-03 18:34:29,591 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
+2017-07-03 18:34:29,605 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
+2017-07-03 18:34:29,646 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG/CHECKOUT

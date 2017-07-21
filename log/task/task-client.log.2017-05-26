@@ -1,0 +1,89 @@
+2017-05-26 10:11:51,675 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 10:12:37,562 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 13:29:29,009 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 13:29:35,463 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 14:43:29,599 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->启动驱动并做清理工作true
+2017-05-26 14:43:32,598 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 14:43:49,849 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->跳转到登录页面
+2017-05-26 14:44:06,176 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->输入账号
+2017-05-26 14:44:06,287 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->输入密码
+2017-05-26 14:44:07,867 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->开始提交
+2017-05-26 14:44:13,715 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->等待登录完成
+2017-05-26 14:44:14,049 DEBUG [com.oversea.task.service.order.AsosAutoBuy] - --->登录完成
+2017-05-26 15:38:18,505 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作true
+2017-05-26 15:38:21,484 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 15:38:34,150 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 15:39:38,219 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 15:39:41,150 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 15:40:30,812 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 15:40:35,562 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-26 15:40:37,177 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-26 15:40:39,083 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-26 15:40:46,522 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-26 15:40:53,553 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 15:40:56,443 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 15:41:14,338 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 15:41:31,402 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-26 15:41:33,047 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-26 15:41:34,948 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-26 15:41:44,170 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-26 18:10:10,255 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 18:10:13,291 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:11:28,730 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 18:11:31,687 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:11:54,552 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 18:12:15,836 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 18:12:18,789 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:16:03,657 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 18:16:06,606 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:16:24,799 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 18:16:38,729 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-26 18:16:40,340 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-26 18:16:41,921 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-26 18:16:48,193 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-26 18:16:49,298 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->登录完成
+2017-05-26 18:17:06,792 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->启动驱动并做清理工作false
+2017-05-26 18:17:09,731 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:17:31,119 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->跳转到登录页面
+2017-05-26 18:17:46,081 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入账号
+2017-05-26 18:17:47,723 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->输入密码
+2017-05-26 18:17:49,309 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->开始提交
+2017-05-26 18:17:56,638 DEBUG [com.oversea.task.service.order.JomashopAutoBuy] - --->等待登录完成
+2017-05-26 18:57:18,849 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作true
+2017-05-26 18:57:21,961 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:57:35,201 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-26 18:57:35,541 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-26 18:57:37,471 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-26 18:57:39,028 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-26 18:57:40,661 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-26 18:57:48,203 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-26 18:57:48,204 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到订单页面
+2017-05-26 18:57:48,251 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-26 18:57:52,676 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->my account页面加载完成
+2017-05-26 18:57:52,676 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待寻找商城输入框
+2017-05-26 18:57:52,687 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->第一次寻找orderInput 失败
+2017-05-26 18:57:55,774 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->商城订单号输入完成
+2017-05-26 18:57:55,788 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->第一次寻找Find Your Order 失败
+2017-05-26 18:58:27,407 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->[2]样式2
+2017-05-26 18:58:27,425 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->[2]订单状态Shipped
+2017-05-26 18:58:27,449 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - 该订单还没发货,没产生物流单号
+2017-05-26 18:58:57,684 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作true
+2017-05-26 18:59:00,612 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-26 18:59:17,496 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-26 18:59:18,136 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-26 18:59:20,028 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-26 18:59:21,588 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-26 18:59:23,231 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-26 18:59:32,167 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-26 18:59:32,168 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到订单页面
+2017-05-26 18:59:36,611 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-26 18:59:37,239 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->my account页面加载完成
+2017-05-26 18:59:37,239 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待寻找商城输入框
+2017-05-26 18:59:37,251 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->第一次寻找orderInput 失败
+2017-05-26 18:59:40,330 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->商城订单号输入完成
+2017-05-26 18:59:40,350 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->第一次寻找Find Your Order 失败
+2017-05-26 19:00:12,382 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->[2]样式2
+2017-05-26 19:00:12,399 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->[2]订单状态Shipped
+2017-05-26 19:00:12,429 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->开始查找Track This Shipment
+2017-05-26 19:00:16,339 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->物流号:1ZX22W560370650292
+2017-05-26 19:00:16,347 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->物流公司:UPS

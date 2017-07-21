@@ -1,0 +1,468 @@
+2017-05-11 00:08:24,959 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 00:08:25,045 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 09:52:55,709 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 09:52:59,005 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 09:53:02,645 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 09:53:03,484 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 09:53:05,073 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 09:53:08,130 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 09:53:10,664 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 09:53:10,684 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 09:53:10,758 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 09:53:10,758 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 09:53:41,193 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车失败
+2017-05-11 09:53:41,193 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 09:53:41,211 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 09:53:41,211 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=b4f48wFEI8j1k5de77whbnPQQTPcc_bEWonvL71WOILilqzSmYgAReAw3qU1nOhOnUpQ_c&new=http%3A%2F%2Fwww.ba.de%2F2022341.html&tag=
+2017-05-11 09:53:41,787 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 09:53:43,911 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 09:53:43,911 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 09:53:43,928 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 = 84.75
+2017-05-11 09:53:43,929 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 09:53:44,008 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 09:53:44,008 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 09:53:45,597 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 09:53:45,598 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 09:53:45,770 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 09:53:45,770 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 09:53:47,364 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->点击结算按钮
+2017-05-11 09:54:17,567 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号或者密码错误
+org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: By.id: LoginEmail
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 6e489c44-897f-c24b-9651-c71342c52439
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.pay(BodyguardapothekeAutoBuy.java:284)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.main(BodyguardapothekeAutoBuy.java:795)
+2017-05-11 09:54:19,642 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 09:54:21,229 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 09:54:24,294 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 09:54:27,855 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-11 09:54:29,629 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - 异常：org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".easyDialog_text"}
+Command duration or timeout: 114 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=.easyDialog_text}
+Session ID: 6e489c44-897f-c24b-9651-c71342c52439
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+2017-05-11 09:54:29,629 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待支付页面加载
+2017-05-11 09:54:29,702 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->支付页面加载完成
+2017-05-11 09:54:29,702 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 09:54:36,124 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 09:54:38,386 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入省
+2017-05-11 09:54:40,491 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入市
+2017-05-11 09:54:42,602 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入区
+2017-05-11 09:54:45,634 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入街道地址
+2017-05-11 09:54:48,221 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入邮编
+2017-05-11 09:54:49,768 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入收货人姓名
+2017-05-11 09:54:52,328 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入电话
+2017-05-11 09:54:54,900 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入常用邮箱
+2017-05-11 09:55:01,027 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->点击保存地址
+2017-05-11 09:55:01,027 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择支付方式
+2017-05-11 09:55:04,108 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择支付宝支付
+2017-05-11 09:55:04,109 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始查询总价
+2017-05-11 09:55:09,134 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品结算总价 = 91.75
+2017-05-11 09:55:09,134 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - cardNo = null
+2017-05-11 09:55:09,134 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始点击提交订单 orderPayAccount.getPayPassword() = 00101012
+2017-05-11 09:55:20,107 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - 支付宝登陆按钮点击
+2017-05-11 09:55:33,810 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->点击付款出现异常
+org.openqa.selenium.TimeoutException: Timed out after 8 seconds waiting for visibility of element located by By.xpath: //div[@class='sixDigitPassword']
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 6e489c44-897f-c24b-9651-c71342c52439
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.pay(BodyguardapothekeAutoBuy.java:595)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.main(BodyguardapothekeAutoBuy.java:795)
+Caused by: org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Command duration or timeout: 9 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//div[@class='sixDigitPassword']}
+Session ID: 6e489c44-897f-c24b-9651-c71342c52439
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor11.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchWindowException: Window not found. The browser window may have been closed.
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.nsCommandProcessor.prototype.execute(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12602)
+	at <anonymous class>.Dispatcher.executeAs/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9455)
+	at <anonymous class>.Resource.prototype.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9602)
+	at <anonymous class>.Dispatcher.prototype.dispatch(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:9549)
+	at <anonymous class>.WebDriverServer/<.handle(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:12390)
+	at <anonymous class>.createHandlerFunc/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2054)
+	at <anonymous class>.ServerHandler.prototype.handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:2387)
+	at <anonymous class>.Connection.prototype.process(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1223)
+	at <anonymous class>.RequestReader.prototype._handleResponse(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1677)
+	at <anonymous class>.RequestReader.prototype._processBody(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1525)
+	at <anonymous class>.RequestReader.prototype.onInputStreamReady(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2890477299114664464webdriver-profile/extensions/fxdriver@googlecode.com/components/httpd.js:1393)
+2017-05-11 10:10:12,861 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 10:10:15,867 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-11 10:10:15,867 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/giorgio-armani-lip-maestro-lip-stain/3409290
+2017-05-11 10:10:21,485 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-11 10:10:21,492 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-11 10:10:21,496 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-11 10:11:00,543 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 10:11:03,547 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-11 10:11:03,548 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/giorgio-armani-lip-maestro-lip-stain/3409290
+2017-05-11 10:11:09,920 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-11 10:11:09,930 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-11 10:11:09,933 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-11 10:12:45,214 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待主页面加载完成出错
+org.openqa.selenium.TimeoutException: Timed out after 90 seconds waiting for visibility of element located by By.className: product-selection
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 67d8346f-569a-6743-baf7-b3fb47d85199
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.NordstromAutoBuy.whenMainPanelReady(NordstromAutoBuy.java:197)
+	at com.oversea.task.service.order.NordstromAutoBuy.selectProduct(NordstromAutoBuy.java:246)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1372)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"product-selection"}
+Command duration or timeout: 10 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=class name, value=product-selection}
+Session ID: 67d8346f-569a-6743-baf7-b3fb47d85199
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:467)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 3 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"class name","selector":"product-selection"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-11 10:12:45,219 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-05-11 10:12:48,232 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-05-11 10:12:48,235 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了714 Caresse
+2017-05-11 10:12:48,241 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-05-11 10:12:48,245 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sku:714 Caresse
+2017-05-11 10:12:48,245 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-05-11 10:12:48,245 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-05-11 10:12:48,259 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-05-11 10:12:48,270 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-05-11 10:12:48,275 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->获取单价失败
+2017-05-11 10:12:54,276 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-05-11 10:12:54,287 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->加购物车出现异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":"button.add-to-bag-button"}
+Command duration or timeout: 11 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=button.add-to-bag-button}
+Session ID: 67d8346f-569a-6743-baf7-b3fb47d85199
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.NordstromAutoBuy.selectProduct(NordstromAutoBuy.java:631)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1372)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":"button.add-to-bag-button"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7481124886625535682webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-11 10:32:15,967 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 10:32:18,906 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-11 10:32:18,906 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/giorgio-armani-lip-maestro-lip-stain/3409290
+2017-05-11 10:32:24,262 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-11 10:32:24,269 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-11 10:32:24,272 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-11 11:08:28,007 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 11:08:30,947 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 11:08:35,608 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 11:08:36,641 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 11:08:38,222 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 11:08:41,284 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 11:08:42,637 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 11:08:43,281 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 11:08:43,348 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:08:43,348 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 11:08:45,089 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-11 11:08:45,089 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 11:08:46,963 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 11:08:46,963 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = http://www.ba.de/1022343.html
+2017-05-11 11:08:46,973 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 11:08:48,338 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 11:08:48,339 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 11:08:48,359 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 = 32.60
+2017-05-11 11:08:48,359 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 11:08:48,437 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 11:08:48,437 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:08:50,028 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 11:08:50,028 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 11:08:50,215 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:08:50,215 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:08:51,814 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->点击结算按钮
+2017-05-11 11:09:22,331 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号或者密码错误
+org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: By.id: LoginEmail
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 70032b96-7058-444c-a841-6f293fe8b02a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.pay(BodyguardapothekeAutoBuy.java:284)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.main(BodyguardapothekeAutoBuy.java:795)
+2017-05-11 11:10:39,063 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 11:10:42,056 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 11:10:45,456 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 11:10:46,431 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 11:10:48,024 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 11:10:51,083 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 11:10:52,614 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 11:10:53,256 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 11:10:53,324 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:10:53,324 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 11:10:55,092 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-11 11:10:55,092 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 11:10:56,793 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 11:10:56,793 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = http://www.ba.de/1022343.html
+2017-05-11 11:10:57,433 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 11:10:57,451 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 11:10:57,451 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 11:10:57,482 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 =  32.6
+2017-05-11 11:10:57,482 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 11:10:57,558 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 11:10:57,558 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:10:59,143 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 11:10:59,144 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 11:10:59,316 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:10:59,316 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:10:59,316 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-11 11:11:02,465 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - 异常：org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"css selector","selector":".easyDialog_text"}
+Command duration or timeout: 109 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=css selector, value=.easyDialog_text}
+Session ID: 15856cfe-bf6c-6744-8c2f-765b7a92e364
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+2017-05-11 11:11:02,465 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待支付页面加载
+2017-05-11 11:11:02,542 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->支付页面加载完成
+2017-05-11 11:11:02,542 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 11:11:09,389 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 11:26:20,566 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 11:26:23,535 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 11:26:26,598 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 11:26:27,581 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 11:26:29,163 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 11:26:32,215 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 11:26:33,662 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 11:26:34,198 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 11:26:34,269 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:26:34,269 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 11:26:36,001 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-11 11:26:36,001 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 11:26:38,022 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 11:26:38,023 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = http://www.ba.de/1022343.html
+2017-05-11 11:26:39,459 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 11:26:39,492 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 11:26:39,492 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 11:26:39,513 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 =  32.6
+2017-05-11 11:26:39,513 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择数量:3
+2017-05-11 11:26:41,574 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 11:26:41,655 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 11:26:41,655 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:26:43,255 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 11:26:43,256 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 11:26:43,431 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:26:43,431 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:26:44,936 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-11 11:28:24,914 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 11:28:27,927 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 11:28:31,235 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 11:28:32,196 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 11:28:33,777 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 11:28:36,832 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 11:28:38,487 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 11:28:39,027 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 11:28:39,098 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:28:39,098 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 11:28:40,827 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-11 11:28:40,827 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 11:28:42,418 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 11:28:42,419 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = http://www.ba.de/1022343.html
+2017-05-11 11:28:42,443 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 11:28:43,191 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 11:28:43,191 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 11:28:43,230 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 =  32.6
+2017-05-11 11:28:43,230 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择数量:3
+2017-05-11 11:28:45,294 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 11:28:45,377 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 11:28:45,377 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:28:46,967 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 11:28:46,968 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 11:28:47,145 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:28:47,146 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:28:48,651 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-11 11:28:51,512 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待支付页面加载
+2017-05-11 11:28:53,114 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->支付页面加载完成
+2017-05-11 11:28:53,114 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 11:28:59,469 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 11:30:02,348 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 11:30:05,266 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 11:30:08,611 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 11:30:09,607 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 11:30:11,191 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 11:30:14,250 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 11:30:15,644 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 11:30:16,283 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 11:30:16,350 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:30:16,350 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-11 11:30:18,113 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-11 11:30:18,113 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-11 11:30:19,736 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-11 11:30:19,736 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = http://www.ba.de/1022343.html
+2017-05-11 11:30:19,752 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-11 11:30:20,318 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-11 11:30:20,318 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-11 11:30:20,370 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 =  32.6
+2017-05-11 11:30:20,370 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-11 11:30:20,474 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-11 11:30:20,474 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:30:22,062 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-11 11:30:22,062 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-11 11:30:22,234 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-11 11:30:22,234 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-11 11:30:23,738 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-11 11:30:26,623 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待支付页面加载
+2017-05-11 11:30:28,213 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->支付页面加载完成
+2017-05-11 11:30:28,213 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-11 12:52:34,263 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 12:52:37,259 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 12:52:41,572 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 12:52:43,021 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 12:52:44,606 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 12:52:47,665 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 12:52:49,351 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 12:52:49,905 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 12:52:49,906 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 12:52:51,500 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 12:52:53,088 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 12:52:53,088 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 12:52:53,116 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->查询订单异常,找不到该订单
+2017-05-11 12:53:32,853 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 12:53:35,803 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 12:53:39,345 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 12:53:40,354 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 12:53:41,938 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 12:53:45,003 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 12:53:46,407 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 12:53:47,051 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 12:53:47,052 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 12:53:48,514 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 12:53:50,034 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 12:54:55,424 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 12:55:54,779 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->查询订单异常,找不到该订单
+2017-05-11 12:57:25,029 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 12:57:27,990 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 12:57:32,987 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 12:57:34,396 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 12:57:35,983 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 12:57:39,093 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 12:57:40,583 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 12:57:41,129 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 12:57:41,130 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 12:57:42,809 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 12:57:44,326 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 12:57:50,328 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 12:58:13,117 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 12:58:14,701 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 12:58:16,226 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 12:58:20,686 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 13:00:50,424 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 13:01:02,429 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 13:01:04,315 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 13:01:06,486 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 13:02:05,161 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 13:02:08,952 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 13:02:10,859 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 13:02:13,557 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 13:02:40,177 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 13:02:42,074 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 13:02:43,981 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 13:02:47,051 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 13:02:58,416 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->orderNo text:订单编号： BA14943004511887对比结果:true
+2017-05-11 13:03:09,755 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->查找物流单号
+2017-05-11 13:03:16,987 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转url:http://www.ba.de/sales/order/view/order_id/729014
+2017-05-11 13:03:18,591 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->查询订单异常,找不到该订单
+2017-05-11 13:05:23,038 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-11 13:05:26,058 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-11 13:05:30,918 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-11 13:05:32,057 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-11 13:05:33,640 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-11 13:05:36,717 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-11 13:05:38,189 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-11 13:05:38,832 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-11 13:05:38,833 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到订单页面
+2017-05-11 13:05:40,804 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待order页面加载完成
+2017-05-11 13:05:42,327 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->order页面加载完成
+2017-05-11 13:05:42,327 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->找到对应的table
+2017-05-11 13:05:42,392 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->orderNo text:订单编号： BA14943004511887对比结果:true
+2017-05-11 13:05:44,909 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->查找物流单号
+2017-05-11 13:05:44,927 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转url:http://www.ba.de/sales/order/view/order_id/729014
+2017-05-11 13:05:46,378 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - expressCompany =EMS 
+2017-05-11 13:05:46,378 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - expressNo = CC991836413DE

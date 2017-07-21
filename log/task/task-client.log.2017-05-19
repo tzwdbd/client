@@ -1,0 +1,604 @@
+2017-05-19 10:31:34,994 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 10:31:38,307 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-19 10:31:38,307 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/ecco-dallas-loafer-men/4478676
+2017-05-19 10:32:12,507 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-19 10:32:12,527 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-19 10:32:12,530 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-19 10:32:17,603 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-05-19 10:32:20,618 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-05-19 10:32:20,649 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Mink
+2017-05-19 10:32:20,731 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:Dallas Loafer
+ECCO
+$129.95$82.9035% offFree shipping
+An embossed top panel adds a touch of texture to a comfort-conscious loafer fitted with a flexible sole for easy appeal.
+2017-05-19 10:32:20,741 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-05-19 10:32:23,008 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择Color:Mink
+2017-05-19 10:32:25,020 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式7-7.5US / 41EU
+2017-05-19 10:32:27,330 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择size:7-7.5US / 41EU
+2017-05-19 10:32:29,333 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-05-19 10:32:29,333 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-05-19 10:32:29,390 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-05-19 10:32:29,420 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-05-19 10:32:29,440 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4-2]找到商品单价  = 82.90
+2017-05-19 10:32:35,441 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-05-19 10:32:35,652 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->确认是否加购物车成功
+2017-05-19 10:35:05,143 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 10:35:08,046 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-19 10:35:08,046 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com//s/ecco-dallas-loafer-men/4478676
+2017-05-19 10:35:22,694 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-19 10:35:22,704 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-19 10:35:22,708 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-19 10:35:27,775 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-05-19 10:35:30,789 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-05-19 10:35:30,824 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [5]样式换了Mink
+2017-05-19 10:35:30,910 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->desc:Dallas Loafer
+ECCO
+$129.95$82.9035% offFree shipping
+An embossed top panel adds a touch of texture to a comfort-conscious loafer fitted with a flexible sole for easy appeal.
+2017-05-19 10:35:30,920 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->删除描述异常
+2017-05-19 10:35:33,238 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择Color:Mink
+2017-05-19 10:36:55,056 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式7-7.5US / 41EU
+2017-05-19 10:36:55,362 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:7-7.5US / 41EU
+2017-05-19 10:36:55,363 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-05-19 10:36:55,363 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-05-19 10:36:55,431 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-05-19 10:36:55,466 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-05-19 10:36:55,479 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4-2]找到商品单价  = 82.90
+2017-05-19 10:37:01,481 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-05-19 10:37:01,571 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->确认是否加购物车成功
+2017-05-19 10:37:42,735 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - --->加购物车出现异常
+org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:641)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:482)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	at com.oversea.task.service.order.NordstromAutoBuy.selectProduct(NordstromAutoBuy.java:640)
+	at com.oversea.task.service.order.NordstromAutoBuy.main(NordstromAutoBuy.java:1372)
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 127.0.0.1:7057 [/127.0.0.1] failed: Connection refused
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:353)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:380)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:184)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:88)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:71)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.openqa.selenium.remote.internal.ApacheHttpClient.fallBackExecute(ApacheHttpClient.java:161)
+	at org.openqa.selenium.remote.internal.ApacheHttpClient.execute(ApacheHttpClient.java:89)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.execute(NewProfileExtensionConnection.java:170)
+	at org.openqa.selenium.firefox.FirefoxDriver$LazyCommandExecutor.execute(FirefoxDriver.java:380)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:620)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:74)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:134)
+	... 26 more
+2017-05-19 16:18:36,751 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 16:18:39,791 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-19 16:18:39,791 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com/s/kiehls-since-1851-creamy-eye-treatment-with-avocado-0-5-oz/2922400?origin=category-personalizedsort
+2017-05-19 16:18:52,257 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-19 16:18:52,267 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-19 16:18:52,270 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-19 16:18:57,338 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-05-19 16:19:00,354 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-05-19 16:19:00,365 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式0.5 oz
+2017-05-19 16:19:00,373 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->size:不是下拉框不能点击0.5 oz
+2017-05-19 16:19:00,381 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:0.5 oz
+2017-05-19 16:19:00,381 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-05-19 16:19:00,381 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-05-19 16:19:00,450 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-05-19 16:19:00,490 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-05-19 16:19:06,516 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-05-19 16:19:06,767 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->确认是否加购物车成功
+2017-05-19 16:19:53,821 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 16:19:56,834 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->跳转到商品页面
+2017-05-19 16:19:56,834 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->url:http://shop.nordstrom.com/s/kiehls-since-1851-creamy-eye-treatment-with-avocado-0-5-oz/2922400?origin=category-personalizedsort
+2017-05-19 16:20:12,320 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->找到该款商品
+2017-05-19 16:20:12,330 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始等待商品页面加载
+2017-05-19 16:20:12,334 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->等待mainPanel加载完成
+2017-05-19 16:20:17,397 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->商品页面加载完成
+2017-05-19 16:20:20,411 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始选择sku
+2017-05-19 16:20:20,423 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - size新样式0.5 oz
+2017-05-19 16:20:20,432 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->size:不是下拉框不能点击0.5 oz
+2017-05-19 16:20:20,438 ERROR [com.oversea.task.service.order.NordstromAutoBuy] - [3]找不到指定sizesku:0.5 oz
+2017-05-19 16:20:20,438 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->选择sku完成
+2017-05-19 16:20:20,438 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[1]开始寻找商品单价
+2017-05-19 16:20:20,493 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[2]开始寻找商品单价
+2017-05-19 16:20:20,528 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4]开始寻找商品单价
+2017-05-19 16:20:20,544 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->[4-2]找到商品单价  = 23.20
+2017-05-19 16:20:26,547 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->开始加购物车
+2017-05-19 16:20:26,805 DEBUG [com.oversea.task.service.order.NordstromAutoBuy] - --->确认是否加购物车成功
+2017-05-19 16:36:46,487 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 16:36:49,398 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 16:38:11,362 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->没有找到登陆按钮
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+Command duration or timeout: 79.75 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'Log In or Register')]}
+Session ID: ac1d406f-5a8e-0344-8862-684f1ca1647a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.login(ZapposAutoBuy.java:47)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:595)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 16:38:11,938 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 16:38:11,952 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到my account页面出现异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'My Account')]"}
+Command duration or timeout: 13 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'My Account')]}
+Session ID: ac1d406f-5a8e-0344-8862-684f1ca1647a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:466)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:616)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'My Account')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4928756024225233931webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 16:55:19,576 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 16:55:22,618 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 16:56:42,928 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->没有找到登陆按钮
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+Command duration or timeout: 78.10 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'Log In or Register')]}
+Session ID: 7704fd39-f8bb-944b-86ae-2c958e9aee90
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.login(ZapposAutoBuy.java:47)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:595)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 16:56:43,236 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 16:56:43,249 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到my account页面出现异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'My Account')]"}
+Command duration or timeout: 12 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'My Account')]}
+Session ID: 7704fd39-f8bb-944b-86ae-2c958e9aee90
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:466)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:616)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'My Account')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous7899090433431867436webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 16:58:36,168 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 16:58:39,173 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 16:58:45,573 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->没有找到登陆按钮
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+Command duration or timeout: 829 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'Log In or Register')]}
+Session ID: 1cdaef25-ee15-d04e-91d8-91b966250d4d
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.login(ZapposAutoBuy.java:51)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:599)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Log In or Register')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 16:58:45,798 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 16:58:47,408 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到my account页面出现异常
+org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Command duration or timeout: 55 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 1cdaef25-ee15-d04e-91d8-91b966250d4d
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:472)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:620)
+Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.preconditions.visible(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:9981)
+	at <anonymous class>.DelayedCommand.prototype.checkPreconditions_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12517)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2413764695102475559webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:02:12,238 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 17:02:15,224 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 17:02:26,511 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 17:02:28,171 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 17:02:30,097 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->输入账号或者密码错误
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"ap_password]"}
+Command duration or timeout: 321 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=id, value=ap_password]}
+Session ID: b1137204-abe8-414a-be8c-9a7703102808
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:403)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.login(ZapposAutoBuy.java:71)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:599)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"id","selector":"ap_password]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:02:30,407 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 17:02:31,941 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到my account页面出现异常
+org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Command duration or timeout: 13 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: b1137204-abe8-414a-be8c-9a7703102808
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:472)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:620)
+Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.preconditions.visible(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:9981)
+	at <anonymous class>.DelayedCommand.prototype.checkPreconditions_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12517)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous2501809324847170254webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:03:05,197 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 17:03:08,188 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 17:03:21,093 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 17:03:21,422 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 17:03:23,337 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 17:03:24,891 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 17:03:26,562 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 17:04:57,063 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->登录碰到异常
+org.openqa.selenium.TimeoutException: Timed out after 90 seconds waiting for visibility of element located by By.xpath: //a[contains(text(),'Logout')]
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: d9d86c84-790d-8743-bcf4-6489fd55709b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.ZapposAutoBuy.login(ZapposAutoBuy.java:90)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:599)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Logout')]"}
+Command duration or timeout: 80 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//a[contains(text(),'Logout')]}
+Session ID: d9d86c84-790d-8743-bcf4-6489fd55709b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),'Logout')]"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:04:57,340 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 17:04:59,442 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-19 17:04:59,498 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->加载my account页面出现异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='orderHistory']"}
+Command duration or timeout: 55 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//div[@id='orderHistory']}
+Session ID: d9d86c84-790d-8743-bcf4-6489fd55709b
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:482)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:620)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='orderHistory']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5359410630456892542webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:06:09,305 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 17:06:12,379 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 17:06:23,237 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 17:06:23,563 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 17:06:25,546 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 17:06:27,109 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 17:06:28,769 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 17:06:37,153 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-19 17:06:37,153 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 17:06:38,753 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-19 17:06:39,706 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->加载my account页面出现异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='orderHistory']"}
+Command duration or timeout: 949 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//div[@id='orderHistory']}
+Session ID: de798f58-63b7-1d43-8834-4e327e451584
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:482)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:620)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//div[@id='orderHistory']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5295432586063385472webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5295432586063385472webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5295432586063385472webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5295432586063385472webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous5295432586063385472webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:38:28,223 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 17:38:31,261 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 17:38:37,495 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 17:38:42,207 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 17:38:44,084 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 17:38:45,664 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 17:38:47,343 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 17:38:54,083 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-19 17:38:55,586 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始跳转到my account页面
+2017-05-19 17:38:55,640 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到my account页面出现异常
+org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Command duration or timeout: 10 milliseconds
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 939c9fee-24e7-7a4d-bc65-ed199ac87fb5
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:326)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at com.oversea.task.service.order.ZapposAutoBuy.scribeExpress(ZapposAutoBuy.java:472)
+	at com.oversea.task.service.order.ZapposAutoBuy.main(ZapposAutoBuy.java:604)
+Caused by: org.openqa.selenium.ElementNotVisibleException: Element is not currently visible and so may not be interacted with
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.fxdriver.preconditions.visible(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1247845536706965980webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:9981)
+	at <anonymous class>.DelayedCommand.prototype.checkPreconditions_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1247845536706965980webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12517)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1247845536706965980webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1247845536706965980webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous1247845536706965980webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-05-19 17:43:44,273 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 17:43:47,393 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 17:43:53,592 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 17:43:58,387 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 17:44:00,258 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 17:44:01,843 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 17:44:03,503 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 17:44:10,709 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-19 17:44:13,903 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-19 17:44:14,328 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->my account页面加载完成
+2017-05-19 17:44:14,328 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待寻找商城输入框
+2017-05-19 17:44:17,391 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->商城订单号输入完成
+2017-05-19 17:44:21,165 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->开始查找Track This Shipment
+2017-05-19 17:44:21,213 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->物流号:1Z1EF9931231864629
+2017-05-19 17:44:21,213 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->物流公司:ups
+2017-05-19 18:08:21,899 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 18:08:24,884 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 18:08:35,317 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 18:08:40,999 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 18:08:42,882 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 18:08:44,444 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 18:08:46,115 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 18:08:57,729 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-19 18:08:57,775 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-19 18:09:07,090 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->my account页面加载完成
+2017-05-19 18:09:07,090 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待寻找商城输入框
+2017-05-19 18:09:10,262 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->商城订单号输入完成
+2017-05-19 18:09:16,047 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - 该订单还没发货,没产生物流单号
+2017-05-19 18:11:41,242 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->启动驱动并做清理工作
+2017-05-19 18:11:44,243 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-19 18:11:56,448 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->跳转到登录页面
+2017-05-19 18:11:56,782 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入账号
+2017-05-19 18:11:58,667 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始输入密码
+2017-05-19 18:12:00,219 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始提交
+2017-05-19 18:12:01,900 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->等待登录完成
+2017-05-19 18:12:08,628 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->登录完成
+2017-05-19 18:12:13,695 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待my account页面加载完成
+2017-05-19 18:12:14,125 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->my account页面加载完成
+2017-05-19 18:12:14,125 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->开始等待寻找商城输入框
+2017-05-19 18:12:17,252 DEBUG [com.oversea.task.service.order.ZapposAutoBuy] - --->商城订单号输入完成
+2017-05-19 18:12:21,087 ERROR [com.oversea.task.service.order.ZapposAutoBuy] - --->订单被砍,请重新下单

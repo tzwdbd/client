@@ -1,0 +1,46 @@
+2017-05-17 15:23:02,978 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->启动驱动并做清理工作
+2017-05-17 15:23:06,400 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->调整浏览器尺寸和位置
+2017-05-17 15:23:09,379 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到登录页面
+2017-05-17 15:23:10,351 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-17 15:23:11,931 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-17 15:23:14,990 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-17 15:23:16,571 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待登录完成
+2017-05-17 15:23:16,592 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->登录完成
+2017-05-17 15:23:16,664 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-17 15:23:16,664 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->清空购物车
+2017-05-17 15:23:21,539 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->购物车已清空
+2017-05-17 15:23:21,539 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->确认购物车是否清空
+2017-05-17 15:23:23,758 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->跳转到商品页面
+2017-05-17 15:23:23,758 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择商品 productUrl = https://www.linkhaitao.com/index.php?mod=lhdeal&track=551bS9_ayy_b_aMMztSRfwaRC4zHXbm4_aDqb3OPUg8Wyh7vDUPeEpqomBE7Viopduav6ZE_c&new=http%3A%2F%2Fwww.ba.de%2F2022333.html&tag=
+2017-05-17 15:23:23,785 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始等待商品页面加载
+2017-05-17 15:23:26,196 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->商品页面加载完成
+2017-05-17 15:23:26,196 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始寻找商品单价
+2017-05-17 15:23:26,215 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->[1]找到商品单价 = 77.96
+2017-05-17 15:23:26,215 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始加购物车
+2017-05-17 15:23:27,307 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->加购物车成功
+2017-05-17 15:23:27,307 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-17 15:23:28,891 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->添加到购物车成功
+2017-05-17 15:23:28,892 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->myPrice = 99.00
+2017-05-17 15:23:29,985 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始跳转到购物车
+2017-05-17 15:23:29,986 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待购物车页面加载
+2017-05-17 15:23:32,545 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->点击结算按钮
+2017-05-17 15:24:03,063 ERROR [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号或者密码错误
+org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for element to be clickable: By.id: LoginEmail
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 2d9b641a-27e3-9540-98d5-2f473ba1fbd2
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.pay(BodyguardapothekeAutoBuy.java:285)
+	at com.oversea.task.service.order.BodyguardapothekeAutoBuy.main(BodyguardapothekeAutoBuy.java:796)
+2017-05-17 15:24:05,000 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入账号
+2017-05-17 15:24:06,576 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入密码
+2017-05-17 15:24:09,624 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->开始提交
+2017-05-17 15:24:14,405 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - couponCode：BA3HT
+2017-05-17 15:24:19,190 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->等待支付页面加载
+2017-05-17 15:24:20,775 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->支付页面加载完成
+2017-05-17 15:24:20,776 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-17 15:24:27,214 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->选择收货地址
+2017-05-17 15:24:29,436 DEBUG [com.oversea.task.service.order.BodyguardapothekeAutoBuy] - --->输入省

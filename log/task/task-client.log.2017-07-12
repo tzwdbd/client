@@ -1,0 +1,65 @@
+2017-07-12 18:37:44,195 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-12 18:37:47,687 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-07-12 18:37:47,687 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-12 18:38:47,082 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-07-12 18:38:50,127 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-07-12 18:38:50,127 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-07-12 18:39:10,164 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
+2017-07-12 18:39:11,736 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
+2017-07-12 18:40:42,408 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - --->输入账号或者密码错误
+org.openqa.selenium.TimeoutException: Timed out after 90 seconds waiting for visibility of element located by By.xpath: //input[@class='input-text email left required']
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Session ID: 66eb7e9c-a906-004b-8373-0f3811a41195
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.oversea.task.service.order.KatespadeAutoBuy.login(KatespadeAutoBuy.java:459)
+	at com.oversea.task.service.order.KatespadeAutoBuy.main(KatespadeAutoBuy.java:151)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//input[@class='input-text email left required']"}
+Command duration or timeout: 122 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//input[@class='input-text email left required']}
+Session ID: 66eb7e9c-a906-004b-8373-0f3811a41195
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:911)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 2 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//input[@class='input-text email left required']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.81', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4992021306055806039webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4992021306055806039webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4992021306055806039webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4992021306055806039webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous4992021306055806039webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-07-12 18:40:42,416 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始跳转到my account页面
+2017-07-12 18:40:48,295 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待my account页面加载完成
+2017-07-12 18:40:54,368 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->my account页面加载完成
+2017-07-12 18:43:25,257 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始跳转到my account页面
+2017-07-12 18:43:44,312 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待my account页面加载完成
+2017-07-12 18:44:03,719 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->my account页面加载完成
+2017-07-12 18:46:20,076 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始跳转到my account页面
+2017-07-12 18:46:26,505 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待my account页面加载完成
+2017-07-12 18:46:31,842 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->my account页面加载完成
+2017-07-12 18:46:47,226 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - 已发货，开始查找物流单号
+2017-07-12 18:46:52,227 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - 找到物流单号：1Z98A64AP222605578
