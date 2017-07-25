@@ -640,12 +640,12 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					TimeUnit.SECONDS.sleep(2);
 					try {
 						driver.findElement(By.cssSelector(".fab-alert.error"));
+						logger.debug("--->优惠码不可用！");
+						statusMap.put(code, 0);
+					} catch (Exception e) {
 						logger.debug("优惠码可用");
 						isEffective = true;
 						statusMap.put(code, 10);
-					} catch (Exception e) {
-						logger.debug("--->优惠码不可用！");
-						statusMap.put(code, 0);
 						promoCode.clear();
 					}
 					j++;
@@ -659,13 +659,22 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				logger.debug("--->优惠码失效,中断采购");
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
-			
-			try {
-				WebElement closeButton = driver.findElement(By.cssSelector(".drawer-close"));
-				closeButton.click();
-			} catch (Exception e) {
-				logger.debug("--->关闭优惠码窗口");
+			try
+			{
+				WebElement codeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("offersForm")));
+				WebElement codeB = codeButton.findElement(By.cssSelector("header button"));
+				codeB.click();
+				logger.error("--->点击优惠码窗口");
+			}catch (Exception e){
+				logger.error("--->关闭优惠码窗口");
 			}
+			
+//			try {
+//				WebElement closeButton = driver.findElement(By.cssSelector(".drawer-close"));
+//				closeButton.click();
+//			} catch (Exception e) {
+//				logger.debug("--->关闭优惠码窗口");
+//			}
 		}
 		String shipPriceStr = "0";
 		// 查询总价
