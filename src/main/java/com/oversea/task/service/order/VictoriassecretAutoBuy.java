@@ -575,6 +575,29 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 		
 		
 		
+		
+		
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fab-btn--checkout-submit")));
+			driver.executeScript("(function(){window.scrollBy(1,400);})();");
+			Utils.sleep(2000);
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
+			placeOrderElement.click();
+			logger.error("--->点击deliveryElement");
+		}catch (Exception e){
+			logger.error("--->点击deliveryElement失败");
+			try
+			{
+				WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
+				placeOrderElement.click();
+				logger.error("--->点击deliveryElement1");
+			}catch (Exception e1){
+				logger.error("--->点击deliveryElement失败1");
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+		}
+		
 		//使用优惠码0 失效,1互斥 ,9没修改过,10有效
 		boolean isEffective = false;
 		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
@@ -683,27 +706,6 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->查询结算总价出现异常");
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
-		}
-		
-		try
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fab-btn--checkout-submit")));
-			driver.executeScript("(function(){window.scrollBy(1,400);})();");
-			Utils.sleep(2000);
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
-			placeOrderElement.click();
-			logger.error("--->点击deliveryElement");
-		}catch (Exception e){
-			logger.error("--->点击deliveryElement失败");
-			try
-			{
-				WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
-				placeOrderElement.click();
-				logger.error("--->点击deliveryElement1");
-			}catch (Exception e1){
-				logger.error("--->点击deliveryElement失败1");
-				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
-			}
 		}
 		
 		try
