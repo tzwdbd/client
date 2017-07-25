@@ -288,6 +288,7 @@
                             <descriptors>
                                 <descriptor>src/assembly/assembly.xml</descriptor>
                             </descriptors>
+                            <attach>false</attach>
                         </configuration>
                         <phase>install</phase>
                         <goals>
