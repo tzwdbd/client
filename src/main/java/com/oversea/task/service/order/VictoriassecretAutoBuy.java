@@ -607,8 +607,9 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			logger.debug("promotionList.toString()" + promotionList.toString());
 			try
 			{
-				WebElement codeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fab-condensed-view")));
-				codeButton.click();
+				WebElement codeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("offersForm")));
+				WebElement codeB = codeButton.findElement(By.cssSelector("header button"));
+				codeB.click();
 				logger.error("--->点击优惠码");
 			}catch (Exception e){
 				logger.error("--->点击优惠码失败");
@@ -621,21 +622,21 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					TimeUnit.SECONDS.sleep(2);
 					WebElement promoCode = null;
 					if(j==0){
-						promoCode = driver.findElement(By.id("drawer-offerCode0"));
+						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode0"));
 					}
 					if(j==1){
-						promoCode = driver.findElement(By.id("drawer-offerCode1"));
+						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode1"));
 					}
 					if(j==2){
-						promoCode = driver.findElement(By.id("drawer-offerCode2"));
+						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode2"));
 					}
 					
 					logger.debug("--->找到优惠码输入框,开始输入");
 					promoCode.clear();
 					promoCode.sendKeys(code);
 					TimeUnit.SECONDS.sleep(2);
-					WebElement apply = driver.findElement(By.id("applyOffersBtn"));
-					apply.click();
+					WebElement apply = driver.findElement(By.cssSelector("#offersForm #applyOffersBtn"));
+					driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
 					TimeUnit.SECONDS.sleep(2);
 					try {
 						driver.findElement(By.cssSelector(".fab-alert.error"));
