@@ -743,7 +743,9 @@ public class IherbAutoBuy extends AutoBuy
 		}
 		
 		try {
-			driver.executeScript("(function(){window.scrollBy(0,250);})();");
+			driver.executeScript("(function(){window.scrollBy(0,350);})();");
+			Utils.sleep(1500);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnSSN")));
 			WebElement btnSSN = driver.findElement(By.id("btnSSN"));
 			driver.executeScript("var tar=arguments[0];tar.click();", btnSSN);
 			Utils.sleep(1500);
