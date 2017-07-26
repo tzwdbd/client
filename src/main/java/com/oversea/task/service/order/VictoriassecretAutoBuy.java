@@ -730,12 +730,6 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			WebDriverWait wait0 = new WebDriverWait(driver, 20);
 			int i=0;
 			for(GiftCard card:giftCardList){
-				if(i>0){
-					BigDecimal mm = new BigDecimal(card.getRealBalance());
-					if(mm.doubleValue()<20d){
-						continue;
-					}
-				}
 				WebElement giftCardNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardNumber")));
 				logger.debug("--->礼品卡号"+card.getSecurityCode());
 				giftCardNumber.clear();
