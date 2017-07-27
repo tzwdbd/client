@@ -162,6 +162,9 @@ public class OrderNormalHandler implements OrderHandler {
 									myPrice += Float.parseFloat(orderDetail.getMyPrice()) * num;
 								}catch(Exception ee){}
 							}
+							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPromotion())){
+								myPrice = myPrice - Float.parseFloat(orderDetailList.get(0).getTotalPromotion());
+							}
 							RobotOrderDetail robotOrderDetail = orderDetailList.get(0);
 							if(robotOrderDetail != null && "1".equals(robotOrderDetail.getIsStockpile())){
 								isStock = true;
