@@ -3733,14 +3733,35 @@ public class AmazonAutoBuy extends AutoBuy
 				{
 					if (i % 2 == 1)
 					{
+						boolean mark1 = false;
 						logger.error(skuList.get(i - 1) + ":" + skuList.get(i));
-
+						By byPanel = By.xpath("//div[@id='ppd']");
+						WebDriverWait wait2 = new WebDriverWait(driver, 30);
+						try {
+							wait2.until(ExpectedConditions.visibilityOfElementLocated(byPanel));
+						} catch (Exception e) {
+							mark1 = true;
+						}
+						
 						// 判断是否是连续选择的sku
-						if (i > 1){
+						if (mark1){
 							for(int k = 0;k<3;k++){
 								try{
 									Utils.sleep(4500);
-									driver.findElement(By.cssSelector("ul>li.a-align-center:first-child")).click();
+									List<WebElement> lists = driver.findElements(By.cssSelector("ul>li.a-align-center h4"));
+									for(WebElement w:lists){
+										for (int j = 0; j < skuList.size(); j++){
+											if (j % 2 == 1){
+												if(w.getText().equals(skuList.get(j))){
+													logger.error("连续选择:"+skuList.get(j));
+													w.click();
+													break;
+												}
+											}
+										}
+											
+									}
+										
 									Utils.sleep(2500);
 								}catch(Exception e){
 									break;
