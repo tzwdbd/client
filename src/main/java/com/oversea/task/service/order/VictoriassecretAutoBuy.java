@@ -728,7 +728,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			TimeUnit.SECONDS.sleep(1);
 			BigDecimal cardTotal = new BigDecimal(0.00);
 			WebDriverWait wait0 = new WebDriverWait(driver, 20);
-			int i=0;
+			boolean marks=false;
 			for(GiftCard card:giftCardList){
 				WebElement giftCardNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardNumber")));
 				logger.debug("--->礼品卡号"+card.getSecurityCode());
@@ -752,7 +752,6 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				try {
 					balanceElement = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".balance")));
 				} catch (Exception e) {
-					card.setIsUsed("yes");
 					card.setIsSuspect("yes");
 					continue;
 				}
@@ -779,7 +778,6 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					TimeUnit.SECONDS.sleep(2);
 					cardTotal = cardTotal.add(y);
 					BigDecimal v = total.subtract(cardTotal);
-					card.setIsUsed("yes");
 					if (v.doubleValue() > 0.00D) {
 						card.setRealBalance("0");
 						logger.error("--->礼品卡不够继续，继续添加");
@@ -788,15 +786,19 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 						BigDecimal z = cardTotal.subtract(total);
 						card.setRealBalance(String.valueOf(z));
 						logger.error("--->礼品卡够了");
+						marks = true;
 						break;
 					}
-					i++;
 				}
 				
 			}
-			WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
-			paymentCommit.click();
-			TimeUnit.SECONDS.sleep(2);
+			if(marks){
+				WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
+				paymentCommit.click();
+				TimeUnit.SECONDS.sleep(2);
+			}else{
+				return AutoBuyStatus.AUTO_PAY_FAIL;
+			}
 			
 			
 		}catch (Exception e){
