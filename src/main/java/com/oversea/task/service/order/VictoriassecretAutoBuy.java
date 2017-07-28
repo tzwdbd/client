@@ -747,6 +747,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				//checkBalance.click();
 				logger.debug("--->checkBalance click");
 				TimeUnit.SECONDS.sleep(2);
+				card.setIsUsed("yes");
 				//比较真实余额是否正确
 				WebElement balanceElement = null;
 				try {
