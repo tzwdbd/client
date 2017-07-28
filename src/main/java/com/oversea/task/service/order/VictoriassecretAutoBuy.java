@@ -794,7 +794,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			}
 			if(marks){
 				WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
-				paymentCommit.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", paymentCommit);//paymentCommit.click();
 				TimeUnit.SECONDS.sleep(2);
 			}else{
 				return AutoBuyStatus.AUTO_PAY_FAIL;
