@@ -6,7 +6,6 @@ import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
-import java.security.Key;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -187,7 +186,15 @@ public class ZcnAutoBuy extends AutoBuy {
 			cartBtn.click();
 			Utils.sleep(1500);
 		} catch (Exception e) {
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			try {
+				cartBy = By.id("navbar-icon-cart");
+				cartBtn = driver.findElement(cartBy);
+				logger.debug("--->去购物车");
+				cartBtn.click();
+				Utils.sleep(1500);
+			} catch (Exception e2) {
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 		return AutoBuyStatus.AUTO_CLICK_CART_SUCCESS;
 	}
@@ -537,9 +544,22 @@ public class ZcnAutoBuy extends AutoBuy {
 			try {
 				driver.findElement(By.cssSelector("input#add-to-cart-button")).click();
 			} catch (Exception e) {
-				logger.debug("寻找购物车按钮异常");
+				try {
+					driver.findElement(By.xpath("//button[contains(text(),'加入购物车')]")).click();
+				} catch (Exception e2) {
+					logger.debug("寻找购物车按钮异常");
+				}
 			}
 			Utils.sleep(3000);
+			
+			try {
+				WebElement element = driver.findElement(By.xpath("//span[contains(text(),'这个商品在您的购物车中。')]"));
+				if (element != null) {
+					return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
+				}
+			} catch (Exception e) {
+			}
+			
 			try {
 				driver.findElement(By.id("no_thanks_button")).click();
 			} catch (Exception e) {
@@ -1357,11 +1377,12 @@ public class ZcnAutoBuy extends AutoBuy {
 		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 			status = autoBuy.cleanCart();
 			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-				param.put("url", "https://www.amazon.cn/dp/B072L6C77X/ref=sr_1_91?s=beauty&ie=UTF8&qid=1499840230&sr=1-91&tag=youhuijia55-23");
-				param.put("sku", "[[\" 颜色\",\"黄水400ml\"]]");
+				param.put("url", "https://www.amazon.cn/gp/aw/d/B0721V3L4B");
+				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
+				//param.put("sku", "[[\" 颜色\",\"黄水400ml\"]]");
 				param.put("num", "1");
 				param.put("promotion", "CMVSPAM8");
-				autoBuy.selectProduct(param);
+				System.out.println(autoBuy.selectProduct(param));
 			}
 		}
 		
