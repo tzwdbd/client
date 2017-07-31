@@ -314,6 +314,12 @@ public class IherbAutoBuy extends AutoBuy
 	@Override
 	public AutoBuyStatus cleanCart()
 	{
+		WebElement w = driver.findElement(By.cssSelector(".icon-cart"));
+		logger.error("--->购物车数量"+w.getText());
+		if(StringUtil.isBlank(w.getText())){
+			logger.error("--->购物车不必清空");
+			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
+		}
 		driver.navigate().to("https://checkout.iherb.com/editcart");
 		Utils.sleep(3000);
 		
@@ -904,6 +910,7 @@ public class IherbAutoBuy extends AutoBuy
 			if(StringUtil.isNotEmpty("orderNumber")){
 				logger.debug("--->获取iherb单号成功:\t" + orderNumber);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNumber);
+				savePng();
 			}else{
 				logger.error("--->获取iherb单号出错!");
 				return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
