@@ -314,12 +314,20 @@ public class IherbAutoBuy extends AutoBuy
 	@Override
 	public AutoBuyStatus cleanCart()
 	{
-		WebElement w = driver.findElement(By.cssSelector(".icon-cart"));
-		logger.error("--->购物车数量"+w.getText());
-		if(StringUtil.isBlank(w.getText())){
-			logger.error("--->购物车不必清空");
-			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
+		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-cart")));
+			WebElement w = driver.findElement(By.cssSelector(".icon-cart"));
+			logger.error("--->购物车数量"+w.getText());
+			if(StringUtil.isBlank(w.getText())){
+				logger.error("--->购物车不必清空");
+				return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车数量清空异常1");
+			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
+		
 		driver.navigate().to("https://checkout.iherb.com/editcart");
 		Utils.sleep(3000);
 		
@@ -342,7 +350,7 @@ public class IherbAutoBuy extends AutoBuy
 		Utils.sleep(2000);
 		logger.error("--->购物车页面清理完成");
 		
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		
 		try {
 			logger.error("--->确认购物车是否清理完成");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='empty-state']")));
