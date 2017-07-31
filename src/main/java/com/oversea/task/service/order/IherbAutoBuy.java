@@ -326,6 +326,7 @@ public class IherbAutoBuy extends AutoBuy
 			}
 		} catch (Exception e) {
 			logger.debug("--->购物车不必清空1");
+			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 		}
 		
 		driver.navigate().to("https://checkout.iherb.com/editcart");
