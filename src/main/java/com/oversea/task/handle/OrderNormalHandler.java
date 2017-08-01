@@ -163,7 +163,7 @@ public class OrderNormalHandler implements OrderHandler {
 								}catch(Exception ee){}
 							}
 							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPromotion())){
-								myPrice = myPrice - Float.parseFloat(orderDetailList.get(0).getTotalPromotion());
+								myPrice = myPrice - (Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/7);
 							}
 							RobotOrderDetail robotOrderDetail = orderDetailList.get(0);
 							if(robotOrderDetail != null && "1".equals(robotOrderDetail.getIsStockpile())){
