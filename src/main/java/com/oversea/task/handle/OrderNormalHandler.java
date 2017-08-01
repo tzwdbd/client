@@ -41,6 +41,7 @@ public class OrderNormalHandler implements OrderHandler {
 		String expressAddress = (String)task.getParam("expressAddress");
 		OrderCreditCard orderCreditCard = (OrderCreditCard)task.getParam("orderCreditCard");
 		List<GiftCard> giftCard = (List<GiftCard>) task.getParam("giftCardList");
+		Float rate = (Float)task.getParam("rate");
 		
 		List<RobotOrderDetail> orderDetailList = null;
 		if(obj instanceof List){
@@ -163,7 +164,7 @@ public class OrderNormalHandler implements OrderHandler {
 								}catch(Exception ee){}
 							}
 							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPromotion())){
-								myPrice = myPrice - (Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/7);
+								myPrice = myPrice - (Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/rate);
 							}
 							RobotOrderDetail robotOrderDetail = orderDetailList.get(0);
 							if(robotOrderDetail != null && "1".equals(robotOrderDetail.getIsStockpile())){
