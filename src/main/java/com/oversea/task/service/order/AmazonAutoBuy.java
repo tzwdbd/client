@@ -3629,7 +3629,7 @@ public class AmazonAutoBuy extends AutoBuy
 		
 	}
 	
-	public void clickProduct(Map<String, String> param){
+	public AutoBuyStatus clickProduct(Map<String, String> param){
 		WebDriverWait wait = new WebDriverWait(driver, 45);
 		for(int i=0;i<3;i++){
 			try {
@@ -3645,7 +3645,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}
 		param.put("signs", "0");
-		selectBrushProduct(param);
+		return selectBrushProduct(param);
 	}
 	
 	
@@ -3719,7 +3719,8 @@ public class AmazonAutoBuy extends AutoBuy
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 		if(StringUtil.isBlank(signs)){
-			clickProduct(param);
+			logger.error("--->查找clickProduct");
+			return clickProduct(param);
 		}
 		
 		String productNum = (String) param.get("num");
@@ -4217,7 +4218,15 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			String productEntityCode = "";
 			if(getAsinMap() != null){
-				productEntityCode = getAsinMap().get(param.get("productEntityId"));
+				logger.error("getAsinMap pid="+param.get("productEntityId"));
+				for (Map.Entry<Long, String> entry : getAsinMap().entrySet()) {  
+					  
+					logger.error("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+				  
+				}  
+				productEntityCode = getAsinMap().get(Long.parseLong(param.get("productEntityId")));
+			}else{
+				logger.error("getAsinMap is null");
 			}
 			logger.error("productEntityCode = "+productEntityCode);
 			if (Utils.isEmpty(productEntityCode)){
