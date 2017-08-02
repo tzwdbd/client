@@ -50,7 +50,10 @@ public class TaskServiceImpl implements TaskService {
 	private BrushOrderHandler brushOrderHandler;
 	
 	@Resource
-	private GiftCardCheckHandler giftCardCheckHandler;
+	private CheckGiftCardAmazonHandler checkGiftCardAmazonHandler;
+
+	@Resource
+	private CheckGiftCardAmazonJPHandler checkGiftCardAmazonJPHandler;
 
 	@Override
 	public TaskResult orderService(final Task task) {
@@ -250,7 +253,7 @@ public class TaskServiceImpl implements TaskService {
 	            handler = new CheckGiftCardAmazonJPHandler();
 	        }
 			if (handler != null) {
-				giftCardCheckHandler.handle(task, taskResult);
+				handler.handle(task, taskResult);
 	        }
 		}catch(Exception e){
 			logger.error("调用giftService出现异常",e);
