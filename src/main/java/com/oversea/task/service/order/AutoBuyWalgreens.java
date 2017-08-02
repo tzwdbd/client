@@ -45,36 +45,37 @@ public class AutoBuyWalgreens extends AutoBuy {
 		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 //			status = auto.scribeExpress("114-4751822-5849814");
 			status = auto.cleanCart();
-			/*if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 					Map<String, String> param = new HashMap<String, String>();
-					param.put("url", "http://www.rebatesme.com/zh/click/?key=7200c08f8d4acfb4d1631478957ee588&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=6c21c3a7b822668914496675eeebd067&targetUrl=https%3A%2F%2Fwww.walgreens.com%2Fstore%2Fc%2Fnature-made-fish-oil-1200mg-liquid-softgels%2FID%3Dprod6143490-product");
+					param.put("url", "https://www.walgreens.com/store/c/schiff-move-free-joint-health-glucosamine-chondroitin-plus-msm--vitamin-d3-tablets/ID=prod3855572-product?AID=10652189&PID=6110390&SID=4s8qrx&CID=3791870&ext=6110390");
 					param.put("num", "2");
 					param.put("productEntityId", "efe");
 					param.put("sku", null);
 					status = auto.selectProduct(param);
 					Map<String, String> params = new HashMap<String, String>();
-					params.put("url", "http://www.anrdoezrs.net/click-8227055-11020894-1417628774000?sid=lh_m1wnrh__&url=https%3A%2F%2Fwww.walgreens.com%2Fstore%2Fc%2Fvitafusion-gorgeous-hair-skin--nails-multivitamin-gummies-raspberry%2FID%3Dprod6310367-product");
+					params.put("url", "https://www.walgreens.com/store/c/schiff-move-free-advanced-triple-strength-glucosamine-chondroitin-coated-tablets/ID=prod1993553-product?AID=10652189&PID=6110390&SID=4s8x03&CID=3791870&ext=6110390");
 					params.put("num", "1");
 					params.put("productEntityId", "efse");
-					status = auto.selectProduct(param);
+					params.put("sku", null);
+					status = auto.selectProduct(params);
 					System.out.println("status1 = "+ status.getValue());
-					if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-						Map<String, String> params = new HashMap<String, String>();
-						params.put("url", "https://www.walgreens.com/store/c/vitafusion-women's-daily-multivitamin-gummy/ID=prod6108350-product");
-						params.put("num", "3");
-						param.put("productEntityId", "sefe");
-						status = auto.selectProduct(params);
-						System.out.println("status2 = "+ status.getValue());
-						//if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-							Map<String, String> paramss = new HashMap<String, String>();
-							paramss.put("my_price", "38.5");
-							paramss.put("count", "1");
-							paramss.put("isPay", String.valueOf(false));
-							paramss.put("cardNo", "4662 4833 6029 1396");
-							status = auto.pay(paramss);
-						//}
-					}
-			}*/
+//					if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+//						Map<String, String> params = new HashMap<String, String>();
+//						params.put("url", "https://www.walgreens.com/store/c/vitafusion-women's-daily-multivitamin-gummy/ID=prod6108350-product");
+//						params.put("num", "3");
+//						param.put("productEntityId", "sefe");
+//						status = auto.selectProduct(params);
+//						System.out.println("status2 = "+ status.getValue());
+//						//if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+//							Map<String, String> paramss = new HashMap<String, String>();
+//							paramss.put("my_price", "38.5");
+//							paramss.put("count", "1");
+//							paramss.put("isPay", String.valueOf(false));
+//							paramss.put("cardNo", "4662 4833 6029 1396");
+//							status = auto.pay(paramss);
+//						//}
+//					}
+			}
 			System.out.println("status = "+ status.getValue());
 		}
 	}

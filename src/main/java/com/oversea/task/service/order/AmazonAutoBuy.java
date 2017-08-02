@@ -3371,6 +3371,26 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		return accountBalance;
 	}
+	
+	public String checkGiftCard(){
+		WebDriverWait wait = new WebDriverWait(driver, 35);
+		try {
+			driver.navigate().to("https://www.amazon.com/balance?ref_=ya_mb_asv_b_m");
+		} catch (Exception e) {
+			logger.info("--->跳转礼品卡页面出错!");
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-color-success")));
+			WebElement gitBalance = driver.findElement(By.cssSelector(".a-color-success"));
+			String balanceText = gitBalance.getText().trim();
+			logger.info("--->礼品卡余额:"+balanceText);
+			balanceText = balanceText.replace("$", "").replace("-", "").replace(",", "").trim();
+			return balanceText;
+		}catch (Exception e) {
+			logger.info("--->礼品卡余额获取失败!");
+		}
+		return null;
+	}
 
 	public static void main1(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(false);

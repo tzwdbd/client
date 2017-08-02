@@ -1250,6 +1250,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 					this.logger.debug("--->[2]next delivery");
 				}
 				next.click();
+//				WebElement updateTime = driver.findElement(By.xpath("//span[@class='a-button-text' and  contains(text(), '配達時間を変更')]"));
+//				updateTime.click();
 			}catch(Exception e){
 				logger.debug("--->没有找到选两次的物流",e);
 			}
@@ -2599,6 +2601,26 @@ public class AmazonJpAutoBuy extends AutoBuy
 		
 		}
 		return nowBalance;
+	}
+	
+	public String checkGiftCard(){
+		WebDriverWait wait = new WebDriverWait(driver, 35);
+		try {
+			driver.navigate().to("https://www.amazon.co.jp/gp/gc/create/ref=gc_ya_topup_mbrowser?ie=UTF8&ref_=gc_ya_topup_mbrowser");
+		} catch (Exception e) {
+			logger.info("--->跳转礼品卡页面出错!");
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-color-success")));
+			WebElement gitBalance = driver.findElement(By.cssSelector(".a-color-success"));
+			String balanceText = gitBalance.getText().trim();
+			logger.info("--->礼品卡余额:"+balanceText);
+			balanceText = balanceText.replace("￥", "").replace(",", "").replace("-", "").trim();
+			return balanceText;
+		}catch (Exception e) {
+			logger.info("--->礼品卡余额获取失败!");
+		}
+		return null;
 	}
 
 	public static void main(String[] args) throws ParseException

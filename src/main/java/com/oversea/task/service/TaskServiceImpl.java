@@ -11,11 +11,15 @@ import com.haihu.rpc.common.RemoteService;
 import com.oversea.task.common.TaskService;
 import com.oversea.task.domain.BrushOrderDetail;
 import com.oversea.task.domain.GiftCard;
+import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.ClientTaskResult;
 import com.oversea.task.enums.SiteName;
 import com.oversea.task.handle.BrushOrderHandler;
 import com.oversea.task.handle.BrushShipHandler;
+import com.oversea.task.handle.CheckGiftCardAmazonHandler;
+import com.oversea.task.handle.CheckGiftCardAmazonJPHandler;
+import com.oversea.task.handle.GiftCardCheckHandler;
 import com.oversea.task.handle.OrderHandler;
 import com.oversea.task.handle.RechargeAmazonHandler;
 import com.oversea.task.handle.RechargeAmazonJPHandler;
@@ -44,6 +48,9 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Resource
 	private BrushOrderHandler brushOrderHandler;
+	
+	@Resource
+	private GiftCardCheckHandler giftCardCheckHandler;
 
 	@Override
 	public TaskResult orderService(final Task task) {
@@ -220,6 +227,33 @@ public class TaskServiceImpl implements TaskService {
 			}
 		}catch(Throwable e){
 			logger.error("调用shipService出现异常",e);
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult CheckGiftCard(Task task) {
+		// TODO Auto-generated method stub
+		logger.error("CheckGiftCard");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			OrderAccount account =  (OrderAccount) task.getParam("account");
+	        if (account == null) {
+	            logger.error("account is null");
+	        }
+	        //充值
+	        String siteName = account.getAccountType();
+	        GiftCardCheckHandler handler = null;
+	        if (SiteName.AMAZON.getName().equalsIgnoreCase(siteName)) {//美亚
+	            handler = new CheckGiftCardAmazonHandler();
+	        } else if (SiteName.AMAZON_JP.getName().equalsIgnoreCase(siteName)) {//日亚
+	            handler = new CheckGiftCardAmazonJPHandler();
+	        }
+			if (handler != null) {
+				giftCardCheckHandler.handle(task, taskResult);
+	        }
+		}catch(Exception e){
+			logger.error("调用giftService出现异常",e);
 		}
 		return taskResult;
 	}
