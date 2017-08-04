@@ -582,6 +582,13 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fab-btn--checkout-submit")));
 			driver.executeScript("(function(){window.scrollBy(1,400);})();");
 			Utils.sleep(2000);
+			WebElement gift = driver.findElement(By.id("giftOption"));
+			
+			if(!gift.isSelected()){
+				gift.click();
+				logger.error("--->选中礼品模式");
+			}
+			Utils.sleep(2000);
 			WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
 			placeOrderElement.click();
 			logger.error("--->点击deliveryElement");
