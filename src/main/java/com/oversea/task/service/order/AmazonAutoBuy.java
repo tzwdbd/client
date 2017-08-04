@@ -1885,7 +1885,12 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}
 		Map<String,String> cacheMap = getTotal();
-		String total = cacheMap.get("giftCard");
+		String total = null;
+		if("credit".equals(payType)){
+			total = cacheMap.get("orderTotal");
+		}else{
+			total = cacheMap.get("giftCard");
+		}
 		String mallFee = cacheMap.get("shippingHandling");
 		String promotionFee = cacheMap.get("promotionApplied");
 		
