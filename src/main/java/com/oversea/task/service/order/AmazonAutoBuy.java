@@ -1463,14 +1463,30 @@ public class AmazonAutoBuy extends AutoBuy
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='select-payments-view']")));
 			try {
-				List<WebElement> radios = driver.findElements(By.cssSelector("input[type='radio']"));
+				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-					for(WebElement w:radios){
-						if(!"gcBalance".equals(w.getAttribute("value"))){
-							w.click();
-							break;
+					radios.get(1).click();
+					logger.debug("--->credit 点击");
+					Utils.sleep(1000);
+					try {
+						WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+						card.clear();
+						Utils.sleep(1000);
+						card.sendKeys(param.get("cardNo"));
+						logger.debug("--->cardno="+param.get("cardNo"));
+						List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+						for(WebElement w:sumbits){
+							if(w.isDisplayed()){
+								w.click();
+								logger.debug("--->sumbit 点击");
+								break;
+							}
 						}
+						
+					} catch (Exception e) {
+						logger.debug("--->credit 点击异常");
 					}
+					
 				}else{
 					for(WebElement w:radios){
 						if("gcBalance".equals(w.getAttribute("value"))){
@@ -1529,11 +1545,11 @@ public class AmazonAutoBuy extends AutoBuy
 							WebElement radio = visaBox.findElement(By.xpath("./label/input"));
 							if(radio != null && radio.isSelected()){
 								logger.debug("--->信用卡选项已经选中,需要充值");
-								return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								//return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
 							}
 						}catch(Exception e){
 							logger.debug("--->查找信用卡是否选中出错",e);
-							return AutoBuyStatus.AUTO_PAY_FAIL;
+							//return AutoBuyStatus.AUTO_PAY_FAIL;
 						}
 					}
 					
@@ -1579,16 +1595,29 @@ public class AmazonAutoBuy extends AutoBuy
 							return AutoBuyStatus.AUTO_PAY_FAIL;
 						}
 						
-						
 						try {
-							List<WebElement> radios = driver.findElements(By.cssSelector("input[type='radio']"));
-							radios = driver.findElements(By.cssSelector("input[type='radio']"));
+							List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 							if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-								for(WebElement w:radios){
-									if(!"gcBalance".equals(w.getAttribute("value"))){
-										w.click();
-										break;
+								radios.get(1).click();
+								logger.debug("--->credit 2点击");
+								Utils.sleep(1000);
+								try {
+									WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+									card.clear();
+									Utils.sleep(1000);
+									card.sendKeys(param.get("cardNo"));
+									logger.debug("--->cardno="+param.get("cardNo"));
+									List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+									for(WebElement w:sumbits){
+										if(w.isDisplayed()){
+											w.click();
+											logger.debug("--->credit 点击");
+											break;
+										}
 									}
+									
+								} catch (Exception e) {
+									logger.debug("--->credit 点击异常");
 								}
 							}else{
 								for(WebElement w:radios){
@@ -1604,7 +1633,8 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 					
 					//再次寻找
-					continueBtn = driver.findElement((By.xpath("//input[@id='continueButton']")));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continueButton")));
+					continueBtn = driver.findElement(By.id("continueButton"));
 					continueBtn.click();
 				}
 			}else{
