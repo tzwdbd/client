@@ -1449,7 +1449,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus selectGiftCard(String prePrice,Set<String> promotionList,Map<String, String> param)
 	{
 		String payType = param.get("payType");
-		
+		logger.debug("--->支付方式为"+payType);
 		try{
 			Utils.sleep(5000);
 			
