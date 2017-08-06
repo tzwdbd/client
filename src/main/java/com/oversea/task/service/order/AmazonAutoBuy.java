@@ -1488,12 +1488,8 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 					
 				}else{
-					for(WebElement w:radios){
-						if("gcBalance".equals(w.getAttribute("value"))){
-							w.click();
-							break;
-						}
-					}
+					radios.get(0).click();
+					logger.debug("--->礼品卡 点击");
 				}
 			} catch (Exception e) {
 				logger.debug("--->查找礼品卡选中按钮出错",e);
@@ -1545,7 +1541,9 @@ public class AmazonAutoBuy extends AutoBuy
 							WebElement radio = visaBox.findElement(By.xpath("./label/input"));
 							if(radio != null && radio.isSelected()){
 								logger.debug("--->信用卡选项已经选中,需要充值");
-								//return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								if(!StringUtil.isBlank(payType) && !payType.equals("credit")){
+								  return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								}
 							}
 						}catch(Exception e){
 							logger.debug("--->查找信用卡是否选中出错",e);
@@ -1620,12 +1618,8 @@ public class AmazonAutoBuy extends AutoBuy
 									logger.debug("--->credit 点击异常");
 								}
 							}else{
-								for(WebElement w:radios){
-									if("gcBalance".equals(w.getAttribute("value"))){
-										w.click();
-										break;
-									}
-								}
+								radios.get(0).click();
+								logger.debug("--->礼品卡2点击");
 							}
 						} catch (Exception e) {
 							logger.debug("--->查找礼品卡选中按钮出错1");

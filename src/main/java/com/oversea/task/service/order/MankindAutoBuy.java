@@ -183,7 +183,6 @@ public class MankindAutoBuy extends AutoBuy {
 		logger.debug("--->跳转到商品页面");
 		String productUrl = (String) param.get("url");
 		logger.debug("--->选择商品 productUrl = " + productUrl);
-		
 		try{
 			driver.navigate().to(productUrl);
 		}catch(Exception e){
@@ -215,6 +214,10 @@ public class MankindAutoBuy extends AutoBuy {
 		}
 		
 		String sku = param.get("sku");
+		if(sku!=null && !"".equals(sku)){
+			logger.debug("--->sku选择失败");
+			return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+		}
 		logger.debug("--->开始选择sku");
 		if (!StringUtils.isBlank(sku)) {
 			Map<String, String> skuMap = new HashMap<String, String>();
