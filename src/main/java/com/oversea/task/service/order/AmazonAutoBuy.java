@@ -1882,6 +1882,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String total = null;
 		if("credit".equals(payType)){
 			total = cacheMap.get("orderTotal");
+			total = total.replace("USD", "").trim();
 		}else{
 			total = cacheMap.get("giftCard");
 		}
