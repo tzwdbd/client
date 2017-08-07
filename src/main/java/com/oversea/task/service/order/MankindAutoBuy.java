@@ -80,9 +80,29 @@ public class MankindAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_LOGIN_SETUP_FAIL;
 		}
 		
+		driver.get("https://www.mankind.co.uk/");
+		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		try {
+			WebElement currency =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".currency-active")));
+			logger.debug("--->11"+currency.getText());
+			currency.submit();
+			Utils.sleep(15000);
+			logger.debug("--->选择欧元点击");
+			List<WebElement> select = driver.findElements(By.cssSelector("ul.currency-dropdown li a"));
+			for(WebElement w:select){
+				if(w.getText().contains("$")){
+					w.click();
+					logger.debug("--->欧元点击");
+					break;
+				}
+			}
+		} catch (Exception e) {
+			logger.debug("--->选择欧元出错");
+		}
+		
 		logger.debug("--->准备登陆");
 		driver.get("https://www.mankind.co.uk/login.jsp?");
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		
 		
 		//登录
 		try{
@@ -273,7 +293,7 @@ public class MankindAutoBuy extends AutoBuy {
 			logger.debug("--->寻找单价productEntityId = " + productEntityId);
 			if(StringUtil.isNotEmpty(price) && price.startsWith("£") && StringUtil.isNotEmpty(productEntityId)){
 				logger.debug("--->找到商品单价 = "+ price.substring(1));
-				priceMap.put(productEntityId, price);
+				priceMap.put(productEntityId, price.substring(1));
 			}
 		}catch(Exception e){
 			logger.error("--->查询商品单价异常", e);
