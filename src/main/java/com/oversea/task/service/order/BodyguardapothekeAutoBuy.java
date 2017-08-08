@@ -226,11 +226,11 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		}
 		
 		logger.debug("--->等待购物车页面加载");
-		Utils.sleep(1500);
+		//Utils.sleep(1500);
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("easyDialogNoBtn")));
-			WebElement easyBtn = driver.findElement(By.id("easyDialogNoBtn"));
-			easyBtn.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("easyDialogWrapper")));
+			//WebElement easyBtn = driver.findElement(By.id("easyDialogNoBtn"));
+			//easyBtn.click();
 			logger.debug("--->添加到购物车成功");
 		} catch (Exception e) {
 			logger.error("--->添加到购物车失败");
@@ -566,6 +566,10 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 				if (v.doubleValue() > 20.00D){
 					logger.error("--->总价差距超过约定,不能下单");
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+				if(v.doubleValue()<-5.00D){
+					logger.error("--->漏单,不能下单");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			}
 		} catch (Exception e) {
