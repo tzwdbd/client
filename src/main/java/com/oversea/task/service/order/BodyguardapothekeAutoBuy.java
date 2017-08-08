@@ -255,7 +255,8 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 
 		// 等待购物车页面加载完成
 		try {
-			driver.findElement(By.cssSelector(".cart-index a")).click();
+			driver.get("http://www.ba.de/checkout/cart");
+			//driver.findElement(By.cssSelector(".cart-index a")).click();
 			logger.error("--->开始跳转到购物车");
 		} catch (Exception e) {
 			logger.error("--->跳转到购物车失败");
@@ -828,34 +829,34 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		System.out.println(status);
 		auto.cleanCart();
 	
-//		Map<String, String> param = new HashMap<String, String>();
-//		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=551bS9_ayy_b_aMMztSRfwaRC4zHXbm4_aDqb3OPUg8Wyh7vDUPeEpqomBE7Viopduav6ZE_c&new=http%3A%2F%2Fwww.ba.de%2F2022333.html&tag=");
-//		param.put("num", "1");
-//		param.put("productEntityId", "8039475");
-//		param.put("isPay", "false");
-//		param.put("my_price", "99.00");
-//		auto.selectProduct(param);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=f3ceMTHcH1xI6Y44JxqjTh3yFw5V3iGTai2kWcaja07f4APnzhOViTqluoB_ayMq_afiw_c&new=http%3A%2F%2Fwww.ba.de%2F1019391.html&tag=");
+		param.put("num", "1");
+		param.put("productEntityId", "8039475");
+		param.put("isPay", "false");
+		param.put("my_price", "99.00");
+		auto.selectProduct(param);
 //		param.put("userName", "tzwdbd@126.com");
 //		param.put("password", "123456");
 //		param.put("promotion", "BA3HT");
 //		
-//		UserTradeAddress address = new UserTradeAddress();
-//		address.setState("上海市");
-//		address.setCity("杨浦区");
-//		address.setDistrict("杨浦区");
-//		address.setAddress("营口北路268号富维江森技术中心");
-//		address.setIdCard("22010519880711061X");
-//		address.setMobile("13624494790");
-//		address.setZip("130000");
-//		address.setName("史鑫");
-//		OrderPayAccount payaccount = new OrderPayAccount();
-//		payaccount.setAccount("fitboy964130@163.com");
-//		payaccount.setPayPassword("00101012");
-//		auto.pay(param, address, payaccount);
+		UserTradeAddress address = new UserTradeAddress();
+		address.setState("上海市");
+		address.setCity("杨浦区");
+		address.setDistrict("杨浦区");
+		address.setAddress("营口北路268号富维江森技术中心");
+		address.setIdCard("22010519880711061X");
+		address.setMobile("13624494790");
+		address.setZip("130000");
+		address.setName("史鑫");
+		OrderPayAccount payaccount = new OrderPayAccount();
+		payaccount.setAccount("fitboy964130@163.com");
+		payaccount.setPayPassword("00101012");
+		auto.pay(param, address, payaccount);
 		
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("BA1497161784196");
-		auto.scribeExpress(detail);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("BA1497161784196");
+//		auto.scribeExpress(detail);
 		//auto.logout();*/
 	}
 
