@@ -210,6 +210,18 @@ public class MankindAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 		
+		String url = param.get("orginalUrl");
+		if(url.endsWith("html")){
+			url = url+"?switchcurrency=GBP";
+		}else{
+			url = url+"&switchcurrency=GBP";
+		}
+		try{
+			driver.navigate().to(url);
+		}catch(Exception e){
+			logger.error("--->打开商品页面失败 = " + productUrl);
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
 		// 等待商品页面加载
 		logger.debug("--->开始等待商品页面加载");
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
