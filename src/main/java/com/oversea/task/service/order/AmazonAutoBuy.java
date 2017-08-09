@@ -89,6 +89,7 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement username = driver.findElement(By.id("ap_email"));
 				logger.debug("--->输入账号");
 				username.sendKeys(userName);
+				Utils.sleep(800);
 			}
 			catch (Exception e)
 			{
@@ -101,6 +102,7 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement password = driver.findElement(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				password.sendKeys(passWord);
+				Utils.sleep(1000);
 			}
 			catch (Exception e)
 			{
@@ -3690,7 +3692,11 @@ public class AmazonAutoBuy extends AutoBuy
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->加载商品详情页异常");
-				driver.findElement(By.cssSelector("#sims-session .a-link-normal")).click();
+				try {
+					driver.findElement(By.cssSelector("#sims-session .a-link-normal")).click();
+				} catch (Exception e2) {
+				}
+				
 				//return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 		}
