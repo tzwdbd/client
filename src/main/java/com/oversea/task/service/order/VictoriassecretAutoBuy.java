@@ -487,6 +487,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 	public AutoBuyStatus pay(Map<String, String> param,UserTradeAddress address,OrderPayAccount payAccount,List<GiftCard> giftCardList) {
 		
 		String myPrice = param.get("my_price");
+		String type = param.get("type");
 		if (Utils.isEmpty(myPrice)) {
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
@@ -612,16 +613,22 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 		if (promotionList != null && promotionList.size() > 0) {
 			logger.debug("--->等待优惠码框加载");
 			logger.debug("promotionList.toString()" + promotionList.toString());
-			try
-			{
-				WebElement codeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("offersForm")));
-				WebElement codeB = codeButton.findElement(By.cssSelector("header button"));
-				codeB.click();
-				logger.error("--->点击优惠码");
-			}catch (Exception e){
-				logger.error("--->点击优惠码失败");
-				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			if(!StringUtil.isBlank(type) && type.equals("1")){
+				try
+				{
+					WebElement codeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("offersForm")));
+					WebElement codeB = codeButton.findElement(By.cssSelector("header button"));
+					codeB.click();
+					logger.error("--->点击优惠码");
+				}catch (Exception e){
+					logger.error("--->点击优惠码失败");
+					return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+				}
+			}else{
+				WebElement aButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.fab-link-item")));
+				aButton.click();
 			}
+			
 			int j=0;
 			for (String code : promotionList) {
 				try {
@@ -642,8 +649,13 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					promoCode.clear();
 					promoCode.sendKeys(code);
 					TimeUnit.SECONDS.sleep(2);
-					WebElement apply = driver.findElement(By.cssSelector("#offersForm #applyOffersBtn"));
-					driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
+					if(!StringUtil.isBlank(type) && type.equals("1")){
+						WebElement apply = driver.findElement(By.cssSelector("#offersForm #applyOffersBtn"));
+						driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
+					}else{
+						WebElement apply = driver.findElement(By.id("applyOffersBtn"));
+						driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
+					}
 					TimeUnit.SECONDS.sleep(2);
 					try {
 						driver.findElement(By.cssSelector(".fab-alert.error"));
@@ -724,96 +736,96 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			logger.debug("--->查询结算总价出现异常");
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}
-		
-		try
-		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardForm")));
-			Utils.sleep(2000);
-			WebElement giftCard = driver.findElement(By.id("giftCardForm"));
-			giftCard.click();
-			logger.error("--->点击giftCard");
-			TimeUnit.SECONDS.sleep(1);
-			BigDecimal cardTotal = new BigDecimal(0.00);
-			WebDriverWait wait0 = new WebDriverWait(driver, 20);
-			boolean marks=false;
-			for(GiftCard card:giftCardList){
-				WebElement giftCardNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardNumber")));
-				logger.debug("--->礼品卡号"+card.getSecurityCode());
-				giftCardNumber.clear();
-				giftCardNumber.sendKeys(card.getSecurityCode());
-				TimeUnit.SECONDS.sleep(2);
-				
-				WebElement giftCardPin = driver.findElement((By.id("giftCardPin")));
-				logger.debug("--->礼品卡密码"+card.getPassWord());
-				giftCardPin.clear();
-				giftCardPin.sendKeys(card.getPassWord());
-				TimeUnit.SECONDS.sleep(2);
-				
-				WebElement checkBalance = driver.findElement((By.id("checkBalance")));
-				driver.executeScript("var tar=arguments[0];tar.click();", checkBalance);
-				//checkBalance.click();
-				logger.debug("--->checkBalance click");
-				TimeUnit.SECONDS.sleep(2);
-				card.setIsUsed("yes");
-				//比较真实余额是否正确
-				WebElement balanceElement = null;
-				try {
-					balanceElement = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".balance")));
-				} catch (Exception e) {
-					card.setIsSuspect("yes");
-					continue;
+		if(!StringUtil.isBlank(type) && type.equals("1")){
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardForm")));
+				Utils.sleep(2000);
+				WebElement giftCard = driver.findElement(By.id("giftCardForm"));
+				giftCard.click();
+				logger.error("--->点击giftCard");
+				TimeUnit.SECONDS.sleep(1);
+				BigDecimal cardTotal = new BigDecimal(0.00);
+				WebDriverWait wait0 = new WebDriverWait(driver, 20);
+				boolean marks=false;
+				for(GiftCard card:giftCardList){
+					WebElement giftCardNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("giftCardNumber")));
+					logger.debug("--->礼品卡号"+card.getSecurityCode());
+					giftCardNumber.clear();
+					giftCardNumber.sendKeys(card.getSecurityCode());
+					TimeUnit.SECONDS.sleep(2);
+					
+					WebElement giftCardPin = driver.findElement((By.id("giftCardPin")));
+					logger.debug("--->礼品卡密码"+card.getPassWord());
+					giftCardPin.clear();
+					giftCardPin.sendKeys(card.getPassWord());
+					TimeUnit.SECONDS.sleep(2);
+					
+					WebElement checkBalance = driver.findElement((By.id("checkBalance")));
+					driver.executeScript("var tar=arguments[0];tar.click();", checkBalance);
+					//checkBalance.click();
+					logger.debug("--->checkBalance click");
+					TimeUnit.SECONDS.sleep(2);
+					card.setIsUsed("yes");
+					//比较真实余额是否正确
+					WebElement balanceElement = null;
+					try {
+						balanceElement = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".balance")));
+					} catch (Exception e) {
+						card.setIsSuspect("yes");
+						continue;
+					}
+					
+					logger.debug("--->礼品卡余额:"+balanceElement.getText());
+					
+					
+					String text = balanceElement.getText().replace("USD.", "").trim();
+					if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
+						String priceStr = text.substring(text.indexOf("$") + 1);
+						logger.debug("--->礼品卡总额 = " + priceStr);
+						BigDecimal y = new BigDecimal(priceStr);
+						BigDecimal x = new BigDecimal(card.getRealBalance());
+						if(x.doubleValue()!=y.doubleValue()){
+							logger.debug("--->x = " + x+"--->y = "+y);
+							//card.setIsSuspect("yes");
+							//continue;
+						}
+						WebElement apply = driver.findElement(By.cssSelector("#giftCard button[name='Apply Gift Card']"));
+						driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
+						logger.debug("--->apply click");
+						TimeUnit.SECONDS.sleep(2);
+						driver.executeScript("(function(){window.scrollBy(1,50);})();");
+						TimeUnit.SECONDS.sleep(2);
+						cardTotal = cardTotal.add(y);
+						BigDecimal v = total.subtract(cardTotal);
+						if (v.doubleValue() > 0.00D) {
+							card.setRealBalance("0");
+							logger.error("--->礼品卡不够继续，继续添加");
+							
+						}else{
+							BigDecimal z = cardTotal.subtract(total);
+							card.setRealBalance(String.valueOf(z));
+							logger.error("--->礼品卡够了");
+							marks = true;
+							break;
+						}
+					}
+					
+				}
+				if(marks){
+					WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
+					driver.executeScript("var tar=arguments[0];tar.click();", paymentCommit);//paymentCommit.click();
+					TimeUnit.SECONDS.sleep(2);
+				}else{
+					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 				
-				logger.debug("--->礼品卡余额:"+balanceElement.getText());
 				
-				
-				String text = balanceElement.getText().replace("USD.", "").trim();
-				if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
-					String priceStr = text.substring(text.indexOf("$") + 1);
-					logger.debug("--->礼品卡总额 = " + priceStr);
-					BigDecimal y = new BigDecimal(priceStr);
-					BigDecimal x = new BigDecimal(card.getRealBalance());
-					if(x.doubleValue()!=y.doubleValue()){
-						logger.debug("--->x = " + x+"--->y = "+y);
-						//card.setIsSuspect("yes");
-						//continue;
-					}
-					WebElement apply = driver.findElement(By.cssSelector("#giftCard button[name='Apply Gift Card']"));
-					driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
-					logger.debug("--->apply click");
-					TimeUnit.SECONDS.sleep(2);
-					driver.executeScript("(function(){window.scrollBy(1,50);})();");
-					TimeUnit.SECONDS.sleep(2);
-					cardTotal = cardTotal.add(y);
-					BigDecimal v = total.subtract(cardTotal);
-					if (v.doubleValue() > 0.00D) {
-						card.setRealBalance("0");
-						logger.error("--->礼品卡不够继续，继续添加");
-						
-					}else{
-						BigDecimal z = cardTotal.subtract(total);
-						card.setRealBalance(String.valueOf(z));
-						logger.error("--->礼品卡够了");
-						marks = true;
-						break;
-					}
-				}
-				
+			}catch (Exception e){
+				logger.error("--->点击giftCard失败",e);
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
-			if(marks){
-				WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
-				driver.executeScript("var tar=arguments[0];tar.click();", paymentCommit);//paymentCommit.click();
-				TimeUnit.SECONDS.sleep(2);
-			}else{
-				return AutoBuyStatus.AUTO_PAY_FAIL;
-			}
-			
-			
-		}catch (Exception e){
-			logger.error("--->点击giftCard失败",e);
-			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
-		
 		driver.executeScript("(function(){window.scrollBy(1,400);})();");
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
 		// placeOrder 点击付款
