@@ -591,7 +591,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			}
 			Utils.sleep(2000);
 			WebElement placeOrderElement = driver.findElement(By.cssSelector(".fab-btn--checkout-submit"));
-			placeOrderElement.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
 			logger.error("--->点击deliveryElement");
 		}catch (Exception e){
 			logger.error("--->点击deliveryElement失败");
