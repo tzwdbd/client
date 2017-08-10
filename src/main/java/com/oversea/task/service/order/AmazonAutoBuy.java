@@ -85,6 +85,7 @@ public class AmazonAutoBuy extends AutoBuy
 			// 等到[输入框]出现
 			try
 			{
+				Utils.sleep(1000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
 				WebElement username = driver.findElement(By.id("ap_email"));
 				logger.debug("--->输入账号");
