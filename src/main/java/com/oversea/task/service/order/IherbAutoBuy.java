@@ -316,16 +316,17 @@ public class IherbAutoBuy extends AutoBuy
 	{
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".icon-cart")));
-			WebElement w = driver.findElement(By.cssSelector(".icon-cart"));
+			WebDriverWait wait0 = new WebDriverWait(driver, 20);
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shopping-cart-amount")));
+			WebElement w = driver.findElement(By.cssSelector(".shopping-cart-amount"));
 			logger.error("--->购物车数量"+w.getText());
 			if(StringUtil.isBlank(w.getText())){
 				logger.error("--->购物车不必清空");
 				return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 			}
 		} catch (Exception e) {
-			logger.debug("--->购物车数量清空异常1");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			logger.debug("--->购物车不必清空1");
+			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 		}
 		
 		driver.navigate().to("https://checkout.iherb.com/editcart");

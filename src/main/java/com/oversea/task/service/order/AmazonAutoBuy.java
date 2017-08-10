@@ -85,10 +85,12 @@ public class AmazonAutoBuy extends AutoBuy
 			// 等到[输入框]出现
 			try
 			{
+				Utils.sleep(1000);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
 				WebElement username = driver.findElement(By.id("ap_email"));
 				logger.debug("--->输入账号");
 				username.sendKeys(userName);
+				Utils.sleep(800);
 			}
 			catch (Exception e)
 			{
@@ -101,6 +103,7 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement password = driver.findElement(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				password.sendKeys(passWord);
+				Utils.sleep(1000);
 			}
 			catch (Exception e)
 			{
@@ -1449,7 +1452,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus selectGiftCard(String prePrice,Set<String> promotionList,Map<String, String> param)
 	{
 		String payType = param.get("payType");
-		
+		logger.debug("--->支付方式为"+payType);
 		try{
 			Utils.sleep(5000);
 			
@@ -1463,21 +1466,33 @@ public class AmazonAutoBuy extends AutoBuy
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='select-payments-view']")));
 			try {
-				List<WebElement> radios = driver.findElements(By.cssSelector("input[type='radio']"));
+				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-					for(WebElement w:radios){
-						if(!"gcBalance".equals(w.getAttribute("value"))){
-							w.click();
-							break;
+					radios.get(1).click();
+					logger.debug("--->credit 点击");
+					Utils.sleep(1000);
+					try {
+						WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+						card.clear();
+						Utils.sleep(1000);
+						card.sendKeys(param.get("cardNo"));
+						logger.debug("--->cardno="+param.get("cardNo"));
+						List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+						for(WebElement w:sumbits){
+							if(w.isDisplayed()){
+								w.click();
+								logger.debug("--->sumbit 点击");
+								break;
+							}
 						}
+						
+					} catch (Exception e) {
+						logger.debug("--->credit 点击异常");
 					}
+					
 				}else{
-					for(WebElement w:radios){
-						if("gcBalance".equals(w.getAttribute("value"))){
-							w.click();
-							break;
-						}
-					}
+					radios.get(0).click();
+					logger.debug("--->礼品卡 点击");
 				}
 			} catch (Exception e) {
 				logger.debug("--->查找礼品卡选中按钮出错",e);
@@ -1529,11 +1544,13 @@ public class AmazonAutoBuy extends AutoBuy
 							WebElement radio = visaBox.findElement(By.xpath("./label/input"));
 							if(radio != null && radio.isSelected()){
 								logger.debug("--->信用卡选项已经选中,需要充值");
-								return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								if(!StringUtil.isBlank(payType) && !payType.equals("credit")){
+								  return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								}
 							}
 						}catch(Exception e){
 							logger.debug("--->查找信用卡是否选中出错",e);
-							return AutoBuyStatus.AUTO_PAY_FAIL;
+							//return AutoBuyStatus.AUTO_PAY_FAIL;
 						}
 					}
 					
@@ -1579,24 +1596,33 @@ public class AmazonAutoBuy extends AutoBuy
 							return AutoBuyStatus.AUTO_PAY_FAIL;
 						}
 						
-						
 						try {
-							List<WebElement> radios = driver.findElements(By.cssSelector("input[type='radio']"));
-							radios = driver.findElements(By.cssSelector("input[type='radio']"));
+							List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 							if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-								for(WebElement w:radios){
-									if(!"gcBalance".equals(w.getAttribute("value"))){
-										w.click();
-										break;
+								radios.get(1).click();
+								logger.debug("--->credit 2点击");
+								Utils.sleep(1000);
+								try {
+									WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+									card.clear();
+									Utils.sleep(1000);
+									card.sendKeys(param.get("cardNo"));
+									logger.debug("--->cardno="+param.get("cardNo"));
+									List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+									for(WebElement w:sumbits){
+										if(w.isDisplayed()){
+											w.click();
+											logger.debug("--->credit 点击");
+											break;
+										}
 									}
+									
+								} catch (Exception e) {
+									logger.debug("--->credit 点击异常");
 								}
 							}else{
-								for(WebElement w:radios){
-									if("gcBalance".equals(w.getAttribute("value"))){
-										w.click();
-										break;
-									}
-								}
+								radios.get(0).click();
+								logger.debug("--->礼品卡2点击");
 							}
 						} catch (Exception e) {
 							logger.debug("--->查找礼品卡选中按钮出错1");
@@ -1604,7 +1630,8 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 					
 					//再次寻找
-					continueBtn = driver.findElement((By.xpath("//input[@id='continueButton']")));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continueButton")));
+					continueBtn = driver.findElement(By.id("continueButton"));
 					continueBtn.click();
 				}
 			}else{
@@ -1855,7 +1882,13 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}
 		Map<String,String> cacheMap = getTotal();
-		String total = cacheMap.get("giftCard");
+		String total = null;
+		if("credit".equals(payType)){
+			total = cacheMap.get("orderTotal");
+			total = total.replace("USD", "").trim();
+		}else{
+			total = cacheMap.get("giftCard");
+		}
 		String mallFee = cacheMap.get("shippingHandling");
 		String promotionFee = cacheMap.get("promotionApplied");
 		
@@ -3371,6 +3404,26 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		return accountBalance;
 	}
+	
+	public String checkGiftCard(){
+		WebDriverWait wait = new WebDriverWait(driver, 35);
+		try {
+			driver.navigate().to("https://www.amazon.com/balance?ref_=ya_mb_asv_b_m");
+		} catch (Exception e) {
+			logger.info("--->跳转礼品卡页面出错!");
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-color-success")));
+			WebElement gitBalance = driver.findElement(By.cssSelector(".a-color-success"));
+			String balanceText = gitBalance.getText().trim();
+			logger.info("--->礼品卡余额:"+balanceText);
+			balanceText = balanceText.replace("$", "").replace("-", "").replace(",", "").trim();
+			return balanceText;
+		}catch (Exception e) {
+			logger.info("--->礼品卡余额获取失败!");
+		}
+		return null;
+	}
 
 	public static void main1(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(false);
@@ -3629,7 +3682,7 @@ public class AmazonAutoBuy extends AutoBuy
 		
 	}
 	
-	public void clickProduct(Map<String, String> param){
+	public AutoBuyStatus clickProduct(Map<String, String> param){
 		WebDriverWait wait = new WebDriverWait(driver, 45);
 		for(int i=0;i<3;i++){
 			try {
@@ -3640,12 +3693,16 @@ public class AmazonAutoBuy extends AutoBuy
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->加载商品详情页异常");
-				driver.findElement(By.cssSelector("#sims-session .a-link-normal")).click();
+				try {
+					driver.findElement(By.cssSelector("#sims-session .a-link-normal")).click();
+				} catch (Exception e2) {
+				}
+				
 				//return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 		}
 		param.put("signs", "0");
-		selectBrushProduct(param);
+		return selectBrushProduct(param);
 	}
 	
 	
@@ -3719,7 +3776,8 @@ public class AmazonAutoBuy extends AutoBuy
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 		if(StringUtil.isBlank(signs)){
-			clickProduct(param);
+			logger.error("--->查找clickProduct");
+			return clickProduct(param);
 		}
 		
 		String productNum = (String) param.get("num");
@@ -4217,7 +4275,15 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			String productEntityCode = "";
 			if(getAsinMap() != null){
-				productEntityCode = getAsinMap().get(param.get("productEntityId"));
+				logger.error("getAsinMap pid="+param.get("productEntityId"));
+				for (Map.Entry<Long, String> entry : getAsinMap().entrySet()) {  
+					  
+					logger.error("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+				  
+				}  
+				productEntityCode = getAsinMap().get(Long.parseLong(param.get("productEntityId")));
+			}else{
+				logger.error("getAsinMap is null");
 			}
 			logger.error("productEntityCode = "+productEntityCode);
 			if (Utils.isEmpty(productEntityCode)){

@@ -23,20 +23,20 @@ import com.oversea.task.utils.Utils;
 public class AutoBuyWalgreens extends AutoBuy {
 
     private final Logger logger = Logger.getLogger(getClass());
-    private Timer timer;
+   // private Timer timer;
 	
 	public AutoBuyWalgreens(){
 		super(false);
 		
-		timer = new Timer();
-		timer.schedule(new TimerTask()
-		{
-			@Override
-			public void run()
-			{
-				driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
-			}
-		}, 3000, 3000);
+//		timer = new Timer();
+//		timer.schedule(new TimerTask()
+//		{
+//			@Override
+//			public void run()
+//			{
+//				driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+//			}
+//		}, 3000, 3000);
 	}
 	
 	public static void main(String[] args){
@@ -45,36 +45,37 @@ public class AutoBuyWalgreens extends AutoBuy {
 		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 //			status = auto.scribeExpress("114-4751822-5849814");
 			status = auto.cleanCart();
-			/*if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 					Map<String, String> param = new HashMap<String, String>();
-					param.put("url", "http://www.rebatesme.com/zh/click/?key=7200c08f8d4acfb4d1631478957ee588&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=6c21c3a7b822668914496675eeebd067&targetUrl=https%3A%2F%2Fwww.walgreens.com%2Fstore%2Fc%2Fnature-made-fish-oil-1200mg-liquid-softgels%2FID%3Dprod6143490-product");
+					param.put("url", "https://www.walgreens.com/store/c/schiff-move-free-joint-health-glucosamine-chondroitin-plus-msm--vitamin-d3-tablets/ID=prod3855572-product?AID=10652189&PID=6110390&SID=4s8qrx&CID=3791870&ext=6110390");
 					param.put("num", "2");
 					param.put("productEntityId", "efe");
 					param.put("sku", null);
 					status = auto.selectProduct(param);
 					Map<String, String> params = new HashMap<String, String>();
-					params.put("url", "http://www.anrdoezrs.net/click-8227055-11020894-1417628774000?sid=lh_m1wnrh__&url=https%3A%2F%2Fwww.walgreens.com%2Fstore%2Fc%2Fvitafusion-gorgeous-hair-skin--nails-multivitamin-gummies-raspberry%2FID%3Dprod6310367-product");
+					params.put("url", "https://www.walgreens.com/store/c/schiff-move-free-advanced-triple-strength-glucosamine-chondroitin-coated-tablets/ID=prod1993553-product?AID=10652189&PID=6110390&SID=4s8x03&CID=3791870&ext=6110390");
 					params.put("num", "1");
 					params.put("productEntityId", "efse");
-					status = auto.selectProduct(param);
+					params.put("sku", null);
+					status = auto.selectProduct(params);
 					System.out.println("status1 = "+ status.getValue());
-					if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-						Map<String, String> params = new HashMap<String, String>();
-						params.put("url", "https://www.walgreens.com/store/c/vitafusion-women's-daily-multivitamin-gummy/ID=prod6108350-product");
-						params.put("num", "3");
-						param.put("productEntityId", "sefe");
-						status = auto.selectProduct(params);
-						System.out.println("status2 = "+ status.getValue());
-						//if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-							Map<String, String> paramss = new HashMap<String, String>();
-							paramss.put("my_price", "38.5");
-							paramss.put("count", "1");
-							paramss.put("isPay", String.valueOf(false));
-							paramss.put("cardNo", "4662 4833 6029 1396");
-							status = auto.pay(paramss);
-						//}
-					}
-			}*/
+//					if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+//						Map<String, String> params = new HashMap<String, String>();
+//						params.put("url", "https://www.walgreens.com/store/c/vitafusion-women's-daily-multivitamin-gummy/ID=prod6108350-product");
+//						params.put("num", "3");
+//						param.put("productEntityId", "sefe");
+//						status = auto.selectProduct(params);
+//						System.out.println("status2 = "+ status.getValue());
+//						//if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+//							Map<String, String> paramss = new HashMap<String, String>();
+//							paramss.put("my_price", "38.5");
+//							paramss.put("count", "1");
+//							paramss.put("isPay", String.valueOf(false));
+//							paramss.put("cardNo", "4662 4833 6029 1396");
+//							status = auto.pay(paramss);
+//						//}
+//					}
+			}
 			System.out.println("status = "+ status.getValue());
 		}
 	}
@@ -220,10 +221,10 @@ public class AutoBuyWalgreens extends AutoBuy {
 		//寻找商品单价
 		try{
 			logger.debug("--->开始寻找商品单价");
-			WebElement integerElement = driver.findElement(By.cssSelector(".wag-price-info span"));
+			WebElement integerElement = driver.findElement(By.cssSelector(".wag-price-line .wag-price-info span"));
 			String integerText = integerElement.getText();
 			logger.debug("--->开始寻找商品单价"+integerElement.getText());
-			List<WebElement> floatElements = driver.findElements(By.cssSelector(".wag-price-info sup"));
+			List<WebElement> floatElements = driver.findElements(By.cssSelector(".wag-price-line .wag-price-info sup"));
 			String floatText = floatElements.get(1).getText();
 			String productEntityId = param.get("productEntityId");
 			logger.debug("--->找到商品单价 = "+integerText+"."+floatText);
@@ -314,21 +315,41 @@ public class AutoBuyWalgreens extends AutoBuy {
 				if(StringUtil.isNotEmpty(code)){
 					code = code.trim();
 					try{
-						WebElement codeInput = driver.findElement(By.xpath("//input[@id='enter_code']"));
-						codeInput.clear();
-						Utils.sleep(2500);
-						codeInput.sendKeys(code);
-						Utils.sleep(1500);
-						driver.findElement(By.xpath("//button[@id='apply_code']")).click();
+						
+						List<WebElement> codeInputs = driver.findElements(By.id("enter_code"));
+						for(WebElement codeInput:codeInputs){
+							if(codeInput.isDisplayed()){
+								codeInput.clear();
+								Utils.sleep(2500);
+								codeInput.sendKeys(code);
+								Utils.sleep(1500);
+								break;
+							}
+						}
+						
+						List<WebElement> applyCodes = driver.findElements(By.id("apply_code"));
+						for(WebElement applyCode:applyCodes){
+							if(applyCode.isDisplayed()){
+								applyCode.click();
+								break;
+							}
+						}
 						Utils.sleep(5500);
 						
 						try{
-							WebElement promoCode =driver.findElement(By.xpath("//strong[@class='ng-binding']"));
-							WebElement invalidCode =promoCode.findElement(By.xpath("/span[@class='sr-only']"));
-							if(invalidCode.getText().equals("Success:")){
-								statusMap.put(code, 10);
-								isEffective = true;
+							List<WebElement> invalidCodes =driver.findElements(By.cssSelector("strong.ng-binding .sr-only"));
+							for(WebElement invalidCode:invalidCodes){
+								if(invalidCode.isDisplayed()){
+									if(invalidCode.getText().equals("Success:")){
+										statusMap.put(code, 10);
+										isEffective = true;
+									}else if(invalidCode.getText().equals("Error:")){
+										statusMap.put(code, 0);
+									}
+									break;
+								}
 							}
+							
 						}catch(Exception e){//ng-binding sr-only
 							//Your promotion code has been applied successfully!
 							logger.error("promotionCode:"+code,e);
@@ -355,7 +376,7 @@ public class AutoBuyWalgreens extends AutoBuy {
 		Utils.sleep(2000);
 		//跳转支付页面
 		try{
-			List<WebElement> checkout = driver.findElements(By.xpath("//button[@id='proceedtocheckout']"));
+			List<WebElement> checkout = driver.findElements(By.id("proceedtocheckout"));
 			for(WebElement wl:checkout){
 				if(wl.isDisplayed()){
 					wl.click();
@@ -376,7 +397,7 @@ public class AutoBuyWalgreens extends AutoBuy {
 			try{
 				logger.debug("--->开始寻找address change按钮");
 				Utils.sleep(1500);
-				List<WebElement> gotoShipAddress = driver.findElements(By.xpath("//a[@id='wag-cko-id-sa-btn-edad-b']"));
+				List<WebElement> gotoShipAddress = driver.findElements(By.id("wag-cko-id-sa-btn-edad-b"));
 				for(WebElement address:gotoShipAddress){
 					if(address.isDisplayed() && "Edit shipping address ›".equals(address.getText())){
 						address.click();
@@ -455,7 +476,7 @@ public class AutoBuyWalgreens extends AutoBuy {
 			Utils.sleep(1500);
 			if(isPay){
 				logger.debug("--->啊啊啊啊啊，我要付款了");
-				//placeOrderElement.click();
+				placeOrderElement.click();
 			}
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){}
@@ -578,7 +599,7 @@ public class AutoBuyWalgreens extends AutoBuy {
 	public boolean logout(boolean isScreenShot)
 	{
 		super.logout(isScreenShot);
-		timer.cancel();
+		//timer.cancel();
 		return true;
 	}
 }

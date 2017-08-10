@@ -20,7 +20,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.oversea.task.AutoBuyConst;
+import com.oversea.task.domain.GiftCard;
+import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
+import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
 import com.oversea.task.utils.Utils;
@@ -818,9 +821,10 @@ public class NordstromAutoBuy extends AutoBuy {
 	}
 	
 	@Override
-	public AutoBuyStatus pay(Map<String, String> param) {
+	public AutoBuyStatus pay(Map<String, String> param,UserTradeAddress address,OrderPayAccount payAccount,List<GiftCard> giftCardList) {
 		
 		String myPrice = param.get("my_price");
+		String type = param.get("type");
 		if (Utils.isEmpty(myPrice)) {
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
@@ -1156,68 +1160,117 @@ public class NordstromAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->输入优惠码异常");
 		}*/
-		
-		// 选择信用卡
-		logger.debug("--->选择信用卡");
-		try {
-			boolean defaultIsSelected = true;
-			if (defaultIsSelected)
-			{
-				Utils.sleep(5000);
-				logger.debug("--->默认已经选中信用卡");
-			} else {
-				WebElement creditCard = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.payment-information")));
-			
-				WebElement creditCardSelect = creditCard.findElement(By.cssSelector("select.select-input"));
-				Select select = new Select(creditCardSelect);
-				List<WebElement> creditCards = select.getOptions();
-				
-				if (creditCards != null && creditCards.size() > 0)
-				{
-					for (WebElement credit : creditCards) {
-						String val =  credit.getAttribute("value").trim();
-						String text = credit.getText();
-						if(!val.isEmpty() && !text.contains("+ Add New Card")){
-							select.selectByVisibleText(text);
-							logger.debug("--->选择信用卡成功");
+		// 选择礼品卡
+		if(!StringUtil.isBlank(type) && type.equals("1")){
+			try {
+				WebElement checkOut = driver
+						.findElement(By.xpath("//a[contains(text(),'Apply a Gift Card')]"));
+				checkOut.click();
+				logger.error("--->点击Gift按钮成功");
+				TimeUnit.SECONDS.sleep(5);
+				BigDecimal cardTotal = new BigDecimal(0.00);
+				for(GiftCard card:giftCardList){
+					WebElement number = driver.findElement(By.cssSelector(".gift-card-number .ng-pristine"));
+					number.clear();
+					number.sendKeys("");
+					TimeUnit.SECONDS.sleep(1);
+					WebElement access = driver.findElement(By.cssSelector(".gift-card-access .ng-pristine"));
+					access.clear();
+					access.sendKeys("");
+					TimeUnit.SECONDS.sleep(1);
+					WebElement apply = driver.findElement(By.cssSelector(".gift-card-apply"));
+					apply.click();
+					TimeUnit.SECONDS.sleep(1);
+					WebDriverWait wait0 = new WebDriverWait(driver, 20);
+					try {
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gift-card-number .misc-error")));
+					} catch (Exception e) {
+						//cardTotal.add(augend)
+						List<WebElement> amounts = driver.findElements(By.cssSelector(".applied-gift-cards .amount"));
+						for(WebElement w:amounts){
+							String price = w.getText().substring(1).trim();
+							BigDecimal x = new BigDecimal(price);
+						}
+						try {
+							driver.findElement(By.cssSelector(".billing-address"));
+						} catch (Exception e2) {
 							break;
+						}
+						WebElement another = driver.findElement(By.cssSelector(".apply-another-giftCard"));
+						another.click();
+						
+					}
+				}
+				
+				
+				
+			} catch (Exception e) {
+				logger.debug("--->找不到 checkout 按钮");
+				return AutoBuyStatus.AUTO_PAY_FAIL;
+			}
+		}else{
+			// 选择信用卡
+			logger.debug("--->选择信用卡");
+			try {
+				boolean defaultIsSelected = true;
+				if (defaultIsSelected)
+				{
+					Utils.sleep(5000);
+					logger.debug("--->默认已经选中信用卡");
+				} else {
+					WebElement creditCard = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.payment-information")));
+				
+					WebElement creditCardSelect = creditCard.findElement(By.cssSelector("select.select-input"));
+					Select select = new Select(creditCardSelect);
+					List<WebElement> creditCards = select.getOptions();
+					
+					if (creditCards != null && creditCards.size() > 0)
+					{
+						for (WebElement credit : creditCards) {
+							String val =  credit.getAttribute("value").trim();
+							String text = credit.getText();
+							if(!val.isEmpty() && !text.contains("+ Add New Card")){
+								select.selectByVisibleText(text);
+								logger.debug("--->选择信用卡成功");
+								break;
+							}
 						}
 					}
 				}
+			} catch (Exception e) {
+				logger.debug("--->没有找到可用的信用卡卡号");
+				return AutoBuyStatus.AUTO_PAY_CAN_NOT_FIND_CARDNO;
 			}
-		} catch (Exception e) {
-			logger.debug("--->没有找到可用的信用卡卡号");
-			return AutoBuyStatus.AUTO_PAY_CAN_NOT_FIND_CARDNO;
-		}
-		
-		// 输入安全码
-		try {
-			Utils.sleep(5000);
-			WebElement securityCode = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("credit-ccv")));
-			logger.debug("--->找到信用卡输入框,开始输入");
-			String code = (String) param.get("suffixNo");
-			logger.debug("--->信用卡卡号是 = " + code);
-			if (Utils.isEmpty(code)) {
-				logger.debug("--->没有找到可用的信用卡安全码");
-			}
-			securityCode.sendKeys(code);
-			Utils.sleep(1500);
-			logger.debug("--->输入信用卡安全码结束");
-		} catch (Exception e) {
-			logger.debug("--->没找到信用卡安全码输入框");
-		}
-		
-		// 选择账单地址 billing-address
-		logger.debug("--->选择账单地址");
-		try {
-			boolean defaultIsSelected = true;
-			if (defaultIsSelected)
-			{
+			
+			// 输入安全码
+			try {
 				Utils.sleep(5000);
-				logger.error("--->默认已经选中账单地址");
+				WebElement securityCode = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("credit-ccv")));
+				logger.debug("--->找到信用卡输入框,开始输入");
+				String code = (String) param.get("suffixNo");
+				logger.debug("--->信用卡卡号是 = " + code);
+				if (Utils.isEmpty(code)) {
+					logger.debug("--->没有找到可用的信用卡安全码");
+				}
+				securityCode.sendKeys(code);
+				Utils.sleep(1500);
+				logger.debug("--->输入信用卡安全码结束");
+			} catch (Exception e) {
+				logger.debug("--->没找到信用卡安全码输入框");
 			}
-		} catch (Exception e) {
-			logger.debug("--->选择账单地址失败");
+			
+			// 选择账单地址 billing-address
+			logger.debug("--->选择账单地址");
+			try {
+				boolean defaultIsSelected = true;
+				if (defaultIsSelected)
+				{
+					Utils.sleep(5000);
+					logger.error("--->默认已经选中账单地址");
+				}
+			} catch (Exception e) {
+				logger.debug("--->选择账单地址失败");
+			}
 		}
 		
 		//点击 Save & Continue 按钮

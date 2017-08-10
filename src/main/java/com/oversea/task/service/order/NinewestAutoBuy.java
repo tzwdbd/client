@@ -509,7 +509,11 @@ public class NinewestAutoBuy extends AutoBuy {
 						logger.debug("发货了");
 						WebElement trackElement = element.findElement(By.cssSelector(".orderContent .productLineItemDetails .orderStatusTracking a.orderContentValue"));
 						logger.debug("找到物流单号:"+trackElement.getText());
-						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackElement.getText());
+						if(trackElement.getText().startsWith("61")){
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, "92"+trackElement.getText());
+						}else{
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackElement.getText());
+						}
 						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "FedEx");
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else if(sth.toLowerCase().contains("cancel")){
