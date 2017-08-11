@@ -495,9 +495,23 @@ public class ThehutAutoBuy extends AutoBuy {
 			String expiry = param.get("expiryDate");
 			String cv2 = param.get("suffixNo");
 			
-			WebElement payWithCard = driver.findElement(By.id("pay-with-card"));
-			payWithCard.click();
-			Utils.sleep(1500);
+			try {
+				WebElement payWithCard = driver.findElement(By.id("pay-with-card"));
+				payWithCard.click();
+				Utils.sleep(1500);
+			} catch (Exception e) {
+				logger.debug("--->信用卡已存在");
+				WebElement payWithRecenyCard = driver.findElement(By.id("pay-with-recent-card"));
+				payWithRecenyCard.click();
+				Utils.sleep(1500);
+
+				WebElement cardRecentCv2ELe = driver.findElement(By.id("saved-card-recent-cv2"));
+				cardRecentCv2ELe.sendKeys(cv2);
+				Utils.sleep(1500);
+				logger.debug("--->填写信用卡地址完成");
+				
+				return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_SUCCESS;
+			}
 			
 			logger.debug("--->开始填写信用卡信息");
 			WebElement cardNoELe = driver.findElement(By.id("credit-card-num"));
@@ -811,9 +825,9 @@ public class ThehutAutoBuy extends AutoBuy {
 //				param.put("url", "https://www.thehut.com/sports-clothing/under-armour-women-s-play-shorts-up-2.0-shorts-pomegranate/11399575.html");
 //				param.put("sku", "[[\"Size\",\"S\"],[\"Colour\",\"Pomegranate\"]]");
 
-				param.put("url", "https://www.thehut.com/toys-lego/lego-minecraft-the-nether-railway-21130/11340651.html");
+				param.put("url", "https://www.thehut.com/kitchen-accessories/brita-marella-water-filter-jug-with-3-cartridges-white-2.4l/11090293.html");
 				// param.put("sku", "[[\"Size\",\"S\"],[\"Colour\",\"Pomegranate\"]]");
-				param.put("num", "2");
+				param.put("num", "1");
 				autoBuy.selectProduct(param);
 			}
 
