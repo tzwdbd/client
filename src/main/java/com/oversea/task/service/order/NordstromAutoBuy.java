@@ -1172,30 +1172,35 @@ public class NordstromAutoBuy extends AutoBuy {
 				for(GiftCard card:giftCardList){
 					WebElement number = driver.findElement(By.cssSelector(".gift-card-number .ng-pristine"));
 					number.clear();
-					number.sendKeys("");
+					number.sendKeys(card.getSecurityCode());
 					TimeUnit.SECONDS.sleep(1);
 					WebElement access = driver.findElement(By.cssSelector(".gift-card-access .ng-pristine"));
 					access.clear();
-					access.sendKeys("");
+					access.sendKeys(card.getPassWord());
 					TimeUnit.SECONDS.sleep(1);
 					WebElement apply = driver.findElement(By.cssSelector(".gift-card-apply"));
 					apply.click();
 					TimeUnit.SECONDS.sleep(1);
+					card.setIsUsed("yes");
 					WebDriverWait wait0 = new WebDriverWait(driver, 20);
 					try {
 						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gift-card-number .misc-error")));
+						card.setIsSuspect("yes");
+						continue;
 					} catch (Exception e) {
-						//cardTotal.add(augend)
 						List<WebElement> amounts = driver.findElements(By.cssSelector(".applied-gift-cards .amount"));
-						for(WebElement w:amounts){
-							String price = w.getText().substring(1).trim();
-							BigDecimal x = new BigDecimal(price);
-						}
+						
+						String price = amounts.get(amounts.size()-1).getText().substring(1).trim();
+						BigDecimal x = new BigDecimal(price);
+						cardTotal = cardTotal.add(x);
 						try {
 							driver.findElement(By.cssSelector(".billing-address"));
 						} catch (Exception e2) {
+							logger.error("--->礼品卡够了");
 							break;
 						}
+						card.setRealBalance("0");
+						logger.error("--->礼品卡不够继续，继续添加");
 						WebElement another = driver.findElement(By.cssSelector(".apply-another-giftCard"));
 						another.click();
 						

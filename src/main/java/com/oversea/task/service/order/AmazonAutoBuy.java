@@ -3454,6 +3454,11 @@ public class AmazonAutoBuy extends AutoBuy
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
+		param.put("num", "1");
+		param.put("sign", "0");
+		param.put("productName","silver stud earrings");
+		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
+		param.put("position","30");
 		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
@@ -3751,7 +3756,7 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 					logger.error("--->title1="+smallTitle);
 					logger.error("--->title2="+title);
-					if(title.contains(smallTitle)){
+					if(!StringUtil.isBlank(smallTitle) && title.contains(smallTitle)){
 						logger.error("--->title"+titleWeb.getText());
 						w.findElement(By.cssSelector("a")).click();
 						mark = true;

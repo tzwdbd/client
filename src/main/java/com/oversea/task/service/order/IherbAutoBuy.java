@@ -758,7 +758,7 @@ public class IherbAutoBuy extends AutoBuy
 		}
 		
 		try {
-			driver.executeScript("(function(){window.scrollBy(0,350);})();");
+			driver.executeScript("(function(){window.scrollBy(0,550);})();");
 			Utils.sleep(1500);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnSSN")));
 			WebElement btnSSN = driver.findElement(By.id("btnSSN"));
@@ -773,6 +773,17 @@ public class IherbAutoBuy extends AutoBuy
 			Utils.sleep(1500);
 		} catch (Exception e) {
 			logger.debug("--->cardSelect",e);
+			try {
+				WebElement btnSSN = driver.findElement(By.id("btnSSN"));
+				btnSSN.click();
+				Utils.sleep(1500);
+				WebElement cardSelect = driver.findElement(By.cssSelector(".card-select-btn"));
+				cardSelect.click();
+				Utils.sleep(1500);
+			} catch (Exception e2) {
+				logger.debug("--->cardSelect1");
+			}
+			
 		}
 		
 		try {
