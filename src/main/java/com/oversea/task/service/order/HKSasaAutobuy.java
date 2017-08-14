@@ -12,11 +12,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.google.gson.annotations.Until;
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
@@ -474,7 +472,6 @@ public class HKSasaAutobuy extends AutoBuy{
 					orderList = driver.findElements(By.xpath("//div[@class='content']//table/tbody/tr")); 
 					for(int i=1 ; i<orderList.size() ; ++i){ // 跳过第一行
 						WebElement tr = orderList.get(i);
-						System.out.println(tr.getText());
 						WebElement order = tr.findElement(By.xpath("./td[1]"));
 						String orderNo = order.getText();
 						if(orderNo.contains(mallOrderNo)){
@@ -482,12 +479,38 @@ public class HKSasaAutobuy extends AutoBuy{
 							return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 						} 
 					}
+				}catch(Exception e1){
+					logger.error("--->根据商城订单号没有找到订单",e1);
+					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+				}	
+				
+				//  被砍单的订单在其它中
+				WebElement waitPay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'等待付款')]"))); 
+				waitPay.click();
+				Utils.sleep(1500);
+				
+				// 根据商城订单号来查找订单
+				try{
+					orderList = driver.findElements(By.xpath("//div[@class='content']//table/tbody/tr")); 
+					for(int i=1 ; i<orderList.size() ; ++i){ // 跳过第一行
+						WebElement tr = orderList.get(i);
+						WebElement order = tr.findElement(By.xpath("./td[1]"));
+						String orderNo = order.getText();
+						if(orderNo.contains(mallOrderNo)){
+							String orderStatus = tr.findElement(By.xpath("./td[4]/a")).getText();  // 查找订单的状态
+							logger.debug("--->订单状态:" + orderStatus); 
+							if("缺货".equals(orderStatus)){
+								logger.debug("--->商城订单:"+mallOrderNo+"缺货被砍单");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+							} 
+						}
+					}
 					logger.debug("--->根据商城订单号没有找到订单");
 					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 				}catch(Exception e1){
 					logger.error("--->根据商城订单号没有找到订单",e1);
 					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-				}	
+				}					
 			}catch(Exception e){
 				logger.error("--->根据商城订单号没有找到订单",e);
 				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
