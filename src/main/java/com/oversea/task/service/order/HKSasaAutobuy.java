@@ -12,14 +12,15 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.gson.annotations.Until;
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
-import com.oversea.task.utils.StringUtils;
 import com.oversea.task.utils.Utils;
 
 public class HKSasaAutobuy extends AutoBuy{
@@ -88,11 +89,17 @@ public class HKSasaAutobuy extends AutoBuy{
 		// 等待登录完成
 		try {
 			logger.debug("--->等待登录完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'退出')]")));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'退出')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'登出')]")));
 			logger.debug("--->登录完成");
 		} catch (Exception e) {
 			logger.error("--->登录碰到异常", e);
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'登出')]")));
+				logger.debug("--->登录完成");
+			}catch(Exception e1){
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 		
 		return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
@@ -382,8 +389,114 @@ public class HKSasaAutobuy extends AutoBuy{
 
 	@Override
 	public AutoBuyStatus scribeExpress(RobotOrderDetail detail) {
-		// TODO Auto-generated method stub
-		return null;
+		String mallOrderNo = detail.getMallOrderNo();
+		if (Utils.isEmpty(mallOrderNo)) { 
+			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY; 
+		}
+		
+		//寻找历史订单
+		try{
+			logger.debug("--->开始跳转到个人中心页面");
+			driver.navigate().to("https://web1.sasa.com/SasaWeb/sch/shopping/prepareOrderHistory.jspa");
+		}
+		catch (Exception e){
+			logger.error("--->跳转到个人中心页面出现异常", e);
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}			
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//等待历史订单页面加载完成
+		try{
+			logger.debug("--->开始等待历史订单页面加载完成");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'订单历史')]"))); 
+			Utils.sleep(1500);
+			logger.debug("--->开始查找已付款的商品");
+			WebElement payed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'已付款')]"))); 
+			payed.click();
+			Utils.sleep(1500);
+			// 根据商城订单号来查找订单
+			try{
+				List<WebElement> orderList = driver.findElements(By.xpath("//div[@class='content']//table/tbody/tr")); 
+				for(int i=1 ; i<orderList.size() ; ++i){ // 跳过第一行
+					WebElement tr = orderList.get(i);
+					WebElement order = tr.findElement(By.xpath("./td[1]"));
+					String orderNo = order.getText();
+					if(orderNo.contains(mallOrderNo)){
+						String orderStatus = tr.findElement(By.xpath("./td[4]/a")).getText();  // 查找订单的状态
+						logger.debug("--->订单状态:" + orderStatus); 
+						if("已付运".equals(orderStatus)){
+							logger.debug("--->跳转订单详情页面");
+							WebElement  lookOrder = order.findElement(By.xpath("../td[5]/p/a"));
+							lookOrder.click();
+							Utils.sleep(1500);
+							logger.debug("--->等待订单详情页面加载");
+							WebElement orderDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderDetailTab']"))); 
+							List<WebElement> trList = orderDetail.findElements(By.cssSelector("div .tabContainer>div[id='tab3']>table>tbody>tr"));
+							String company = null , companyNo = null;
+							for(WebElement trDetail : trList){
+								String content = trDetail.getText();
+								if(content.contains("速递公司")){
+									logger.debug("--->获取快递公司:");
+									company = trDetail.findElement(By.xpath(".//a")).getText();
+									logger.debug("--->" + company);
+								}else if(content.contains("追踪编号")){
+									logger.debug("--->获取物流单号:");
+									companyNo = trDetail.findElement(By.xpath(".//a")).getText();
+									logger.debug("--->" + companyNo);
+								}else{
+									continue;
+								}
+							}
+							if(StringUtil.isNotEmpty(company) && StringUtil.isNotEmpty(companyNo)){
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, company);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, companyNo);
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							}else{
+								logger.error("--->获取商城订单:"+mallOrderNo+"失败");
+								return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+							}
+						}else if("包装中".equals(orderStatus)){
+							logger.debug("--->商城订单:"+mallOrderNo+"还没有发货");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+						}
+					}else{
+						continue;
+					}
+				
+				} 
+				
+				//  被砍单的订单在其它中
+				WebElement other = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'其它')]"))); 
+				other.click();
+				Utils.sleep(1500);
+				
+				// 根据商城订单号来查找订单
+				try{
+					orderList = driver.findElements(By.xpath("//div[@class='content']//table/tbody/tr")); 
+					for(int i=1 ; i<orderList.size() ; ++i){ // 跳过第一行
+						WebElement tr = orderList.get(i);
+						System.out.println(tr.getText());
+						WebElement order = tr.findElement(By.xpath("./td[1]"));
+						String orderNo = order.getText();
+						if(orderNo.contains(mallOrderNo)){
+							logger.debug("--->商城订单:"+mallOrderNo+"被砍单");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+						} 
+					}
+					logger.debug("--->根据商城订单号没有找到订单");
+					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+				}catch(Exception e1){
+					logger.error("--->根据商城订单号没有找到订单",e1);
+					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+				}	
+			}catch(Exception e){
+				logger.error("--->根据商城订单号没有找到订单",e);
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+		} catch (Exception e){
+			logger.error("--->加载历史订单页面出现异常", e);
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
 	}
 
 	@Override
@@ -399,8 +512,14 @@ public class HKSasaAutobuy extends AutoBuy{
 	}
 	public static void main(String args[]){
 		HKSasaAutobuy autobuy = new HKSasaAutobuy();
-		autobuy.login("qdnqnl@163.com", "tfb001001");
+		AutoBuyStatus status = autobuy.login("aoaster@163.com", "tfb001001");
 		//autobuy.login("269473379@qq.com", "tfb001001");
+		if(status.getValue() == AutoBuyStatus.AUTO_LOGIN_SUCCESS.getValue()){
+			RobotOrderDetail detail = new RobotOrderDetail();
+			detail.setMallOrderNo("A171425670");
+			autobuy.scribeExpress(detail);
+			return;
+		}
 		
 		
 /*		Map<String, String> param = new HashMap<String, String>();
