@@ -1260,6 +1260,7 @@ public class ZcnAutoBuy extends AutoBuy {
 						expressNode.setOrderNo(detail.getOrderNo());
 						expressNode.setExpressNo(mallOrderNo);
 						logger.error("--->text="+nameEle.getText().replaceAll("\n", ""));
+						logger.error("--->time="+timeEle.getText().replaceAll("\n", ""));
 						expressNode.setName(nameEle.getText().replaceAll("\n", ""));
 						expressNode.setOccurTime(getJPdate(detail.getGmtCreate(), day, timeEle.getText()));
 						expressNode.setStatus(3);
@@ -1271,7 +1272,7 @@ public class ZcnAutoBuy extends AutoBuy {
 			if(nodeList.size()>0){
 				WebElement statusEle =  driver.findElement(By.cssSelector(".top"));
 				String str = statusEle.getText().toLowerCase();
-				if(str.contains("配送成功")){
+				if(str.contains("配送成功") && nodeList.get(0).getName().contains("已配送")){
 					nodeList.get(0).setStatus(14);//已签收
 				}
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, mallOrderNo);
