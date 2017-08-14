@@ -89,8 +89,7 @@ public class HKSasaAutobuy extends AutoBuy{
 		// 等待登录完成
 		try {
 			logger.debug("--->等待登录完成");
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'退出')]")));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'登出')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'退出')]")));
 			logger.debug("--->登录完成");
 		} catch (Exception e) {
 			logger.error("--->登录碰到异常", e);
