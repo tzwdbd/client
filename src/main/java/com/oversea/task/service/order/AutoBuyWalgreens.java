@@ -484,9 +484,9 @@ public class AutoBuyWalgreens extends AutoBuy {
 		//查询商城订单号
 		try {
 			logger.debug("--->等待订单页面加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("order-number-value")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("strong .ng-binding")));
 			logger.debug("--->订单页面加载完成");
-			WebElement order = driver.findElement(By.className("order-number-value"));
+			WebElement order = driver.findElement(By.cssSelector("strong .ng-binding"));
 			String orderNumber = order.getText().trim();
 
 			if (!Utils.isEmpty(orderNumber)) {
