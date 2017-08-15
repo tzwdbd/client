@@ -384,12 +384,12 @@ public class GetthelabelAutoBuy extends AutoBuy {
 				if (promotionList != null && promotionList.size() > 0) {
 					for (String code : promotionList) {
 						logger.debug("couponCode："+code);
-						WebElement element = driver.findElement(By.xpath("//input[@id='coupon_code']"));
+						WebElement element = driver.findElement(By.id("coupon_code"));
 						element.clear();
 						element.sendKeys(code);
 						TimeUnit.SECONDS.sleep(2);
 						
-						WebElement use = driver.findElement(By.xpath("//input[@class='OrangeButton use-code-btn']"));
+						WebElement use = driver.findElement(By.cssSelector(".use-code-btn"));
 						use.click();
 						TimeUnit.SECONDS.sleep(2);
 						
@@ -636,7 +636,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			BigDecimal x = new BigDecimal(myPrice);
 			BigDecimal y = new BigDecimal(priceStr);
 			BigDecimal v = y.subtract(x);
-			if (v.doubleValue() > 5.00D){
+			if (v.doubleValue() > 6.00D){
 				logger.error("--->总价差距超过约定,不能下单");
 				throw new Exception();
 			}
