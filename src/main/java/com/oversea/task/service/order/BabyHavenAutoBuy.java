@@ -783,7 +783,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'退出登录')]")));
 			return true;
 		} catch (Exception e) {
-			logger.error("--->跳转pharmacyonline主页面碰到异常");
+			logger.error("--->跳转babyhaven主页面碰到异常");
 		}
 		return false;
 	}
