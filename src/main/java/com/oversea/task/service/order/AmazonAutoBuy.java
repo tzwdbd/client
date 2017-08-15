@@ -1863,11 +1863,25 @@ public class AmazonAutoBuy extends AutoBuy
 			AutoBuyStatus status = selectTargetAddr(tarAddr,username,userTradeAddress);
 			if (status.equals(AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS)){
 				try{
+					logger.error("选择物流");
 					driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
 					selectDeliveryOptions();
 					Utils.sleep(5000);
 				}catch(Exception e){
 					logger.error("isgotopay选配送异常",e);
+				}
+				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
+					try {
+						logger.error("选择支付方式");
+						driver.findElement(By.cssSelector("#payment-info a.a-first")).click();
+						//优惠码
+						String promotionStr = param.get("promotion");
+						Set<String> promotionList = getPromotionList(promotionStr);
+						selectGiftCard(myPrice,promotionList,param);
+						Utils.sleep(5000);
+					} catch (Exception e) {
+						logger.error("支付方式选择异常",e);
+					}
 				}
 			}else{
 				return status;
@@ -1876,7 +1890,9 @@ public class AmazonAutoBuy extends AutoBuy
 		if(!StringUtil.isBlank(payType) && payType.equals("credit")){
 			logger.error("点击usd");
 			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("marketplaceRadio")));
 				driver.findElement(By.id("marketplaceRadio")).click();
+				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.error("点击usd出错");
 			}
