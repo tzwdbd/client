@@ -41,11 +41,14 @@ public class AsosAutoBuy extends AutoBuy {
 
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
-			WebElement usd = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".currency-locale-link")));
-			usd.click();
-			WebElement sel = driver.findElement(By.id("currencyList"));
-			Select s = new Select(sel);
-			s.selectByVisibleText("£ GBP");
+			WebElement current = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".selected-currency")));
+			if(!current.getText().contains("USD")){
+				WebElement usd = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".currency-locale-link")));
+				usd.click();
+				WebElement sel = driver.findElement(By.id("currencyList"));
+				Select s = new Select(sel);
+				s.selectByVisibleText("$ USD");
+			}
 		} catch (Exception e) {
 			logger.error("--->修改英镑出错", e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
