@@ -746,7 +746,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		//等待my account页面加载完成
 		try{
 			logger.debug("--->开始等待order页面加载完成");
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='history-page-content']")));
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-item")));
 			Utils.sleep(1500);
 			logger.debug("--->order页面加载完成");
 		}
@@ -757,10 +757,10 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		
 		//查询所有可见的订单
 		boolean isFindMall = false; 
-		for(int i = 0;i<6;i++){
+		for(int i = 0;i<3;i++){
 			try{
 				boolean isFind = false; 
-				List<WebElement> list = driver.findElements(By.xpath("//table[@class='order-table']"));
+				List<WebElement> list = driver.findElements(By.cssSelector(".order-item"));
 				if(list != null && list.size() > 0){
 					for(WebElement panel : list){
 						try{
@@ -772,13 +772,17 @@ public class GetthelabelAutoBuy extends AutoBuy {
 								try{
 									String s = panel.findElement(By.xpath(".//span[@class='order-status right']")).getText();
 									if(StringUtil.isNotEmpty(s) && s.contains("已取消")){
+										logger.error("--->商城订单:"+mallOrderNo+"已取消");
 										return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+									}else if(StringUtil.isNotEmpty(s) && s.contains("已付款")){
+										logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
+										return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 									}
 								}catch(Exception e){
 									
 								}
 								
-								panel.findElement(By.xpath(".//td[@class='item-to-detail']/a")).click();;
+								panel.findElement(By.xpath(".//td[@class='item-order-status']/a")).click();;
 								break;
 							}
 						}catch(Exception e){}
@@ -789,45 +793,34 @@ public class GetthelabelAutoBuy extends AutoBuy {
 //					物流单号:SRYA05838
 					try{
 						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='info-contain']")));
-						WebElement status = driver.findElement(By.cssSelector(".inquire-left-odd"));
+						WebElement status = driver.findElement(By.cssSelector(".status"));
 						String text = status.getText();
-						if(StringUtil.isNotEmpty(text) && text.startsWith("货运单号：")){
-							logger.error("--->找到物流单号 = "+text.substring(5));
-							String expressNo = text.substring(5);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
-//							if(StringUtil.isNotEmpty(expressNo) && expressNo.startsWith("SRY")){
-//							}else{
-//								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "宜送");
-//							}
-							return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-						}else if(StringUtil.isNotEmpty(text) && text.startsWith("物流单号：")){
-							logger.error("--->找到物流单号 = "+text.substring(5));
-							String expressNo = text.substring(5);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
-//							if(StringUtil.isNotEmpty(expressNo) && expressNo.startsWith("SRY")){
-//							}else{
-//								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "宜送");
-//							}
-							return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-						}
-						else{
-							try {
-								logger.debug("去EWE官网查一哈");
-								driver.navigate().to("https://ewe.com.au/track?cno="+mallOrderNo+"614816222553901#track-results");
-								Matcher m = Pattern.compile("SPOA[0-9]{5,7}").matcher(driver.getPageSource());
-								if(m.find()){
-									String trackNo =  m.group();
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO,trackNo);
-									logger.debug("trackNo:"+trackNo);
-									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+						if(StringUtil.isNotEmpty(text) && text.equals("已发货")){
+							WebElement shipment = driver.findElement(By.cssSelector(".hb-shipment span"));
+							logger.error("--->找到物流单号 = "+shipment.getText().substring(4));
+							String expressNo = shipment.getText().substring(4);
+							driver.navigate().to("http://www.trackmytrakpak.com/?MyTrakPakNumber="+expressNo);
+							List<WebElement> tempList = driver.findElements(By.xpath("//table/tbody/tr"));
+							if(tempList != null && tempList.size() > 0){
+								for(WebElement ww : tempList){
+									String texts = ww.getText();
+									if(StringUtil.isNotEmpty(texts) && texts.contains("Tracking Number:")){
+										WebElement ee = ww.findElement(By.xpath(".//td"));
+										if(ee != null && StringUtil.isNotEmpty(ee.getText())){
+											logger.error("--->找到单号 = "+ee.getText());
+											
+											data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, ee.getText());
+											if(StringUtil.isNotEmpty(texts) && !texts.contains("TRAKPAK Tracking Number")){
+												data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
+												return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+											}
+										}else{
+											logger.error("--->找到Tracking Number但是还没发货");
+											return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+										}
+									}
 								}
-							} catch (Exception e) {
-
 							}
-							logger.error("--->找到物流单号,但是内容异常 = "+text);
 						}
 					}catch(Exception e){
 						logger.error("--->商城订单:"+mallOrderNo+"还没有发货",e);
@@ -841,7 +834,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			}
 			try{
 				int page = i+2;
-				String url= String.format("http://cn.getthelabel.com/sales/order/history/?p=%d?p=%d&is_in_stock=0", page,page);
+				String url= String.format("http://cn.getthelabel.com/sales/order/history/?p=%d", page);
 				driver.navigate().to(url);
 				Utils.sleep(5500);
 			}catch(Exception e){
