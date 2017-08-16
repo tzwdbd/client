@@ -2139,7 +2139,7 @@ public class AmazonAutoBuy extends AutoBuy
 			try
 			{
 				doScreenShot();
-				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'View order details')]")));
 				WebElement x = driver.findElement(By.xpath("//h3[contains(text(),'View order details')]/following-sibling::div[1]"));
 				WebElement y = x.findElement(By.xpath(".//div[@class='a-row'][2]"));
@@ -2151,6 +2151,22 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			catch (Exception e)
 			{
+				try {
+					
+					WebElement hrefUrl = driver.findElement(By.cssSelector("#ordersContainer a"));
+					String url = hrefUrl.getAttribute("href");
+					logger.debug("获取订单号href:"+url);
+					String group[] = url.split("&");
+			    	for(String s:group){
+			    		if(s.contains("orderId")){
+			    			s = s.replace("orderId=", "");
+			    			return s;
+			    		}
+			    	}
+				} catch (Exception e2) {
+					logger.debug("查找订单号失败",e2);
+				}
+				
 				logger.debug("整1个html:"+driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text"));
 			}
 		}else{
