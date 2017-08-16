@@ -1126,14 +1126,17 @@ public class ZcnAutoBuy extends AutoBuy {
 				By by = By.xpath("//a[@class='a-button-text deletebutton' and contains(text(), '删除')]");
 				WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 				checkout.click();
+				Utils.sleep(2000);
 				try {
 					Alert alert = driver.switchTo().alert();
 			        if (alert != null) {
 			        	alert.accept();
+			        	Utils.sleep(2000);
 					}
 				} catch (Exception e) {
+					logger.error("--->alert点击失败");
 				}
-				Utils.sleep(2000);
+				
 				addresses = driver.findElements(By.cssSelector("div.displayAddressDiv ul.displayAddressUL"));
 			}
 		} catch (Exception e) {
@@ -1148,14 +1151,16 @@ public class ZcnAutoBuy extends AutoBuy {
 					By by = By.xpath("//a[@class='a-button-text deletebutton' and contains(text(), '删除')]");
 					WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 					checkout.click();
+					Utils.sleep(2000);
 					try {
 						Alert alert = driver.switchTo().alert();
 				        if (alert != null) {
 				        	alert.accept();
+				        	Utils.sleep(2000);
 						}
 					} catch (Exception e1) {
+						logger.error("--->alert点击失败1");
 					}
-					Utils.sleep(2000);
 					addresses = driver.findElements(By.cssSelector("div.displayAddressDiv ul.displayAddressUL"));
 				}
 			} catch (Exception e2) {
