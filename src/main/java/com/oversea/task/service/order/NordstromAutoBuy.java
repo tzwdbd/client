@@ -1163,18 +1163,40 @@ public class NordstromAutoBuy extends AutoBuy {
 		// 选择礼品卡
 		if(!StringUtil.isBlank(type) && type.equals("1")){
 			try {
-				WebElement checkOut = driver
-						.findElement(By.xpath("//a[contains(text(),'Apply a Gift Card')]"));
-				checkOut.click();
-				logger.error("--->点击Gift按钮成功");
+				try {
+					WebElement checkOut = driver
+							.findElement(By.xpath("//a[contains(text(),'Apply a Gift Card')]"));
+					checkOut.click();
+					logger.error("--->点击Gift按钮成功");
+				} catch (Exception e) {
+					WebElement another = driver.findElement(By.cssSelector(".apply-another-giftCard"));
+					another.click();
+					logger.error("--->继续添加点击按钮");
+				}
+				
 				TimeUnit.SECONDS.sleep(5);
 				BigDecimal cardTotal = new BigDecimal(0.00);
+				WebDriverWait wait0 = new WebDriverWait(driver, 20);
+				logger.error("--->giftCardList size="+giftCardList.size());
 				for(GiftCard card:giftCardList){
-					WebElement number = driver.findElement(By.cssSelector(".gift-card-number .ng-pristine"));
+					WebElement number = null;
+					try {
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gift-card-number .ng-pristine")));
+						number = driver.findElement(By.cssSelector(".gift-card-number .ng-pristine"));
+					} catch (Exception e) {
+						number = driver.findElement(By.cssSelector(".gift-card-number .ng-valid"));
+					}
+					
 					number.clear();
 					number.sendKeys(card.getSecurityCode());
 					TimeUnit.SECONDS.sleep(1);
-					WebElement access = driver.findElement(By.cssSelector(".gift-card-access .ng-pristine"));
+					WebElement access = null;
+					try {
+						access = driver.findElement(By.cssSelector(".gift-card-access .ng-pristine"));
+					} catch (Exception e) {
+						access = driver.findElement(By.cssSelector(".gift-card-access .ng-valid"));
+					}
+					
 					access.clear();
 					access.sendKeys(card.getPassWord());
 					TimeUnit.SECONDS.sleep(1);
@@ -1182,7 +1204,7 @@ public class NordstromAutoBuy extends AutoBuy {
 					apply.click();
 					TimeUnit.SECONDS.sleep(1);
 					card.setIsUsed("yes");
-					WebDriverWait wait0 = new WebDriverWait(driver, 20);
+					
 					try {
 						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gift-card-number .misc-error")));
 						card.setIsSuspect("yes");
@@ -1201,9 +1223,10 @@ public class NordstromAutoBuy extends AutoBuy {
 						}
 						card.setRealBalance("0");
 						logger.error("--->礼品卡不够继续，继续添加");
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".apply-another-giftCard")));
 						WebElement another = driver.findElement(By.cssSelector(".apply-another-giftCard"));
 						another.click();
-						
+						logger.error("--->继续添加点击");
 					}
 				}
 				
