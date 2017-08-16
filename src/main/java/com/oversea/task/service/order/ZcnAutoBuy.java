@@ -790,7 +790,7 @@ public class ZcnAutoBuy extends AutoBuy {
 			
 			String totalPrice = "0";
 			try {
-				WebElement w = driver.findElement(By.xpath("//td[contains(text(), '订单总计：')]/following-sibling::td[1]"));
+				WebElement w = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#subtotals-marketplace-table .a-color-price")));
 				if (StringUtil.isNotEmpty(w.getText())) {
 					totalPrice = w.getText().replace("￥", "").replace("-", "").replace(",", "").trim();
 					logger.error("totalPrice0 = " + totalPrice);
