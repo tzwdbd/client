@@ -116,6 +116,7 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement btn = driver.findElement(By.id("signInSubmit"));
 				logger.debug("--->开始登陆");
 				btn.click();
+				Utils.sleep(800);
 			}
 			catch (Exception e)
 			{
@@ -130,8 +131,30 @@ public class AmazonAutoBuy extends AutoBuy
 			catch (Exception e)
 			{
 				logger.error("--->登陆失败,开始判断和处理账号异常");
-				// todo 处理异常
-				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				try
+				{
+					WebElement username = driver.findElement(By.id("ap_email"));
+					logger.debug("--->输入账号1");
+					username.clear();
+					username.sendKeys(userName);
+					Utils.sleep(800);
+					WebElement password = driver.findElement(By.id("ap_password"));
+					logger.debug("--->输入密码1");
+					password.clear();
+					password.sendKeys(passWord);
+					Utils.sleep(1000);
+					WebElement btn = driver.findElement(By.id("signInSubmit"));
+					logger.debug("--->开始登陆1");
+					btn.click();
+					Utils.sleep(800);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='nav-greeting-name' and contains(text(),'Hello')]")));
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->登陆失败,开始判断和处理账号异常1");
+					// todo 处理异常
+					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				}
 			}
 			logger.debug("--->登陆成功,开始跳转");
 			return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
