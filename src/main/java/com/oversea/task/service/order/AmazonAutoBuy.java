@@ -2122,6 +2122,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}else{
 			logger.debug("--->查找Review or edit order");
+			doScreenShot();
 			try {
 				WebElement w =driver.findElement(By.xpath("//span[contains(text(),'Review or edit order')]"));
 				logger.debug("--->找到了Review or edit order");
@@ -2137,6 +2138,7 @@ public class AmazonAutoBuy extends AutoBuy
 		{
 			try
 			{
+				doScreenShot();
 				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'View order details')]")));
 				WebElement x = driver.findElement(By.xpath("//h3[contains(text(),'View order details')]/following-sibling::div[1]"));
