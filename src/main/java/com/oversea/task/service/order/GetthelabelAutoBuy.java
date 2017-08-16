@@ -609,7 +609,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			
 		}catch(Exception e){
 			logger.debug("--->设置收货地址出错",e);
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}
 		
 		driver.executeScript("(function(){window.scrollBy(0,100);})();");
