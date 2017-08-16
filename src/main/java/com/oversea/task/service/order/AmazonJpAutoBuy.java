@@ -1273,14 +1273,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 		{
 			Utils.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='select-payments-view']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select-payments-view")));
 			try{
-				WebElement radio = driver.findElement(By.xpath("//input[@id='pm_300']"));
+				WebElement radio = driver.findElement(By.id("pm_300"));
 				if(!radio.isSelected()){
 					logger.debug("--->礼品卡没有选中,点击选中");
 					
 					try{
-						driver.findElement(By.xpath("//div[@id='existing-gift-card-promo']")).click();
+						driver.findElement(By.id("existing-gift-card-promo")).click();
 						Utils.sleep(3000);
 					}catch(Exception e){
 						logger.debug("--->点击选中礼品卡出错",e);
