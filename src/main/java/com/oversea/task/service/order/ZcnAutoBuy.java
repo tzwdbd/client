@@ -939,7 +939,22 @@ public class ZcnAutoBuy extends AutoBuy {
 				
 				WebElement district = driver.findElement(By.id("chooseDistrict"));
 				Select districtSelect = new Select(district);
-				districtSelect.selectByVisibleText(address.getDistrict());
+				String districts = address.getDistrict();
+				try {
+					districtSelect.selectByVisibleText(districts);
+				} catch (Exception e) {
+					if(districts.endsWith("区")){
+						districts = districts.substring(0,districts.length()-1)+"市";
+					}else if(districts.endsWith("县")){
+						districts = districts.substring(0,districts.length()-1)+"市";
+					}else if(districts.endsWith("镇")){
+						districts = districts.substring(0,districts.length()-1)+"市";
+					}else if(districts.endsWith("市")){
+						districts = districts.substring(0,districts.length()-1)+"区";
+					}
+					districtSelect.selectByVisibleText(districts);
+				}
+				
 				TimeUnit.SECONDS.sleep(1);
 				WebElement addressLine = driver.findElement(By.id("enterAddressAddressLine1"));
 				addressLine.sendKeys(address.getAddress());
@@ -1367,9 +1382,9 @@ public class ZcnAutoBuy extends AutoBuy {
 		param.put("cardNo", "6225757555082164");
 		
 		UserTradeAddress address = new UserTradeAddress();
-		address.setState("浙江");
-		address.setCity("杭州市");
-		address.setDistrict("西湖区");
+		address.setState("福建省");
+		address.setCity("泉州市");
+		address.setDistrict("晋江区");
 		address.setAddress("西斗门路9号福地创业园9号4幢2楼海狐");
 		address.setIdCard("330726199511251119");
 		address.setMobile("17098041474");
@@ -1383,18 +1398,18 @@ public class ZcnAutoBuy extends AutoBuy {
 		payaccount.setPayPassword("0010012");
 		//8KWBW73K
 		
-		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = autoBuy.cleanCart();
-			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-				param.put("url", "https://www.amazon.cn/gp/aw/d/B00NEO5UQS/ref=mp_s_a_1_1?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&qid=1502336168&sr=1-1&pi=AC_SX118_SY170_FMwebp_QL65");
-				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
-				param.put("sku", "[[\" 颜色\",\"Whie\"]]");
-				param.put("num", "1");
-				param.put("promotion", "CMVSPAM8");
-				System.out.println(autoBuy.selectProduct(param));
-			}
-		}
-		
+//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+//			status = autoBuy.cleanCart();
+//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+//				param.put("url", "https://www.amazon.cn/gp/aw/d/B00NEO5UQS/ref=mp_s_a_1_1?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&qid=1502336168&sr=1-1&pi=AC_SX118_SY170_FMwebp_QL65");
+//				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
+//				param.put("sku", "[[\" 颜色\",\"Whie\"]]");
+//				param.put("num", "1");
+//				param.put("promotion", "CMVSPAM8");
+//				System.out.println(autoBuy.selectProduct(param));
+//			}
+//		}
+//		
 		System.out.println(autoBuy.pay(param, address, null));
 	}
 
