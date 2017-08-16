@@ -35,24 +35,21 @@ public class CheckGiftCardAmazonHandler implements GiftCardCheckHandler {
 		logger.error("doService 开始新的一次调用任务:爬取物流");
 
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy();
-		for(int i=0;i<2;i++){
-			try {
-				AutoBuyStatus status = autoBuy.login(account.getPayAccount(), account.getLoginPwd());
-				status = Utils.switchStatus(status);
-				if (AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
-					String balance = autoBuy.checkGiftCard();
-					if(!StringUtil.isBlank(balance)){
-						account.setBalanceWb(Double.parseDouble(balance));
-						taskResult.setValue(account);
-					}
-					break;
+		try {
+			AutoBuyStatus status = autoBuy.login(account.getPayAccount(), account.getLoginPwd());
+			status = Utils.switchStatus(status);
+			if (AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+				String balance = autoBuy.checkGiftCard();
+				if(!StringUtil.isBlank(balance)){
+					account.setBalanceWb(Double.parseDouble(balance));
+					taskResult.setValue(account);
 				}
-			}catch (Exception e){
-				logger.debug("CheckGiftCardAmazonHandler.doService 碰到异常 = ", e);
-			}finally{
-				autoBuy.logout(true);
-				logger.error("=================>CheckGiftCardAmazonHandler成功完结<======================");
 			}
+		}catch (Exception e){
+			logger.debug("CheckGiftCardAmazonHandler.doService 碰到异常 = ", e);
+		}finally{
+			autoBuy.logout(true);
+			logger.error("=================>CheckGiftCardAmazonHandler成功完结<======================");
 		}
 		
 	}

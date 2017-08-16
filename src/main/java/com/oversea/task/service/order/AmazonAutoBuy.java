@@ -116,6 +116,7 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement btn = driver.findElement(By.id("signInSubmit"));
 				logger.debug("--->开始登陆");
 				btn.click();
+				Utils.sleep(800);
 			}
 			catch (Exception e)
 			{
@@ -130,8 +131,30 @@ public class AmazonAutoBuy extends AutoBuy
 			catch (Exception e)
 			{
 				logger.error("--->登陆失败,开始判断和处理账号异常");
-				// todo 处理异常
-				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				try
+				{
+					WebElement username = driver.findElement(By.id("ap_email"));
+					logger.debug("--->输入账号1");
+					username.clear();
+					username.sendKeys(userName);
+					Utils.sleep(800);
+					WebElement password = driver.findElement(By.id("ap_password"));
+					logger.debug("--->输入密码1");
+					password.clear();
+					password.sendKeys(passWord);
+					Utils.sleep(1000);
+					WebElement btn = driver.findElement(By.id("signInSubmit"));
+					logger.debug("--->开始登陆1");
+					btn.click();
+					Utils.sleep(800);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='nav-greeting-name' and contains(text(),'Hello')]")));
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->登陆失败,开始判断和处理账号异常1");
+					// todo 处理异常
+					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				}
 			}
 			logger.debug("--->登陆成功,开始跳转");
 			return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
@@ -1863,11 +1886,25 @@ public class AmazonAutoBuy extends AutoBuy
 			AutoBuyStatus status = selectTargetAddr(tarAddr,username,userTradeAddress);
 			if (status.equals(AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS)){
 				try{
+					logger.error("选择物流");
 					driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
 					selectDeliveryOptions();
 					Utils.sleep(5000);
 				}catch(Exception e){
 					logger.error("isgotopay选配送异常",e);
+				}
+				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
+					try {
+						logger.error("选择支付方式");
+						driver.findElement(By.cssSelector("#payment-info a.a-first")).click();
+						//优惠码
+						String promotionStr = param.get("promotion");
+						Set<String> promotionList = getPromotionList(promotionStr);
+						selectGiftCard(myPrice,promotionList,param);
+						Utils.sleep(5000);
+					} catch (Exception e) {
+						logger.error("支付方式选择异常",e);
+					}
 				}
 			}else{
 				return status;
@@ -1876,7 +1913,9 @@ public class AmazonAutoBuy extends AutoBuy
 		if(!StringUtil.isBlank(payType) && payType.equals("credit")){
 			logger.error("点击usd");
 			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("marketplaceRadio")));
 				driver.findElement(By.id("marketplaceRadio")).click();
+				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.error("点击usd出错");
 			}
@@ -2083,6 +2122,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}else{
 			logger.debug("--->查找Review or edit order");
+			doScreenShot();
 			try {
 				WebElement w =driver.findElement(By.xpath("//span[contains(text(),'Review or edit order')]"));
 				logger.debug("--->找到了Review or edit order");
@@ -2098,6 +2138,7 @@ public class AmazonAutoBuy extends AutoBuy
 		{
 			try
 			{
+				doScreenShot();
 				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'View order details')]")));
 				WebElement x = driver.findElement(By.xpath("//h3[contains(text(),'View order details')]/following-sibling::div[1]"));
