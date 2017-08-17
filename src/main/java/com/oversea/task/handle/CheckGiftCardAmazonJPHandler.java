@@ -27,23 +27,25 @@ public class CheckGiftCardAmazonJPHandler implements GiftCardCheckHandler {
 		}
 		
 		logger.error("doService 开始新的一次调用任务:爬取物流");
-
-		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
-		try {
-			AutoBuyStatus status = autoBuy.login(account.getPayAccount(), account.getLoginPwd());
-			status = Utils.switchStatus(status);
-			if (AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
-				String balance = autoBuy.checkGiftCard();
-				if(!StringUtil.isBlank(balance)){
-					account.setBalanceWb(Double.parseDouble(balance));
-					taskResult.setValue(account);
+		for(int i = 0;i<2;i++){
+			AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
+			try {
+				AutoBuyStatus status = autoBuy.login(account.getPayAccount(), account.getLoginPwd());
+				status = Utils.switchStatus(status);
+				if (AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+					String balance = autoBuy.checkGiftCard();
+					if(!StringUtil.isBlank(balance)){
+						account.setBalanceWb(Double.parseDouble(balance));
+						taskResult.setValue(account);
+					}
+					break;
 				}
+			}catch (Exception e){
+				logger.debug("CheckGiftCardAmazonHandler.doService 碰到异常 = ", e);
+			}finally{
+				autoBuy.logout(true);
+				logger.error("=================>CheckGiftCardAmazonHandler成功完结<======================");
 			}
-		}catch (Exception e){
-			logger.debug("CheckGiftCardAmazonHandler.doService 碰到异常 = ", e);
-		}finally{
-			autoBuy.logout(true);
-			logger.error("=================>CheckGiftCardAmazonHandler成功完结<======================");
 		}
 	}
 }
