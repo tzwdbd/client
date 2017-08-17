@@ -196,6 +196,23 @@ public class ZcnAutoBuy extends AutoBuy {
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("content")));
+		}
+		catch (Exception e)
+		{
+			driver.get("https://www.amazon.cn/gp/aw/c/ref=navm_hdr_cart");
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("content")));
+			}
+			catch (Exception e1)
+			{
+				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+			}
+		}
 		return AutoBuyStatus.AUTO_CLICK_CART_SUCCESS;
 	}
 
