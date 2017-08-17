@@ -399,14 +399,14 @@ public class GetthelabelAutoBuy extends AutoBuy {
 							driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']")).click();;
 							statusMap.put(code, 0);
 						} catch (Exception e) {
-							try {
-								driver.findElement(By.xpath("//div[@class='coupon-done']"));
-								logger.debug("优惠码有效："+code);
-								isEffective = true;
-								statusMap.put(code, 10);
-							} catch (Exception e2) {
-								logger.debug("异常："+e);
-							}
+							logger.debug("优惠码有效："+code);
+							isEffective = true;
+							statusMap.put(code, 10);
+//							try {
+//								driver.findElement(By.xpath("//div[@class='coupon-done']"));
+//							} catch (Exception e2) {
+//								logger.debug("异常："+e);
+//							}
 						}
 					}
 					setPromotionCodelistStatus(statusMap);

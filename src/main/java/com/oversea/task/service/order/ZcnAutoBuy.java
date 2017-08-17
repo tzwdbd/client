@@ -1398,17 +1398,17 @@ public class ZcnAutoBuy extends AutoBuy {
 		payaccount.setPayPassword("0010012");
 		//8KWBW73K
 		
-//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			status = autoBuy.cleanCart();
-//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-//				param.put("url", "https://www.amazon.cn/gp/aw/d/B00NEO5UQS/ref=mp_s_a_1_1?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&qid=1502336168&sr=1-1&pi=AC_SX118_SY170_FMwebp_QL65");
-//				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
-//				param.put("sku", "[[\" 颜色\",\"Whie\"]]");
-//				param.put("num", "1");
-//				param.put("promotion", "CMVSPAM8");
-//				System.out.println(autoBuy.selectProduct(param));
-//			}
-//		}
+		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+			status = autoBuy.cleanCart();
+			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+				param.put("url", "https://www.amazon.cn/dp/B01GC420KA");
+				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
+				param.put("sku", "[[\"大小\",\"啫哩\"]]");
+				param.put("num", "1");
+				param.put("promotion", "CMVSPAM8");
+				System.out.println(autoBuy.selectProduct(param));
+			}
+		}
 //		
 		System.out.println(autoBuy.pay(param, address, null));
 	}
