@@ -780,17 +780,19 @@ public class AsosAutoBuy extends AutoBuy {
 			logger.error("--->跳转到my account页面出现异常", e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		try {
+			driver.get("https://my.asos.com/my-account/orders");
+		} catch (Exception e) {
+		}
+		
 
 		try {
 			Utils.sleep(3000);
 			logger.debug("--->开始查找对应订单");
-			WebElement orderTable = driver.findElement(By.xpath("//table[@class='last-orders striped']"));
-			logger.debug("--->找到对应的table");
-			TimeUnit.SECONDS.sleep(5);
-			List<WebElement> orderList = orderTable.findElements(By.cssSelector("tbody tr"));
+			List<WebElement> orderList = driver.findElements(By.cssSelector("#main ul li"));
 
 			for (WebElement tr : orderList) {
-				List<WebElement> tds = tr.findElements(By.tagName("td"));
+				List<WebElement> tds = tr.findElements(By.tagName("dd"));
 
 				// 第一个td是订单编号
 				WebElement ordernum = tds.get(0);
@@ -800,14 +802,15 @@ public class AsosAutoBuy extends AutoBuy {
 
 				if (flag) {
 					// 第一个td是订单编号状态
-					WebElement status = tds.get(2);
-					String str = status.getText().toLowerCase().trim();
-					if (str.equals("track this order")) {
-						Utils.sleep(2500);
-						
-						logger.debug("--->点击查看物流详情");
-						status.findElement(By.tagName("a")).click();
-						
+					WebElement trd = null;
+					try {
+						trd= tr.findElement(By.cssSelector(" .Tappable-inactive"));
+					} catch (Exception e) {
+						logger.error("[1]该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}
+					
+					trd.click();
 						TimeUnit.SECONDS.sleep(2);//等待页面载入
 
 						logger.debug("--->跨域调用");
@@ -1014,11 +1017,7 @@ public class AsosAutoBuy extends AutoBuy {
 								logger.error("[3]该订单还没发货,没产生物流单号");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 							}
-						}
-					} else if(str.equals("order unsuccessful")){
-						logger.error("该订单被砍单了");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					} else {
+					}  else {
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}
