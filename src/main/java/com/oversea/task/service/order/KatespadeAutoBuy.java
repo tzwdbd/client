@@ -889,6 +889,59 @@ public class KatespadeAutoBuy extends AutoBuy {
 			logger.debug("--->购物车页面加载完成");
 			driver.executeScript("(function(){window.scrollBy(300,500);})();");
 			Utils.sleep(3000);
+			
+			//优惠码
+			String promotionStr = param.get("promotion");
+			Set<String> promotionList = getPromotionList(promotionStr);
+			//使用优惠码0 失效,1互斥 ,9没修改过,10有效
+			WebDriverWait wait0 = new WebDriverWait(driver, 30);
+			if(promotionList != null && promotionList.size() > 0){
+				boolean isEffective = false;
+				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+				for(String code : promotionList){
+					if(StringUtil.isNotEmpty(code)){
+						driver.executeScript("(function(){window.scrollBy(0,-150);})();");
+						code = code.trim();
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-coupon-code")));
+						WebElement clickCoupon = driver.findElement(By.cssSelector(".cart-coupon-code"));
+						clickCoupon.click();
+						Utils.sleep(2000);
+						//输入优惠码	
+						try{
+							wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("dwfrm_cart_couponCode")));
+							WebElement codeInput = driver.findElement(By.id("dwfrm_cart_couponCode"));
+							codeInput.clear();
+							Utils.sleep(2500);
+							codeInput.sendKeys(code);
+							Utils.sleep(1500);
+							driver.findElement(By.id("add-coupon")).click();
+							Utils.sleep(5500);
+							//如果有发现错误
+							try{
+								wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error")));
+								driver.findElement(By.cssSelector(".error"));
+								statusMap.put(code, 0);
+								logger.error("优惠码失效:"+code);
+							}catch(Exception ee){
+								//成功处理
+								driver.findElement(By.cssSelector(".discount"));
+								statusMap.put(code, 10);
+								isEffective = true;
+							}
+						}catch(Exception e){
+							logger.error("输入优惠码的时候错误",e);
+						}
+					}
+				}
+				setPromotionCodelistStatus(statusMap);
+				
+				if("true".equals(param.get("isStock")) && !isEffective){
+					logger.debug("--->囤货订单优惠码失效,中断采购");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
+			}
+			Utils.sleep(3000);
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_cart_checkoutCart']")));
 			WebElement checkCart = driver.findElement(By.cssSelector("button[name='dwfrm_cart_checkoutCart']"));
 			driver.executeScript("var tar=arguments[0];tar.click();", checkCart);
 		}catch(Exception e){
@@ -1050,75 +1103,6 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->",e);
 		}
-		
-		
-		//优惠码
-		String promotionStr = param.get("promotion");
-		Set<String> promotionList = getPromotionList(promotionStr);
-		boolean previousSuccess = true ;
-		//使用优惠码0 失效,1互斥 ,9没修改过,10有效
-		if(promotionList != null && promotionList.size() > 0){
-			boolean isEffective = false;
-			HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
-			for(String code : promotionList){
-				if(StringUtil.isNotEmpty(code)){
-					driver.executeScript("(function(){window.scrollBy(0,-150);})();");
-					code = code.trim();
-					//上一个优惠码成功需要重新点击
-					if(previousSuccess){
-						try{
-							WebElement clickCoupon = driver.findElement(By.xpath("//div[@class='cart-coupon-code ']"));
-							clickCoupon.click();
-							Utils.sleep(2000);
-						}catch(Exception e){
-							WebElement clickCoupon = driver.findElement(By.xpath("//div[@class='cart-coupon-code']"));
-							clickCoupon.click();
-							Utils.sleep(2000);
-						}
-					}
-					//输入优惠码	
-					try{
-						WebElement codeInput = driver.findElement(By.xpath("//input[@id='dwfrm_billing_couponCode']"));
-						codeInput.clear();
-						Utils.sleep(2500);
-						codeInput.sendKeys(code);
-						Utils.sleep(1500);
-						driver.findElement(By.xpath("//button[@name='dwfrm_billing_applyCoupon']")).click();
-						Utils.sleep(5500);
-						//如果有发现错误
-						try{
-							WebElement codeMessage = driver.findElement(By.xpath("//span[@class='coupon-code-error']"));
-							String codeText = codeMessage.getText() ;
-							if(!StringUtil.isBlank(codeText)&&codeText.contains("is already in your cart")){
-								//已经用过优惠码了
-								statusMap.put(code, 10);
-								previousSuccess = true ;
-								isEffective = true;
-							}else{
-								statusMap.put(code, 0);
-								previousSuccess = false ;
-								logger.error("优惠码失效:"+code);
-							}
-						}catch(Exception ee){
-							//成功处理
-							driver.findElement(By.xpath("//span[@class='price-promo-message']"));
-							statusMap.put(code, 10);
-							previousSuccess = true ;
-							isEffective = true;
-						}
-					}catch(Exception e){
-						logger.error("输入优惠码的时候错误",e);
-					}
-				}
-			}
-			setPromotionCodelistStatus(statusMap);
-			
-			if("true".equals(param.get("isStock")) && !isEffective){
-				logger.debug("--->囤货订单优惠码失效,中断采购");
-				return AutoBuyStatus.AUTO_PAY_FAIL;
-			}
-		}
-		
 		//信用卡安全码
 		try {
 			Utils.sleep(5000);
@@ -1132,6 +1116,8 @@ public class KatespadeAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->没找到信用卡安全码输入框");
 		}
+		
+		
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
