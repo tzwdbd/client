@@ -1125,7 +1125,17 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.info("--->选择第[" + (tarAddr + 1) + "]个地址");
 					cur.click();
 					TimeUnit.SECONDS.sleep(2);
-					cur.findElement(By.xpath(".//a[ contains(text(), 'この住所を使う')]")).click();
+					try {
+						cur.findElement(By.xpath(".//a[ contains(text(), 'この住所を使う')]")).click();
+					} catch (Exception e) {
+						try {
+							cur.findElement(By.xpath(".//a[ contains(text(), 'Ship to this address')]")).click();
+						} catch (Exception e2) {
+							cur.findElement(By.xpath(".//a[ contains(text(), 'Deliver to this address')]")).click();
+						}
+						
+					}
+					
 					TimeUnit.SECONDS.sleep(5);
 				}
 				catch (Exception e)
