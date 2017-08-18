@@ -1264,7 +1264,12 @@ public class AmazonAutoBuy extends AutoBuy
 					
 					cur.click();
 					TimeUnit.SECONDS.sleep(2);
-					cur.findElement(By.xpath(".//a[ contains(text(), 'Ship to this address')]")).click();
+					try {
+						cur.findElement(By.xpath(".//a[ contains(text(), 'Ship to this address')]")).click();
+					} catch (Exception e) {
+						cur.findElement(By.xpath(".//a[ contains(text(), 'Deliver to this address')]")).click();
+					}
+					
 					
 					
 					//判断是否不支持的转运地址
