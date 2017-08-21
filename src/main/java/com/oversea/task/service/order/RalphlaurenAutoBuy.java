@@ -306,6 +306,7 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		
 		String suffixNo = param.get("suffixNo").replaceAll("[^0-9]", "").trim();
 		String myPrice = param.get("my_price");
+		logger.debug("myPrice="+myPrice);
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
 		boolean isEffective = false;
 		String countTemp = (String) param.get("count");
@@ -415,7 +416,7 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			BigDecimal y = new BigDecimal(price);
 			BigDecimal v = y.subtract(x);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, price);
-			if (v.doubleValue() > 5.00D){
+			if (v.doubleValue() > 9.00D){
 				logger.error("--->总价差距超过约定,不能下单");
 				return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 			}

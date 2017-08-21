@@ -344,7 +344,7 @@ public class AsosAutoBuy extends AutoBuy {
 			WebElement priceElment = driver.findElement(By.xpath("//span[@class='current-price product-price-discounted']"));
 			String priceStr = priceElment.getText();
 			String productEntityId = param.get("productEntityId");
-			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("£") && StringUtil.isNotEmpty(productEntityId)) {
+			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("$") && StringUtil.isNotEmpty(productEntityId)) {
 				logger.debug("--->找到商品单价 = " + priceStr.substring(1));
 //				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.substring(1));
 				priceMap.put(productEntityId, priceStr.substring(1));
@@ -355,16 +355,16 @@ public class AsosAutoBuy extends AutoBuy {
 				String priceStr = pricePanel.getText();
 				String productEntityId = param.get("productEntityId");
 				if (!Utils.isEmpty(priceStr) && StringUtil.isNotEmpty(productEntityId)) {
-					logger.error("--->单价:" + priceStr.replace("£", ""));
-//					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("£", ""));
-					priceMap.put(productEntityId, priceStr.replace("£", ""));
+					logger.error("--->单价:" + priceStr.replace("$", ""));
+//					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("$", ""));
+					priceMap.put(productEntityId, priceStr.replace("$", ""));
 				} else{
 					WebElement mypricePanel = driver.findElement(By.id("ctl00_ContentMainPage_ctlSeparateProduct_lblProductPrice"));
 					String myPriceStr = mypricePanel.getText();
 					if (!Utils.isEmpty(myPriceStr) && StringUtil.isNotEmpty(productEntityId)) {
-						logger.error("--->单价:" + myPriceStr.replace("£", ""));
-//						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, myPriceStr.replace("£", ""));
-						priceMap.put(productEntityId, myPriceStr.replace("£", ""));
+						logger.error("--->单价:" + myPriceStr.replace("$", ""));
+//						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, myPriceStr.replace("$", ""));
+						priceMap.put(productEntityId, myPriceStr.replace("$", ""));
 					} else
 					{
 						logger.error("--->单价获取失败");
@@ -673,8 +673,8 @@ public class AsosAutoBuy extends AutoBuy {
 			WebElement totalPriceElement = driver
 					.findElement(By.xpath("//div[@data-bind='currency: total']"));
 			String text = totalPriceElement.getText();
-			if (!Utils.isEmpty(text) && text.indexOf("£") != -1) {
-				String priceStr = text.substring(text.indexOf("£") + 1);
+			if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
+				String priceStr = text.substring(text.indexOf("$") + 1);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 				logger.debug("--->[1]找到商品结算总价 = " + priceStr);
 				BigDecimal x = new BigDecimal(myPrice);
@@ -693,8 +693,8 @@ public class AsosAutoBuy extends AutoBuy {
 				WebElement totalPriceElement = driver
 						.findElement(By.id("_ctl0_ContentBody_ctlReceiptSummary_rptReceiptItems__ctl2_lblGrandTotal"));
 				String text = totalPriceElement.getText();
-				if (!Utils.isEmpty(text) && text.indexOf("£") != -1) {
-					String priceStr = text.substring(text.indexOf("£") + 1);
+				if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
+					String priceStr = text.substring(text.indexOf("$") + 1);
 					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 					logger.debug("--->[2]找到商品结算总价 = " + priceStr);
 //					BigDecimal x = new BigDecimal(myPrice);
@@ -780,17 +780,19 @@ public class AsosAutoBuy extends AutoBuy {
 			logger.error("--->跳转到my account页面出现异常", e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		try {
+			driver.get("https://my.asos.com/my-account/orders");
+		} catch (Exception e) {
+		}
+		
 
 		try {
 			Utils.sleep(3000);
 			logger.debug("--->开始查找对应订单");
-			WebElement orderTable = driver.findElement(By.xpath("//table[@class='last-orders striped']"));
-			logger.debug("--->找到对应的table");
-			TimeUnit.SECONDS.sleep(5);
-			List<WebElement> orderList = orderTable.findElements(By.cssSelector("tbody tr"));
+			List<WebElement> orderList = driver.findElements(By.cssSelector("#main ul li"));
 
 			for (WebElement tr : orderList) {
-				List<WebElement> tds = tr.findElements(By.tagName("td"));
+				List<WebElement> tds = tr.findElements(By.tagName("dd"));
 
 				// 第一个td是订单编号
 				WebElement ordernum = tds.get(0);
@@ -800,14 +802,15 @@ public class AsosAutoBuy extends AutoBuy {
 
 				if (flag) {
 					// 第一个td是订单编号状态
-					WebElement status = tds.get(2);
-					String str = status.getText().toLowerCase().trim();
-					if (str.equals("track this order")) {
-						Utils.sleep(2500);
-						
-						logger.debug("--->点击查看物流详情");
-						status.findElement(By.tagName("a")).click();
-						
+					WebElement trd = null;
+					try {
+						trd= tr.findElement(By.cssSelector(" .Tappable-inactive"));
+					} catch (Exception e) {
+						logger.error("[1]该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}
+					
+					trd.click();
 						TimeUnit.SECONDS.sleep(2);//等待页面载入
 
 						logger.debug("--->跨域调用");
@@ -1014,11 +1017,7 @@ public class AsosAutoBuy extends AutoBuy {
 								logger.error("[3]该订单还没发货,没产生物流单号");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 							}
-						}
-					} else if(str.equals("order unsuccessful")){
-						logger.error("该订单被砍单了");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					} else {
+					}  else {
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}

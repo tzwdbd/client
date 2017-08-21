@@ -602,7 +602,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				logger.error("--->点击deliveryElement1");
 			}catch (Exception e1){
 				logger.error("--->点击deliveryElement失败1");
-				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+				//return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
 		}
 		

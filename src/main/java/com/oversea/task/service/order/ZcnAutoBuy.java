@@ -196,6 +196,23 @@ public class ZcnAutoBuy extends AutoBuy {
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("content")));
+		}
+		catch (Exception e)
+		{
+			driver.get("https://www.amazon.cn/gp/aw/c/ref=navm_hdr_cart");
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("content")));
+			}
+			catch (Exception e1)
+			{
+				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+			}
+		}
 		return AutoBuyStatus.AUTO_CLICK_CART_SUCCESS;
 	}
 
@@ -990,8 +1007,9 @@ public class ZcnAutoBuy extends AutoBuy {
 			By by = By.xpath("//span[@class='a-button-text' and contains(text(), '配送到此地址')]");
 			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 			checkout.click();
+			logger.error("配送到此地址点击");
 		} catch (Exception e) {
-			logger.error("--->填写地址失败", e);
+			logger.error("--->填写地址失败2", e);
 			try {
 				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
 				for(WebElement w:checkouts){
@@ -1001,18 +1019,19 @@ public class ZcnAutoBuy extends AutoBuy {
 					}
 				}
 			} catch (Exception e1) {
-				logger.error("--->填写地址失败", e1);
+				logger.error("--->填写地址失败3", e1);
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 		}
-		Utils.sleep(2000);
+		Utils.sleep(80000);
 		
 		try {
 			By by = By.xpath("//input[@class='a-button-input' and @value='继续']");
 			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 			checkout.click();
+			logger.error("继续点击");
 		} catch (Exception e) {
-			logger.error("--->选择配送方式失败");
+			logger.error("--->选择配送方式失败4");
 			try {
 				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
 				for(WebElement w:checkouts){
@@ -1022,14 +1041,32 @@ public class ZcnAutoBuy extends AutoBuy {
 					}
 				}
 			} catch (Exception e1) {
-				logger.error("--->填写地址失败", e1);
+				logger.error("--->填写地址失败5", e1);
 			}
 		}
 		Utils.sleep(2000);
 		try {
+			logger.error("kyc-number获取");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
 		} catch (Exception e) {
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			logger.error("--->kyc-number", e);
+			try {
+				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
+				for(WebElement w:checkouts){
+					if(w.isDisplayed()){
+						w.click();
+						break;
+					}
+				}
+			} catch (Exception e2) {
+				logger.error("继续点击失败");
+			}
+			try {
+				logger.error("kyc-number获取1");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
+			}catch (Exception e1) {
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 		try {
 			WebElement kycNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
