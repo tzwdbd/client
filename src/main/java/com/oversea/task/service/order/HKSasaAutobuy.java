@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
+import com.oversea.task.obj.TaskResult;
 import com.oversea.task.util.StringUtil;
 import com.oversea.task.utils.Utils;
 
@@ -537,6 +538,10 @@ public class HKSasaAutobuy extends AutoBuy{
 		AutoBuyStatus status = autobuy.login("aoaster@163.com", "tfb001001");
 		//autobuy.login("269473379@qq.com", "tfb001001");
 		if(status.getValue() == AutoBuyStatus.AUTO_LOGIN_SUCCESS.getValue()){
+			Map<String, String> param2 = new HashMap<String, String>();
+			param2.put("url", "http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=104034907010");
+			param2.put("num", "1");
+			autobuy.selectProduct(param2);
 			RobotOrderDetail detail = new RobotOrderDetail();
 			detail.setMallOrderNo("A171425670");
 			autobuy.scribeExpress(detail);
@@ -550,7 +555,7 @@ public class HKSasaAutobuy extends AutoBuy{
 		
 		Map<String, String> param2 = new HashMap<String, String>();
 		param2.put("url", "http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=107284002001");
-		param2.put("num", "2");
+		param2.put("num", "1");
 		autobuy.selectProduct(param2);
 		Map<String, ArrayList> param = new HashMap<String, ArrayList>();
 		ArrayList<String> urlList = new ArrayList<String>();
@@ -565,6 +570,54 @@ public class HKSasaAutobuy extends AutoBuy{
 		param1.put("paypalaccount", "qdnqnl@163.com");
 		param1.put("paypalpassword", "tfb001001");
 		autobuy.pay(param1);
+	}
+	
+	@Override
+	public boolean productOrderCheck(TaskResult taskResult){
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		try{
+			TimeUnit.SECONDS.sleep(5);
+			By by = By.xpath("//img[@src='/shop/tch/images/v3/btn_checkout.jpg']");
+			wait.until(ExpectedConditions.elementToBeClickable(by));
+			WebElement go = driver.findElement(by);
+			go.click();
+			Utils.sleep(1500);
+			
+			logger.debug("--->开始查找是否存在不支持付运商品");
+			WebElement errorElement = driver.findElement(By.xpath("//form[@name='frmRemoveOrderDetails']"));
+			List<String> errorExternalId = new ArrayList<String>();
+			if(errorElement == null){
+				logger.error("--->无不允许付运商品");
+				taskResult.addParam("errorExternalId", errorExternalId);
+				return true;
+			}else{
+				// 根据第一个子table来获取整体table 依次进行遍历
+				WebElement tableOne = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class='shopping_basket_table']")));
+				List<WebElement> tableList = tableOne.findElements(By.xpath("./../../tr"));
+				if(tableList!=null && tableList.size()>=4){
+					int begin = 3 , end = tableList.size() - 1; // 真正的订单从第四个开始 ， 倒数第二个截止
+					for(int curr=begin; curr < end ; ++curr){
+						WebElement a = tableList.get(curr).findElement(By.xpath("./td/table/tbody/tr/td[2]/a[2]"));
+						String url = a.getAttribute("href");
+						errorExternalId.add(this.getSkuIdByUrl(url));
+					}
+					taskResult.addParam("errorExternalId", errorExternalId);
+					return true;
+				}else{
+					logger.error("--->查找不支持付运商品表格失败");
+					return false;
+				}
+			}
+		}catch(Exception e){
+			logger.error("--->选择禁运商品出现异常", e);
+			return false;
+		}
+	}
+	
+	private String getSkuIdByUrl(String url){
+		int start = url.indexOf("itemno");
+		return url.substring(start + 7, url.length());
 	}
 	
 }

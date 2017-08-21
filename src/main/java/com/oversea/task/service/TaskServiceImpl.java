@@ -21,6 +21,7 @@ import com.oversea.task.handle.CheckGiftCardAmazonHandler;
 import com.oversea.task.handle.CheckGiftCardAmazonJPHandler;
 import com.oversea.task.handle.GiftCardCheckHandler;
 import com.oversea.task.handle.OrderHandler;
+import com.oversea.task.handle.ProductOrderCheckHandler;
 import com.oversea.task.handle.RechargeAmazonHandler;
 import com.oversea.task.handle.RechargeAmazonJPHandler;
 import com.oversea.task.handle.RechargeHandler;
@@ -54,6 +55,9 @@ public class TaskServiceImpl implements TaskService {
 
 	@Resource
 	private CheckGiftCardAmazonJPHandler checkGiftCardAmazonJPHandler;
+	
+	@Resource
+	private ProductOrderCheckHandler productOrderCheckHandler;
 
 	@Override
 	public TaskResult orderService(final Task task) {
@@ -257,6 +261,33 @@ public class TaskServiceImpl implements TaskService {
 	        }
 		}catch(Exception e){
 			logger.error("调用giftService出现异常",e);
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult productOrderCheckService(Task task) {
+		logger.error("productOrderCheckService");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			String mallName = (String) task.getParam("mallName");
+			if(StringUtil.isEmpty(mallName)){
+				logger.error("mallName is null");
+				return taskResult;
+			}
+			logger.error("sitename = " + mallName);
+			Object obj = task.getParam("robotOrderDetails");
+			if(obj == null){
+				logger.error("robotOrderDetails is null");
+				return taskResult;
+			}
+			taskResult.setValue(obj);
+			//开始检测
+			productOrderCheckHandler.handle(task,taskResult,obj);
+		}catch(Throwable e){
+			logger.error("调用orderService出现异常",e);
+		}finally{
+			logger.error("下单任务结束");
 		}
 		return taskResult;
 	}

@@ -429,4 +429,8 @@ abstract public class AutoBuy
 	public void setBrushOrderDetail(BrushOrderDetail brushOrderDetail) {
 		this.brushOrderDetail = brushOrderDetail;
 	}
+	
+	public boolean productOrderCheck(TaskResult taskResult){
+		return false;
+	}
 }
