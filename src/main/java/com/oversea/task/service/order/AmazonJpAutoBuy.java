@@ -1131,7 +1131,12 @@ public class AmazonJpAutoBuy extends AutoBuy
 						try {
 							cur.findElement(By.xpath(".//a[ contains(text(), 'Ship to this address')]")).click();
 						} catch (Exception e2) {
-							cur.findElement(By.xpath(".//a[ contains(text(), 'Deliver to this address')]")).click();
+							try {
+								cur.findElement(By.xpath(".//a[ contains(text(), 'Deliver to this address')]")).click();
+							} catch (Exception e3) {
+								cur.findElement(By.xpath(".//a[ contains(text(), 'この住所に届ける')]")).click();
+							}
+							
 						}
 						
 					}

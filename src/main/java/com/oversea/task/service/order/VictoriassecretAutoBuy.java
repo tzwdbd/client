@@ -1030,8 +1030,8 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 	public static void main(String[] args)
 	{
 		VictoriassecretAutoBuy auto = new VictoriassecretAutoBuy();
-		//AutoBuyStatus status = auto.login("tzwdbd@126.com", "Tfb001001");
-		//System.out.println(status);
+		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Tfb001001");
+		System.out.println(status);
 		/*AutoBuyStatus status1 = auto.cleanCart();
 		System.out.println(status1);*/
 		Map<String, String> param = new HashMap<String, String>();
