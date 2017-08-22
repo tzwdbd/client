@@ -673,7 +673,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		//寻找my account
 		try{
 			logger.debug("--->开始跳转到订单页面");
-			driver.navigate().to("http://cn.getthelabel.com/sales/order/history/");
+			driver.navigate().to("http://www.perfumesclub.cn/sales/order/history/");
 		}
 		catch (Exception e){
 			logger.error("--->跳转到my account页面出现异常", e);
@@ -708,7 +708,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 								
 								//判断订单是否取消
 								try{
-									String s = panel.findElement(By.xpath(".//span[@class='order-status right']")).getText();
+									String s = panel.findElement(By.cssSelector(".non-payment")).getText();
 									if(StringUtil.isNotEmpty(s) && s.contains("已取消")){
 										logger.error("--->商城订单:"+mallOrderNo+"已取消");
 										return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
@@ -720,7 +720,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 									
 								}
 								
-								panel.findElement(By.xpath(".//td[@class='item-order-status']/a")).click();;
+								panel.findElement(By.cssSelector(".order_view a")).click();;
 								break;
 							}
 						}catch(Exception e){}
@@ -730,41 +730,18 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					isFindMall = true;
 //					物流单号:SRYA05838
 					try{
-						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='info-contain']")));
-						WebElement status = driver.findElement(By.cssSelector(".status"));
-						String text = status.getText();
-						if(StringUtil.isNotEmpty(text) && text.equals("已发货")){
-							WebElement shipment = driver.findElement(By.cssSelector(".hb-shipment span"));
-							logger.error("--->找到物流单号 = "+shipment.getText().substring(4));
-							String expressNo = shipment.getText().substring(4);
-							driver.navigate().to("http://www.trackmytrakpak.com/?MyTrakPakNumber="+expressNo);
-							List<WebElement> tempList = driver.findElements(By.xpath("//table/tbody/tr"));
-							if(tempList != null && tempList.size() > 0){
-								for(WebElement ww : tempList){
-									String texts = ww.getText();
-									if(StringUtil.isNotEmpty(texts) && texts.contains("Tracking Number:")){
-										WebElement ee = ww.findElement(By.xpath(".//td"));
-										if(ee != null && StringUtil.isNotEmpty(ee.getText())){
-											logger.error("--->找到单号 = "+ee.getText());
-											
-											data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, ee.getText());
-											if(StringUtil.isNotEmpty(texts) && !texts.contains("TRAKPAK Tracking Number")){
-												data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
-												return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-											}
-										}else{
-											logger.error("--->找到Tracking Number但是还没发货");
-											return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-										}
-									}
-								}
-							}
-						}
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".track_number")));
+						WebElement shipment = driver.findElement(By.cssSelector(".track_number"));
+						logger.error("--->找到物流单号 = "+shipment.getText());
+						String expressNo = shipment.getText();
+										
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "postnl");
+						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}catch(Exception e){
 						logger.error("--->商城订单:"+mallOrderNo+"还没有发货",e);
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 					}
-					break;
 				}
 			}catch(Exception e){
 				logger.error("--->查询订单出错", e);
