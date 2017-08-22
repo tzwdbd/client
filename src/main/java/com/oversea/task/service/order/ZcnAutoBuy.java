@@ -1302,11 +1302,13 @@ public class ZcnAutoBuy extends AutoBuy {
 			List<ExpressNode> nodeList = new ArrayList<ExpressNode>();
 			List<WebElement> boxList = driver.findElements(By.cssSelector(".a-span-last .a-box"));
 			String day = null;
+			boolean b = false;
 			for(WebElement w:boxList){
 				if(w.getAttribute("class").contains("a-color-alternate-background")){
 					day = w.getText().trim();
 					if(day.contains("最新状态")){
 						day = day.substring(5).trim();
+						b = true;
 				    }
 					day = day.split("日")[0];
 				}else{
@@ -1329,7 +1331,7 @@ public class ZcnAutoBuy extends AutoBuy {
 			if(nodeList.size()>0){
 				WebElement statusEle =  driver.findElement(By.cssSelector(".top"));
 				String str = statusEle.getText().toLowerCase();
-				if(str.contains("配送成功") && nodeList.get(0).getName().contains("已配送")){
+				if(str.contains("配送成功") && b){
 					nodeList.get(0).setStatus(14);//已签收
 				}
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, mallOrderNo);
