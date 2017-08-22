@@ -732,9 +732,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 		try
 		{
-			WebElement oneTimeBuy = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));
+			WebElement oneTimeBuy = driver.findElement(By.id("oneTimeBuyBox"));
 			logger.debug("--->[1]这个商品是订阅商品,选择one time purchase 模式");
 			WebElement radio = oneTimeBuy.findElement(By.cssSelector("a.a-declarative"));
+			TimeUnit.SECONDS.sleep(1);
+			radio.click();
 			TimeUnit.SECONDS.sleep(1);
 			radio.click();
 		}
