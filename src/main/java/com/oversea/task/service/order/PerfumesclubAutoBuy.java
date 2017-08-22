@@ -749,7 +749,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			}
 			try{
 				int page = i+2;
-				String url= String.format("http://cn.getthelabel.com/sales/order/history/?p=%d", page);
+				String url= String.format("http://www.perfumesclub.cn/sales/order/history/?p=%d", page);
 				driver.navigate().to(url);
 				Utils.sleep(5500);
 			}catch(Exception e){
@@ -770,13 +770,13 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		// TODO Auto-generated method stub
 		try{
 			Utils.sleep(2000);
-			driver.get("http://cn.getthelabel.com");
+			driver.get("http://www.perfumesclub.cn/");
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".nav")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-wrapper")));
 			Utils.sleep(1000);
 		}
 		catch (Exception e){
-			logger.error("--->跳转getthelabel主页面碰到异常");
+			logger.error("--->跳转perfumesclub主页面碰到异常");
 		}
 		return false;
 	}
