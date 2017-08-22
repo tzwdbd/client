@@ -3321,11 +3321,11 @@ public class AmazonAutoBuy extends AutoBuy
 		catch (Exception e)
 		{
 			logger.error("--->找不到[Your Account]");
-			
 			try{
-				WebElement avatar = driver.findElement(By.xpath("//a[@id='nav-button-avatar']"));
-				Utils.sleep(1500);
-				avatar.click();
+				driver.get("https://www.amazon.com/gp/aw/ya/ref=navm_hdr_profile");
+//				WebElement avatar = driver.findElement(By.xpath("//a[@id='nav-button-avatar']"));
+//				Utils.sleep(1500);
+//				avatar.click();
 			}catch(Exception ee){
 				logger.error("找不到主页上面的Avatar");
 			}
@@ -3340,6 +3340,12 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		catch (Exception e)
 		{
+			try {
+				driver.get("https://www.amazon.com/balance?ref_=ya_mb_asv_b_m");
+			} catch (Exception e2) {
+			}
+			
+			
 			logger.error("--->找不到[Manage gift card balance]");
 		}
 		
