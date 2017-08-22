@@ -736,6 +736,10 @@ public class BabyHavenAutoBuy extends AutoBuy {
 							if (StringUtil.isNotEmpty(str) && str.contains("已取消")) {
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 							}
+							if (StringUtil.isNotEmpty(str) && str.contains("已付款")) {
+								logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
+							}
 							if (str.equals("已发货")) {
 								Utils.sleep(2500);
 								logger.debug("--->查找物流单号");
