@@ -702,7 +702,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 				if(list != null && list.size() > 0){
 					for(WebElement panel : list){
 						try{
-							WebElement w = panel.findElement(By.xpath(".//span[@class='order-number']"));
+							WebElement w = panel.findElement(By.cssSelector(".order-number"));
 							if(w.getText().contains(mallOrderNo.trim())){
 								isFind = true;
 								
