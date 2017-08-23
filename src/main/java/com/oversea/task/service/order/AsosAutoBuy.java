@@ -740,17 +740,14 @@ public class AsosAutoBuy extends AutoBuy {
 		// 这个网站有个bug，付完款后给的单号是错的，需要到订单历史中找正确的订单号
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			logger.debug("--->等待订单页面加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class = 'order-message']")));
 			logger.debug("--->订单页面加载完成");
+			Utils.sleep(5000);
 			
-			WebElement orderSummary = driver.findElement(By.xpath("//div[@class='order-summary']"));
-			orderSummary.findElement(By.xpath(".//dd[@data-bind = 'text: number']"));
-			
-			driver.navigate().to("https://us.asos.com/account/pgeaccmenu.aspx");
+			driver.navigate().to("https://my.asos.com/my-account/orders");
 			TimeUnit.SECONDS.sleep(3);
-			List<WebElement> lastOrdes = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table[@class='last-orders striped']/tbody/tr")));
-			String orderNo = lastOrdes.get(0).findElement(By.xpath(".//td")).getText();
+
+			List<WebElement> lastOrdes = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#main ul li")));
+			String orderNo = lastOrdes.get(0).findElement(By.tagName("dd")).getText();
 			logger.error("获取asos单号成功:\t" + orderNo);
 			savePng();
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNo);
