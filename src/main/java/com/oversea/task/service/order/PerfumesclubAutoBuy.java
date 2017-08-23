@@ -309,6 +309,30 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					By.id("cart-btn-settle")));
 			goPay.click();
 		}
+		try {
+			 driver.findElement(By.id("login-text-email"));
+		} catch (Exception e) {
+			logger.debug("--->重试结账1");
+			try {
+				driver.findElement(By.id("cart-btn-settle")).click();
+				Utils.sleep(3000);
+			} catch (Exception e2) {
+				
+			}
+			
+		}
+		try {
+			 driver.findElement(By.id("login-text-email"));
+		} catch (Exception e) {
+			logger.debug("--->重试结账2");
+			try {
+				WebElement settle = driver.findElement(By.id("cart-btn-settle"));
+				driver.executeScript("var tar=arguments[0];tar.click();", settle);
+			} catch (Exception e2) {
+				
+			}
+			
+		}
 		
 		String userName = param.get("userName");
 		String passWord = param.get("password");
@@ -323,7 +347,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			Utils.sleep(1500);
 			
 			// 输入密码
-			WebElement passward = driver.findElement(By.id("login-text-passwor"));
+			WebElement passward = driver.findElement(By.id("login-text-password"));
 			logger.debug("--->输入密码");
 			Utils.sleep(1500);
 			passward.sendKeys(passWord);
@@ -339,7 +363,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			// 等待购物车页面加载完成
 			logger.debug("--->等待购物车页面加载");
 			try {
-				driver.executeScript("(function(){window.scrollBy(300,500);})();");
+				driver.executeScript("(function(){window.scrollBy(300,600);})();");
 				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
 						By.id("cart-btn-settle")));
@@ -545,7 +569,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			emailEle.sendKeys(usedEmail);
 			
 			//保存地址
-			driver.findElement(By.id("'addr-btn-save")).click();
+			driver.findElement(By.id("addr-btn-save")).click();
 			Utils.sleep(3000);
 			
 		}catch(Exception e){
@@ -553,19 +577,21 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}
 		
-		driver.executeScript("(function(){window.scrollBy(0,100);})();");
+		driver.executeScript("(function(){window.scrollBy(0,-100);})();");
 		
 		//选中支付宝
 		try{
 			WebElement alipayPayment = driver.findElement(By.id("p_method_alipay_payment"));
 			//driver.findElement(By.xpath("//input[@id='p_method_alipay_payment']")).click();
 			driver.executeScript("var tar=arguments[0];tar.click();", alipayPayment);
+			Utils.sleep(3000);
 		}catch(Exception e){
 			logger.debug("--->选中支付宝出错",e);
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		WebDriverWait wait0 = new WebDriverWait(driver, 20);
+		driver.executeScript("(function(){window.scrollBy(0,200);})();");
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
@@ -646,16 +672,27 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			logger.debug("--->点击付款出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_CAN_NOT_FIND_CARDNO;
 		}
-		
+		http://www.perfumesclub.cn/sales/order/history/
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
 			wait = new WebDriverWait(driver, 2*WAIT_TIME);
-			By byby = By.xpath("//p[@class='order-id']");
+			By byby = By.cssSelector(".pay-left");
 			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
-			logger.debug("--->找到商品订单号 = "+orderElement.getText());
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText().substring(4));
-			savePng();
+			orderElement.click();
+			Utils.sleep(1000);
+			logger.debug("--->开始查找商品订单号1");
+			//等待my account页面加载完成
+			logger.debug("--->开始等待order页面加载完成");
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-item")));
+			Utils.sleep(1500);
+			logger.debug("--->order页面加载完成");
+			WebElement w = driver.findElement(By.cssSelector(".order-item .order-number"));
+			String orderNo = w.getText();
+			logger.debug("--->订单号:"+orderNo);
+			orderNo = orderNo.replaceAll("[^(A-Za-z0-9)]","");
+			logger.debug("--->订单号为:"+orderNo);
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNo);
 			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常",e);
