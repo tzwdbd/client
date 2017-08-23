@@ -78,6 +78,10 @@ public class NordstromAutoBuy extends AutoBuy {
 			WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign In")));
 			logger.debug("--->打开登录框");
 			loginBtn.click();
+			
+			WebElement loginB = driver.findElement(By.linkText("Sign In"));
+			loginB.click();
+			logger.debug("--->打开登录框1");
 		}
 		catch (Exception e)
 		{
@@ -157,7 +161,7 @@ public class NordstromAutoBuy extends AutoBuy {
 
 	@Override
 	public AutoBuyStatus cleanCart() {
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try
 		{
 			logger.error("--->跳转到购物车");
@@ -1543,8 +1547,8 @@ public class NordstromAutoBuy extends AutoBuy {
 	public static void main(String[] args)
 	{
 		NordstromAutoBuy auto = new NordstromAutoBuy();
-		//System.out.println(auto.login("ladflew@tom.com", "tfb001001"));
-		//System.out.println(auto.cleanCart());
+		System.out.println(auto.login("ladflew@tom.com", "tfb001001"));
+		System.out.println(auto.cleanCart());
 	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "http://shop.nordstrom.com//s/adidas-stan-smith-leather-sneaker-big-kid/4652826");
