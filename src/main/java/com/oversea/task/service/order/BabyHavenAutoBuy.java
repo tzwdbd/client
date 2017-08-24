@@ -372,7 +372,8 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				}
 
 				Utils.sleep(1500);
-				goPay.click();
+				
+				driver.executeScript("var tar=arguments[0];tar.click();", goPay);
 				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.debug("--->加载结账出现异常");
