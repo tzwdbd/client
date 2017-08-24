@@ -88,6 +88,7 @@ public class ProductOrderCheckNormalHandler implements ProductOrderCheckHandler 
 					
 					if(isSelectSkuSuccess){
 						Boolean checkStatus = autoBuy.productOrderCheck(taskResult);
+						logger.debug("AutomanProductOrderCheckHandlerExecutor.checkStatus = "+checkStatus);
 						taskResult.addParam("checkStatus", checkStatus);
 					}
 				}

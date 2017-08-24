@@ -629,36 +629,33 @@ public class HKSasaAutobuy extends AutoBuy{
 		
 		try{
 			TimeUnit.SECONDS.sleep(5);
-			By by = By.xpath("//img[@src='/shop/tch/images/v3/btn_checkout.jpg']");
-			wait.until(ExpectedConditions.elementToBeClickable(by));
+			
+			By by = By.cssSelector("a img[src='/shop/sch/images/v3/btn_checkout.jpg']");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 			WebElement go = driver.findElement(by);
 			go.click();
 			Utils.sleep(1500);
 			
 			logger.debug("--->开始查找是否存在不支持付运商品");
-			WebElement errorElement = driver.findElement(By.xpath("//form[@name='frmRemoveOrderDetails']"));
 			List<String> errorExternalId = new ArrayList<String>();
-			if(errorElement == null){
-				logger.error("--->无不允许付运商品");
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("form[name='frmRemoveOrderDetails']")));
+				logger.debug("--->存在不支持付运商品");
+				List<WebElement> tableA = driver.findElements(By.cssSelector("form[name='frmRemoveOrderDetails'] table tr table a.price_zone_2"));
+				for(WebElement w:tableA){
+					String url = w.getAttribute("href");
+					logger.debug("--->href:"+url);
+					String resultUrl = getSkuIdByUrl(url);
+					logger.debug("--->resultUrl:"+resultUrl);
+					errorExternalId.add(resultUrl);
+				}
+				logger.debug("--->存在不支持付运商品件数为"+errorExternalId.size());
 				taskResult.addParam("errorExternalId", errorExternalId);
 				return true;
-			}else{
-				// 根据第一个子table来获取整体table 依次进行遍历
-				WebElement tableOne = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class='shopping_basket_table']")));
-				List<WebElement> tableList = tableOne.findElements(By.xpath("./../../tr"));
-				if(tableList!=null && tableList.size()>=4){
-					int begin = 3 , end = tableList.size() - 1; // 真正的订单从第四个开始 ， 倒数第二个截止
-					for(int curr=begin; curr < end ; ++curr){
-						WebElement a = tableList.get(curr).findElement(By.xpath("./td/table/tbody/tr/td[2]/a[2]"));
-						String url = a.getAttribute("href");
-						errorExternalId.add(this.getSkuIdByUrl(url));
-					}
-					taskResult.addParam("errorExternalId", errorExternalId);
-					return true;
-				}else{
-					logger.error("--->查找不支持付运商品表格失败");
-					return false;
-				}
+			} catch (Exception e) {
+				logger.debug("--->不存在不支持付运商品");
+				taskResult.addParam("errorExternalId", errorExternalId);
+				return true;
 			}
 		}catch(Exception e){
 			logger.error("--->选择禁运商品出现异常", e);
