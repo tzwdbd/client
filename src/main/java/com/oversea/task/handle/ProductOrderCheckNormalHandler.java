@@ -95,6 +95,7 @@ public class ProductOrderCheckNormalHandler implements ProductOrderCheckHandler 
 		}catch(Exception e){
 			logger.debug("AutomanProductOrderCheckHandlerExecutor.doService 碰到异常 = ", e);
 		}finally{
+			autoBuy.logout(false);
 			logger.debug("=================>AutomanProductOrderCheckHandler成功完结<======================");
 			logger.debug(obj.toString());
 		}

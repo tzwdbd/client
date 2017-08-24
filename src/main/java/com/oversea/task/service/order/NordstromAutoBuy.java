@@ -75,32 +75,12 @@ public class NordstromAutoBuy extends AutoBuy {
 //		}
 		try
 		{
-			WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign In")));
-			logger.debug("--->打开登录框");
-			loginBtn.click();
-			
-			WebElement loginB = driver.findElement(By.linkText("Sign In"));
-			loginB.click();
-			logger.debug("--->打开登录框1");
+			driver.get("https://secure.nordstrom.com/SignIn.aspx?cm_sp=SI_SP_A-_-SI_SP_B-_-SI_SP_C&origin=tab&ReturnURL=http%3A%2F%2Fshop.nordstrom.com%2F");
 		}
 		catch (Exception e)
 		{
 			logger.error("--->没有找到登录框", e);
 			
-		}
-		//Utils.sleep(3000);
-		try {
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_mainContentPlaceHolder_signIn_email")));
-		} catch (Exception e) {
-			try
-			{
-				driver.get("https://secure.nordstrom.com/SignIn.aspx?cm_sp=SI_SP_A-_-SI_SP_B-_-SI_SP_C&origin=tab&ReturnURL=http%3A%2F%2Fshop.nordstrom.com%2F");
-			}
-			catch (Exception e1)
-			{
-				logger.error("--->没有找到登录框");
-				
-			}
 		}
 		try
 		{
@@ -164,27 +144,12 @@ public class NordstromAutoBuy extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try
 		{
-			logger.error("--->跳转到购物车");
-			Utils.sleep(4000);
-			WebElement cart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shopping-bag-links")));
-			cart.click();
-			logger.error("--->跳转到购物车成功");
+			driver.get("https://secure.nordstrom.com/ShoppingBag.aspx");
 		}
 		catch (Exception e)
 		{
 			logger.error("--->跳转到购物车失败");
 			return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
-		}
-		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ctl00_mainContentPlaceHolder_shoppingBagHeader_ShoppingBagHeaderInfo")));
-		} catch (Exception e) {
-			try {
-				driver.get("https://secure.nordstrom.com/ShoppingBag.aspx");
-				logger.error("--->购物车点击1");
-			} catch (Exception e2) {
-				logger.error("--->购物车点击失败1");
-			}
-			
 		}
 
 		logger.debug("--->清空购物车");
@@ -835,7 +800,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		}
 		logger.error("--->myPrice = " + myPrice);
 
-		WebDriverWait wait = new WebDriverWait(driver, 40);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		
 		// 此处必须由js点击关闭按钮 否则窗口关不掉
 		/*logger.debug("--->关闭tip框");
