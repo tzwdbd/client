@@ -105,8 +105,58 @@ public class HKSasaAutobuy extends AutoBuy{
 	
 	@Override
 	public AutoBuyStatus cleanCart() {
-		// TODO Auto-generated method stub
-		return null;
+		// 跳转到购物车
+		try {
+			WebElement viewCart = driver.findElement(By.id("basketBtnTotalItem"));
+			logger.error("--->开始跳转到购物车");
+			TimeUnit.SECONDS.sleep(5);
+			viewCart.click();
+		} catch (Exception e) {
+			logger.error("--->跳转到购物车失败");
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+		}		
+		
+		List<WebElement> goodUrls = driver.findElements(By.xpath("//td[@width='235']/a[@class='price_zone_2']"));
+		List<WebElement> goodsInCart = driver.findElements(By.xpath("//img[@width='16']"));
+		for(int i=0;i<goodUrls.size();i++){
+			try {
+				logger.debug("--->删除购物车第[" + (i + 1) + "]件商品");
+				goodsInCart.get(i).click();
+				logger.debug("--->删除购物车第[" + (i + 1) + "]件商品成功");
+				Utils.sleep(1500);
+			} catch (Exception e) {
+				logger.error("--->删除购物车第[" + (i + 1) + "]件商品出错", e);
+				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			}
+		}
+		
+		// 跳转继续购物
+		try {
+			logger.debug("--->继续购物,再次跳转");
+
+			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			By by = By.xpath("//img[@src='/shop/tch/images/v3/btn_Contin_shop.jpg']");
+			wait.until(ExpectedConditions.elementToBeClickable(by));
+			WebElement go = driver.findElement(by);
+			go.click();
+			Utils.sleep(1500);
+		} catch (Exception e) {
+			logger.error("--->继续购物跳转失败", e);
+		}
+		
+		// 跳转到购物车
+		try {
+			WebElement viewCart = driver.findElement(By.id("basketBtnTotalItem"));
+			logger.error("--->开始跳转到购物车");
+			TimeUnit.SECONDS.sleep(5);
+			viewCart.click();
+			Utils.sleep(1500);
+		} catch (Exception e) {
+			logger.error("--->跳转到购物车失败");
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+		}
+		
+		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 	}
 	
 	public AutoBuyStatus cleanCart(Map<String, ArrayList> param) {
@@ -535,13 +585,19 @@ public class HKSasaAutobuy extends AutoBuy{
 	}
 	public static void main(String args[]){
 		HKSasaAutobuy autobuy = new HKSasaAutobuy();
-		AutoBuyStatus status = autobuy.login("aoaster@163.com", "tfb001001");
-		//autobuy.login("269473379@qq.com", "tfb001001");
+		AutoBuyStatus status = autobuy.login("lhh3wd@163.com", "tfb001001");
 		if(status.getValue() == AutoBuyStatus.AUTO_LOGIN_SUCCESS.getValue()){
 			Map<String, String> param2 = new HashMap<String, String>();
 			param2.put("url", "http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=104034907010");
 			param2.put("num", "1");
 			autobuy.selectProduct(param2);
+			
+			Map<String, ArrayList> param = new HashMap<String, ArrayList>();
+			ArrayList<String> urlList = new ArrayList<String>();
+			urlList.add("http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=107284002001");
+			param.put("urlList", urlList);
+			autobuy.cleanCart();
+			
 			RobotOrderDetail detail = new RobotOrderDetail();
 			detail.setMallOrderNo("A171425670");
 			autobuy.scribeExpress(detail);
@@ -557,11 +613,6 @@ public class HKSasaAutobuy extends AutoBuy{
 		param2.put("url", "http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=107284002001");
 		param2.put("num", "1");
 		autobuy.selectProduct(param2);
-		Map<String, ArrayList> param = new HashMap<String, ArrayList>();
-		ArrayList<String> urlList = new ArrayList<String>();
-		urlList.add("http://web1.sasa.com/SasaWeb/tch/product/viewProductDetail.jspa?itemno=107284002001");
-		param.put("urlList", urlList);
-		autobuy.cleanCart(param);
 		
 		Map<String, String> param1 = new LinkedHashMap<>();
 		//param1.put("url", "http://www.ninewest.com/Jackpot-Pointy-Toe-Pumps/18495878,default,pd.html?recommendationsource=home");
