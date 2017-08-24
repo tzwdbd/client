@@ -672,7 +672,6 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			logger.debug("--->点击付款出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_CAN_NOT_FIND_CARDNO;
 		}
-		http://www.perfumesclub.cn/sales/order/history/
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
