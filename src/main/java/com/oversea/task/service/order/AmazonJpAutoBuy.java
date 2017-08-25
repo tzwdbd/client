@@ -1308,6 +1308,65 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.debug("--->查找礼品卡选中按钮出错",e);
 			}
 			
+			//使用优惠码0 失效,1互斥 ,9没修改过,10有效
+			if(promotionList != null && promotionList.size() > 0){
+				boolean isEffective = false;
+				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+				for(String code : promotionList){
+					if(StringUtil.isNotEmpty(code)){
+						code = code.trim();
+						try{
+							WebElement codeInput = driver.findElement(By.xpath("//input[@id='gcpromoinput']"));
+							codeInput.clear();
+							Utils.sleep(2500);
+							codeInput.sendKeys(code);
+							Utils.sleep(1500);
+							driver.findElement(By.xpath("//button[@id='button-add-gcpromo']")).click();
+							Utils.sleep(5500);
+							
+							try{
+								driver.findElement(By.xpath("//div[@class='a-box a-alert-inline a-alert-inline-success']"));
+								statusMap.put(code, 10);
+								isEffective = true;
+							}catch(Exception e){
+								logger.error("promotionCode:"+code,e);
+								try{
+									driver.findElement(By.xpath("//div[@class='a-box a-alert-inline a-alert-inline-error']"));
+									statusMap.put(code, 0);
+								}catch(Exception ee){
+									logger.error("promotionCode:"+code,ee);
+								}
+							}
+						}catch(Exception e){
+							logger.error("输入优惠码的时候错误",e);
+						}
+					}
+				}
+				setPromotionCodelistStatus(statusMap);
+				
+				if("true".equals(param.get("isStock")) && !isEffective){
+					logger.debug("--->囤货订单优惠码失效,中断采购");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
+				
+				try{
+					WebElement radio = driver.findElement(By.xpath("//input[@id='pm_300']"));
+					if(!radio.isSelected()){
+						logger.debug("--->礼品卡没有选中,点击选中");
+						
+						try{
+							driver.findElement(By.xpath("//div[@id='existing-gift-card-promo']")).click();
+							Utils.sleep(3000);
+						}catch(Exception e){
+							logger.debug("--->点击选中礼品卡出错",e);
+							return AutoBuyStatus.AUTO_PAY_FAIL;
+						}
+					}
+				}catch(Exception e){
+					logger.debug("--->查找礼品卡选中按钮出错",e);
+				}
+			}
+			
 			//获取礼品卡余额
 			try{
 				WebElement w = driver.findElement(By.xpath("//label[@for='pm_300']/span/span"));
@@ -1361,64 +1420,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 					}
 					
 					
-					//使用优惠码0 失效,1互斥 ,9没修改过,10有效
-					if(promotionList != null && promotionList.size() > 0){
-						boolean isEffective = false;
-						HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
-						for(String code : promotionList){
-							if(StringUtil.isNotEmpty(code)){
-								code = code.trim();
-								try{
-									WebElement codeInput = driver.findElement(By.xpath("//input[@id='gcpromoinput']"));
-									codeInput.clear();
-									Utils.sleep(2500);
-									codeInput.sendKeys(code);
-									Utils.sleep(1500);
-									driver.findElement(By.xpath("//button[@id='button-add-gcpromo']")).click();
-									Utils.sleep(5500);
-									
-									try{
-										driver.findElement(By.xpath("//div[@class='a-box a-alert-inline a-alert-inline-success']"));
-										statusMap.put(code, 10);
-										isEffective = true;
-									}catch(Exception e){
-										logger.error("promotionCode:"+code,e);
-										try{
-											driver.findElement(By.xpath("//div[@class='a-box a-alert-inline a-alert-inline-error']"));
-											statusMap.put(code, 0);
-										}catch(Exception ee){
-											logger.error("promotionCode:"+code,ee);
-										}
-									}
-								}catch(Exception e){
-									logger.error("输入优惠码的时候错误",e);
-								}
-							}
-						}
-						setPromotionCodelistStatus(statusMap);
-						
-						if("true".equals(param.get("isStock")) && !isEffective){
-							logger.debug("--->囤货订单优惠码失效,中断采购");
-							return AutoBuyStatus.AUTO_PAY_FAIL;
-						}
-						
-						try{
-							WebElement radio = driver.findElement(By.xpath("//input[@id='pm_300']"));
-							if(!radio.isSelected()){
-								logger.debug("--->礼品卡没有选中,点击选中");
-								
-								try{
-									driver.findElement(By.xpath("//div[@id='existing-gift-card-promo']")).click();
-									Utils.sleep(3000);
-								}catch(Exception e){
-									logger.debug("--->点击选中礼品卡出错",e);
-									return AutoBuyStatus.AUTO_PAY_FAIL;
-								}
-							}
-						}catch(Exception e){
-							logger.debug("--->查找礼品卡选中按钮出错",e);
-						}
-					}
+					
 					//再次寻找
 					continueBtn = driver.findElement((By.xpath("//input[@id='continueButton']")));
 					continueBtn.click();
