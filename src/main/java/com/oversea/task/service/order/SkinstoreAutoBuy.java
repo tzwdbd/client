@@ -34,12 +34,22 @@ public class SkinstoreAutoBuy extends AutoBuy {
 			status = auto.cleanCart();
 			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.skinstore.com/filorga-foam-cleanser-5oz/11394748.html");
-				param.put("num", "1");
-				status = auto.selectProduct(param);
+				List<String> urlList =  new ArrayList<>();
+				urlList.add("https://www.skinstore.com/filorga-foam-cleanser-5oz/11394748.html");
+				urlList.add("https://www.skinstore.com/filorga-time-zero-serum-1oz/11394758.html");
+				urlList.add("https://www.skinstore.com/filorga-anti-aging-micellar-cleansing-solution-14oz/11394747.html");
+				urlList.add("https://www.skinstore.com/filorga-time-filler-cream-2oz/11394759.html");
+				urlList.add("https://www.skinstore.com/t3-anti-gravity-barrel-3.0-inch-brush/11356716.html");
+				for(int i=0 ; i<5 ; ++i){
+					param.put("url", urlList.get(i));
+					param.put("num", "1");
+					status = auto.selectProduct(param);
+				}
+				
 				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 					TaskResult result = null;
 					auto.productOrderCheck(result);
+					
 					Map<String, String> param0 = new HashMap<String, String>();
 					param0.put("my_price", "85");
 					param0.put("count", "1");
@@ -47,15 +57,15 @@ public class SkinstoreAutoBuy extends AutoBuy {
 					param0.put("cardNo", "4662 4833 6029 1396");
 					param0.put("suffixNo", "423");
 					
-					UserTradeAddress userTradeAddress = new UserTradeAddress();
-					userTradeAddress.setName("刘波");
-					userTradeAddress.setZip("310000");
-					userTradeAddress.setAddress("西斗门路9号");
-					userTradeAddress.setDistrict("西湖区");
-					userTradeAddress.setCity("杭州市");
-					userTradeAddress.setState("浙江省");
-					userTradeAddress.setMobile("18668084980");
-					status = auto.pay(param0, userTradeAddress, null);
+//					UserTradeAddress userTradeAddress = new UserTradeAddress();
+//					userTradeAddress.setName("刘波");
+//					userTradeAddress.setZip("310000");
+//					userTradeAddress.setAddress("西斗门路9号");
+//					userTradeAddress.setDistrict("西湖区");
+//					userTradeAddress.setCity("杭州市");
+//					userTradeAddress.setState("浙江省");
+//					userTradeAddress.setMobile("18668084980");
+//					status = auto.pay(param0, userTradeAddress, null);
 				}
 			}
 		}
@@ -411,7 +421,12 @@ public class SkinstoreAutoBuy extends AutoBuy {
 				
 				List<WebElement> trElementList = tableElement.findElements(By.xpath("./tbody/tr"));
 				for(WebElement trElement : trElementList){
-					String productUrl = trElement.findElement(By.xpath("./td/div/div/a")).getAttribute("href");
+					WebElement pElement = trElement.findElement(By.xpath("./td/div/div/p[@class='product-name']"));
+					if(pElement.getText().contains("Free Gift") || pElement.getText().contains("FREE GIFT")){
+						logger.debug("--->赠品跳过");
+						continue;
+					}
+					String productUrl = pElement.findElement(By.xpath("./a")).getAttribute("href");
 					logger.debug("--->禁运商品url: " + productUrl);
 					errorExternalId.add(this.getSkuIdByUrl(productUrl));
 				}
