@@ -80,10 +80,6 @@ public class ProductOrderCheckNormalHandler implements ProductOrderCheckHandler 
 						parmas.put("productEntityId", String.valueOf(product.getDefaultEntityId()));
 						
 						status = autoBuy.selectProduct(parmas);
-						if (!AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-							isSelectSkuSuccess = false;
-							break;
-						}
 					}
 					
 					if(isSelectSkuSuccess){
