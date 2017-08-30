@@ -134,59 +134,22 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			logger.error("--->跳转到购物车失败");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
-		
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		logger.debug("--->清空购物车");
 		try {
-			TimeUnit.SECONDS.sleep(5);
-			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='btn-remove btn-remove2']"));
-			if (goodsInCart != null && goodsInCart.size() > 0){
-				int total = goodsInCart.size();
-				logger.debug("--->购物车有 [" + total + "]件商品");
-				for (int i = 0; i < total; i++)
-				{
-					try
-					{
-						if(i > 0){
-							WebElement removeBtn = driver.findElement(By.xpath("//a[@class='btn-remove btn-remove2']"));
-							driver.executeScript("var tar=arguments[0];tar.click();", removeBtn);
-						} else {
-							WebElement goods = goodsInCart.get(i);
-							TimeUnit.SECONDS.sleep(2);
-							goods.click();
-						}
-						TimeUnit.SECONDS.sleep(2);
-						WebElement easyBtn = driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']"));
-						easyBtn.click();
-						driver.executeScript("var els=document.getElementById('easyDialogYesBtn');if(els){els.click();}");
-						logger.debug("--->删除购物车第[" + (i + 1) + "]件商品");
-						TimeUnit.SECONDS.sleep(5);
-					}
-					catch (Exception e)
-					{
-						logger.error("--->删除购物车第[" + (i + 1) + "]件商品出错", e);
-						return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
-					}
-				}
-				TimeUnit.SECONDS.sleep(5);
-				goodsInCart = driver.findElements(By.xpath("//a[@class='btn-remove btn-remove2']"));
-				if (goodsInCart != null && goodsInCart.size() == 0)
-				{
-					logger.error("--->购物车确实清空了");
-				}
-				else
-				{
-					return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
-				}
-			} else {
-				logger.debug("--->购物车为空！");
-			}
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".deleteSelect")));
+			logger.error("--->开始清理购物车");
+			WebElement deleteall = driver.findElement(By.cssSelector(".deleteSelect"));
+			deleteall.click();
+			Utils.sleep(1000);
+			driver.findElement(By.id("easyDialogYesBtn")).click();
+			logger.error("--->购物车页面清理完成");
 		} catch (Exception e) {
-			logger.error("--->清空购物车失败");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			logger.error("--->购物车页面清理完成");
 		}
 		try {
 			logger.error("--->确认购物车是否清空");
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".car-not-items")));
 		} catch (Exception e) {
 			logger.debug("--->购物车不为空！");
