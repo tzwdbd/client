@@ -141,7 +141,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			logger.error("--->跳转到购物车失败",e);
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		try {
 			logger.error("--->等待购物车加载");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".main")));
@@ -343,12 +343,12 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//返利链接需要重新登录一次
 		boolean isUseFanli = true;
 		try{
-			WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//button[@id='easyDialogYesBtn']")));
-//			WebElement confirm = driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']"));
-			Utils.sleep(3000);
-			confirm.click();
-			Utils.sleep(3000);
+//			WebElement confirm = wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					By.xpath("//button[@id='easyDialogYesBtn']")));
+////			WebElement confirm = driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']"));
+//			Utils.sleep(3000);
+//			confirm.click();
+//			Utils.sleep(3000);
 			WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//button[@id='UnionLoginButton']")));
 			driver.findElement(By.xpath("//input[@id='UnionLoginEmail']")).sendKeys(email);
