@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.haihu.rpc.common.RemoteService;
 import com.oversea.task.common.TaskService;
+import com.oversea.task.domain.AutoOrderLogin;
 import com.oversea.task.domain.BrushOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderAccount;
@@ -20,6 +21,8 @@ import com.oversea.task.handle.BrushShipHandler;
 import com.oversea.task.handle.CheckGiftCardAmazonHandler;
 import com.oversea.task.handle.CheckGiftCardAmazonJPHandler;
 import com.oversea.task.handle.GiftCardCheckHandler;
+import com.oversea.task.handle.ManualOrderHandler;
+import com.oversea.task.handle.ManualShipHandler;
 import com.oversea.task.handle.OrderHandler;
 import com.oversea.task.handle.ProductOrderCheckHandler;
 import com.oversea.task.handle.RechargeAmazonHandler;
@@ -58,6 +61,11 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Resource
 	private ProductOrderCheckHandler productOrderCheckHandler;
+	
+	@Resource
+	private ManualShipHandler manualShipHandler;
+	@Resource
+	private ManualOrderHandler manualOrderHandler;
 
 	@Override
 	public TaskResult orderService(final Task task) {
@@ -288,6 +296,79 @@ public class TaskServiceImpl implements TaskService {
 			logger.error("调用orderService出现异常",e);
 		}finally{
 			logger.error("下单任务结束");
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult manualOrder(Task task) {
+		logger.error("orderService");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			String mallName = (String) task.getParam("mallName");
+			if(StringUtil.isEmpty(mallName)){
+				logger.error("mallName is null");
+				return taskResult;
+			}
+			logger.error("sitename = " + mallName);
+			Object obj = task.getParam("robotOrderDetails");
+			if(obj == null){
+				logger.error("robotOrderDetails is null");
+				return taskResult;
+			}
+			taskResult.setValue(obj);
+			//开始下单
+			manualOrderHandler.handle(task,taskResult,obj);
+			try {
+				Object obj1 = task.getParam("screentShot");
+				if(obj1 != null){
+					taskResult.addParam("screentShot", obj1);
+				}else{
+					logger.error(mallName+"调用screentShot为空");
+				}
+			} catch (Exception e) {
+				logger.error("调用screentShot出现异常",e);
+			}
+			try {
+				Object card = task.getParam("giftCardList");
+				if(card != null){
+					taskResult.addParam("giftCardList", card);
+				}else{
+					logger.error(mallName+"调用giftCardList为空");
+				}
+			} catch (Exception e) {
+				logger.error("调用giftCardList出现异常",e);
+			}
+			
+		}catch(Throwable e){
+			logger.error("调用orderService出现异常",e);
+		}finally{
+			logger.error("下单任务结束");
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult manualShip(Task task) {
+		logger.error("manualShip");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			List<RobotOrderDetail> orderDetails = (List<RobotOrderDetail>) task.getParam("robotOrderDetails");
+			
+			taskResult.setValue(orderDetails);
+			if (orderDetails == null || orderDetails.size() <= 0){
+				logger.error("orderDetail is null");
+				return taskResult;
+			}
+			
+			//爬物流
+			manualShipHandler.handle(task,taskResult,orderDetails);
+			Object obj = task.getParam("expressNodeList");
+			if(obj != null){
+				taskResult.addParam("expressNodeList", obj);
+			}
+		}catch(Throwable e){
+			logger.error("调用manualShip出现异常",e);
 		}
 		return taskResult;
 	}

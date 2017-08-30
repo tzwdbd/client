@@ -902,30 +902,39 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		auto.cleanCart();
 	
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=a62f45JUoIR8rV3iF9clLAQocnlVn_aRKiuG2vEeeX0A_bvVDtPUCRWTYRcRY2fJTg&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1107441.html%2F&tag=");
+		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=6e92qh_aHUeaB3ftss_bzwrrC0oGpbS7GLkSBPNbhgpoapNN_bbNb3raIhNode7R2xN&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1103061.html&tag=");
 		param.put("num", "1");
 		param.put("productEntityId", "4288120");
 		param.put("isPay", "false");
 //		param.put("count", "2");
 //		param.put("suffixNo", "123");
-		param.put("my_price", "31.22");
+		param.put("my_price", "16.45");
 		auto.selectProduct(param);
-//		param.put("userName", "hanhya@outlook.com");
-//		param.put("password", "tfb001001");
-//		
-//		UserTradeAddress address = new UserTradeAddress();
-//		address.setState("上海市");
-//		address.setCity("杨浦区");
-//		address.setDistrict("杨浦区");
-//		address.setAddress("营口北路268号富维江森技术中心");
-//		address.setIdCard("22010519880711061X");
-//		address.setMobile("13624494790");
-//		address.setZip("130000");
-//		address.setName("史鑫");
-//		OrderPayAccount payaccount = new OrderPayAccount();
-//		payaccount.setAccount("fitboy96430@163.com");
-//		payaccount.setPayPassword("0010012");
-//		auto.pay(param, address, payaccount);
+		Map<String, String> param1 = new HashMap<String, String>();
+		param1.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=8169bYNrDG8mqBgBHgc7oVMixsRf4wVEmHBot7JgKSCILAR4OUd41GzivIzzFVYo&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1114069.html%2F&tag=");
+		param1.put("num", "1");
+		param1.put("productEntityId", "42881200");
+		param1.put("isPay", "false");
+//		param.put("count", "2");
+//		param.put("suffixNo", "123");
+		param1.put("my_price", "19.25");
+		auto.selectProduct(param1);
+		param.put("userName", "hanhya@outlook.com");
+		param.put("password", "tfb001001");
+		
+		UserTradeAddress address = new UserTradeAddress();
+		address.setState("上海市");
+		address.setCity("杨浦区");
+		address.setDistrict("杨浦区");
+		address.setAddress("营口北路268号富维江森技术中心");
+		address.setIdCard("22010519880711061X");
+		address.setMobile("13624494790");
+		address.setZip("130000");
+		address.setName("史鑫");
+		OrderPayAccount payaccount = new OrderPayAccount();
+		payaccount.setAccount("fitboy96430@163.com");
+		payaccount.setPayPassword("0010012");
+		auto.pay(param, address, payaccount);
 //		
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("614792670649618");
