@@ -502,7 +502,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
 			
 			//邮编
-			WebElement postcode = driver.findElement(By.id("zip"));
+			WebElement postcode = driver.findElement(By.id("postcode"));
 			postcode.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入邮编");
@@ -526,7 +526,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			emailEle.sendKeys(email);
 			
 			//保存地址
-			driver.findElement(By.xpath("//input[@id='saveAddress']")).click();
+			driver.findElement(By.id("AjaxSaveAddress")).click();
 			Utils.sleep(3000);
 			
 		}catch(Exception e){
@@ -623,12 +623,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
-			WebElement totalPriceElement = null;
-			try{
-				totalPriceElement = driver.findElement(By.xpath("//strong[@id='grandTotal']"));
-			}catch(Exception e){
-				totalPriceElement = driver.findElement(By.xpath("//span[@id='grandTotal']"));
-			}
+			WebElement totalPriceElement = driver.findElement(By.cssSelector("strong[sel-id='settle-stat-price']"));
 			String text = totalPriceElement.getText();
 			String priceStr = text.substring(3);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
@@ -659,16 +654,9 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 				BigDecimal x = new BigDecimal(express);
 				totalExpress = totalExpress.add(x);
 			}
-			WebElement discountExpressElement = totalElement.findElement(By.cssSelector("#shipping_discount_amount"));
-			if (!Utils.isEmpty(discountExpressElement.getText()) && discountExpressElement.getText().indexOf("AU$") != -1) {
-				String express = discountExpressElement.getText().replace("AU$", "");
-				logger.debug("--->[1]找到运费 = " + express);
-				BigDecimal x = new BigDecimal(express);
-				totalExpress = totalExpress.add(x);
-			}
 			logger.debug("--->[1]找到总运费 = " + totalExpress);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_MALL_EXPRESS_FEE,String.valueOf(totalExpress));
-			WebElement promotionElement = totalElement.findElement(By.cssSelector("#product_discount_amount"));
+			WebElement promotionElement = totalElement.findElement(By.cssSelector("#p-ship"));
 			if (!Utils.isEmpty(promotionElement.getText()) && promotionElement.getText().indexOf("AU$") != -1) {
 				String promotion = promotionElement.getText().replace("-AU$", "");
 				logger.debug("--->[1]找到商品优惠 = " + promotion);
