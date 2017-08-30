@@ -326,14 +326,14 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//等待购物车页面加载完成
 		logger.debug("--->等待购物车页面加载");
 		try{
-			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout")));
+			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("AccountButton")));
 			checkout.click();
 			//checkout.sendKeys(Keys.RETURN);
 			logger.debug("--->购物车页面加载完成");
 			Utils.sleep(2000);
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常");
-			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout")));
+			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("AccountButton")));
 			checkout.click();
 			Utils.sleep(2000);
 			//return AutoBuyStatus.AUTO_PAY_FAIL;
@@ -366,7 +366,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			//点击进行结账
 			try{
 				WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("checkout")));
+						By.id("AccountButton")));
 				checkout.click();
 			}catch(Exception e){
 				logger.debug("--->点击checkout异常",e);
