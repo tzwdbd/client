@@ -1,23 +1,17 @@
 package com.oversea.task.handle;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.AutoOrderLogin;
 import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.obj.Task;
 import com.oversea.task.obj.TaskResult;
-import com.oversea.task.service.order.AutoBuy;
 import com.oversea.task.service.order.ManualBuy;
-import com.oversea.task.service.order.ZcnAutoBuy;
-import com.oversea.task.utils.ClassUtil;
-import com.oversea.task.utils.Utils;
 
 @Component
 public class ManualShipNormalHandler implements ManualShipHandler {

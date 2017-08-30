@@ -9,7 +9,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.haihu.rpc.common.RemoteService;
 import com.oversea.task.common.TaskService;
-import com.oversea.task.domain.AutoOrderLogin;
 import com.oversea.task.domain.BrushOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderAccount;
