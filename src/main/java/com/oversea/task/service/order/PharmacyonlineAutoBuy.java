@@ -428,7 +428,35 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		logger.debug("--->选择收货地址");
 		// 选收货地址
 		try {
-			WebElement addAddr = driver.findElement(By.className("address-use-new"));
+			WebElement addAddr = null;
+			try {
+				addAddr = driver.findElement(By.className("address-use-new"));
+			} catch (Exception e) {
+				List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+				while (true) {
+					int size = deleteList.size();
+					if(deleteList!=null && size>0){
+						if(deleteList.get(0).isDisplayed()){
+							deleteList.get(0).click();
+							Utils.sleep(500);
+							driver.findElement(By.cssSelector("a.operation-type")).click();
+							Utils.sleep(500);
+							driver.findElement(By.id("easyDialogYesBtn")).click();
+							Utils.sleep(500);
+							if(size>1){
+								deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+							}else{
+								break;
+							}
+						}
+					}else{
+						break;
+					}
+				}
+				addAddr = driver.findElement(By.cssSelector(".address-btn-create"));
+			}
+			
+			
 			addAddr.click();
 			TimeUnit.SECONDS.sleep(2);
 			
@@ -908,7 +936,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
 		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
 		System.out.println(status);
-		/*auto.cleanCart();
+		auto.cleanCart();
 	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=a62f45JUoIR8rV3iF9clLAQocnlVn_aRKiuG2vEeeX0A_bvVDtPUCRWTYRcRY2fJTg&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1107441.html%2F&tag=");
@@ -919,27 +947,27 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 //		param.put("suffixNo", "123");
 		param.put("my_price", "31.22");
 		auto.selectProduct(param);
-		param.put("userName", "hanhya@outlook.com");
-		param.put("password", "tfb001001");
-		
-		UserTradeAddress address = new UserTradeAddress();
-		address.setState("上海市");
-		address.setCity("杨浦区");
-		address.setDistrict("杨浦区");
-		address.setAddress("营口北路268号富维江森技术中心");
-		address.setIdCard("22010519880711061X");
-		address.setMobile("13624494790");
-		address.setZip("130000");
-		address.setName("史鑫");
-		OrderPayAccount payaccount = new OrderPayAccount();
-		payaccount.setAccount("fitboy96430@163.com");
-		payaccount.setPayPassword("0010012");
-		auto.pay(param, address, payaccount);
-		
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("614792670649618");
-		auto.scribeExpress(detail);
-		auto.logout();*/
+//		param.put("userName", "hanhya@outlook.com");
+//		param.put("password", "tfb001001");
+//		
+//		UserTradeAddress address = new UserTradeAddress();
+//		address.setState("上海市");
+//		address.setCity("杨浦区");
+//		address.setDistrict("杨浦区");
+//		address.setAddress("营口北路268号富维江森技术中心");
+//		address.setIdCard("22010519880711061X");
+//		address.setMobile("13624494790");
+//		address.setZip("130000");
+//		address.setName("史鑫");
+//		OrderPayAccount payaccount = new OrderPayAccount();
+//		payaccount.setAccount("fitboy96430@163.com");
+//		payaccount.setPayPassword("0010012");
+//		auto.pay(param, address, payaccount);
+//		
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("614792670649618");
+//		auto.scribeExpress(detail);
+//		auto.logout();
 	}
 
 }

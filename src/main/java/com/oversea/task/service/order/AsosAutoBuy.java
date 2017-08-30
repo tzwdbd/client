@@ -802,6 +802,10 @@ public class AsosAutoBuy extends AutoBuy {
 					WebElement trd = null;
 					try {
 						trd= tr.findElement(By.cssSelector(" .Tappable-inactive"));
+						if(trd.getText().contains("Help")){
+							logger.error("--->查询订单异常,找不到该订单");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+						}
 					} catch (Exception e) {
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;

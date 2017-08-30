@@ -43,7 +43,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 				Map<String, String> param = new HashMap<String, String>();
 		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
 				param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=f0903Vc56mbnKwUA1RH4i0P_au3DQ70PG6ojanQyvCpW_bUt4ut51Y4uGSGsA_c&new=http%3A%2F%2Fcn.royyoungchemist.com.au%2F1129731.html&tag=");
-				param.put("num", "1");
+				param.put("num", "2");
 				param.put("productEntityId", "4241869");
 				auto.selectProduct(param);
 //				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
@@ -149,30 +149,17 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			logger.error("--->加载购物车失败",e);
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
-		try{
+		try {
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".deleteSelect")));
 			logger.error("--->开始清理购物车");
-			List<WebElement> list = driver.findElements(By.xpath("//span[@class='btn-remove2']"));
-			while (true) {
-				int size = list.size();
-				if(list!=null && size>0){
-					list.get(0).click();
-					Utils.sleep(2000);
-					driver.findElement(By.id("easyDialogYesBtn")).click();
-					Utils.sleep(2000);
-					if(size>1){
-						list = driver.findElements(By.xpath("//span[@class='btn-remove2']"));
-					}else{
-						break;
-					}
-				}else{
-					break;
-				}
-			}
-			Utils.sleep(2000);
+			WebElement deleteall = driver.findElement(By.cssSelector(".deleteSelect"));
+			deleteall.click();
+			Utils.sleep(1000);
+			driver.findElement(By.id("easyDialogYesBtn")).click();
 			logger.error("--->购物车页面清理完成");
-		}catch(Exception e){
-			logger.error("--->跳转到购物车失败");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+		} catch (Exception e) {
+			logger.error("--->购物车页面清理完成");
 		}
 		
 		try {
@@ -252,7 +239,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//寻找商品单价
 		try{
 			logger.debug("--->开始寻找商品单价");
-			WebElement priceElement = driver.findElement(By.xpath("//span[@class='detail-last-price']"));
+			WebElement priceElement = driver.findElement(By.cssSelector(".DetailPrice .PriceNow"));
 			String text = priceElement.getText();
 			String productEntityId = param.get("productEntityId");
 			logger.debug("--->寻找单价text = "+text);
@@ -269,7 +256,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		if(!Utils.isEmpty(productNum) && !productNum.equals("1")){
 			try{
 				logger.debug("--->商品数量 = "+productNum);
-				WebElement inputNum = driver.findElement(By.xpath("//input[@id='qty']"));
+				WebElement inputNum = driver.findElement(By.id("DetailQty"));
 				Utils.sleep(2000);
 				inputNum.clear();
 				Utils.sleep(2000);
@@ -285,7 +272,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//加购物车
 		logger.debug("--->开始加购物车");
 		try{
-			WebElement cart = driver.findElement(By.xpath("//button[@id='cart_btn']"));
+			WebElement cart = driver.findElement(By.id("DetailAddCart"));
 			Utils.sleep(1500);
 			cart.click();
 		}catch(Exception e){
