@@ -961,7 +961,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 				}
 			}
 			Utils.sleep(3000);
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_cart_checkoutCart']")));
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-footer button[name='dwfrm_cart_checkoutCart']")));
 			WebElement checkCart = driver.findElement(By.cssSelector(".cart-footer button[name='dwfrm_cart_checkoutCart']"));
 			driver.executeScript("var tar=arguments[0];tar.click();", checkCart);
 		}catch(Exception e){
