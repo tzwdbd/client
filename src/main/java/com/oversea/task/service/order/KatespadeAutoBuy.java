@@ -1143,6 +1143,15 @@ public class KatespadeAutoBuy extends AutoBuy {
 			logger.debug("--->没找到信用卡安全码输入框");
 		}
 		
+		try {
+			logger.debug("--->安全码结束后点击");
+			driver.findElement(By.cssSelector(".sameshipping")).click();
+			Utils.sleep(500);
+			driver.findElement(By.cssSelector(".sameshipping")).click();
+			logger.debug("--->安全码结束后点击1");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		//查询总价
 		try{
