@@ -1150,7 +1150,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			driver.findElement(By.cssSelector(".sameshipping")).click();
 			logger.debug("--->安全码结束后点击1");
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.debug("--->安全码结束后点击出错");
 		}
 		
 		//查询总价

@@ -207,3 +207,23 @@ prickly pear
 2017-08-31 12:38:06,603 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
 2017-08-31 12:38:06,615 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
 2017-08-31 12:38:10,664 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout重试 = VIEW BAG / CHECKOUT
+2017-08-31 13:13:56,039 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-08-31 13:13:59,089 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-08-31 13:13:59,089 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-08-31 13:14:47,939 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-08-31 13:14:50,890 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-08-31 13:14:50,890 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-08-31 13:16:54,752 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
+2017-08-31 13:16:58,311 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
+2017-08-31 13:16:59,902 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
+2017-08-31 13:17:02,595 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
+2017-08-31 13:39:51,674 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-08-31 13:39:54,694 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-08-31 13:39:54,694 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-08-31 13:40:25,683 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
+2017-08-31 13:40:28,721 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
+2017-08-31 13:40:28,722 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
+2017-08-31 13:41:41,230 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
+2017-08-31 13:41:45,585 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
+2017-08-31 13:41:47,185 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
+2017-08-31 13:41:48,763 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
