@@ -3836,7 +3836,7 @@ public class AmazonAutoBuy extends AutoBuy
 				}
 				driver.executeScript("(function(){window.scrollBy(0,400);})();");
 				Utils.sleep(1500);
-				driver.findElement(By.xpath("//a[contains(text(),'Next →')]")).click();;
+				driver.findElement(By.cssSelector("li.a-last a")).click();;
 				Utils.sleep(1500);
 				
 			}
