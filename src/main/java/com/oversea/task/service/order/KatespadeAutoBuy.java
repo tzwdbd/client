@@ -153,7 +153,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 		AutoBuyStatus status = auto.login("rablfg2@126.com", "tfb001001");
 //		//AutoBuyStatus status = auto.login("oxoxbnm@163.com", "tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			status = auto.cleanCart();
+			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
 				//param.put("url", "http://surprise.katespade.com/WKRU3255-2.html?pid=WKRU3255-2");//下架商品
@@ -503,6 +503,16 @@ public class KatespadeAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		
+		try{
+			driver.findElement(By.cssSelector("a.sr_UI_close")).click();
+			logger.debug("--->关闭弹窗");
+			Utils.sleep(1500);
+		}catch(Exception ee){}
+		try{
+			driver.findElement(By.cssSelector("div#sr_header_close")).click();
+			logger.debug("--->关闭弹窗");
+			Utils.sleep(1500);
+		}catch(Exception ee){}
 		//清理购物车
 		try{
 			//等待购物车页面加载完成
