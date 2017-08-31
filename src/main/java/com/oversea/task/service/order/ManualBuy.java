@@ -202,6 +202,7 @@ public class ManualBuy{
 						Utils.sleep(2000);
 						if(!StringUtil.isBlank(autoOrderCleanCart.getConfirmCode())){
 							driver.findElement(By.cssSelector(autoOrderCleanCart.getConfirmCode())).click();
+							Utils.sleep(2000);
 						}
 						if(size>1){
 							list = driver.findElements(By.cssSelector(autoOrderCleanCart.getRemoveCode()));
