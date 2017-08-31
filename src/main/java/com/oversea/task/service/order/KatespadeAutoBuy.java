@@ -1190,6 +1190,24 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->没找到信用卡输入框"+e);
 		}
+		//确认
+		try{
+			//输入信用卡点确定
+			driver.executeScript("(function(){window.scrollBy(0,300);})();");
+			Utils.sleep(3500);
+//					WebElement confirm = driver.findElement(By.xpath("//div[@id='submitOrderButton']/button"));
+			List<WebElement> confirms = driver.findElements(By.cssSelector(".button-primary-submit"));
+			for(WebElement w:confirms){
+				if(w.isDisplayed()){
+					w.click();
+					break;
+				}
+			}
+			Utils.sleep(1500);
+		}catch(Exception e){
+			logger.debug("--->没找到信用卡输入框1");
+		}
+		
 		
 		//查询商城订单号
 		try{
