@@ -506,7 +506,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			//等待购物车页面加载完成
 			logger.error("--->开始等待购物车页面加载");
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Shopping Bag']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
 			Utils.sleep(2000);
 			logger.error("--->购物车页面加载完成");
 			//清理
