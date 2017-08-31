@@ -1070,7 +1070,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			logger.debug("--->已经点击过continue");
 		}catch(Exception e){
 			logger.debug("--->更改账单地址出现异常:",e);
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		//点击更改
 //		try{
@@ -1126,7 +1126,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 		//信用卡安全码
 		try {
 			Utils.sleep(5000);
-			WebElement securityCode = driver.findElement(By.xpath("//input[@id='dwfrm_billing_paymentMethods_creditCard_cvn']"));
+			WebElement securityCode = driver.findElement(By.id("dwfrm_billing_paymentMethods_creditCard_cvn_d0hbkadioegn"));
 			logger.debug("--->找到信用卡安全码输入框,开始输入");
 			String cardCode = (String) param.get("suffixNo");
 			logger.debug("--->信用卡安全码是 = " + cardCode);
@@ -1141,46 +1141,25 @@ public class KatespadeAutoBuy extends AutoBuy {
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
-			List<WebElement> trs = driver.findElements(By.xpath("//div[@class='checkout-order-totals']/table/tbody/tr[@class='order-total']")) ;
-			for(WebElement tr:trs){
-				try{
-					WebElement td = tr.findElement(By.xpath("./td"));
-					String text1 = td.getText() ;
-					if(!StringUtil.isBlank(text1)&&text1.toUpperCase().contains("ORDER TOTAL")){
-						WebElement td0 = tr.findElement(By.xpath(".//td[@class='price']"));
-						String text = td0.getText() ;
-						logger.debug("--->找到商品总价 = "+text);
-						if(!Utils.isEmpty(text) && text.indexOf("$") != -1){
-							String priceStr = text.substring(text.indexOf("$")+1);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
-							logger.debug("--->找到商品结算总价 = "+priceStr);
-							BigDecimal x = new BigDecimal(myPrice);
-							BigDecimal y = new BigDecimal(priceStr);
-							BigDecimal v = y.subtract(x);
-							if (v.doubleValue() > 5.00D){
-								logger.error("--->总价差距超过约定,不能下单");
-								return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
-							}
-						}
+			WebElement td = driver.findElement(By.cssSelector(".order-total")) ;
+			String text1 = td.getText() ;
+			if(!StringUtil.isBlank(text1)&&text1.toUpperCase().contains("ORDER TOTAL")){
+				WebElement td0 = td.findElement(By.cssSelector(".order-value"));
+				String text = td0.getText() ;
+				logger.debug("--->找到商品总价 = "+text);
+				if(!Utils.isEmpty(text) && text.indexOf("$") != -1){
+					String priceStr = text.substring(text.indexOf("$")+1);
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
+					logger.debug("--->找到商品结算总价 = "+priceStr);
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(priceStr);
+					BigDecimal v = y.subtract(x);
+					if (v.doubleValue() > 5.00D){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 					}
-				}catch(Exception e){
-					//System.out.println(e) ;
 				}
 			}
-			/*WebElement totalPriceElement = driver.findElement(By.xpath("//span[@id='subtotals-marketplace-spp-bottom']"));
-			String text = totalPriceElement.getText();
-			if(!Utils.isEmpty(text) && text.indexOf("$") != -1){
-				String priceStr = text.substring(text.indexOf("$")+1);
-				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
-				logger.debug("--->找到商品结算总价 = "+priceStr);
-				BigDecimal x = new BigDecimal(myPrice);
-				BigDecimal y = new BigDecimal(priceStr);
-				BigDecimal v = y.subtract(x);
-				if (v.doubleValue() > 20.00D){
-					logger.error("--->总价差距超过约定,不能下单");
-					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
-				}
-			}*/
 		}catch(Exception e){
 			logger.debug("--->查询结算总价出现异常");
 		}
@@ -1190,7 +1169,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			driver.executeScript("(function(){window.scrollBy(0,300);})();");
 			Utils.sleep(3500);
 //			WebElement confirm = driver.findElement(By.xpath("//div[@id='submitOrderButton']/button"));
-			WebElement confirm = driver.findElement(By.cssSelector("#submitOrderButton button"));
+			WebElement confirm = driver.findElement(By.cssSelector(".continuecheckoutbutton .checkoutbutton"));
 			Utils.sleep(1500);
 			confirm.click();
 		}catch(Exception e){
