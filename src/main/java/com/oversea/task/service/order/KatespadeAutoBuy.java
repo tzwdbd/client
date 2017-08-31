@@ -1126,11 +1126,17 @@ public class KatespadeAutoBuy extends AutoBuy {
 		//信用卡安全码
 		try {
 			Utils.sleep(5000);
-			WebElement securityCode = driver.findElement(By.id("dwfrm_billing_paymentMethods_creditCard_cvn_d0hbkadioegn"));
-			logger.debug("--->找到信用卡安全码输入框,开始输入");
-			String cardCode = (String) param.get("suffixNo");
-			logger.debug("--->信用卡安全码是 = " + cardCode);
-			securityCode.sendKeys(cardCode);
+			List<WebElement> securityCodes = driver.findElements(By.cssSelector("input[id^='dwfrm_billing_paymentMethods_creditCard']"));
+			for(WebElement w:securityCodes){
+				if(w.isDisplayed() && StringUtil.isBlank(w.getAttribute("value"))){
+					logger.debug("--->找到信用卡安全码输入框,开始输入");
+					String cardCode = (String) param.get("suffixNo");
+					logger.debug("--->信用卡安全码是 = " + cardCode);
+					w.sendKeys(cardCode);
+					break;
+				}
+			}
+			
 			Utils.sleep(1500);
 			logger.debug("--->输入信用卡安全码结束");
 		} catch (Exception e) {
