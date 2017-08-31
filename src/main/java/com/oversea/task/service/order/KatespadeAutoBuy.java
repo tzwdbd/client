@@ -689,6 +689,29 @@ public class KatespadeAutoBuy extends AutoBuy {
 					logger.error("findCount = "+findCount +" && skuList.size() = "+skuList.size());
 					return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 				}
+				elements = driver.findElements(By.cssSelector(".product-variations ul li.attribute"));
+				for (int i = 0; i < skuList.size(); i++){
+					if (i % 2 == 1){
+						for(WebElement element : elements){
+							try{
+								String text = element.getText();
+								if(!Utils.isEmpty(text)){
+									text = text.toLowerCase();
+									logger.error("text1:"+text);
+									logger.error("skuvalue:"+skuList.get(i));
+									String key = skuList.get(i-1).toLowerCase();
+									if(text.startsWith(key)){
+										if(!text.contains(skuList.get(i))){
+											return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+										}
+									}
+								}
+							}catch(Throwable e){
+								logger.error("选择sku出错",e);
+							}
+						}
+					}
+				}
 				
 			}
 		}catch(Exception e){
@@ -808,7 +831,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-checkout"));
 			if(list != null && list.size() > 0){
 				for(WebElement w : list){
-					if(StringUtil.isNotEmpty(w.getText()) && w.getText().contains("VIEW BAG")){
+					if(StringUtil.isNotEmpty(w.getText()) && w.getText().toUpperCase().contains("VIEW BAG")){
 						logger.debug("--->checkout = "+w.getText());
 						driver.executeScript("var tar=arguments[0];tar.click();", w);
 						//w.click();
