@@ -495,11 +495,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 	public AutoBuyStatus cleanCart() {
 		//跳转到购物车
 		try{
-//			WebElement viewCart = driver.findElement(By.xpath("//a[@id='viewCart']"));
-			WebElement viewCart = driver.findElement(By.xpath("//span[@class='bag-label']"));
-			logger.error("--->开始跳转到购物车");
-			Utils.sleep(1500);
-			viewCart.click();
+			driver.get("https://www.katespade.com/shopping-bag");
 		}catch(Exception e){
 			logger.error("--->跳转到购物车失败");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
