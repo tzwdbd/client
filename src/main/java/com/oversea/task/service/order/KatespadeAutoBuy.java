@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -1123,6 +1125,8 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->",e);
 		}
+		
+		
 		//信用卡安全码
 		try {
 			Utils.sleep(5000);
@@ -1207,42 +1211,36 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->没找到信用卡输入框1");
 		}
-		
-		
+		Utils.sleep(5000);
+		try{
+			driver.findElement(By.cssSelector("a.sr_UI_close")).click();
+			logger.debug("--->关闭弹窗");
+			Utils.sleep(1500);
+		}catch(Exception ee){}
+		try{
+			driver.findElement(By.cssSelector("div#sr_header_close")).click();
+			logger.debug("--->关闭弹窗");
+			Utils.sleep(1500);
+		}catch(Exception ee){}
 		//查询商城订单号
 		try{
-			logger.debug("--->开始等待信用卡确认");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("primary")));
-			logger.debug("--->confirm已经不可见");
-			Utils.sleep(1000);
 			logger.debug("--->开始查找商品订单号");
-			List<WebElement> trs = driver.findElements(By.xpath("//div[@class='order-details-info']/table/tbody/tr")) ;
-			if(trs!=null&&trs.size()>0){
-				for(WebElement tr:trs){
-					try{
-						WebElement td = tr.findElement(By.xpath("./td[@class='label']"));
-						String text = td.getText() ;
-						if(!StringUtil.isBlank(text)&&text.toUpperCase().contains("ORDER NUMBER")){
-							WebElement td0 = tr.findElement(By.xpath(".//td[@class='details']"));
-							logger.debug("--->找到商品订单号 = "+td0.getText());
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, td0.getText());
-							savePng();
-							return AutoBuyStatus.AUTO_PAY_SUCCESS;
-						}
-					}catch(Exception e){
-						//System.out.println(e) ;
-					}
-				}
-			}else{
-				logger.debug("--->页面不是成功下单页面");
-				return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
-			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-caption-no")));
+			Utils.sleep(1000);
+			WebElement trs = driver.findElement(By.cssSelector(".order-caption-no")) ;
+			logger.debug("--->找到商品订单号 = "+trs.getText());
+			String regEx="[^0-9]";  
+			Pattern p = Pattern.compile(regEx);  
+			Matcher m = p.matcher(trs.getText());  
+			String orderNo = m.replaceAll("").trim();
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNo);
+			savePng();
+			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常",e);
 			logger.debug("整1个html:"+driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text"));
 			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 		}
-		return AutoBuyStatus.AUTO_PAY_FAIL;
 	}
 
 	@Override
