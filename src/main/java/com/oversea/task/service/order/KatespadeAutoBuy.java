@@ -157,27 +157,27 @@ public class KatespadeAutoBuy extends AutoBuy {
 				//param.put("url", "http://surprise.katespade.com/WKRU3255-2.html?pid=WKRU3255-2");//下架商品
 				//param.put("url", "https://www.katespade.com/products/cedar-street-nika/PWRU4193-1.html?pid=PWRU4193-1");//售罄商品
 				//param.put("url", "https://www.katespade.com/products/mock-neck-knit-flounce-dress/NJMU6948.html?cgid=ks-clothing-dresses-view-all&dwvar_NJMU6948_color=098#start=3&cgid=ks-clothing-dresses-view-all");//正常商品
-				param.put("url", "https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898");//正常商品
+				param.put("url", "https://www.katespade.com/products/daniels-drive-wendi/PXRU7741-1.html");//正常商品
 				param.put("orginalUrl", "https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898");//正常商品
 				//param.put("url", "http://www.rebatesme.com/zh/click/?key=633e2036f0228f010b8ea3961e8db42f&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=c99cba6462c9c3650990fa4224bd24e5&targetUrl=http%3A%2F%2Fsurprise.katespade.com%2Fon%2Fdemandware.store%2FSites-KateSale-Site%2Fen_US%2FProduct-Show%3Fpid%3DWLRU2737");//售罄商品
 				//param.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=O0RU1099");//正常商品
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
 				//param.put("sku", "[[\"color\",\"black\"],[\"size\",\"7\"]]");
-				param.put("sku", "[[\"color\",\"neutral multi\"]]");
+				param.put("sku", "[[\"color\",\"prickly pear\"]]");
 				param.put("num", "1");
-//auto.selectProduct(param);
-//				Map<String, String> params = new HashMap<String, String>();
-//				//param.put("url", "http://surprise.katespade.com/WKRU3255-2.html?pid=WKRU3255-2");//下架商品
-//				//param.put("url", "https://www.katespade.com/products/cedar-street-nika/PWRU4193-1.html?pid=PWRU4193-1");//售罄商品
-//				//param.put("url", "https://www.katespade.com/products/mock-neck-knit-flounce-dress/NJMU6948.html?cgid=ks-clothing-dresses-view-all&dwvar_NJMU6948_color=098#start=3&cgid=ks-clothing-dresses-view-all");//正常商品
-//				params.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=WKRU4170");//正常商品
-//				//param.put("url", "http://www.rebatesme.com/zh/click/?key=633e2036f0228f010b8ea3961e8db42f&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=c99cba6462c9c3650990fa4224bd24e5&targetUrl=http%3A%2F%2Fsurprise.katespade.com%2Fon%2Fdemandware.store%2FSites-KateSale-Site%2Fen_US%2FProduct-Show%3Fpid%3DWLRU2737");//售罄商品
-//				//param.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=O0RU1099");//正常商品
-////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-//				//param.put("sku", "[[\"color\",\"black\"],[\"size\",\"7\"]]");
+				auto.selectProduct(param);
+				//Map<String, String> params = new HashMap<String, String>();
+				//param.put("url", "http://surprise.katespade.com/WKRU3255-2.html?pid=WKRU3255-2");//下架商品
+				//param.put("url", "https://www.katespade.com/products/cedar-street-nika/PWRU4193-1.html?pid=PWRU4193-1");//售罄商品
+				//param.put("url", "https://www.katespade.com/products/mock-neck-knit-flounce-dress/NJMU6948.html?cgid=ks-clothing-dresses-view-all&dwvar_NJMU6948_color=098#start=3&cgid=ks-clothing-dresses-view-all");//正常商品
+				//params.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=WKRU4170");//正常商品
+				//param.put("url", "http://www.rebatesme.com/zh/click/?key=633e2036f0228f010b8ea3961e8db42f&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=c99cba6462c9c3650990fa4224bd24e5&targetUrl=http%3A%2F%2Fsurprise.katespade.com%2Fon%2Fdemandware.store%2FSites-KateSale-Site%2Fen_US%2FProduct-Show%3Fpid%3DWLRU2737");//售罄商品
+				//param.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=O0RU1099");//正常商品
+//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+				//param.put("sku", "[[\"color\",\"black\"],[\"size\",\"7\"]]");
 //				params.put("sku", "[[\"color\",\"black/sweetheart pink\"]]");
 //				params.put("num", "1");
-//				auto.selectProduct(params);
+				//auto.selectProduct(params);
 //				System.out.println(status);
 //				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
@@ -192,10 +192,10 @@ public class KatespadeAutoBuy extends AutoBuy {
 //			}
 		//}
 		//auto.logout();
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("08556754");
-		detail.setProductSku("[[\"color\",\"001 Pink\"]]");
-		auto.scribeExpress(detail);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("08556754");
+//		detail.setProductSku("[[\"color\",\"001 Pink\"]]");
+//		auto.scribeExpress(detail);
 	}
 	
 	public static void main0(String[] args){
@@ -828,9 +828,10 @@ public class KatespadeAutoBuy extends AutoBuy {
 		logger.debug("--->去购物车页面");
 		boolean mark = true;
 		try{
-			List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-checkout"));
+			List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-cart"));
 			if(list != null && list.size() > 0){
 				for(WebElement w : list){
+					logger.debug("--->test = "+w.getText()+"--->uptest:"+w.getText().toUpperCase());
 					if(StringUtil.isNotEmpty(w.getText()) && w.getText().toUpperCase().contains("VIEW BAG")){
 						logger.debug("--->checkout = "+w.getText());
 						driver.executeScript("var tar=arguments[0];tar.click();", w);
@@ -852,7 +853,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 				logger.debug("--->加购重试");
 				WebElement cart = driver.findElement(By.id("add-to-cart"));
 				cart.click();
-				List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-checkout"));
+				List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-cart"));
 				if(list != null && list.size() > 0){
 					for(WebElement w : list){
 						if(StringUtil.isNotEmpty(w.getText()) && w.getText().contains("VIEW BAG")){
