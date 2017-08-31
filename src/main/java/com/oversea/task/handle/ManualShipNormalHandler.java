@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.oversea.task.domain.AutoOrderExpressDetail;
 import com.oversea.task.domain.AutoOrderLogin;
+import com.oversea.task.domain.AutoOrderScribeExpress;
 import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
@@ -21,6 +23,9 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 	public void handle(Task task, TaskResult taskResult,List<RobotOrderDetail> orderDetails){
 		OrderAccount account = (OrderAccount) task.getParam("account");
 		AutoOrderLogin autoOrderLogin = (AutoOrderLogin) task.getParam("autoOrderLogin");
+		AutoOrderScribeExpress autoOrderScribeExpress = (AutoOrderScribeExpress) task.getParam("autoOrderScribeExpress");
+		AutoOrderExpressDetail autoOrderExpressDetail = (AutoOrderExpressDetail) task.getParam("autoOrderExpressDetail");
+		
 		if (account == null){
 			logger.error("account is null");
 			return;
@@ -37,6 +42,19 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 			try {
 				AutoBuyStatus status = manualBuy.login(account.getPayAccount(), account.getLoginPwd(), autoOrderLogin);
 				if(AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+					if(autoOrderScribeExpress!=null){
+						status = manualBuy.scribeExpress(orderDetail,autoOrderScribeExpress);
+						if(AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED.equals(status)){
+							orderDetail.setStatus(status.getValue());
+						}else if(AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY.equals(status)){
+							orderDetail.setStatus(status.getValue());
+						}else if(AutoBuyStatus.AUTO_SCRIBE_SUCCESS.equals(status)){
+							if(autoOrderExpressDetail!=null){
+								status = manualBuy.expressDetail(orderDetail, autoOrderExpressDetail);
+								orderDetail.setStatus(status.getValue());
+							}
+						}
+					}
 					break;
 				}
 			} catch (Exception e) {

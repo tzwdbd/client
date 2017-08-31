@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.oversea.task.domain.AutoOrderCleanCart;
 import com.oversea.task.domain.AutoOrderLogin;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderAccount;
@@ -38,6 +39,8 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 		Float rate = (Float)task.getParam("rate");
 		String type = (String) task.getParam("type");
 		AutoOrderLogin autoOrderLogin = (AutoOrderLogin) task.getParam("autoOrderLogin");
+		AutoOrderCleanCart autoOrderCleanCart = (AutoOrderCleanCart) task.getParam("autoOrderCleanCart");
+		
 		
 		List<RobotOrderDetail> orderDetailList = null;
 		if(obj instanceof List){
@@ -59,6 +62,12 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 			try {
 				AutoBuyStatus status = manualBuy.login(account.getPayAccount(), account.getLoginPwd(), autoOrderLogin);
 				if(AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+					if(autoOrderCleanCart!=null){
+						status = manualBuy.cleanCart(autoOrderCleanCart);
+						if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+							
+						}
+					}
 					break;
 				}
 			} catch (Exception e) {
