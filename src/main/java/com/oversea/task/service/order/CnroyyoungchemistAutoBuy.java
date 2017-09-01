@@ -753,7 +753,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		//等待my account页面加载完成
 		try{
 			logger.debug("--->开始等待order页面加载完成");
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='history-page-content']")));
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-item")));
 			Utils.sleep(1500);
 			logger.debug("--->order页面加载完成");
 		}
@@ -767,11 +767,11 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		for(int i = 0;i<6;i++){
 			try{
 				boolean isFind = false; 
-				List<WebElement> list = driver.findElements(By.xpath("//table[@class='order-table']"));
+				List<WebElement> list = driver.findElements(By.cssSelector(".order-item"));
 				if(list != null && list.size() > 0){
 					for(WebElement panel : list){
 						try{
-							WebElement w = panel.findElement(By.xpath(".//span[@class='order-number']"));
+							WebElement w = panel.findElement(By.cssSelector(".order-number"));
 							if(w.getText().contains(mallOrderNo.trim())){
 								isFind = true;
 								
