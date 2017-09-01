@@ -785,7 +785,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 									
 								}
 								
-								panel.findElement(By.xpath(".//td[@class='item-to-detail']/a")).click();;
+								panel.findElement(By.cssSelector(".view-logistics")).click();;
 								break;
 							}
 						}catch(Exception e){}
