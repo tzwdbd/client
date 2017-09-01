@@ -1,229 +1,262 @@
-2017-08-31 09:54:37,987 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 09:54:41,534 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 09:54:41,534 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:39:18,878 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:39:21,867 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:39:21,868 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:40:04,787 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:40:07,082 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:40:08,676 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:40:11,090 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:40:20,021 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:40:20,885 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:40:20,886 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始跳转到my account页面
-2017-08-31 11:40:27,014 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待my account页面加载完成
-2017-08-31 11:40:30,838 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->my account页面加载完成
-2017-08-31 11:41:55,612 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:41:58,616 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:41:58,616 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:42:21,281 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:42:22,832 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:42:24,437 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:42:27,053 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:42:36,944 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:42:37,183 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:42:37,184 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:42:37,184 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = null
-2017-08-31 11:42:37,185 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->打开商品页面失败1 = null
-2017-08-31 11:44:30,890 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:44:33,963 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:44:33,963 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:45:10,184 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
-2017-08-31 11:45:12,950 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:45:14,660 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:45:16,242 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:45:18,614 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:45:28,294 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:45:28,539 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:45:28,540 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:45:28,540 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-small-harmony/PXRU4545-2.html
-2017-08-31 11:46:22,158 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:46:25,092 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:46:25,092 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:46:57,564 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:46:59,116 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:47:00,705 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:47:03,083 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:47:13,929 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:47:14,164 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:47:14,165 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:47:14,165 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-small-harmony/PXRU4545-2.html
-2017-08-31 11:47:22,743 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
-2017-08-31 11:47:22,772 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
-2017-08-31 11:47:27,812 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
-2017-08-31 11:47:27,812 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
-2017-08-31 11:47:28,117 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:47:29,133 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
-2017-08-31 11:47:30,963 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text1:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:47:30,964 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - skuvalue:crisp linen/sapphire
-2017-08-31 11:47:30,976 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
-2017-08-31 11:47:30,976 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
-2017-08-31 11:47:33,076 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
-2017-08-31 11:47:33,099 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
-2017-08-31 11:47:33,146 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
-2017-08-31 11:47:35,170 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
-2017-08-31 11:47:35,201 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
-2017-08-31 11:47:35,207 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
-2017-08-31 11:47:35,232 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
-2017-08-31 11:49:29,511 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:49:32,530 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:49:32,530 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:49:58,098 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:49:59,619 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:50:01,209 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:50:02,775 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:50:11,932 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:50:12,881 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:50:12,882 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:50:12,882 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-small-harmony/PXRU4545-2.html
-2017-08-31 11:50:20,133 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
-2017-08-31 11:50:20,172 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
-2017-08-31 11:50:25,209 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
-2017-08-31 11:50:25,225 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
-2017-08-31 11:50:25,225 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
-2017-08-31 11:50:25,844 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:50:26,821 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
-2017-08-31 11:50:28,487 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text1:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:50:28,487 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - skuvalue:crisp linen/sapphire
-2017-08-31 11:50:28,499 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
-2017-08-31 11:50:28,499 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
-2017-08-31 11:50:30,577 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
-2017-08-31 11:50:30,602 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
-2017-08-31 11:50:30,610 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
-2017-08-31 11:50:31,748 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
-2017-08-31 11:50:31,840 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
-2017-08-31 11:50:32,088 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->test = --->uptest:
-2017-08-31 11:50:32,098 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
-2017-08-31 11:50:32,116 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
-2017-08-31 11:52:37,042 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:52:40,123 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:52:40,123 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:53:18,415 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:53:19,610 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:53:21,207 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:53:23,610 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:53:34,313 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:53:34,550 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:53:34,550 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:53:34,550 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/cedar-street-small-harmony/PXRU4545-2.html
-2017-08-31 11:53:44,629 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
-2017-08-31 11:53:44,656 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
-2017-08-31 11:53:49,689 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
-2017-08-31 11:53:49,690 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
-2017-08-31 11:53:50,102 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:53:50,241 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
-2017-08-31 11:53:51,319 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text1:color
-crisp linen/sapphire
-crisp linen/sapphire
-2017-08-31 11:53:51,319 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - skuvalue:crisp linen/sapphire
-2017-08-31 11:53:51,332 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
-2017-08-31 11:53:51,332 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
-2017-08-31 11:53:53,431 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
-2017-08-31 11:53:53,453 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
-2017-08-31 11:53:53,461 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
-2017-08-31 11:53:54,493 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
-2017-08-31 11:53:54,562 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
-2017-08-31 11:53:54,792 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->test = --->uptest:
-2017-08-31 11:53:54,800 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
-2017-08-31 11:53:54,812 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
-2017-08-31 11:54:41,129 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 11:54:44,230 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 11:54:44,231 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 11:55:19,282 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 11:55:21,073 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 11:55:22,670 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 11:55:25,073 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 11:55:34,112 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 11:55:35,059 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 11:55:35,060 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 11:55:35,060 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/daniels-drive-wendi/PXRU7741-1.html
-2017-08-31 11:55:40,828 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
-2017-08-31 11:55:40,850 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
-2017-08-31 11:55:45,877 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
-2017-08-31 11:55:45,898 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
-2017-08-31 11:55:45,899 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
-2017-08-31 11:55:46,315 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
-prickly pear
-prickly pear
-2017-08-31 11:55:47,306 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
-2017-08-31 11:55:48,981 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text1:color
-prickly pear
-prickly pear
-2017-08-31 11:55:48,981 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - skuvalue:prickly pear
-2017-08-31 11:55:48,993 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
-2017-08-31 11:55:48,993 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
-2017-08-31 11:55:51,142 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
-2017-08-31 11:55:51,162 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
-2017-08-31 11:55:51,209 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
-2017-08-31 11:55:54,439 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
-2017-08-31 11:55:54,469 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
-2017-08-31 11:55:54,503 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->test = VIEW BAG / CHECKOUT--->uptest:VIEW BAG / CHECKOUT
-2017-08-31 11:55:54,535 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout = VIEW BAG / CHECKOUT
-2017-08-31 12:34:42,275 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 12:34:45,233 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 12:34:45,233 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 12:35:53,680 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 12:35:56,676 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 12:35:56,676 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 12:37:15,521 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 12:37:18,320 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 12:37:19,915 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 12:37:21,483 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 12:37:33,534 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->等待登录完成
-2017-08-31 12:37:33,775 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->登录完成
-2017-08-31 12:37:33,776 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到商品页面
-2017-08-31 12:37:33,776 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择商品 productUrl = https://www.katespade.com/products/daniels-drive-wendi/PXRU7741-1.html
-2017-08-31 12:37:52,551 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始等待商品页面加载
-2017-08-31 12:37:52,574 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品页面加载完成
-2017-08-31 12:37:57,599 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->关闭弹窗
-2017-08-31 12:37:57,616 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->mainList size=1
-2017-08-31 12:37:57,616 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始选择sku
-2017-08-31 12:37:58,017 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text:color
-prickly pear
-prickly pear
-2017-08-31 12:37:58,145 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - 选择了:color
-2017-08-31 12:38:00,115 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text1:color
-prickly pear
-prickly pear
-2017-08-31 12:38:00,115 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - skuvalue:prickly pear
-2017-08-31 12:38:00,128 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->选择sku完成
-2017-08-31 12:38:00,128 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始寻找商品单价
-2017-08-31 12:38:02,202 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始加购物车
-2017-08-31 12:38:02,220 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - text = ADD TO BAG
-2017-08-31 12:38:05,068 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购物车成功
-2017-08-31 12:38:06,093 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->商品没有售罄
-2017-08-31 12:38:06,157 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->去购物车页面
-2017-08-31 12:38:06,593 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->test = --->uptest:
-2017-08-31 12:38:06,603 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->没点击view bag
-2017-08-31 12:38:06,615 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->加购重试
-2017-08-31 12:38:10,664 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->checkout重试 = VIEW BAG / CHECKOUT
-2017-08-31 13:13:56,039 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 13:13:59,089 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 13:13:59,089 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 13:14:47,939 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 13:14:50,890 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 13:14:50,890 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 13:16:54,752 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 13:16:58,311 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 13:16:59,902 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 13:17:02,595 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
-2017-08-31 13:39:51,674 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 13:39:54,694 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 13:39:54,694 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 13:40:25,683 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->启动驱动并做清理工作true
-2017-08-31 13:40:28,721 ERROR [com.oversea.task.service.order.KatespadeAutoBuy] - list is null
-2017-08-31 13:40:28,722 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->调整浏览器尺寸和位置
-2017-08-31 13:41:41,230 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->跳转到登录页面
-2017-08-31 13:41:45,585 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入账号
-2017-08-31 13:41:47,185 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始输入密码
-2017-08-31 13:41:48,763 DEBUG [com.oversea.task.service.order.KatespadeAutoBuy] - --->开始提交
+2017-09-01 10:02:22,402 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->启动驱动并做清理工作true
+2017-09-01 10:02:27,792 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->调整浏览器尺寸和位置
+2017-09-01 10:02:32,547 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->跳转到登录页面
+2017-09-01 10:02:34,823 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始输入账号
+2017-09-01 10:02:36,388 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始输入密码
+2017-09-01 10:02:37,953 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始提交
+2017-09-01 10:02:40,966 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->等待登录完成
+2017-09-01 10:02:40,982 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->登录完成
+2017-09-01 10:02:40,994 ERROR [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始跳转到购物车
+2017-09-01 10:02:43,299 ERROR [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始等待购物车页面加载
+2017-09-01 10:02:48,313 ERROR [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始清理购物车
+2017-09-01 10:02:48,321 ERROR [com.oversea.task.service.order.BabyHavenAutoBuy] - --->购物车页面清理完成
+2017-09-01 10:02:48,339 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->跳转到商品页面
+2017-09-01 10:02:48,339 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->选择商品 productUrl = http://cn.babyhaven.com/1006585.html
+2017-09-01 10:02:49,913 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始等待商品页面加载
+2017-09-01 10:02:49,938 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->商品页面加载完成
+2017-09-01 10:02:51,970 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始选择sku
+2017-09-01 10:02:56,752 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->选择sku完成
+2017-09-01 10:02:56,752 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始寻找商品单价
+2017-09-01 10:02:56,780 ERROR [com.oversea.task.service.order.BabyHavenAutoBuy] - --->单价获取失败
+2017-09-01 10:02:56,780 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->开始加购物车
+2017-09-01 10:03:04,374 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->等待购物车页面加载
+2017-09-01 10:03:09,431 DEBUG [com.oversea.task.service.order.BabyHavenAutoBuy] - --->购物车页面加载完成
+2017-09-01 10:08:13,548 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:08:16,489 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:20:42,313 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:20:45,288 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:21:09,705 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到登录页面
+2017-09-01 10:21:18,115 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入账号
+2017-09-01 10:21:20,117 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入密码
+2017-09-01 10:21:21,684 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始提交
+2017-09-01 10:21:23,344 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待登录完成
+2017-09-01 10:21:28,213 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->登录完成
+2017-09-01 10:21:28,228 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始跳转到购物车
+2017-09-01 10:21:31,677 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待购物车页面加载
+2017-09-01 10:21:34,114 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:21:34,114 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始清理购物车
+2017-09-01 10:21:36,135 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面清理完成
+2017-09-01 10:21:36,135 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->确认购物车是否清理完成
+2017-09-01 10:21:36,164 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车内容:Your shopping bag is empty
+2017-09-01 10:21:36,172 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:21:36,172 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:21:38,495 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:27:13,569 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:27:16,488 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:34:24,305 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到登录页面
+2017-09-01 10:34:31,475 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入账号
+2017-09-01 10:34:33,499 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入密码
+2017-09-01 10:34:35,067 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始提交
+2017-09-01 10:34:36,716 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待登录完成
+2017-09-01 10:34:41,388 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->登录完成
+2017-09-01 10:34:41,400 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始跳转到购物车
+2017-09-01 10:34:45,203 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待购物车页面加载
+2017-09-01 10:34:47,745 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:34:47,746 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始清理购物车
+2017-09-01 10:34:49,767 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面清理完成
+2017-09-01 10:34:49,768 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->确认购物车是否清理完成
+2017-09-01 10:34:49,795 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车内容:Your shopping bag is empty
+2017-09-01 10:34:49,802 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:34:49,802 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:34:51,225 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:35:08,011 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:35:10,060 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:35:10,060 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:35:10,069 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->缺少匹配的sku findCount = 0 && skuList.size()/2 = 3
+2017-09-01 10:39:35,522 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:39:38,603 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:39:46,650 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到登录页面
+2017-09-01 10:39:52,809 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入账号
+2017-09-01 10:39:54,807 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入密码
+2017-09-01 10:39:56,371 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始提交
+2017-09-01 10:39:58,112 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待登录完成
+2017-09-01 10:40:03,186 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->登录完成
+2017-09-01 10:40:03,200 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始跳转到购物车
+2017-09-01 10:40:06,521 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待购物车页面加载
+2017-09-01 10:40:08,960 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:40:08,960 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始清理购物车
+2017-09-01 10:40:10,977 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面清理完成
+2017-09-01 10:40:10,978 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->确认购物车是否清理完成
+2017-09-01 10:40:11,007 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车内容:Your shopping bag is empty
+2017-09-01 10:40:11,015 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:40:11,015 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:40:11,509 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:40:20,476 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:40:22,523 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:40:22,523 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:40:22,988 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:40:22,988 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:40:23,006 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->查询商品单价异常
+org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//li[@id='priceSlot']/div[@class='price']"}
+Command duration or timeout: 17 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.103', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+*** Element info: {Using=xpath, value=//li[@id='priceSlot']/div[@class='price']}
+Session ID: 670e6f04-fda2-034e-b912-fb6f16df952a
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{platform=MAC, acceptSslCerts=true, javascriptEnabled=true, cssSelectorsEnabled=true, databaseEnabled=true, browserName=firefox, handlesAlerts=true, nativeEvents=false, webStorageEnabled=true, rotatable=false, locationContextEnabled=true, applicationCacheEnabled=true, takesScreenshot=true, version=44.0.2}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:647)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:490)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:345)
+	at com.oversea.task.service.order.AutoBuy6PM.selectProduct(AutoBuy6PM.java:305)
+	at com.oversea.task.service.order.AutoBuy6PM.main(AutoBuy6PM.java:52)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":"//li[@id='priceSlot']/div[@class='price']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.48.2', revision: '41bccdd10cf2c0560f637404c2d96164b67d9d67', time: '2015-10-09 13:08:06'
+System info: host: 'taofen8deMacBook-Pro.local', ip: '172.16.4.103', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.3', java.version: '1.7.0_79'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3944635008475248290webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10659)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3944635008475248290webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10668)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3944635008475248290webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12534)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3944635008475248290webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12539)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///var/folders/48/ny53dd4d7j3365h64mq6jblm0000gn/T/anonymous3944635008475248290webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12481)
+2017-09-01 10:40:26,246 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:40:26,246 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:40:26,261 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车按钮找不到
+2017-09-01 10:44:49,453 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:44:52,371 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:44:52,371 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:44:53,234 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:45:04,708 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:45:06,793 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:45:06,793 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:45:09,253 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:45:11,961 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:45:12,176 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->缺少匹配的sku findCount = 2 && skuList.size()/2 = 3
+2017-09-01 10:46:58,316 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:47:01,255 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:47:01,255 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:47:02,023 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:47:13,016 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:47:15,071 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:47:15,072 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:47:17,579 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:47:20,170 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:47:20,434 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:47:20,434 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:47:23,476 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:47:23,476 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:47:23,492 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车按钮找不到
+2017-09-01 10:48:23,705 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:48:26,738 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:48:26,738 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:48:27,375 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:48:37,657 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:48:39,706 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:48:39,706 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:48:42,158 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:48:44,636 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:48:44,822 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:48:44,822 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:48:47,861 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:48:47,861 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:48:49,385 ERROR [com.oversea.task.service.order.AutoBuy6PM] - text = 
+2017-09-01 10:48:49,385 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车按钮找不到
+2017-09-01 10:51:34,571 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:51:37,524 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:51:37,524 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:51:38,143 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:51:47,836 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:51:49,891 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:51:49,891 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:51:52,359 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:51:54,871 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:51:55,059 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:51:55,060 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:51:58,101 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:51:58,101 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:51:59,648 ERROR [com.oversea.task.service.order.AutoBuy6PM] - text = ADD TO SHOPPING BAG
+2017-09-01 10:52:02,134 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车成功
+2017-09-01 10:52:02,135 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待购物车页面加载
+2017-09-01 10:52:04,066 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:52:04,084 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品可用,继续
+2017-09-01 10:52:04,097 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品数量没有问题,carry on
+2017-09-01 10:53:51,002 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:53:53,886 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:54:17,462 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到登录页面
+2017-09-01 10:54:22,445 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入账号
+2017-09-01 10:54:24,449 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入密码
+2017-09-01 10:54:26,011 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始提交
+2017-09-01 10:54:27,658 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待登录完成
+2017-09-01 10:54:32,299 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->登录完成
+2017-09-01 10:54:32,311 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始跳转到购物车
+2017-09-01 10:54:35,559 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待购物车页面加载
+2017-09-01 10:54:38,000 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:54:38,000 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始清理购物车
+2017-09-01 10:54:40,017 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面清理完成
+2017-09-01 10:54:40,017 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->确认购物车是否清理完成
+2017-09-01 10:54:40,047 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车内容:Your shopping bag is empty
+2017-09-01 10:54:40,056 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:54:40,056 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:54:40,594 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:54:50,777 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:54:52,825 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:54:52,825 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:54:55,361 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:54:57,872 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:54:58,098 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:54:58,098 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:55:01,139 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:55:01,139 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:55:02,686 ERROR [com.oversea.task.service.order.AutoBuy6PM] - text = ADD TO SHOPPING BAG
+2017-09-01 10:55:04,975 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车成功
+2017-09-01 10:55:04,975 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待购物车页面加载
+2017-09-01 10:55:06,908 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:55:06,934 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品可用,继续
+2017-09-01 10:55:06,946 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品数量没有问题,carry on
+2017-09-01 10:56:44,887 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->启动驱动并做清理工作true
+2017-09-01 10:56:47,933 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->调整浏览器尺寸和位置
+2017-09-01 10:58:11,282 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到登录页面
+2017-09-01 10:58:16,599 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入账号
+2017-09-01 10:58:18,593 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始输入密码
+2017-09-01 10:58:20,162 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始提交
+2017-09-01 10:58:21,830 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待登录完成
+2017-09-01 10:58:26,824 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->登录完成
+2017-09-01 10:58:26,837 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始跳转到购物车
+2017-09-01 10:58:29,862 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待购物车页面加载
+2017-09-01 10:58:32,299 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 10:58:32,299 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->开始清理购物车
+2017-09-01 10:58:32,317 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车list size=1
+2017-09-01 10:58:36,401 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面清理完成
+2017-09-01 10:58:36,401 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->确认购物车是否清理完成
+2017-09-01 10:58:36,433 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车内容:You have 0 items in your bag!
+2017-09-01 10:58:36,456 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->跳转到商品页面
+2017-09-01 10:58:36,456 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择商品 productUrl = https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219
+2017-09-01 10:58:36,469 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始等待商品页面加载
+2017-09-01 10:58:46,114 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品页面加载完成
+2017-09-01 10:58:48,160 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->找到该款商品
+2017-09-01 10:58:48,161 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始选择sku
+2017-09-01 10:58:50,718 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了Khaki/Chestnut Signature C/Nappa
+2017-09-01 10:58:53,357 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择了7.5
+2017-09-01 10:58:53,538 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->选择sku完成
+2017-09-01 10:58:53,538 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找商品单价
+2017-09-01 10:58:56,572 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品没有售罄,carry on
+2017-09-01 10:58:56,572 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始加购物车
+2017-09-01 10:58:58,145 ERROR [com.oversea.task.service.order.AutoBuy6PM] - text = ADD TO SHOPPING BAG
+2017-09-01 11:00:35,388 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->加购物车成功
+2017-09-01 11:00:35,388 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待购物车页面加载
+2017-09-01 11:00:36,915 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 11:00:36,929 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品可用,继续
+2017-09-01 11:00:36,944 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->商品数量没有问题,carry on
+2017-09-01 11:00:36,944 ERROR [com.oversea.task.service.order.AutoBuy6PM] - --->myPrice = 39.99
+2017-09-01 11:00:36,944 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待购物车页面加载
+2017-09-01 11:00:38,464 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->购物车页面加载完成
+2017-09-01 11:00:41,964 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->等待支付页面加载
+2017-09-01 11:00:44,113 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->支付页面加载完成
+2017-09-01 11:00:44,114 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->开始寻找address change按钮
+2017-09-01 11:00:47,261 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->点击address change按钮,等待address 打开
+2017-09-01 11:00:48,109 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->address打开完成
+2017-09-01 11:00:49,749 DEBUG [com.oversea.task.service.order.AutoBuy6PM] - --->点击所选地址,等待address关闭
+2017-09-01 14:04:39,445 DEBUG [com.oversea.task.service.order.PerfumesclubAutoBuy] - --->启动驱动并做清理工作true
+2017-09-01 14:04:42,501 DEBUG [com.oversea.task.service.order.PerfumesclubAutoBuy] - --->调整浏览器尺寸和位置
+2017-09-01 14:05:09,060 DEBUG [com.oversea.task.service.order.PerfumesclubAutoBuy] - --->跳转到登录页面
+2017-09-01 14:05:09,064 DEBUG [com.oversea.task.service.order.PerfumesclubAutoBuy] - --->等待登录完成

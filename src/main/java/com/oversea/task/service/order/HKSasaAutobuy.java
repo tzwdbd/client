@@ -503,7 +503,7 @@ public class HKSasaAutobuy extends AutoBuy{
 								logger.error("--->获取商城订单:"+mallOrderNo+"失败");
 								return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 							}
-						}else if("包装中".equals(orderStatus)){
+						}else{
 							logger.debug("--->商城订单:"+mallOrderNo+"还没有发货");
 							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 						}
