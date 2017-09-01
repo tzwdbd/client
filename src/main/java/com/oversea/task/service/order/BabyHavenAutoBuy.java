@@ -248,10 +248,10 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		// 加购物车
 		logger.debug("--->开始加购物车");
 		try {
-			WebElement addCart = driver.findElement(By.xpath("//button[@id='DetailAddCart' and contains(text(), '加入购物车')]"));
+			WebElement addCart = driver.findElement(By.id("DetailAddCart"));
 			addCart.click();
 			Utils.sleep(5000);
-			WebElement settlement = driver.findElement(By.xpath("//button[@id='easyDialogYesBtn' and contains(text(), '去购物车结算')]"));
+			WebElement settlement = driver.findElement(By.id("easyDialogYesBtn"));
 			settlement.click();
 			Utils.sleep(1500);
 		} catch (Exception e) {
@@ -800,7 +800,6 @@ public class BabyHavenAutoBuy extends AutoBuy {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("订单 #                            ：BH15027857195583".trim().replaceAll("[^A-Z0-9]", ""));
 		BabyHavenAutoBuy autoBuy = new BabyHavenAutoBuy();
 		Utils.sleep(2000);
 		AutoBuyStatus status = autoBuy.login("huhy@taofen8.com", "hhy2240955810");
@@ -838,7 +837,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				autoBuy.selectProduct(param);
 			}
 
-			System.out.println(autoBuy.pay(param, address, payaccount));
+			//System.out.println(autoBuy.pay(param, address, payaccount));
 			
 //			RobotOrderDetail detail = new RobotOrderDetail();
 //			detail.setMallOrderNo("98027671");
