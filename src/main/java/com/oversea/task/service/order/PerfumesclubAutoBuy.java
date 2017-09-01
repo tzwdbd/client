@@ -429,7 +429,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		}
 		
 		String usedEmail = (String) param.get("userName");
-		
+		boolean mark = false;
 		//找到添加新地址
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settle-link-new-address")));
@@ -438,6 +438,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			Utils.sleep(1000);
 		}catch(Exception e){
 			logger.debug("--->添加出错");
+			mark = true;
 		}
 		
 		//输入收货地址
@@ -568,6 +569,15 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			Utils.sleep(1500);
 			emailEle.sendKeys(usedEmail);
 			
+			//设置默认
+			if(mark){
+				try {
+					driver.findElement(By.id("addr-checkbox-set-default")).click();
+				} catch (Exception e) {
+					logger.debug("--->点击默认出错");
+				}
+				
+			}
 			//保存地址
 			driver.findElement(By.id("addr-btn-save")).click();
 			Utils.sleep(3000);
@@ -681,6 +691,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			orderElement.click();
 			Utils.sleep(1000);
 			logger.debug("--->开始查找商品订单号1");
+			driver.get("http://www.perfumesclub.cn/sales/order/history/");
 			//等待my account页面加载完成
 			logger.debug("--->开始等待order页面加载完成");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-item")));
