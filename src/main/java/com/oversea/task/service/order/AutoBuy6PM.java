@@ -43,11 +43,11 @@ public class AutoBuy6PM extends AutoBuy {
 			status = auto.cleanCart();
 			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "http://www.6pm.com/p/melissa-shoes-space-love-iii-charcoal/product/8886925/color/275");
+				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"color\",\"Pale Pink\"],[\"size\",\"6\"]]");
+				param.put("sku", "[[\"color\",\"Khaki/Chestnut Signature C/Nappa\"],[\"size\",\"7.5\"],[\"width\",\"M\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
 				/*if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
@@ -219,12 +219,19 @@ public class AutoBuy6PM extends AutoBuy {
 		logger.debug("--->开始等待商品页面加载");
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='content']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mdl-layout__content")));
 			logger.debug("--->商品页面加载完成");
 			Utils.sleep(2000);
 		}catch(Exception e){
 			logger.debug("--->等待商品页面加载");
-			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("root")));
+				logger.debug("--->商品页面加载完成");
+				Utils.sleep(2000);
+			}catch(Exception e1){
+				logger.debug("--->等待商品页面加载");
+				return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
+			}
 		}
 		
 		//商品页面404,商品也是下架
