@@ -50,14 +50,14 @@ public class AutoBuy6PM extends AutoBuy {
 				param.put("sku", "[[\"color\",\"Khaki/Chestnut Signature C/Nappa\"],[\"size\",\"7.5\"],[\"width\",\"M\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
-				/*if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 					Map<String, String> param0 = new HashMap<String, String>();
 					param0.put("my_price", "39.99");
 					param0.put("count", "1");
 					param0.put("isPay", String.valueOf(false));
 					param0.put("cardNo", "4662 4833 6029 1396");
 					status = auto.pay(param0);
-				}*/
+				//}
 			}
 		}
 		//auto.logout();
@@ -257,29 +257,32 @@ public class AutoBuy6PM extends AutoBuy {
 		try{
 			List<String> skuList = Utils.getSku((String) sku);
 //			List<WebElement> elements = driver.findElements(By.xpath("//form[@id='prForm']/ul[@class='wingInfo onSale noFreeShip']/li"));
-			List<WebElement> elements = driver.findElements(By.cssSelector("form#prForm>ul.wingInfo>li"));
+			List<WebElement> elements = driver.findElements(By.cssSelector("form .VrH5P"));
 			int findCount = 0;
 			for (int i = 0; i < skuList.size(); i++){
 				if (i % 2 == 1){
 					for(WebElement element : elements){
 						try{
-							WebElement label = element.findElement(By.xpath(".//label"));
-							if(label.getText().toLowerCase().contains(skuList.get(i-1).toLowerCase())){
-								findCount++;
-								WebElement ele = element.findElement(By.xpath(".//select[@class='btn secondary']"));
-								try{
-									Select select = new Select(ele);
-									select.selectByVisibleText(skuList.get(i).trim());
-									Utils.sleep(2000);
-									logger.debug("--->选择了"+select.getFirstSelectedOption().getText());
-									if(!select.getFirstSelectedOption().getText().equalsIgnoreCase(skuList.get(i).trim())){
-										return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+							if(element.isDisplayed()){
+								WebElement label = element.findElement(By.xpath(".//label"));
+								if(label.getText().toLowerCase().contains(skuList.get(i-1).toLowerCase())){
+									findCount++;
+									WebElement ele = element.findElement(By.cssSelector("select"));
+									try{
+										Select select = new Select(ele);
+										select.selectByVisibleText(skuList.get(i).trim());
+										Utils.sleep(2000);
+										logger.debug("--->选择了"+select.getFirstSelectedOption().getText());
+										
+										if(!select.getFirstSelectedOption().getText().equalsIgnoreCase(skuList.get(i).trim())){
+											return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+										}
+									}catch(Exception e){
+										logger.debug("--->找不到指定的sku no success= "+(skuList.get(i-1)+":"+skuList.get(i)),e);
+										return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 									}
-								}catch(Exception e){
-									logger.debug("--->找不到指定的sku no success= "+(skuList.get(i-1)+":"+skuList.get(i)),e);
-									return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+									
 								}
-								
 							}
 						}catch(Exception e){
 							continue;
@@ -300,7 +303,7 @@ public class AutoBuy6PM extends AutoBuy {
 		//寻找商品单价
 		try{
 			logger.debug("--->开始寻找商品单价");
-			WebElement priceElement = driver.findElement(By.xpath("//li[@id='priceSlot']/div[@class='price']"));
+			WebElement priceElement = driver.findElement(By.cssSelector("._3r_Ou"));
 			String text = priceElement.getText();
 			String productEntityId = param.get("productEntityId");
 			if(!Utils.isEmpty(text) && text.startsWith("$") && StringUtil.isNotEmpty(productEntityId)){
@@ -328,23 +331,27 @@ public class AutoBuy6PM extends AutoBuy {
 		//加购物车
 		logger.debug("--->开始加购物车");
 		try{
-			WebElement cart = driver.findElement(By.xpath("//button[@id='addToCart']"));
-			Utils.sleep(1500);
-			String text = cart.getText();
-			logger.error("text = "+text);
-			if(StringUtil.isNotEmpty(text)){
-				text = text.toLowerCase();
-				if(text.contains("out of stock")){
-					logger.debug("--->商品这款sku已经售完");
-					return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+			List<WebElement> carts = driver.findElements(By.cssSelector("._1HQVd"));
+			for(WebElement cart:carts){
+				if(cart.isDisplayed()){
+					Utils.sleep(1500);
+					String text = cart.getText();
+					logger.error("text = "+text);
+					if(StringUtil.isNotEmpty(text)){
+						text = text.toLowerCase();
+						if(text.contains("out of stock")){
+							logger.debug("--->商品这款sku已经售完");
+							return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+						}
+						if(text.contains("add to shopping bag")){
+							cart.click();
+							logger.debug("--->加购物车成功");
+						}
+					}else{
+						logger.debug("--->加购物车按钮找不到");
+						return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
+					}
 				}
-				if(text.contains("add to shopping bag")){
-					cart.click();
-					logger.debug("--->加购物车成功");
-				}
-			}else{
-				logger.debug("--->加购物车按钮找不到");
-				return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
 			}
 		}catch(Exception e){
 			logger.debug("--->加购物车按钮找不到");
