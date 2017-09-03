@@ -669,7 +669,7 @@ public class AutoBuy6PM extends AutoBuy {
 			
 			if(list.size()==1){
 				WebElement product = list.get(0);
-				String status = product.findElement(By.xpath(".//td[@class='shipping']/h5")).getText();
+				String status = product.findElement(By.xpath(".//td[@class='shipping']/h5")).getText().trim();
 				if(status.toLowerCase().contains("cancelled")){
 					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 				}else if(status.equalsIgnoreCase("customer action required")){
