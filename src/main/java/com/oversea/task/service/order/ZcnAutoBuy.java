@@ -794,6 +794,12 @@ public class ZcnAutoBuy extends AutoBuy {
 						WebElement isPromoSuccess = driver.findElement(By.id("promo-success"));
 						if (isPromoSuccess.isDisplayed() && isPromoSuccess.getText().contains("你已成功获得促销代码对应的优惠。")) {
 							isEffective = true;
+							statusMap.put(promotion, 10);
+						}else{
+							WebElement isPromoError = driver.findElement(By.id("addPromo_ExpiredCode"));
+							if (isPromoError.isDisplayed()) {
+								statusMap.put(promotion, 0);
+							}
 						}
 					}
 				} catch (Exception e) {
