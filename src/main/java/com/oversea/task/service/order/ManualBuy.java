@@ -287,7 +287,7 @@ public class ManualBuy{
 		
 		//查询所有可见的订单
 		boolean isFind = false; 
-		for(int i = 0;i<3;i++){
+		for(int i = 0;i<7;i++){
 			List<WebElement> list = driver.findElements(By.cssSelector(autoOrderScribeExpress.getOrderListCode()));
 			for(WebElement panel : list){
 				WebElement w = panel.findElement(By.cssSelector(autoOrderScribeExpress.getOrderNumberCode()));
@@ -310,13 +310,17 @@ public class ManualBuy{
 				}
 			}
 			if(!isFind){
-				try{
-					int page = i+2;
-					String url= String.format(autoOrderScribeExpress.getNextPageUrl()+"%d", page);
-					driver.navigate().to(url);
-					Utils.sleep(5500);
-				}catch(Exception e){
-					logger.error(autoOrderScribeExpress.getSiteName()+"--->跳转page出错:",e);
+				if(!StringUtil.isBlank(autoOrderScribeExpress.getNextPageUrl())){
+					try{
+						int page = i+2;
+						String url= String.format(autoOrderScribeExpress.getNextPageUrl()+"%d", page);
+						driver.navigate().to(url);
+						Utils.sleep(5500);
+					}catch(Exception e){
+						logger.error(autoOrderScribeExpress.getSiteName()+"--->跳转page出错:",e);
+					}
+				}else{
+					break;
 				}
 			}
 		}
