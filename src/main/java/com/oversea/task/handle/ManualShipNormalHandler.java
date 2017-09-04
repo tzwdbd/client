@@ -41,7 +41,7 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 			manualBuy.setOrderDetailList(orderDetails);
 			try {
 				AutoBuyStatus status = manualBuy.login(account.getPayAccount(), account.getLoginPwd(), autoOrderLogin);
-				if(AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+				if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 					if(autoOrderScribeExpress!=null){
 						status = manualBuy.scribeExpress(orderDetail,autoOrderScribeExpress);
 						if(AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED.equals(status)){
@@ -54,6 +54,8 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 								orderDetail.setStatus(status.getValue());
 							}
 						}
+					}else{
+						logger.debug("autoOrderScribeExpress 为空");
 					}
 					break;
 				}

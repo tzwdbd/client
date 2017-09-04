@@ -260,6 +260,7 @@ public class ManualBuy{
 	public AutoBuyStatus scribeExpress(RobotOrderDetail detail,AutoOrderScribeExpress autoOrderScribeExpress){
 		String mallOrderNo = detail.getMallOrderNo();
 		if (Utils.isEmpty(mallOrderNo)) { 
+			logger.debug(autoOrderScribeExpress.getSiteName()+"--->mallOrderNo没有");
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY; 
 		}
 		try{
