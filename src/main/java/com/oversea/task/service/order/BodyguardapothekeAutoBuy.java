@@ -393,6 +393,20 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		String address = userTradeAddress.getAddress();
 		String zipcode = userTradeAddress.getZip();
 		String mobile = userTradeAddress.getMobile();
+		//删除地址
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ctrl-delete")));
+			List<WebElement> addresss = driver.findElements(By.cssSelector(".ctrl-delete"));
+			for(WebElement w:addresss){
+				if(w.isDisplayed()){
+					w.click();
+					break;
+				}
+			}
+		} catch (Exception e) {
+			logger.debug("--->删除默认地址出错");
+		}
+		
 		
 		logger.debug("--->选择收货地址");
 		// 选收货地址

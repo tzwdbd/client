@@ -633,7 +633,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			BigDecimal x = new BigDecimal(myPrice);
 			BigDecimal y = new BigDecimal(priceStr);
 			BigDecimal v = y.subtract(x);
-			if (v.doubleValue() > 6.00D){
+			if (v.doubleValue() > 7.00D){
 				logger.error("--->总价差距超过约定,不能下单");
 				throw new Exception();
 			}
