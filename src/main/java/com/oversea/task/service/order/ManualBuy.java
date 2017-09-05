@@ -292,9 +292,11 @@ public class ManualBuy{
 			for(WebElement panel : list){
 				WebElement w = panel.findElement(By.cssSelector(autoOrderScribeExpress.getOrderNumberCode()));
 				if(w.getText().contains(mallOrderNo.trim())){
+					logger.error(autoOrderScribeExpress.getSiteName()+"--->找到商城单号"+mallOrderNo);
 					isFind = true;
 					//判断订单是否取消
 					String s = panel.findElement(By.cssSelector(autoOrderScribeExpress.getOrderStatusCode())).getText();
+					logger.error(autoOrderScribeExpress.getSiteName()+"--->OrderStatusCode="+s);
 					if(!StringUtil.isBlank(s) && s.contains(autoOrderScribeExpress.getCancelledStr())){
 						logger.error(autoOrderScribeExpress.getSiteName()+"--->商城订单:"+mallOrderNo+"已取消");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
@@ -358,7 +360,7 @@ public class ManualBuy{
 						if(ee != null && !StringUtil.isBlank(ee.getText())){
 							logger.error(autoOrderExpressDetail.getSiteName()+"--->找到单号 = "+ee.getText());
 							expressNo = ee.getText().replaceAll("[^a-z^A-Z^0-9]", "");
-							if(!StringUtil.isBlank(texts) && !texts.contains("TRAKPAK Tracking Number")){
+							if(!StringUtil.isBlank(texts) && !texts.contains("Local Tracking Number")){
 								company="EMS";
 								logger.error(autoOrderExpressDetail.getSiteName()+"--->company = "+company);
 							}

@@ -807,7 +807,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 											logger.error("--->找到单号 = "+ee.getText());
 											
 											data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, ee.getText());
-											if(StringUtil.isNotEmpty(texts) && !texts.contains("TRAKPAK Tracking Number")){
+											if(StringUtil.isNotEmpty(texts) && !texts.contains("Local Tracking Number")){
 												data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
 												return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 											}

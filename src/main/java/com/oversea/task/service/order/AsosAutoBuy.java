@@ -1051,6 +1051,9 @@ public class AsosAutoBuy extends AutoBuy {
 	}
 	public static void main(String[] args) throws Exception {
 		AsosAutoBuy autoBuy = new AsosAutoBuy();
-		autoBuy.login("keson2@outlook.com", "tfb001001");
+		autoBuy.login("caaoxo@163.com", "tfb001001");
+		RobotOrderDetail detail = new RobotOrderDetail();
+		detail.setMallOrderNo("281574597");
+		autoBuy.scribeExpress(detail);
 	}
 }
