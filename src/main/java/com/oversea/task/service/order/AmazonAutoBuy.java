@@ -3814,7 +3814,7 @@ public class AmazonAutoBuy extends AutoBuy
 				for(WebElement w:results){
 					WebElement titleWeb = null;
 					try {
-						titleWeb = w.findElement(By.cssSelector(".sx-title"));
+						titleWeb = w.findElement(By.cssSelector(".sx-title span"));
 					} catch (Exception e) {
 						continue;
 					}
