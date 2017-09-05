@@ -524,20 +524,8 @@ public class KatespadeAutoBuy extends AutoBuy {
 			//清理
 			logger.error("--->开始清理购物车");
 			
-			//查看是否有弹窗
-			try{
-				driver.findElement(By.cssSelector("a.sr_UI_close")).click();
-				logger.debug("--->关闭弹窗");
-				Utils.sleep(1500);
-			}catch(Exception ee){}
-			try{
-				driver.findElement(By.cssSelector("div#sr_header_close")).click();
-				logger.debug("--->关闭弹窗");
-				Utils.sleep(1500);
-			}catch(Exception ee){}
-			
 			//循坏清除
-			List<WebElement> list = driver.findElements(By.cssSelector("button[value='Remove']"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".item-details button[value='Remove']"));
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
@@ -545,7 +533,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 					list.get(0).click();
 					Utils.sleep(2000);
 					if(size>1){
-						list = driver.findElements(By.cssSelector("button[value='Remove']"));
+						list = driver.findElements(By.cssSelector(".item-details button[value='Remove']"));
 					}else{
 						break;
 					}
