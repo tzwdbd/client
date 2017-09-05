@@ -529,7 +529,7 @@ public class MankindAutoBuy extends AutoBuy {
 												
 												data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "TRAKPAK");
 												data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, ee.getText());
-												if(StringUtil.isNotEmpty(text) && !text.contains("Local Tracking Number")){
+												if(StringUtil.isNotEmpty(text) && text.contains("Local Tracking Number")){
 													data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
 													return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 												}

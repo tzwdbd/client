@@ -360,7 +360,7 @@ public class ManualBuy{
 						if(ee != null && !StringUtil.isBlank(ee.getText())){
 							logger.error(autoOrderExpressDetail.getSiteName()+"--->找到单号 = "+ee.getText());
 							expressNo = ee.getText().replaceAll("[^a-z^A-Z^0-9]", "");
-							if(!StringUtil.isBlank(texts) && !texts.contains("Local Tracking Number")){
+							if(!StringUtil.isBlank(texts) && texts.contains("Local Tracking Number")){
 								company="EMS";
 								logger.error(autoOrderExpressDetail.getSiteName()+"--->company = "+company);
 							}
