@@ -934,6 +934,140 @@ public class ZcnAutoBuy extends AutoBuy {
 	}
 	
 	AutoBuyStatus chooseAddress(Address address, OrderPayAccount payAccount) {
+		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		try {
+			By by = By.xpath("//a[@class='a-button-text checkout-continue-link' and contains(text(), '送货到该地址')]");
+			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			checkout.click();
+			logger.error("送货到该地址点击");
+		} catch (Exception e) {
+			try {
+				By by = By.xpath("//a[@class='a-button-text checkout-continue-link' and contains(text(), '配送到此地址')]");
+				WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+				checkout.click();
+				logger.error("配送到此地址");
+			} catch (Exception e2) {
+				logger.error("填写地址失败");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+			}
+		}
+		Utils.sleep(5000);
+		
+		try {
+			By by = By.xpath("//input[@class='a-button-input' and @value='继续']");
+			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			checkout.click();
+			logger.error("继续点击");
+		} catch (Exception e) {
+			logger.error("--->选择配送方式失败4");
+			try {
+				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
+				for(WebElement w:checkouts){
+					if(w.isDisplayed()){
+						w.click();
+						break;
+					}
+				}
+			} catch (Exception e1) {
+				logger.error("--->填写地址失败5", e1);
+			}
+		}
+		Utils.sleep(2000);
+		
+		try {
+			logger.error("holder-name获取");
+			WebElement holderName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("holder-name")));
+			holderName.clear();
+			holderName.sendKeys(address.getName());
+			TimeUnit.SECONDS.sleep(2);
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+		}
+		
+		try {
+			logger.error("kyc-number获取");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
+		} catch (Exception e) {
+			logger.error("--->kyc-number", e);
+			try {
+				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
+				for(WebElement w:checkouts){
+					if(w.isDisplayed()){
+						w.click();
+						break;
+					}
+				}
+			} catch (Exception e2) {
+				logger.error("继续点击失败");
+			}
+			try {
+				logger.error("kyc-number获取1");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
+			}catch (Exception e1) {
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
+		}
+		try {
+			WebElement kycNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
+			kycNumber.sendKeys(address.getIdCard());
+			logger.error("--->IdCard="+address.getIdCard());
+			TimeUnit.SECONDS.sleep(1);
+			Select year = new Select(driver.findElement(By.id("kyc-expiration-year-dropdown")));
+			logger.error("--->ExpireDate="+address.getExpireDate());
+			year.selectByVisibleText(address.getExpireDate().substring(0,4));
+			TimeUnit.SECONDS.sleep(1);
+			Select month = new Select(driver.findElement(By.id("kyc-expiration-month-dropdown")));
+			String monthStr = address.getExpireDate().substring(4,6);
+			if(monthStr.startsWith("0")){
+				monthStr = monthStr.substring(1);
+			}
+			month.selectByVisibleText(monthStr);
+			TimeUnit.SECONDS.sleep(1);
+			Select day = new Select(driver.findElement(By.id("kyc-expiration-day-dropdown")));
+			String dayStr = address.getExpireDate().substring(6,8);
+			if(dayStr.startsWith("0")){
+				dayStr = dayStr.substring(1);
+			}
+			day.selectByVisibleText(dayStr);
+			TimeUnit.SECONDS.sleep(1);
+			
+			try {
+				WebElement alertContent = driver.findElement(By.xpath("//div[@class='a-alert-content' and contains(text(),'请不要选择过期的日期')]"));
+				if (alertContent != null && alertContent.isDisplayed()) {
+					return AutoBuyStatus.AUTO_PAY_SELECT_EXPIRE_DATE_OVERDUE;
+				}
+			} catch (Exception e) {}
+			
+			driver.executeScript("(function(){window.scrollBy(0,200);})();");
+			TimeUnit.SECONDS.sleep(1);
+			WebElement photoFront = driver.findElement(By.cssSelector("input[name=kyc-front-photo]"));// TODO
+			String front = ""+System.currentTimeMillis()/1000;
+			logger.error("--->front="+address.getIdCardFront());
+			download(address.getIdCardFront(), "C://auto//screenshot//"+front+".png");
+			Utils.sleep(1000);
+			photoFront.sendKeys("C:\\auto\\screenshot\\"+front+".png");
+			Utils.sleep(25000);
+			WebElement photoBack = driver.findElement(By.cssSelector("input[name=kyc-back-photo]"));
+			String back = ""+System.currentTimeMillis()/1000;
+			logger.error("--->back="+address.getIdCardBack());
+			download(address.getIdCardBack(), "C://auto//screenshot//"+back+".png");
+			Utils.sleep(1000);
+			photoBack.sendKeys("C:\\auto\\screenshot\\"+back+".png");
+			Utils.sleep(25000);
+			WebDriverWait wait0 = new WebDriverWait(driver, 45);
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-continue-button-announce")));
+			WebElement checkout = driver.findElement(By.id("kyc-continue-button-announce"));
+			checkout.click();
+			Utils.sleep(5000);
+			logger.error("--->设置身份证完成");
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
+		} catch (Exception e) {
+			logger.error("--->选择地址失败",e);
+			return AutoBuyStatus.AUTO_PAY_SELECT_EXPIRE_DATE_OVERDUE;
+		}
+	}
+	
+	AutoBuyStatus chooseNewAddress(Address address, OrderPayAccount payAccount) {
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		// 格式化地址，使之于中亚下拉框匹配
 		relapceAddress(address);
@@ -1431,11 +1565,11 @@ public class ZcnAutoBuy extends AutoBuy {
 		address.setCity("泉州市");
 		address.setDistrict("晋江区");
 		address.setAddress("西斗门路9号福地创业园9号4幢2楼海狐");
-		address.setIdCard("330726199511251119");
+		address.setIdCard("330681199404182559");
 		address.setMobile("17098041474");
 		address.setZip("200001");
-		address.setName("张明亮");
-		address.setExpireDate("20170216");
+		address.setName("胡罕宇");
+		address.setExpireDate("20180216");
 		address.setIdCardFront("http://img.haihu.com/0117011371f4c87eb119406b91764f04d08919be.png");
 		address.setIdCardBack("http://img.haihu.com/01170113a7a8e79c5973474c9e3656a52ad1a9f0.png");
 		OrderPayAccount payaccount = new OrderPayAccount();
@@ -1446,9 +1580,9 @@ public class ZcnAutoBuy extends AutoBuy {
 		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 			status = autoBuy.cleanCart();
 			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-				param.put("url", "https://www.amazon.cn/dp/B01GC420KA");
+				param.put("url", "https://www.amazon.cn/dp/B01L7NRP4C/ref=sr_1_15?s=specialty-aps&ie=UTF8&qid=1501484601&sr=8-15&keywords=%E9%9E%8B&th=1");
 				// https://www.amazon.cn/gp/aw/d/B0721V3L4B
-				param.put("sku", "[[\"大小\",\"啫哩\"]]");
+				param.put("sku", "[[\"尺寸\",\"8.5\"]]");
 				param.put("num", "1");
 				param.put("promotion", "CMVSPAM8");
 				System.out.println(autoBuy.selectProduct(param));
