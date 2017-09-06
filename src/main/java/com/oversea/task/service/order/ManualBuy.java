@@ -382,6 +382,56 @@ public class ManualBuy{
 		return false;
 	}
 	
+	public void killFirefox(){
+		
+		//浏览器退出
+		quitDriver(2500);
+		
+		//杀掉浏览器进程
+		try {
+			logger.debug("--->开始结束firefox进程");
+			Runtime.getRuntime().exec("taskkill -f -im firefox.exe");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error("结束firefox进程异常",e);
+		}
+		
+		Utils.sleep(200);
+		logger.info("--->浏览器退出!");
+	}
+	
+	public void quitDriver(long joinTime){
+		Runnable quitRunnable = new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {  
+			        logger.debug("--->完成本次浏览器操作");
+					logger.debug("===================");
+					if (driver != null){
+						driver.quit();
+			    	}
+			    } catch (Throwable e) {  
+			    	logger.error(e);
+			    } 
+			}
+		};
+		Thread t = new Thread(quitRunnable);
+		t.start();
+		try{
+			t.join(joinTime);
+		}catch(Exception e){
+			logger.error("join exception = ",e);
+		}
+		try{
+			t.interrupt();
+		}catch(Exception e){
+			logger.error("interrupt exception = ",e);
+		}
+		Utils.sleep(2500);
+	}
+	
 	public static void main(String[] args){
 		ManualBuy auto = new ManualBuy(false);
 		AutoOrderLogin autoOrderLogin = new AutoOrderLogin();

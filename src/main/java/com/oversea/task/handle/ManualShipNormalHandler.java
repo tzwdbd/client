@@ -33,7 +33,7 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 		RobotOrderDetail orderDetail = orderDetails.get(0);
 		
 		logger.error("ManualShipNormalHandler 开始新的一次调用任务:爬取物流");
-
+		boolean mark = false;
 		for (int i = 0; i < RETRY_COUNT; i++){
 			ManualBuy manualBuy = new ManualBuy(false);
 			manualBuy.setTask(task);
@@ -52,6 +52,7 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 							if(autoOrderExpressDetail!=null){
 								status = manualBuy.expressDetail(orderDetail, autoOrderExpressDetail);
 								orderDetail.setStatus(status.getValue());
+								mark = true;
 							}
 						}
 					}else{
@@ -63,6 +64,9 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 				logger.debug("ManualShipNormalHandler.doService 碰到异常 = ", e);
 			}
 			finally{
+				if(mark){
+					manualBuy.killFirefox();
+				}
 				logger.error("=================>ManualShipNormalHandler成功完结<======================");
 			}
 		}
