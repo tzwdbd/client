@@ -402,13 +402,21 @@ public class ThehutAutoBuy extends AutoBuy {
 
 		// driver.executeScript("(function(){document.body.scrollTop = document.documentElement.scrollTop = 0;})();");
 		logger.debug("--->开始比价[" + myPrice + "," + totalPrice + "]");
-		BigDecimal x = new BigDecimal(myPrice);
-		BigDecimal y = new BigDecimal(totalPrice);
-		data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, totalPrice);
-		BigDecimal v = y.subtract(x);
-		if (v.doubleValue() > 15.00D) {
-			logger.error("--->总价差距超过约定,不能下单");
-			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+		if(!StringUtil.isBlank(getTotalPrice())){
+			AutoBuyStatus priceStatus = comparePrice(totalPrice, getTotalPrice());
+			if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+				logger.error("--->总价差距超过约定,不能下单");
+				return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+			}
+		}else{
+			BigDecimal x = new BigDecimal(myPrice);
+			BigDecimal y = new BigDecimal(totalPrice);
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, totalPrice);
+			BigDecimal v = y.subtract(x);
+			if (v.doubleValue() > 15.00D) {
+				logger.error("--->总价差距超过约定,不能下单");
+				return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+			}
 		}
 		doScreenShot();
 		

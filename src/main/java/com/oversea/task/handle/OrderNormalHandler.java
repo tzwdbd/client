@@ -167,14 +167,18 @@ public class OrderNormalHandler implements OrderHandler {
 							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPromotion())){
 								myPrice = myPrice - (Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/rate);
 							}
+							
 							RobotOrderDetail robotOrderDetail = orderDetailList.get(0);
 							if(robotOrderDetail != null && "1".equals(robotOrderDetail.getIsStockpile())){
 								isStock = true;
 							}
-							
+							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPay())){
+								autoBuy.setTotalPrice(String.valueOf(Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/rate));
+							}
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
 							params.put("my_price", String.valueOf(myPrice));
+							
 							params.put("count", count);
 							params.put("isPay", String.valueOf(isPay));
 							params.put("cardNo", account.getCardNo());

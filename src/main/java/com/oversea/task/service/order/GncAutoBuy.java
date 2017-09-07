@@ -603,13 +603,21 @@ public class GncAutoBuy extends AutoBuy{
 				String price = matcher.group();
 				logger.debug("找到商品总价"+price);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, price);
-				BigDecimal x = new BigDecimal(myPrice);
-				BigDecimal y = new BigDecimal(price);
-				BigDecimal v = x.subtract(y);
-				double m = Math.abs(v.doubleValue());
-				if (m > 20.00D) {
-					logger.error("--->总价差距超过约定,不能下单");
-					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				if(!StringUtil.isBlank(getTotalPrice())){
+					AutoBuyStatus priceStatus = comparePrice(price, getTotalPrice());
+					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}else{
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(price);
+					BigDecimal v = x.subtract(y);
+					double m = Math.abs(v.doubleValue());
+					if (m > 20.00D) {
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
 				}
 			}else{
 				logger.debug("查询总价错误");

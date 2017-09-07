@@ -410,13 +410,21 @@ public class ZapposAutoBuy extends AutoBuy{
 				String priceStr = text.substring(text.indexOf("$")+1);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 				logger.debug("--->找到商品结算总价 = "+priceStr);
-				BigDecimal x = new BigDecimal(myPrice);
-				BigDecimal y = new BigDecimal(priceStr);
-				BigDecimal v = x.subtract(y);
-				double m = Math.abs(v.doubleValue());
-				if (m > 20.00D){
-					logger.error("--->总价差距超过约定,不能下单");
-					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				if(!StringUtil.isBlank(getTotalPrice())){
+					AutoBuyStatus priceStatus = comparePrice(priceStr, getTotalPrice());
+					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}else{
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(priceStr);
+					BigDecimal v = x.subtract(y);
+					double m = Math.abs(v.doubleValue());
+					if (m > 20.00D){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
 				}
 			}
 		}catch(Exception e){

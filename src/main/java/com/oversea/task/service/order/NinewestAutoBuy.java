@@ -442,12 +442,20 @@ public class NinewestAutoBuy extends AutoBuy {
 				logger.debug("找不到总价");
 				return AutoBuyStatus.AUTO_PAY_GET_TOTAL_PRICE_FAIL;
 			}
-			BigDecimal x = new BigDecimal(myPrice);
-			BigDecimal y = new BigDecimal(price);
-			BigDecimal v = y.subtract(x);
-			if (v.doubleValue() > 5.00D){
-				logger.error("--->总价差距超过约定,不能下单");
-				return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+			if(!StringUtil.isBlank(getTotalPrice())){
+				AutoBuyStatus priceStatus = comparePrice(price, getTotalPrice());
+				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}else{
+				BigDecimal x = new BigDecimal(myPrice);
+				BigDecimal y = new BigDecimal(price);
+				BigDecimal v = y.subtract(x);
+				if (v.doubleValue() > 5.00D){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
 			}
 			TimeUnit.SECONDS.sleep(3);
 			WebElement placeOrder = driver.findElement(By.xpath("//a[@class='fluid-checkout-button fluid-checkout-button--primary submit-button primary-button place-order-button']"));

@@ -45,6 +45,15 @@ abstract public class AutoBuy
 	private Task task;
 	protected TaskResult taskResult;
 	private String orderNo;
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	private String totalPrice;
 	private BrushOrderDetail brushOrderDetail;
 	
 	public void setTaskResult(TaskResult taskResult){
@@ -319,6 +328,18 @@ abstract public class AutoBuy
 	public abstract AutoBuyStatus redeemGiftCard(String cardNo, String balance);
 	
 	public String redeemGiftCard(List<GiftCard> list){return "";}
+	
+	public AutoBuyStatus comparePrice(String mallPrice,String totalPay){
+		BigDecimal x = new BigDecimal(totalPay);
+		BigDecimal y = new BigDecimal(mallPrice);
+		BigDecimal v = y.subtract(x);
+		if (v.doubleValue() > 0.00D){
+			logger.error("--->总价差距超过约定,不能下单");
+			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+		}else{
+			return AutoBuyStatus.AUTO_PAY_PARPARE;
+		}
+	}
 	
 	protected static Set<String> getPromotionList(String promotionStr){
 		if(StringUtil.isNotEmpty(promotionStr)){

@@ -531,14 +531,22 @@ public class CartersAutoBuy extends AutoBuy{
 				taotalPrice = m.group();
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, taotalPrice);
 				logger.debug("找到商品结算总价 = " + taotalPrice);
-				BigDecimal x = new BigDecimal(myPrice);
-				BigDecimal y = new BigDecimal(taotalPrice);
-				BigDecimal v = x.subtract(y);
-				double s = v.doubleValue();
-				//6块钱运费
-				if (s > 11.00D) {
-					logger.error("--->总价差距超过约定,不能下单");
-					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				if(!StringUtil.isBlank(getTotalPrice())){
+					AutoBuyStatus priceStatus = comparePrice(taotalPrice, getTotalPrice());
+					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}else{
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(taotalPrice);
+					BigDecimal v = x.subtract(y);
+					double s = v.doubleValue();
+					//6块钱运费
+					if (s > 11.00D) {
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
 				}
 			}else{
 				logger.debug("查询结算总价出现异常");

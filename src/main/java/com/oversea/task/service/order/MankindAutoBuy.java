@@ -805,12 +805,20 @@ public class MankindAutoBuy extends AutoBuy {
 			String totalPrice = text.substring(text.indexOf("£")+1);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, totalPrice);
 			logger.debug("--->找到商品结算总价 = " + totalPrice);
-			BigDecimal x = new BigDecimal(myPrice);
-			BigDecimal y = new BigDecimal(totalPrice);
-			BigDecimal r = y.subtract(x);
-			if(r.doubleValue() > 20.00D){
-				logger.error("--->总价差距超过约定,不能下单");
-				throw new Exception();
+			if(!StringUtil.isBlank(getTotalPrice())){
+				AutoBuyStatus priceStatus = comparePrice(totalPrice, getTotalPrice());
+				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}else{
+				BigDecimal x = new BigDecimal(myPrice);
+				BigDecimal y = new BigDecimal(totalPrice);
+				BigDecimal r = y.subtract(x);
+				if(r.doubleValue() > 20.00D){
+					logger.error("--->总价差距超过约定,不能下单");
+					throw new Exception();
+				}
 			}
 		}catch(Exception e){
 			logger.error("--->查询结算总价出现异常",e);

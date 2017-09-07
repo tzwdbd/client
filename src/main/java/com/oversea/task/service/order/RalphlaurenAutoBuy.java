@@ -412,13 +412,21 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("tr.total")));
 			String price = driver.findElement(By.cssSelector("tr.total")).getText().replaceAll("[^0-9.]", "");
 			logger.debug("price:"+price);
-			BigDecimal x = new BigDecimal(myPrice);
-			BigDecimal y = new BigDecimal(price);
-			BigDecimal v = y.subtract(x);
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, price);
-			if (v.doubleValue() > 9.00D){
-				logger.error("--->总价差距超过约定,不能下单");
-				return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+			if(!StringUtil.isBlank(getTotalPrice())){
+				AutoBuyStatus priceStatus = comparePrice(price, getTotalPrice());
+				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}else{
+				BigDecimal x = new BigDecimal(myPrice);
+				BigDecimal y = new BigDecimal(price);
+				BigDecimal v = y.subtract(x);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, price);
+				if (v.doubleValue() > 9.00D){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
 			}
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='procee']/a[@class='sendOrder css-button primary']"))).click();;
 			

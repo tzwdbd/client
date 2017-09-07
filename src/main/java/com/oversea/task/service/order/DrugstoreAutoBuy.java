@@ -564,15 +564,22 @@ public class DrugstoreAutoBuy extends AutoBuy
 			{
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, total);
 				logger.debug("--->完成付款,开始比价[" + myPrice + "," + total + "]");
-
-				BigDecimal x = new BigDecimal(myPrice);
-				BigDecimal y = new BigDecimal(total.trim());
-				BigDecimal v = x.subtract(y);
-				double m = Math.abs(v.doubleValue());
-				if (m > 20.00D)
-				{
-					logger.error("--->总价差距超过约定,不能下单");
-					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				if(!StringUtil.isBlank(getTotalPrice())){
+					AutoBuyStatus priceStatus = comparePrice(total.trim(), getTotalPrice());
+					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}else{
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(total.trim());
+					BigDecimal v = x.subtract(y);
+					double m = Math.abs(v.doubleValue());
+					if (m > 20.00D)
+					{
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
 				}
 
 				Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
