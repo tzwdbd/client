@@ -173,7 +173,7 @@ public class OrderNormalHandler implements OrderHandler {
 								isStock = true;
 							}
 							if(!StringUtil.isBlank(orderDetailList.get(0).getTotalPay())){
-								autoBuy.setTotalPrice(String.valueOf(Float.parseFloat(orderDetailList.get(0).getTotalPromotion())/rate));
+								autoBuy.setTotalPrice(String.valueOf(Float.parseFloat(orderDetailList.get(0).getTotalPay())/rate));
 							}
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
