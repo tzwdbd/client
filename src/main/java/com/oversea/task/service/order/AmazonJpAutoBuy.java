@@ -1644,6 +1644,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 			{
 				if(!StringUtil.isBlank(getTotalPrice())){
 					AutoBuyStatus priceStatus = comparePrice(total, getTotalPrice());
+					logger.debug("--->完成付款,totalpay开始比价[" + getTotalPrice() + "," + total + "]");
 					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
 						logger.error("--->总价差距超过约定,不能下单");
 						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
