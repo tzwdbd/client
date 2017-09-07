@@ -307,8 +307,10 @@ public class ManualBuy{
 						WebElement orderDetailJump = panel.findElement(By.cssSelector(autoOrderScribeExpress.getOrderDetailJump()));
 						orderDetailJump.click();
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+					}else{
+						logger.error(autoOrderScribeExpress.getSiteName()+"--->商城订单:"+mallOrderNo+"未知状态");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 					}
-					break;	
 				}
 			}
 			if(!isFind){
