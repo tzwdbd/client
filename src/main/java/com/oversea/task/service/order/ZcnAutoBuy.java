@@ -982,15 +982,7 @@ public class ZcnAutoBuy extends AutoBuy {
 		}
 		Utils.sleep(2000);
 		
-		try {
-			logger.error("holder-name获取");
-			WebElement holderName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("holder-name")));
-			holderName.clear();
-			holderName.sendKeys(address.getName());
-			TimeUnit.SECONDS.sleep(2);
-		} catch (Exception e) {
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-		}
+		
 		
 		try {
 			logger.error("kyc-number获取");
@@ -1014,6 +1006,15 @@ public class ZcnAutoBuy extends AutoBuy {
 			}catch (Exception e1) {
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
+		}
+		try {
+			logger.error("holder-name获取");
+			WebElement holderName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("holder-name")));
+			holderName.clear();
+			holderName.sendKeys(address.getName());
+			TimeUnit.SECONDS.sleep(2);
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 		}
 		try {
 			WebElement kycNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
