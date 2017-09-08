@@ -759,10 +759,15 @@ public class ZcnAutoBuy extends AutoBuy {
 			List<WebElement> payment = driver.findElements(By.cssSelector("div.a-box.payment-box.payment-box-aui-template"));
 			if (payment != null && payment.size() > 0) {
 				payment.get(0).click();
-				WebElement creditCardNumber = driver.findElement(By.id("addCreditCardNumber"));
-				creditCardNumber.sendKeys(param.get("cardNo"));
-				WebElement submit = driver.findElement(By.cssSelector("span#confirm-card span input"));
-				submit.click();
+				try {
+					WebElement creditCardNumber = driver.findElement(By.id("addCreditCardNumber"));
+					creditCardNumber.sendKeys(param.get("cardNo"));
+					WebElement submit = driver.findElement(By.cssSelector("span#confirm-card span input"));
+					submit.click();
+				} catch (Exception e) {
+					logger.error("--->不用输cardno");
+				}
+				
 				Utils.sleep(2000);
 				WebElement continueButton = driver.findElement(By.id("continueButton"));
 				continueButton.click();
