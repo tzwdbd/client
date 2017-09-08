@@ -84,8 +84,9 @@ public class IherbAutoBuy extends AutoBuy
 		//.icon-hamburgermenufat .icon-globeoutline .dropdown-icon .search-list .item .save-selection
 		try
 		{
-			WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("iherb-my-account")));
-			signIn.click();
+//			WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("iherb-my-account")));
+//			signIn.click();
+			driver.get("https://checkout.iherb.com/account/login");
 			logger.debug("--->跳转到登录页面");
 		}
 		catch (Exception e)
