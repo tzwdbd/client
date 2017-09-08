@@ -324,11 +324,10 @@ public class ThehutAutoBuy extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
-			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//a[@id='gotocheckout2' and contains(text(),'Checkout Securely Now')]")));
 			Utils.sleep(1500);
 			logger.debug("--->购物车页面加载完成");
-			checkout.click();
 		} catch (Exception e) {
 			logger.error("--->加载Checkout Securely Now出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
@@ -376,6 +375,16 @@ public class ThehutAutoBuy extends AutoBuy {
 				logger.debug("--->优惠码失效,中断采购");
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
+		}
+		
+		try {
+			WebElement checkout = driver.findElement(By.xpath("//a[@id='gotocheckout2' and contains(text(),'Checkout Securely Now')]"));
+			logger.debug("--->跳转结算");
+			checkout.click();
+			Utils.sleep(1500);
+		} catch (Exception e) {
+			logger.debug("--->跳转结算失败");
+			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 
 		// 选择地址
@@ -804,6 +813,7 @@ public class ThehutAutoBuy extends AutoBuy {
 		param.put("cardNo", "6225757555082164");
 		param.put("nameOncard", "huhanyu");
 		param.put("expiryDate", "1121");
+		param.put("promotion", "TREAT");
 		param.put("cv2", "123");
 		
 		UserTradeAddress address = new UserTradeAddress();
@@ -825,9 +835,9 @@ public class ThehutAutoBuy extends AutoBuy {
 //				param.put("url", "https://www.thehut.com/sports-clothing/under-armour-women-s-play-shorts-up-2.0-shorts-pomegranate/11399575.html");
 //				param.put("sku", "[[\"Size\",\"S\"],[\"Colour\",\"Pomegranate\"]]");
 
-				param.put("url", "https://www.thehut.com/kitchen-accessories/brita-marella-water-filter-jug-with-3-cartridges-white-2.4l/11090293.html");
+				param.put("url", "https://www.thehut.com/womens-bags/the-cambridge-satchel-company-women-s-tiny-satchel-mustard-matte/11423460.html");
 				// param.put("sku", "[[\"Size\",\"S\"],[\"Colour\",\"Pomegranate\"]]");
-				param.put("num", "1");
+				param.put("num", "2");
 				autoBuy.selectProduct(param);
 			}
 
