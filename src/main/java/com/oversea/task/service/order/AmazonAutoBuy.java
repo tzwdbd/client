@@ -3795,7 +3795,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String title = param.get("title");
 		int position = Integer.parseInt(param.get("position"));
 		String signs = param.get("signs");
-		
+		position = 30;
 		
 		WebDriverWait wait = new WebDriverWait(driver, 45);
 		// 等到[登陆]出现
