@@ -723,6 +723,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 				logger.debug("--->找到商品结算总价 = " + priceStr);
 				if(!StringUtil.isBlank(getTotalPrice())){
+					total = new BigDecimal(priceStr);
 					AutoBuyStatus priceStatus = comparePrice(priceStr, getTotalPrice());
 					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
 						logger.error("--->总价差距超过约定,不能下单");
