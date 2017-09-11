@@ -1202,7 +1202,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 //			WebElement confirm = driver.findElement(By.xpath("//div[@id='submitOrderButton']/button"));
 			WebElement confirm = driver.findElement(By.cssSelector(".continuecheckoutbutton .checkoutbutton"));
 			Utils.sleep(1500);
-			confirm.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", confirm);
 		}catch(Exception e){
 			logger.debug("--->没找到信用卡输入框"+e);
 		}
@@ -1215,7 +1215,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			List<WebElement> confirms = driver.findElements(By.cssSelector(".button-primary-submit"));
 			for(WebElement w:confirms){
 				if(w.isDisplayed()){
-					w.click();
+					driver.executeScript("var tar=arguments[0];tar.click();", w);
 					break;
 				}
 			}
