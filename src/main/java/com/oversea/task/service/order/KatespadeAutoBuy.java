@@ -530,7 +530,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
 				if(list!=null && size>0){
-					list.get(0).click();
+					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
 					Utils.sleep(2000);
 					if(size>1){
 						list = driver.findElements(By.cssSelector(".item-details button[value='Remove']"));
