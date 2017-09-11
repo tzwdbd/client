@@ -750,7 +750,7 @@ public class ZcnAutoBuy extends AutoBuy {
 		logger.debug("--->去付款");
 		checkout.click();
 		
-		AutoBuyStatus status = chooseAddress(address, payAccount);
+		AutoBuyStatus status = chooseNewAddress(address, payAccount);
 		if(!AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS.equals(status)){
 			return status;
 		}
