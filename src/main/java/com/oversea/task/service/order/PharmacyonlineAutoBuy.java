@@ -415,19 +415,19 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 				addAddr = driver.findElement(By.className("address-use-new"));
 			} catch (Exception e) {
 				try {
-					List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+					List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
 					while (true) {
 						int size = deleteList.size();
 						if(deleteList!=null && size>0){
 							if(deleteList.get(0).isDisplayed()){
 								deleteList.get(0).click();
-								Utils.sleep(500);
-								driver.findElement(By.cssSelector("a.operation-type")).click();
+								WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
+								driver.executeScript("var tar=arguments[0];tar.click();", ww);
 								Utils.sleep(500);
 								driver.findElement(By.id("easyDialogYesBtn")).click();
 								Utils.sleep(500);
 								if(size>1){
-									deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+									deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
 								}else{
 									break;
 								}
@@ -450,7 +450,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			TimeUnit.SECONDS.sleep(2);
 			
 			WebElement firstname = driver.findElement(By.id("firstname"));
-			logger.debug("--->输入收货人姓名");
+			logger.debug("--->输入收货人姓名"+name);
 			Utils.sleep(1500);
 			firstname.sendKeys(name);
 			
@@ -482,7 +482,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			}else if("内蒙古自治区".equals(stateStr)){
 				stateStr = "内蒙古";
 			}
-			WebElement state = driver.findElement(By.xpath("//select[@id='region_id']"));	
+			WebElement state = null;
+			try {
+				state = driver.findElement(By.id("region_id"));
+			} catch (Exception e) {
+				state = driver.findElement(By.id("region"));
+			}
+				
 			Select selectState = new Select(state);
 			selectState.selectByVisibleText(stateStr);
 			logger.debug("--->输入省");
@@ -524,7 +530,14 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			
 			//区
 			String districtStr = userTradeAddress.getDistrict().trim();
-			WebElement district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			WebElement district = null;
+			try {
+				district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			} catch (Exception e) {
+				district = driver.findElement(By.id("county"));	
+			}
+			
+			
 			Select selectdistrict = new Select(district);
 			try{
 				selectdistrict.selectByVisibleText(districtStr);
@@ -542,8 +555,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			}
 			logger.debug("--->输入区");
 			Utils.sleep(2000);
+			WebElement street = null;
+			try {
+				street = driver.findElement(By.id("street_1"));
+			} catch (Exception e) {
+				street = driver.findElement(By.cssSelector(".input-textarea"));
+			}
 			
-			WebElement street = driver.findElement(By.id("street_1"));
 			street.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入街道地址");
@@ -572,13 +590,18 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			email.sendKeys(usedEmail);
 			
 			Utils.sleep(1500);
-			WebElement saveAddrBtn = driver.findElement(By.id("AjaxSaveAddress"));
+			WebElement saveAddrBtn = null;
+			try {
+				saveAddrBtn = driver.findElement(By.id("AjaxSaveAddress"));
+			} catch (Exception e) {
+				saveAddrBtn = driver.findElement(By.cssSelector(".btn-save"));
+			}
 			saveAddrBtn.click();
 			Utils.sleep(3000);
 			logger.debug("--->点击保存地址");
 			
 		} catch (Exception e) {
-			logger.debug("--->选择地址出现异常 = ");
+			logger.debug("--->选择地址出现异常 = ",e);
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}
 		
@@ -628,14 +651,30 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		WebDriverWait wait0 = new WebDriverWait(driver, 8);
 		for(int i=0;i<3;i++){
 			try{
-				WebElement input = driver.findElement(By.xpath("//input[@id='receiver-id']"));
+				WebElement input = null;
+				try {
+					input = driver.findElement(By.xpath("//input[@id='receiver-id']"));
+				} catch (Exception e2) {
+					input = driver.findElement(By.id("identityNumber"));
+				}
+				
 				input.clear();
 				Utils.sleep(1500);
 				input.sendKeys(userTradeAddress.getIdCard());
 				Utils.sleep(2000);
-				driver.findElement(By.xpath("//span[@id='idSubBtn']")).click();
+				try {
+					driver.findElement(By.xpath("//span[@id='idSubBtn']")).click();
+				} catch (Exception e) {
+					driver.findElement(By.cssSelector(".btn-identity")).click();
+				}
+				
 				Utils.sleep(1000);
-				wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pass-validate']")));
+				try {
+					wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pass-validate']")));
+				} catch (Exception e) {
+					wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("identityResult")));
+				}
+				
 				isSuccess = true;
 				break;
 			}catch(Exception e){
@@ -651,7 +690,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		logger.debug("--->选择支付方式");
 		try {
 			Utils.sleep(1500);
-			WebElement alipay = driver.findElement(By.id("p_method_alipay_payment"));
+			WebElement alipay = null;
+			try {
+				alipay = driver.findElement(By.id("p_method_alipay_payment"));
+			} catch (Exception e) {
+				alipay = driver.findElement(By.id("payment-alipay_payment"));
+			}
+			
 			alipay.click();
 			Utils.sleep(1500);
 			logger.debug("--->选择支付宝支付");
@@ -716,7 +761,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			logger.debug("--->开始查询总价");
 			Utils.sleep(5000);
 			WebElement totalPriceElement = driver
-					.findElement(By.cssSelector("div.should-pay p.fee strong"));
+					.findElement(By.id("div.should-pay p.fee strong"));
 			String text = totalPriceElement.getText();
 			if (!Utils.isEmpty(text) && text.indexOf("AU$") != -1) {
 				String priceStr = text.replace("AU$", "");
@@ -740,6 +785,26 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			}
 		} catch (Exception e) {
 			logger.debug("--->查询结算总价出现异常=", e);
+			WebElement totalPriceElement = driver
+					.findElement(By.id("grandTotal"));
+			String priceStr = totalPriceElement.getText();
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
+			logger.debug("--->[1]找到商品结算总价 = " + priceStr);
+			if(!StringUtil.isBlank(getTotalPrice())){
+				AutoBuyStatus priceStatus = comparePrice(priceStr, getTotalPrice());
+				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}else{
+				BigDecimal x = new BigDecimal(myPrice);
+				BigDecimal y = new BigDecimal(priceStr);
+				BigDecimal v = y.subtract(x);
+				if (v.doubleValue() > 20.00D){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}
 		}
 		
 		// 查询优惠
@@ -776,7 +841,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		//提交订单
 		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
-			WebElement placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
+			WebElement placeOrder = null;
+			try {
+				placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
+			} catch (Exception e) {
+				placeOrder = driver.findElement(By.id("priceConfirm"));
+			}
+			
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrder);
 			//driver.findElement(By.xpath("//button[@id='onestepcheckout-place-order']")).click();
 			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
@@ -985,8 +1056,8 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
 		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
 		System.out.println(status);
-		auto.cleanCart();
-	
+//		auto.cleanCart();
+//	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=6e92qh_aHUeaB3ftss_bzwrrC0oGpbS7GLkSBPNbhgpoapNN_bbNb3raIhNode7R2xN&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1103061.html&tag=");
 		param.put("num", "1");
@@ -996,15 +1067,15 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 //		param.put("suffixNo", "123");
 		param.put("my_price", "16.45");
 		auto.selectProduct(param);
-		Map<String, String> param1 = new HashMap<String, String>();
-		param1.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=8169bYNrDG8mqBgBHgc7oVMixsRf4wVEmHBot7JgKSCILAR4OUd41GzivIzzFVYo&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1114069.html%2F&tag=");
-		param1.put("num", "1");
-		param1.put("productEntityId", "42881200");
-		param1.put("isPay", "false");
-//		param.put("count", "2");
-//		param.put("suffixNo", "123");
-		param1.put("my_price", "19.25");
-		auto.selectProduct(param1);
+//		Map<String, String> param1 = new HashMap<String, String>();
+//		param1.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=8169bYNrDG8mqBgBHgc7oVMixsRf4wVEmHBot7JgKSCILAR4OUd41GzivIzzFVYo&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1114069.html%2F&tag=");
+//		param1.put("num", "1");
+//		param1.put("productEntityId", "42881200");
+//		param1.put("isPay", "false");
+		param.put("count", "2");
+		param.put("suffixNo", "123");
+		param.put("my_price", "19.25");
+//		auto.selectProduct(param1);
 		param.put("userName", "hanhya@outlook.com");
 		param.put("password", "tfb001001");
 		
