@@ -328,7 +328,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			// 等待购物车页面加载完成
 			logger.debug("--->等待购物车页面加载");
 			try {
-				driver.executeScript("(function(){window.scrollBy(300,500);})();");
+				//driver.executeScript("(function(){window.scrollBy(300,500);})();");
 				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = null;
 				try {
