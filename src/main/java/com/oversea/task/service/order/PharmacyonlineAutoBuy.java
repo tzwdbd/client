@@ -283,7 +283,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->加载Pharmacyonline结账出现异常");
 			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("AccountButton")));
+					By.cssSelector(".btn-checkout")));
 			goPay.click();
 		}
 		
@@ -318,8 +318,15 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			try {
 				driver.executeScript("(function(){window.scrollBy(300,500);})();");
 				TimeUnit.SECONDS.sleep(5);
-				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("AccountButton")));
+				WebElement goPay = null;
+				try {
+					goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+							By.id("AccountButton")));
+				} catch (Exception e) {
+					goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+							By.cssSelector(".btn-checkout")));
+				}
+				
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
