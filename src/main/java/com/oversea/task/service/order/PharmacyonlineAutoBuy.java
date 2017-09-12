@@ -188,7 +188,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		// 寻找商品单价
 		try {
 			logger.debug("--->开始寻找商品单价");
-			WebElement priceElment = driver.findElement(By.xpath("//div[@class='PriceNow']"));
+			WebElement priceElment = driver.findElement(By.cssSelector(".DetailPrice .PriceNow"));
 			String priceStr = priceElment.getText();
 			String productEntityId = param.get("productEntityId");
 			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("AU$") && StringUtil.isNotEmpty(productEntityId)) {
