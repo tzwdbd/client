@@ -149,6 +149,18 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			logger.error("--->购物车页面清理完成");
 		}
 		try {
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".settlement-operation")));
+			logger.error("--->开始清理购物车");
+			WebElement deleteall = driver.findElement(By.cssSelector(".settlement-operation"));
+			deleteall.click();
+			Utils.sleep(1000);
+			driver.findElement(By.id("easyDialogYesBtn")).click();
+			logger.error("--->购物车页面清理完成");
+		} catch (Exception e2) {
+			logger.debug("--->购物车页面清理完成！");
+		}
+		try {
 			logger.error("--->确认购物车是否清空");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".car-not-items")));
 		} catch (Exception e) {
@@ -276,15 +288,15 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try {
 			TimeUnit.SECONDS.sleep(5);
-			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.id("AccountButton")));
-			goPay.click();
+			WebElement goPay = driver.findElement(By.id("AccountButton"));
+			driver.executeScript("var tar=arguments[0];tar.click();", goPay);
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			logger.debug("--->加载Pharmacyonline结账出现异常");
-			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector(".btn-checkout")));
-			goPay.click();
+			WebElement goPay = driver.findElement(By.cssSelector(".btn-checkout"));
+			driver.executeScript("var tar=arguments[0];tar.click();", goPay);
 		}
 		
 		String userName = param.get("userName");
@@ -320,11 +332,11 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = null;
 				try {
-					goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					wait.until(ExpectedConditions.visibilityOfElementLocated(
 							By.id("AccountButton")));
+					goPay = driver.findElement(By.id("AccountButton"));
 				} catch (Exception e) {
-					goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-							By.cssSelector(".btn-checkout")));
+					goPay = driver.findElement(By.cssSelector(".btn-checkout"));
 				}
 				
 				//结账
