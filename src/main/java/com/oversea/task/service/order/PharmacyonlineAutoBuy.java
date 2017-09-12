@@ -384,7 +384,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.debug("--->加载Pharmacyonline结账出现异常");
-				return AutoBuyStatus.AUTO_PAY_FAIL;
+				//return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
 		} catch (Exception e) {
 			logger.debug("--->不需要重新登录");
@@ -398,7 +398,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			TimeUnit.SECONDS.sleep(3);
 		} catch (Exception e) {
 			logger.debug("--->支付页面加载异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		String usedEmail = (String) param.get("userName");
@@ -414,32 +414,39 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			try {
 				addAddr = driver.findElement(By.className("address-use-new"));
 			} catch (Exception e) {
-				List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
-				while (true) {
-					int size = deleteList.size();
-					if(deleteList!=null && size>0){
-						if(deleteList.get(0).isDisplayed()){
-							deleteList.get(0).click();
-							Utils.sleep(500);
-							driver.findElement(By.cssSelector("a.operation-type")).click();
-							Utils.sleep(500);
-							driver.findElement(By.id("easyDialogYesBtn")).click();
-							Utils.sleep(500);
-							if(size>1){
-								deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
-							}else{
-								break;
+				try {
+					List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+					while (true) {
+						int size = deleteList.size();
+						if(deleteList!=null && size>0){
+							if(deleteList.get(0).isDisplayed()){
+								deleteList.get(0).click();
+								Utils.sleep(500);
+								driver.findElement(By.cssSelector("a.operation-type")).click();
+								Utils.sleep(500);
+								driver.findElement(By.id("easyDialogYesBtn")).click();
+								Utils.sleep(500);
+								if(size>1){
+									deleteList = driver.findElements(By.cssSelector("#addressList address-item"));
+								}else{
+									break;
+								}
 							}
+						}else{
+							break;
 						}
-					}else{
-						break;
 					}
+					addAddr = driver.findElement(By.cssSelector(".address-btn-create"));
+				} catch (Exception e2) {
 				}
-				addAddr = driver.findElement(By.cssSelector(".address-btn-create"));
+				
 			}
 			
+			try {
+				addAddr.click();
+			} catch (Exception e) {
+			}
 			
-			addAddr.click();
 			TimeUnit.SECONDS.sleep(2);
 			
 			WebElement firstname = driver.findElement(By.id("firstname"));
@@ -651,6 +658,58 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->选择支付方式出现异常= ", e);
 		}
+		
+			//结账
+			HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+			boolean isEffective = false;
+			Set<String> promotionList = getPromotionList(param.get("promotion"));
+			if (promotionList != null && promotionList.size() > 0) {
+				try {
+					WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+					promotions.click();
+					TimeUnit.SECONDS.sleep(2);
+					WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+					codepro.click();
+					TimeUnit.SECONDS.sleep(2);
+					for (String code : promotionList) {
+						logger.debug("couponCode："+code);
+						WebElement element = driver.findElement(By.id("derateInputCode"));
+						element.clear();
+						element.sendKeys(code);
+						TimeUnit.SECONDS.sleep(2);
+						
+						WebElement use = driver.findElement(By.id("derateUse"));
+						use.click();
+						TimeUnit.SECONDS.sleep(2);
+						
+						try {
+							WebElement tip = driver.findElement(By.id("derateInputTips"));
+							if(tip.getText().contains("错误")){
+								logger.debug("优惠码无效："+code);
+								statusMap.put(code, 0);
+							}
+						} catch (Exception e) {
+							try {
+								//driver.findElement(By.xpath("//div[@class='coupon-done']"));
+								logger.debug("优惠码有效："+code);
+								isEffective = true;
+								statusMap.put(code, 10);
+							} catch (Exception e2) {
+								logger.debug("异常："+e);
+							}
+						}
+					}
+					setPromotionCodelistStatus(statusMap);
+					System.out.println(statusMap.toString());
+					if("true".equals(param.get("isStock")) && !isEffective){
+						logger.debug("--->优惠码失效,中断采购");
+						return AutoBuyStatus.AUTO_PAY_FAIL;
+					}
+				} catch (Exception e) {
+				}
+			}
+		
+		
 		
 		// 查询总价
 		try {
