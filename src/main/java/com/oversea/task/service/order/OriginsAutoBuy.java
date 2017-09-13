@@ -159,12 +159,19 @@ public class OriginsAutoBuy extends AutoBuy {
 	public AutoBuyStatus selectProduct(Map<String, String> param) {
 		logger.debug("--->跳转到商品页面");
 		String productUrl = (String) param.get("url");
+		String orginalUrl = (String) param.get("orginalUrl");
 		logger.debug("--->选择商品 productUrl = " + productUrl);
 
 		try {
 			driver.navigate().to(productUrl);
 		} catch (Exception e) {
 			logger.debug("--->打开商品页面失败 = " + productUrl);
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		try {
+			driver.navigate().to(orginalUrl);
+		} catch (Exception e) {
+			logger.debug("--->打开商品页面失败 = " + orginalUrl);
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 
@@ -380,19 +387,7 @@ public class OriginsAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
-		// 等待购物车页面加载完成
-		logger.debug("--->等待购物车页面加载");
-		try {
-			TimeUnit.SECONDS.sleep(5);
-			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//a[@class='checkout-buttons__item button continue-checkout' and contains(text(),'Checkout')]")));
-			Utils.sleep(1500);
-			goPay.click();
-			Utils.sleep(1500);
-		} catch (Exception e) {
-			logger.debug("--->等待购物车页面加载出现异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
-		}
+		
 		
 		//使用优惠码0 失效,1互斥 ,9没修改过,10有效
 		boolean isEffective = false;
@@ -431,6 +426,20 @@ public class OriginsAutoBuy extends AutoBuy {
 				logger.debug("--->优惠码失效,中断采购");
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
+		}
+		
+		// 等待购物车页面加载完成
+		logger.debug("--->等待购物车页面加载");
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//a[@class='checkout-buttons__item button continue-checkout' and contains(text(),'Checkout')]")));
+			Utils.sleep(1500);
+			goPay.click();
+			Utils.sleep(1500);
+		} catch (Exception e) {
+			logger.debug("--->等待购物车页面加载出现异常");
+			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		logger.debug("--->等待继续页面加载");
