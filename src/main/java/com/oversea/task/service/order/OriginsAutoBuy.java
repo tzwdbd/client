@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -391,6 +392,45 @@ public class OriginsAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->等待购物车页面加载出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
+		}
+		
+		//使用优惠码0 失效,1互斥 ,9没修改过,10有效
+		boolean isEffective = false;
+		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+		Set<String> promotionList = getPromotionList(param.get("promotion"));
+		if (promotionList != null && promotionList.size() > 0) {
+			logger.debug("promotionList.toString()" + promotionList.toString());
+			for (String code : promotionList) {
+				try {
+					logger.debug("code:"+code);
+					TimeUnit.SECONDS.sleep(2);
+					WebElement promoCode = driver.findElement(By.id("form--offer_code--field--OFFER_CODE"));
+					logger.debug("--->找到优惠码输入框,开始输入");
+					promoCode.clear();
+					promoCode.sendKeys(code);
+					TimeUnit.SECONDS.sleep(2);
+					WebElement apply = driver.findElement(By.cssSelector(".form-submit"));
+					apply.click();
+					TimeUnit.SECONDS.sleep(2);
+					try {
+						driver.findElement(By.id("error_invalid_offer_code"));
+						logger.debug("--->优惠码不可用！");
+						statusMap.put(code, 0);
+					} catch (Exception e) {
+						logger.debug("优惠码可用");
+						isEffective = true;
+						statusMap.put(code, 10);
+						break;
+					}
+				} catch (Exception e) {
+					logger.debug("输入优惠码异常",e);
+				}
+			}
+			setPromotionCodelistStatus(statusMap);
+			if("true".equals(param.get("isStock")) && !isEffective){
+				logger.debug("--->优惠码失效,中断采购");
+				return AutoBuyStatus.AUTO_PAY_FAIL;
+			}
 		}
 		
 		logger.debug("--->等待继续页面加载");
