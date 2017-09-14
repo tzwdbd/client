@@ -429,7 +429,7 @@ public class AutoBuyWalgreens extends AutoBuy {
 //				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 //			}
 //		}
-//		Utils.sleep(5000);
+		Utils.sleep(5000);
 		
 		//勾选
 		try {
