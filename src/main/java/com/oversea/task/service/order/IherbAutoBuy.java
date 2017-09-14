@@ -53,33 +53,33 @@ public class IherbAutoBuy extends AutoBuy
 	{
 		logger.debug("--->调整浏览器尺寸和位置");
 //		driver.manage().window().setSize(new Dimension(414, 1000));
-		Cookie ck=new Cookie("iher-pref1","ctd=www&sccode=US&scurcode=USD&lan=en-US&lchg=1&ifv=1&chkdc=6");
-		driver.manage().addCookie(ck);
-		driver.manage().window().setPosition(new Point(0, 0));
-		driver.manage().window().maximize();
-		driver.get("http://www.iherb.com/");
+//		Cookie ck=new Cookie("iher-pref1","ctd=www&sccode=US&scurcode=USD&lan=en-US&lchg=1&ifv=1&chkdc=6");
+//		driver.manage().addCookie(ck);
+//		driver.manage().window().setPosition(new Point(0, 0));
+//		driver.manage().window().maximize();
+//		driver.get("http://www.iherb.com/");
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		try {
-			driver.findElement(By.cssSelector(".icon-hamburgermenufat")).click();
-			TimeUnit.SECONDS.sleep(2);
-			logger.debug("--->保存编码点击1");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".selected-country-wrapper[data-id='language-menu']")));
-			driver.findElement(By.cssSelector(".selected-country-wrapper[data-id='language-menu']")).click();
-			logger.debug("--->保存编码点击2");
-			TimeUnit.SECONDS.sleep(2);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-icon")));
-			driver.findElement(By.cssSelector(".dropdown-icon")).click();
-			logger.debug("--->保存编码点击3");
-			TimeUnit.SECONDS.sleep(2);
-			driver.findElement(By.cssSelector(".search-list .item")).click();
-			logger.debug("--->保存编码点击4");
-			TimeUnit.SECONDS.sleep(2);
-			driver.findElement(By.cssSelector(".save-selection")).click();
-			logger.debug("--->保存编码点击5");
-			TimeUnit.SECONDS.sleep(2);
-		} catch (Exception e) {
-			logger.debug("--->保存编码出错",e);
-		}
+//		try {
+//			driver.findElement(By.cssSelector(".icon-hamburgermenufat")).click();
+//			TimeUnit.SECONDS.sleep(2);
+//			logger.debug("--->保存编码点击1");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".selected-country-wrapper[data-id='language-menu']")));
+//			driver.findElement(By.cssSelector(".selected-country-wrapper[data-id='language-menu']")).click();
+//			logger.debug("--->保存编码点击2");
+//			TimeUnit.SECONDS.sleep(2);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dropdown-icon")));
+//			driver.findElement(By.cssSelector(".dropdown-icon")).click();
+//			logger.debug("--->保存编码点击3");
+//			TimeUnit.SECONDS.sleep(2);
+//			driver.findElement(By.cssSelector(".search-list .item")).click();
+//			logger.debug("--->保存编码点击4");
+//			TimeUnit.SECONDS.sleep(2);
+//			driver.findElement(By.cssSelector(".save-selection")).click();
+//			logger.debug("--->保存编码点击5");
+//			TimeUnit.SECONDS.sleep(2);
+//		} catch (Exception e) {
+//			logger.debug("--->保存编码出错",e);
+//		}
 		
 		//.icon-hamburgermenufat .icon-globeoutline .dropdown-icon .search-list .item .save-selection
 		try
@@ -156,6 +156,12 @@ public class IherbAutoBuy extends AutoBuy
 		{
 			logger.error("--->没有找到登陆确定按钮", e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+		}
+		
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yvffrxxscbrxxb")));
+			driver.navigate().to("https://secure.iherb.com/myaccount/Profile");
+		} catch (Exception e) {
 		}
 
 		try
