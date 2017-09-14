@@ -38,19 +38,27 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		AutoBuyStatus status = auto.login("plojhgt@163.com", "Tfb001001");
-//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			status = auto.cleanCart();
+		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Aa123456");
+		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-//				Map<String, String> param = new HashMap<String, String>();
-//				param.put("url", "https://www.shopspring.com/products/53973851?refineFlags=on_sale");
-////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-//				param.put("sku", "[[\"color\",\"Ripped Medium Wash\"],[\"Fit\",\"Long\"],[\"Waist\",\"28\"]]");
-//				param.put("productEntityId", "1112");
-//				param.put("num", "2");
-//				auto.selectProduct(param);
+				Map<String, String> param = new HashMap<String, String>();
+				param.put("url", "https://www.shopspring.com/products/52954849?refineFlags=on_sale&vendorId=3047");
+//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+				param.put("sku", "[[\"Color\",\"BLACK\"]]");
+				param.put("productEntityId", "1112");
+				param.put("num", "2");
+				auto.selectProduct(param);
+				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
+//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
+				param.put("productEntityId", "1112");
+				param.put("num", "3");
+				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
 //					param0.put("my_price", "39.99");
@@ -58,13 +66,13 @@ public class AutoBuySpring extends AutoBuy {
 //					param0.put("isPay", String.valueOf(false));
 //					param0.put("cardNo", "4662 4833 6029 1396");
 //					status = auto.pay(param0);
-//				//}
-//			}
+				//}
+			}
 //		}
 		//auto.logout();
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("C4060048");
-		auto.scribeExpress(detail);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("C4060048");
+//		auto.scribeExpress(detail);
 	}
 	
 	public static void main0(String[] args){
@@ -265,7 +273,7 @@ public class AutoBuySpring extends AutoBuy {
 					if (i % 2 == 1){
 						for(WebElement element : selectelements){
 							try{
-								if(element.isDisplayed() && element.getText().startsWith(skuList.get(i-1))){
+								if(element.isDisplayed() && element.getText().contains(skuList.get(i-1))){
 									WebElement updown = element.findElement(By.cssSelector("span"));
 									updown.click();
 									Utils.sleep(500);
