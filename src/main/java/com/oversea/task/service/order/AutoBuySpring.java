@@ -38,19 +38,19 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-//		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Aa123456");
+		AutoBuyStatus status = auto.login("plojhgt@163.com", "Tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 //			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.shopspring.com/products/53973851?refineFlags=on_sale");
-//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"color\",\"Ripped Medium Wash\"],[\"Fit\",\"Long\"],[\"Waist\",\"28\"]]");
-				param.put("productEntityId", "1112");
-				param.put("num", "2");
-				auto.selectProduct(param);
+//				Map<String, String> param = new HashMap<String, String>();
+//				param.put("url", "https://www.shopspring.com/products/53973851?refineFlags=on_sale");
+////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+//				param.put("sku", "[[\"color\",\"Ripped Medium Wash\"],[\"Fit\",\"Long\"],[\"Waist\",\"28\"]]");
+//				param.put("productEntityId", "1112");
+//				param.put("num", "2");
+//				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
 //					param0.put("my_price", "39.99");
@@ -62,6 +62,9 @@ public class AutoBuySpring extends AutoBuy {
 //			}
 //		}
 		//auto.logout();
+		RobotOrderDetail detail = new RobotOrderDetail();
+		detail.setMallOrderNo("C4060048");
+		auto.scribeExpress(detail);
 	}
 	
 	public static void main0(String[] args){
@@ -415,7 +418,6 @@ public class AutoBuySpring extends AutoBuy {
 		//设置价格
 		logger.error("--->myPrice = "+myPrice);
 		
-		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
 		String countTemp = (String)param.get("count");
 		int count = 0;
 		if(!Utils.isEmpty(countTemp)){
@@ -556,8 +558,16 @@ public class AutoBuySpring extends AutoBuy {
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
-			By byby = By.xpath("//span[@class='thank-you-order-id a-text-bold']");
-			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
+			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
+			logger.debug("--->开始跳转到订单页面");
+			driver.navigate().to("https://www.shopspring.com/me/orders");
+			
+			logger.debug("--->开始等待order页面加载完成");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderCard_z5kzmw")));
+			Utils.sleep(1500);
+			logger.debug("--->order页面加载完成");
+			WebElement orderElement = driver.findElement(By.cssSelector(".orderCard_z5kzmw .orderHeader_1yzb2uh"));
 			logger.debug("--->找到商品订单号 = "+orderElement.getText());
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText());
 			savePng();
@@ -571,140 +581,78 @@ public class AutoBuySpring extends AutoBuy {
 	@Override
 	public AutoBuyStatus scribeExpress(RobotOrderDetail detail){
 		
-		Long productEntityId = detail.getProductEntityId();
-		logger.debug("productEntityId:"+productEntityId);
-		
 		String mallOrderNo = detail.getMallOrderNo();
 		if (Utils.isEmpty(mallOrderNo)) { 
+			logger.debug("--->mallOrderNo没有");
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY; 
 		}
-		
-		Map<String, String> orderMap = new HashMap<String, String>();
-		List<String> orderSkuSth =  Utils.getSku(detail.getProductSku());
-		for (int i = 0; i < orderSkuSth.size(); i++) {
-			orderMap.put(orderSkuSth.get(i), orderSkuSth.get(++i));
+		try{
+			logger.debug("--->开始跳转到订单页面");
+			driver.navigate().to("https://www.shopspring.com/me/orders");
 		}
-		orderMap.put("price",  detail.getSinglePrice());
-		
-		try {
-			driver.get("https://secure-www.6pm.com/orders/"+mallOrderNo);
-			//商品list
-			List<WebElement> list = driver.findElements(By.xpath("//div[@id='orderDetail']/table/tbody/tr"));
-			logger.debug(mallOrderNo+"有"+list.size()+"个商品");
-			
-			if(list.size()==1){
-				WebElement product = list.get(0);
-				String status = product.findElement(By.xpath(".//td[@class='shipping']/h5")).getText().trim();
-				if(status.toLowerCase().contains("cancelled")){
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-				}else if(status.equalsIgnoreCase("customer action required")){
-					return AutoBuyStatus.AUTO_SCRIBE_LOGIN_FAIL_NEED_AUTH;
-				}else if(status.equalsIgnoreCase("shipped")){
-					String trackNo = product.findElement(By.xpath(".//p[@class='tracking']")).getText().replace("Track This Shipment", "").replaceAll("[^0-9A-Za-z]", "");
-					
-					String expressCompany = "";
-					if(trackNo.startsWith("1Z")){
-						expressCompany = "UPS";
-					}else if(trackNo.startsWith("TBA")){
-						expressCompany = "AMZL US";
-					}else if(trackNo.length()==22){
-						expressCompany = "USPS";
-					}
-					logger.debug("--->获取物流单号成功："+expressCompany+" "+trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-					
-					List<ExpressNode> nodeList = getNodeList(trackNo,product.findElement(By.xpath(".//p[@class='tracking']/a")).getAttribute("href"),mallOrderNo,driver.manage().getCookies());
-					logger.debug("nodeList:"+nodeList.size());
-					if(nodeList.size() > 0 && getTask() != null){
-						logger.error("addParam expressNodeList");
-						logger.debug(nodeList.toString());
-						getTask().addParam("expressNodeList", nodeList);
-					}
-					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-				}else if(status.equalsIgnoreCase("PROCESSING")){
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-				}else{
-					logger.debug("未知的订单状态:"+status);
-					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-				}
-			}
-			
-			outer:
-			for (int i = 0; i < list.size(); i++) {
-				logger.debug("第"+(i+1)+"个商品");
-				WebElement product = list.get(i);
-				//ASIN COLOR SIZE NULL
-				List<WebElement> liList =  product.findElements(By.xpath(".//ul[@class='details']/li"));
-				//网页中的sku信息
-				Map<String, String> trueSku = new HashMap<String, String>();
-				for (WebElement webElement : liList) {
-					String skuSth = webElement.getText();
-					if(StringUtil.isNotEmpty(skuSth)){
-						trueSku.put(skuSth.split(":")[0].trim().toLowerCase(), skuSth.split(":")[1].trim().toLowerCase());
-					}
-				}
-				WebElement priceEle = product.findElement(By.xpath(".//td[@class='amt']"));
-				trueSku.put("price", priceEle.getText().replaceAll("[^0-9.]", ""));
-				
-				logger.debug("orderMap："+orderMap.toString());
-				logger.debug("trueSku:"+trueSku.toString());
-				for (Entry<String, String> colie : orderMap.entrySet()) {
-					String key = colie.getKey();
-					String value = colie.getValue();
-					if("width".equals(key)){
-						continue;
-					}
-					if("one size".equalsIgnoreCase(value)){
-						continue;
-					}
-					if(!StringUtil.isBlank(trueSku.get(key.toLowerCase())) && !trueSku.get(key.toLowerCase()).equalsIgnoreCase(value)){
-						continue outer;
-					}
-				}
-				
-				String status = product.findElement(By.xpath(".//td[@class='shipping']/h5")).getText().trim();
-				if(status.equalsIgnoreCase("cancelled")){
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-				}else if(status.equalsIgnoreCase("customer action required")){
-					return AutoBuyStatus.AUTO_SCRIBE_LOGIN_FAIL_NEED_AUTH;
-				}else if(status.equalsIgnoreCase("shipped")){
-					String trackNo = product.findElement(By.xpath(".//p[@class='tracking']")).getText().replace("Track This Shipment", "").replaceAll("[^0-9A-Za-z]", "");
-					
-					String expressCompany = "";
-					if(trackNo.startsWith("1Z")){
-						expressCompany = "UPS";
-					}else if(trackNo.startsWith("TBA")){
-						expressCompany = "AMZL US";
-					}else if(trackNo.length()==22){
-						expressCompany = "USPS";
-					}
-					logger.debug("--->获取物流单号成功："+expressCompany+" "+trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-					if(!expressCompany.equals("UPS")){
-						List<ExpressNode> nodeList = getNodeList(trackNo,product.findElement(By.xpath(".//p[@class='tracking']/a")).getAttribute("href"),detail.getOrderNo(),driver.manage().getCookies());
-						logger.debug("nodeList:"+nodeList.size());
-						if(nodeList.size() > 0 && getTask() != null){
-							logger.error("addParam expressNodeList");
-							logger.debug(nodeList.toString());
-							getTask().addParam("expressNodeList", nodeList);
-						}
-					}
-					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-				}else if(status.equalsIgnoreCase("PROCESSING")){
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-				}else if(status.equalsIgnoreCase("SUBMITTED")){
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-				}else{
-					logger.debug("未知的订单状态:"+status);
-					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-				}
-			}
-		} catch (Exception e) {
-			logger.debug("爬取物流单号失败",e);
+		catch (Exception e){
+			logger.error("--->跳转到订单页面出现异常", e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		
+		WebDriverWait wait0 = new WebDriverWait(driver, 30);
+		//等待my account页面加载完成
+		try{
+			logger.debug("--->开始等待order页面加载完成");
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderCard_z5kzmw")));
+			Utils.sleep(1500);
+			logger.debug("--->order页面加载完成");
+		}
+		catch (Exception e){
+			logger.error("--->加载order页面出现异常", e);
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
+		
+		//查询所有可见的订单
+		boolean isFind = false; 
+		for(int i = 0;i<7;i++){
+			List<WebElement> list = driver.findElements(By.cssSelector(".orderCard_z5kzmw"));
+			for(WebElement panel : list){
+				WebElement w = panel.findElement(By.cssSelector(".orderHeader_1yzb2uh"));
+				if(w.getText().contains(mallOrderNo.trim())){
+					logger.error("--->找到商城单号"+mallOrderNo);
+					isFind = true;
+					//判断订单是否取消
+					String s = panel.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress'] .text_296oy-o_O-headerLabel_1lelydb")).getText();
+					logger.error("--->OrderStatusCode="+s);
+					if(!StringUtil.isBlank(s) && s.contains("Canceled")){
+						logger.error("--->商城订单:"+mallOrderNo+"已取消");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+					}else if(!StringUtil.isBlank(s) && s.contains("Placed")){
+						logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
+					}else if(!StringUtil.isBlank(s) && (s.contains("Shipped") || s.contains("Delivered"))){
+						WebElement expressElement = panel.findElement(By.cssSelector(".orderCard_z5kzmw .shippingLink_1y5ph1v"));
+						String expressNo = expressElement.getText();
+						String expressCompany = "";
+						if(expressNo.startsWith("1Z")){
+							expressCompany = "UPS";
+						}else if(expressNo.startsWith("92")){
+							expressCompany = "FedEx-国际";
+						}
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+						logger.error("expressCompany = " + expressCompany);
+						logger.error("expressNo = " + expressNo);
+						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+					}else{
+						logger.error("--->商城订单:"+mallOrderNo+"未知状态");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
+					}
+				}
+			}
+			if(!isFind){
+				driver.executeScript("(function(){window.scrollBy(0,1000);})();");
+				Utils.sleep(5500);
+				logger.error("--->第"+i+"次加载");
+			}
+		}
+		
 		return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 	}
 
