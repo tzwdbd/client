@@ -269,6 +269,11 @@ public class IherbAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
 				}
 			}
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yvffrxxscbrxxb")));
+				driver.navigate().to("https://secure.iherb.com/myaccount/Profile");
+			} catch (Exception e1) {
+			}
 			
 			try
 			{
