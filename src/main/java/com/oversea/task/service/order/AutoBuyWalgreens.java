@@ -393,48 +393,48 @@ public class AutoBuyWalgreens extends AutoBuy {
 		
 		//选收货地址
 		
-		if(count % 2==1){
-			try{
-				logger.debug("--->开始寻找address change按钮");
-				Utils.sleep(1500);
-				List<WebElement> gotoShipAddress = driver.findElements(By.id("wag-cko-id-sa-btn-edad-b"));
-				for(WebElement address:gotoShipAddress){
-					if(address.isDisplayed() && "Edit shipping address ›".equals(address.getText())){
-						address.click();
-						break;
-					}
-				}
-				Utils.sleep(1500);
-				logger.debug("--->address打开完成");
-				WebElement addressElement = driver.findElement(By.xpath("//section[@id='ship-address']/section[@class='row wag-cko-add-book-block']"));
-				List<WebElement> addressList = addressElement.findElements(By.cssSelector(".col-lg-8.col-md-8.col-sm-12.col-xs-12.mb20"));
-				if(addressList != null && addressList.size() > 0){
-	//						int tarAddr = count % list.size();
-					int tarAddr = count % 2;
-					WebElement ele = addressList.get(tarAddr);
-					Utils.sleep(1500);
-					WebElement buttonSelect = ele.findElement(By.xpath(".//button[@id='wag-cko-id-sa-sel-d']"));
-					if(buttonSelect!=null){
-						logger.debug("--->地址另一个地址");
-						buttonSelect.click();
-					}
-					logger.debug("--->点击所选地址,等待address关闭");
-					
-				}else{
-					logger.debug("--->该账号没有设置收货地址");
-					return AutoBuyStatus.AUTO_PAY_ADDR_INDEX_OVER_MAX;
-				}
-			}catch(Exception e){
-				logger.debug("--->选择地址出错 = ",e);
-				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
-			}
-		}
-		Utils.sleep(5000);
+//		if(count % 2==1){
+//			try{
+//				logger.debug("--->开始寻找address change按钮");
+//				Utils.sleep(1500);
+//				List<WebElement> gotoShipAddress = driver.findElements(By.id("wag-cko-id-sa-btn-edad-b"));
+//				for(WebElement address:gotoShipAddress){
+//					if(address.isDisplayed() && "Edit shipping address ›".equals(address.getText())){
+//						address.click();
+//						break;
+//					}
+//				}
+//				Utils.sleep(1500);
+//				logger.debug("--->address打开完成");
+//				WebElement addressElement = driver.findElement(By.xpath("//section[@id='ship-address']/section[@class='row wag-cko-add-book-block']"));
+//				List<WebElement> addressList = addressElement.findElements(By.cssSelector(".col-lg-8.col-md-8.col-sm-12.col-xs-12.mb20"));
+//				if(addressList != null && addressList.size() > 0){
+//	//						int tarAddr = count % list.size();
+//					int tarAddr = count % 2;
+//					WebElement ele = addressList.get(tarAddr);
+//					Utils.sleep(1500);
+//					WebElement buttonSelect = ele.findElement(By.xpath(".//button[@id='wag-cko-id-sa-sel-d']"));
+//					if(buttonSelect!=null){
+//						logger.debug("--->地址另一个地址");
+//						buttonSelect.click();
+//					}
+//					logger.debug("--->点击所选地址,等待address关闭");
+//					
+//				}else{
+//					logger.debug("--->该账号没有设置收货地址");
+//					return AutoBuyStatus.AUTO_PAY_ADDR_INDEX_OVER_MAX;
+//				}
+//			}catch(Exception e){
+//				logger.debug("--->选择地址出错 = ",e);
+//				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+//			}
+//		}
+//		Utils.sleep(5000);
 		
 		//勾选
 		try {
 			
-			WebElement giftElement =  driver.findElement(By.xpath("//input[@id='sendgifts']"));
+			WebElement giftElement =  driver.findElement(By.id("sendgifts"));
 			giftElement.click();
 		} catch (Exception e) {
 			logger.debug("--->勾选出错");
