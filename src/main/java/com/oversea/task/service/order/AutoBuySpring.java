@@ -590,15 +590,20 @@ public class AutoBuySpring extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderCard_z5kzmw")));
 			Utils.sleep(1500);
 			logger.debug("--->order页面加载完成");
-			WebElement orderElement = driver.findElement(By.cssSelector(".orderCard_z5kzmw .orderHeader_1yzb2uh"));
-			logger.debug("--->找到商品订单号 = "+orderElement.getText());
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText());
-			savePng();
-			return AutoBuyStatus.AUTO_PAY_SUCCESS;
+			List<WebElement> orderElements = driver.findElements(By.cssSelector(".orderCard_z5kzmw .orderHeader_1yzb2uh .text_10l4bzs-o_O-headerContent_pd4weg"));
+			for(WebElement w:orderElements){
+				if(w.getText().startsWith("C")){
+					logger.debug("--->找到商品订单号 = "+w.getText());
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, w.getText());
+					savePng();
+					return AutoBuyStatus.AUTO_PAY_SUCCESS;
+				}
+			}
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常");
 			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 		}
+		return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 	}
 
 	@Override
