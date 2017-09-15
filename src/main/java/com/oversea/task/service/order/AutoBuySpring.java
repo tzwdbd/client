@@ -354,7 +354,7 @@ public class AutoBuySpring extends AutoBuy {
 		logger.debug("--->开始加购物车");
 		try{
 			WebElement cart = driver.findElement(By.cssSelector("button[data-xfe-testid='add-to-cart-button']"));
-			cart.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", cart);
 			logger.debug("--->加购物车成功");
 		}catch(Exception e){
 			logger.debug("--->加购物车按钮找不到");
