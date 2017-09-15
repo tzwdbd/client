@@ -93,12 +93,21 @@ public class AutoBuySpring extends AutoBuy {
 		logger.debug("--->调整浏览器尺寸和位置");
 		driver.manage().window().maximize();
 		
-		
+		try
+		{
+			driver.get("https://www.shopspring.com");
+			logger.debug("--->跳转到登录页面");
+		}
+		catch (Exception e)
+		{
+			logger.error("--->没有找到登陆按钮", e);
+			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+		}
 
 		//点击登录
 		try
 		{
-			driver.get("https://www.shopspring.com/signin");
+			driver.navigate().to("https://www.shopspring.com/signin");
 			logger.debug("--->跳转到登录页面");
 		}
 		catch (Exception e)
@@ -197,17 +206,27 @@ public class AutoBuySpring extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
 			logger.error("--->确认购物车是否清理完成");
-			WebElement cartBag = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[data-xfe-testid='active-cart-count']")));
-			logger.debug("--->购物车内容:"+cartBag.getText());
-			if(!StringUtil.isBlank(cartBag.getText())){
-				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".noItemsButton_1dk02ws")));
+			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
+		} catch (Exception e) {
+			logger.debug("--->购物车数量清空异常");
+			try{
+				driver.get("https://www.shopspring.com/cart");
+				logger.error("--->开始跳转到购物车");
+			}catch(Exception e1){
+				logger.error("--->跳转到购物车失败");
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
+		}
+		try {
+			logger.error("--->确认购物车是否清理完成");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".noItemsButton_1dk02ws")));
 		} catch (Exception e) {
 			logger.debug("--->购物车数量清空异常");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
-		
 		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
+		
 	}
 
 	@Override
