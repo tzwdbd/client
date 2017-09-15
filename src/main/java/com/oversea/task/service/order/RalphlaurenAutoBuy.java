@@ -261,13 +261,30 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			for(WebElement w:rows){
 				WebElement row =  w.findElement(By.cssSelector(".prodtitle"));
 				WebElement att = w.findElement(By.cssSelector(".firstColmnAcc"));
+				List<WebElement> attbs = w.findElements(By.cssSelector(".firstColmnAcc b"));
+				WebElement atta = w.findElement(By.cssSelector(".firstColmnAcc a"));
+				String attS = att.getText();
+				for(WebElement attb:attbs){
+					attS = attS.replace(attb.getText(), "");
+				}
+				attS = attS.replace(atta.getText(), "");
+				logger.debug(attS);
 				boolean mark =true;
 				if(row.getAttribute("href").equals(detail.getProductUrl()) ){
+					int i=0;
 					for(String s:skuValueList){
-						if(!att.getText().toUpperCase().contains(s.toUpperCase())){
-							mark = false;
-							break;
+						if(i%2==0){
+							if(!att.getText().toUpperCase().contains(s.toUpperCase())){
+								mark = false;
+								break;
+							}
+						}else{
+							if(!attS.contains(s)){
+								mark = false;
+								break;
+							}
 						}
+						i++;
 					}
 					if(mark){
 						String text = w.findElement(By.cssSelector("div.upperTxt.notBold")).getText();
@@ -489,8 +506,8 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 	}
 	public static void main(String[] args) {
 		RalphlaurenAutoBuy autoBuy = new RalphlaurenAutoBuy();
-		autoBuy.login("snhtgb@163.com", "tfb001001");
-		//RobotOrderDetail detail = new RobotOrderDetail();
+		autoBuy.login("nmbwoc@163.com", "tfb001001");
+		RobotOrderDetail detail = new RobotOrderDetail();
 		autoBuy.cleanCart();
 //		Map<String, String> param = new HashMap<String, String>();
 //		param.put("url", "http://www.ralphlauren.com/product/index.jsp?productId=119352126");
@@ -498,7 +515,9 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 //		param.put("num", "1");
 //		autoBuy.selectProduct(param );
 		//autoBuy.pay(param);
-		//detail.setMallOrderNo("5231709466");
-		//autoBuy.scribeExpress(detail );
+		detail.setMallOrderNo("5230585745");
+		detail.setProductUrl("http://www.ralphlauren.com/product/index.jsp?productId=127749496");
+		detail.setProductSku("[[\"color\",\"Polo Black\"],[\"size\",\"L\"]]");
+		autoBuy.scribeExpress(detail );
 	}
 }
