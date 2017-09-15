@@ -149,23 +149,23 @@ public class KatespadeAutoBuy extends AutoBuy {
 		
 		
 		KatespadeAutoBuy auto = new KatespadeAutoBuy();
-		auto.setHomeUrl("http://www.katespade.com");
+		auto.setHomeUrl("http://surprise.katespade.com");
 		AutoBuyStatus status = auto.login("rablfg2@126.com", "tfb001001");
 //		//AutoBuyStatus status = auto.login("oxoxbnm@163.com", "tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = auto.cleanCart();
+			//status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
 				//param.put("url", "http://surprise.katespade.com/WKRU3255-2.html?pid=WKRU3255-2");//下架商品
 				//param.put("url", "https://www.katespade.com/products/cedar-street-nika/PWRU4193-1.html?pid=PWRU4193-1");//售罄商品
 				//param.put("url", "https://www.katespade.com/products/mock-neck-knit-flounce-dress/NJMU6948.html?cgid=ks-clothing-dresses-view-all&dwvar_NJMU6948_color=098#start=3&cgid=ks-clothing-dresses-view-all");//正常商品
-				param.put("url", "https://www.katespade.com/products/daniels-drive-wendi/PXRU7741-1.html");//正常商品
-				param.put("orginalUrl", "https://www.katespade.com/products/spice-things-up-snake-wrap-bracelet/WBRUD898.html?pid=WBRUD898");//正常商品
+				param.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=098687125505");//正常商品
+				param.put("orginalUrl", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=098687125505");//正常商品
 				//param.put("url", "http://www.rebatesme.com/zh/click/?key=633e2036f0228f010b8ea3961e8db42f&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=c99cba6462c9c3650990fa4224bd24e5&targetUrl=http%3A%2F%2Fsurprise.katespade.com%2Fon%2Fdemandware.store%2FSites-KateSale-Site%2Fen_US%2FProduct-Show%3Fpid%3DWLRU2737");//售罄商品
 				//param.put("url", "http://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Product-Show?pid=O0RU1099");//正常商品
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
 				//param.put("sku", "[[\"color\",\"black\"],[\"size\",\"7\"]]");
-				param.put("sku", "[[\"color\",\"prickly pear\"]]");
+				param.put("sku", "[[\"color\",\"black\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
 				//Map<String, String> params = new HashMap<String, String>();
@@ -495,9 +495,11 @@ public class KatespadeAutoBuy extends AutoBuy {
 
 	@Override
 	public AutoBuyStatus cleanCart() {
+		String removeKey = "";
 		if(homeUrl.contains("surprise")){
 			try{
 				driver.get("https://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Cart-Show");
+				removeKey = "button[value='Remove']";
 			}catch(Exception e){
 				logger.error("--->跳转到购物车失败");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -505,6 +507,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}else{
 			try{
 				driver.get("https://www.katespade.com/shopping-bag");
+				removeKey = ".item-details button[value='Remove']";
 			}catch(Exception e){
 				logger.error("--->跳转到购物车失败");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -534,7 +537,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			logger.error("--->开始清理购物车");
 			
 			//循坏清除
-			List<WebElement> list = driver.findElements(By.cssSelector(".item-details button[value='Remove']"));
+			List<WebElement> list = driver.findElements(By.cssSelector(removeKey));
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
@@ -542,7 +545,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
 					Utils.sleep(2000);
 					if(size>1){
-						list = driver.findElements(By.cssSelector(".item-details button[value='Remove']"));
+						list = driver.findElements(By.cssSelector(removeKey));
 					}else{
 						break;
 					}
