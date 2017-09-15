@@ -1178,7 +1178,13 @@ public class KatespadeAutoBuy extends AutoBuy {
 			WebElement td = driver.findElement(By.cssSelector(".order-total")) ;
 			String text1 = td.getText() ;
 			if(!StringUtil.isBlank(text1)&&text1.toUpperCase().contains("ORDER TOTAL")){
-				WebElement td0 = td.findElement(By.cssSelector(".order-value"));
+				String ordervalue = "";
+				if(homeUrl.contains("surprise")){
+					ordervalue = ".price";
+				}else{
+					ordervalue = ".order-value";
+				}
+				WebElement td0 = td.findElement(By.cssSelector(ordervalue));
 				String text = td0.getText() ;
 				logger.debug("--->找到商品总价 = "+text);
 				if(!Utils.isEmpty(text) && text.indexOf("$") != -1){
@@ -1222,8 +1228,14 @@ public class KatespadeAutoBuy extends AutoBuy {
 			//输入信用卡点确定
 			driver.executeScript("(function(){window.scrollBy(0,300);})();");
 			Utils.sleep(3500);
+			String submit = "";
+			if(homeUrl.contains("surprise")){
+				submit = ".checkoutbutton";
+			}else{
+				submit = ".button-primary-submit";
+			}
 //					WebElement confirm = driver.findElement(By.xpath("//div[@id='submitOrderButton']/button"));
-			List<WebElement> confirms = driver.findElements(By.cssSelector(".button-primary-submit"));
+			List<WebElement> confirms = driver.findElements(By.cssSelector(submit));
 			for(WebElement w:confirms){
 				if(w.isDisplayed()){
 					driver.executeScript("var tar=arguments[0];tar.click();", w);
