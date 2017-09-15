@@ -255,8 +255,6 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
 		}
 		
-		driver.executeScript("(function(){window.scrollBy(0,850);})();");		
-		Utils.sleep(2500);
 		String productNum = (String) param.get("num");
 		Object sku = param.get("sku");
 		//开始选择sku
