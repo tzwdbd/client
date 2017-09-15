@@ -455,7 +455,7 @@ public class AutoBuySpring extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector(".text_17167xw")));
+					By.cssSelector("a[data-xfe-testid='cart-summary-checkout-button']")));
 			Utils.sleep(1500);
 			logger.debug("--->购物车页面加载完成");
 		}catch(Exception e){
@@ -505,7 +505,7 @@ public class AutoBuySpring extends AutoBuy {
 		
 		try{
 			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector(".text_17167xw")));
+					By.cssSelector("a[data-xfe-testid='cart-summary-checkout-button']")));
 			Utils.sleep(1500);
 			logger.debug("--->购物车页面加载完成");
 			checkout.click();
