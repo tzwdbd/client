@@ -255,35 +255,54 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		try {
 			driver.navigate().to("https://www.ralphlauren.com/checkout/index.jsp?process=poloOrderTrackingDetail&orderId="+mallOrderNo);
 			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			List<String>  skuValueList = Utils.getSku(detail.getProductSku());
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.upperTxt.notBold")));
-			String text = driver.findElement(By.cssSelector("div.upperTxt.notBold")).getText();
-			if(text.toLowerCase().contains("will")){
-				logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-			}else if(text.toLowerCase().contains("shipped")){
-				logger.debug("已经发货了");
-				Matcher upsMatcher = Pattern.compile("1Z.+").matcher(text);
-				Matcher fedExMatcher = Pattern.compile("[0-9]{10,100}").matcher(text.toLowerCase());
-				if(upsMatcher.find()){
-					String trackNo = upsMatcher.group();
-					logger.debug(trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ups");
-					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-				}else if(fedExMatcher.find()){
-					String trackNo =  fedExMatcher.group();
-					logger.debug(trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "FedEx");
-					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+			List<WebElement> rows = driver.findElements(By.cssSelector(".alternate-row"));
+			for(WebElement w:rows){
+				WebElement row =  w.findElement(By.cssSelector(".prodtitle"));
+				WebElement att = w.findElement(By.cssSelector(".firstColmnAcc"));
+				boolean mark =true;
+				if(row.getAttribute("href").equals(detail.getProductUrl()) ){
+					for(String s:skuValueList){
+						if(!att.getText().toUpperCase().contains(s.toUpperCase())){
+							mark = false;
+							break;
+						}
+					}
+					if(mark){
+						String text = w.findElement(By.cssSelector("div.upperTxt.notBold")).getText();
+						if(text.toLowerCase().contains("will")){
+							logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+						}else if(text.toLowerCase().contains("shipped")){
+							logger.debug("已经发货了");
+							Matcher upsMatcher = Pattern.compile("1Z.+").matcher(text);
+							Matcher fedExMatcher = Pattern.compile("[0-9]{10,100}").matcher(text.toLowerCase());
+							if(upsMatcher.find()){
+								String trackNo = upsMatcher.group();
+								logger.debug(trackNo);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ups");
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							}else if(fedExMatcher.find()){
+								String trackNo =  fedExMatcher.group();
+								logger.debug(trackNo);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "FedEx");
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							}
+						}else if(text.toLowerCase().contains("cancel")){
+							logger.debug("被砍单了");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+						}else{
+							logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
+							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+						}
+						break;
+					}
 				}
-			}else if(text.toLowerCase().contains("cancel")){
-				logger.debug("被砍单了");
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-			}else{
-				logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 			}
+			
 		} catch (Exception e) {
 			logger.debug("爬取物流异常");
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
