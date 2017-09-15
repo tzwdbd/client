@@ -573,8 +573,7 @@ public class AutoBuySpring extends AutoBuy {
 		logger.debug("--->开始点击付款 placeOrder");
 		try{
 			WebElement placeOrderElement = driver.findElement(By.cssSelector("button[data-xfe-testid='place-order-button']"));
-			Utils.sleep(1500);
-			placeOrderElement.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){
 			return AutoBuyStatus.AUTO_PAY_FAIL;
@@ -599,7 +598,7 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 		}
 	}
 
