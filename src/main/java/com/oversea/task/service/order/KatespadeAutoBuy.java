@@ -860,37 +860,30 @@ public class KatespadeAutoBuy extends AutoBuy {
 					}
 				}
 			}
-		}catch(Exception e){
-			logger.debug("--->加载bag-label出现异常");
-			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
-		}
-		if(mark){
-			logger.debug("--->没点击view bag");
-			driver.executeScript("(function(){window.scrollBy(0,-50);})();");
-			try {
-				logger.debug("--->加购重试");
-				WebElement cart = driver.findElement(By.id("add-to-cart"));
-				cart.click();
-				List<WebElement> list = driver.findElements(By.cssSelector("a.mini-cart-link-cart"));
-				if(list != null && list.size() > 0){
-					for(WebElement w : list){
-						if(StringUtil.isNotEmpty(w.getText()) && w.getText().contains("VIEW BAG")){
-							logger.debug("--->checkout重试 = "+w.getText());
-							w.click();
+			if(mark){
+				List<WebElement> newlist = driver.findElements(By.cssSelector("a.mini-cart-link-checkout"));
+				if(newlist != null && newlist.size() > 0){
+					for(WebElement w : newlist){
+						logger.debug("--->test = "+w.getText()+"--->uptest:"+w.getText().toUpperCase());
+						if(StringUtil.isNotEmpty(w.getText()) && w.getText().toUpperCase().contains("VIEW BAG")){
+							logger.debug("--->checkout = "+w.getText());
+							driver.executeScript("var tar=arguments[0];tar.click();", w);
+							//w.click();
 							mark = false;
 							Utils.sleep(1000);
 							break;
 						}
 					}
 				}
-			} catch (Exception e) {
-				return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
 			}
-			if(mark){
-				return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
-			}
-			
+		}catch(Exception e){
+			logger.debug("--->加载bag-label出现异常");
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
+		if(mark){
+			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
+		}
+			
 		return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 	}
 
