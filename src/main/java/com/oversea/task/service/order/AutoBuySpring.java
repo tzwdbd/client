@@ -255,7 +255,7 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
 		}
 		
-		driver.executeScript("(function(){window.scrollBy(0,450);})();");		
+		driver.executeScript("(function(){window.scrollBy(0,850);})();");		
 		Utils.sleep(2500);
 		String productNum = (String) param.get("num");
 		Object sku = param.get("sku");
@@ -544,7 +544,7 @@ public class AutoBuySpring extends AutoBuy {
 			logger.debug("--->开始查询总价");
 			WebElement totalPriceElement = driver.findElement(By.cssSelector(".lineItem_y5xc2p-o_O-total_a3qe0k .value_1olrz58"));
 			String text = totalPriceElement.getText();
-			String priceStr = text.substring(0,text.length()-1);
+			String priceStr = text.substring(1);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 			logger.debug("--->找到商品结算总价 = "+priceStr);
 			if(!StringUtil.isBlank(getTotalPrice())){
