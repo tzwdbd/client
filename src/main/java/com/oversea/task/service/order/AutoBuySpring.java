@@ -572,8 +572,8 @@ public class AutoBuySpring extends AutoBuy {
 		//placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");
 		try{
-			WebElement placeOrderElement = driver.findElement(By.cssSelector("button[data-xfe-testid='place-order-button']"));
-			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+			placeOrderElement.click();;
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){
 			return AutoBuyStatus.AUTO_PAY_FAIL;
