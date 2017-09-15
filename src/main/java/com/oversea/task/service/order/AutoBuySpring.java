@@ -38,12 +38,12 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Aa123456");
-		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = auto.cleanCart();
+//		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Aa123456");
+//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+//			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.shopspring.com/products/52954849?refineFlags=on_sale&vendorId=3047");
+				param.put("url", "https://www.shopspring.com/products/54126630?page=1&query=michael+kors&sortBy=newest&sortOrder=DESC&taxonomy=women%3Ahandbags");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
@@ -51,14 +51,14 @@ public class AutoBuySpring extends AutoBuy {
 				param.put("productEntityId", "1112");
 				param.put("num", "2");
 				auto.selectProduct(param);
-				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
-//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
-				param.put("productEntityId", "1112");
-				param.put("num", "3");
-				auto.selectProduct(param);
+//				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
+////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+//				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
+//				param.put("productEntityId", "1112");
+//				param.put("num", "3");
+//				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
 //					param0.put("my_price", "39.99");
@@ -67,7 +67,7 @@ public class AutoBuySpring extends AutoBuy {
 //					param0.put("cardNo", "4662 4833 6029 1396");
 //					status = auto.pay(param0);
 				//}
-			}
+			//}
 //		}
 		//auto.logout();
 //		RobotOrderDetail detail = new RobotOrderDetail();
@@ -255,8 +255,8 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
 		}
 		
-				
-		
+		driver.executeScript("(function(){window.scrollBy(0,450);})();");		
+		Utils.sleep(2500);
 		String productNum = (String) param.get("num");
 		Object sku = param.get("sku");
 		//开始选择sku
