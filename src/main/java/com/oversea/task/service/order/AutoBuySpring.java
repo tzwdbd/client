@@ -38,18 +38,18 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-//		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Aa123456");
-//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			status = auto.cleanCart();
-//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
+		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+			status = auto.cleanCart();
+			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.shopspring.com/products/54126630?page=1&query=michael+kors&sortBy=newest&sortOrder=DESC&taxonomy=women%3Ahandbags");
+				param.put("url", "http://www.rebatesme.com/zh/click/?key=85b9cf391d0d23d78c345e452442d6bc&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=e203af40e5d687fd014a47f550cb8961&targetUrl=https%3A%2F%2Fwww.shopspring.com%2Fproducts%2F54126630%3Fpage%3D1%26query%3Dmichael%2Bkors%26sortBy%3Dnewest%26sortOrder%3DDESC%26taxonomy%3Dwomen%253Ahandbags");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
 				param.put("sku", "[[\"Color\",\"BLACK\"]]");
 				param.put("productEntityId", "1112");
-				param.put("num", "2");
+				param.put("num", "1");
 				auto.selectProduct(param);
 //				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
 ////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
@@ -60,15 +60,13 @@ public class AutoBuySpring extends AutoBuy {
 //				param.put("num", "3");
 //				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-//					Map<String, String> param0 = new HashMap<String, String>();
-//					param0.put("my_price", "39.99");
-//					param0.put("count", "1");
-//					param0.put("isPay", String.valueOf(false));
-//					param0.put("cardNo", "4662 4833 6029 1396");
-//					status = auto.pay(param0);
+					Map<String, String> param0 = new HashMap<String, String>();
+					param0.put("my_price", "208.50");
+					param0.put("count", "1");
+					status = auto.pay(param0);
 				//}
-			//}
-//		}
+			}
+		}
 		//auto.logout();
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("C4060048");
@@ -572,8 +570,9 @@ public class AutoBuySpring extends AutoBuy {
 		//placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");
 		try{
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
-			placeOrderElement.click();;
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
+			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
+			//placeOrderElement.click();;
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){
 			return AutoBuyStatus.AUTO_PAY_FAIL;
