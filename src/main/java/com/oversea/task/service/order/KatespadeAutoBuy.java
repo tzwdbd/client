@@ -495,14 +495,23 @@ public class KatespadeAutoBuy extends AutoBuy {
 
 	@Override
 	public AutoBuyStatus cleanCart() {
-		//跳转到购物车
-		try{
-			driver.get("https://www.katespade.com/shopping-bag");
-		}catch(Exception e){
-			logger.error("--->跳转到购物车失败");
-			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+		if(homeUrl.contains("surprise")){
+			try{
+				driver.get("https://surprise.katespade.com/on/demandware.store/Sites-KateSale-Site/en_US/Cart-Show");
+			}catch(Exception e){
+				logger.error("--->跳转到购物车失败");
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+		}else{
+			try{
+				driver.get("https://www.katespade.com/shopping-bag");
+			}catch(Exception e){
+				logger.error("--->跳转到购物车失败");
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
 		}
 		
+		//跳转到购物车
 		try{
 			driver.findElement(By.cssSelector("a.sr_UI_close")).click();
 			logger.debug("--->关闭弹窗");
