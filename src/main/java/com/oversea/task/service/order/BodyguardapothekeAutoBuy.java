@@ -400,9 +400,14 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 			for(WebElement w:addresss){
 				if(w.isDisplayed()){
 					w.click();
+					TimeUnit.SECONDS.sleep(1);
+					WebElement yesbtn = driver.findElement(By.id("easyDialogYesBtn"));
+					yesbtn.click();
+					TimeUnit.SECONDS.sleep(1);
 					break;
 				}
 			}
+		
 		} catch (Exception e) {
 			logger.debug("--->删除默认地址出错");
 		}
