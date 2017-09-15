@@ -972,8 +972,14 @@ public class KatespadeAutoBuy extends AutoBuy {
 				}
 			}
 			Utils.sleep(3000);
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-footer button[name='dwfrm_cart_checkoutCart']")));
-			WebElement checkCart = driver.findElement(By.cssSelector(".cart-footer button[name='dwfrm_cart_checkoutCart']"));
+			String checkout = "";
+			if(homeUrl.contains("surprise")){
+				checkout = "button[name='dwfrm_cart_checkoutCart']";
+			}else{
+				checkout = ".cart-footer button[name='dwfrm_cart_checkoutCart']";
+			}
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(checkout)));
+			WebElement checkCart = driver.findElement(By.cssSelector(checkout));
 			driver.executeScript("var tar=arguments[0];tar.click();", checkCart);
 		}catch(Exception e){
 			logger.debug("--->购物车页面加载异常",e);
