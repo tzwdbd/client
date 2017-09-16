@@ -38,16 +38,16 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
-		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = auto.cleanCart();
-			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+//		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
+//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+//			status = auto.cleanCart();
+//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "http://www.rebatesme.com/zh/click/?key=85b9cf391d0d23d78c345e452442d6bc&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=e203af40e5d687fd014a47f550cb8961&targetUrl=https%3A%2F%2Fwww.shopspring.com%2Fproducts%2F54126630%3Fpage%3D1%26query%3Dmichael%2Bkors%26sortBy%3Dnewest%26sortOrder%3DDESC%26taxonomy%3Dwomen%253Ahandbags");
+				param.put("url", "https://www.shopspring.com/products/53905890");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"Color\",\"BLACK\"]]");
+				param.put("sku", "[[\"Color\",\"Marine\"],[\"Size\",\"S\"]]");
 				param.put("productEntityId", "1112");
 				param.put("num", "1");
 				auto.selectProduct(param);
@@ -60,13 +60,13 @@ public class AutoBuySpring extends AutoBuy {
 //				param.put("num", "3");
 //				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-					Map<String, String> param0 = new HashMap<String, String>();
-					param0.put("my_price", "208.50");
-					param0.put("count", "1");
-					status = auto.pay(param0);
-				//}
-			}
-		}
+//					Map<String, String> param0 = new HashMap<String, String>();
+//					param0.put("my_price", "208.50");
+//					param0.put("count", "1");
+//					status = auto.pay(param0);
+//				//}
+//			}
+//		}
 		//auto.logout();
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("C4060048");
@@ -289,6 +289,7 @@ public class AutoBuySpring extends AutoBuy {
 						for(WebElement element : selectelements){
 							try{
 								if(element.isDisplayed() && element.getText().contains(skuList.get(i-1))){
+									logger.debug("--->element.getText():"+element.getText() );
 									WebElement updown = element.findElement(By.cssSelector("span"));
 									updown.click();
 									Utils.sleep(500);
@@ -296,7 +297,8 @@ public class AutoBuySpring extends AutoBuy {
 									for(WebElement label:labels){
 										if(label.isDisplayed()){
 											String test = label.getText().replace("Unavailable with current selections", "").trim();
-											if(test.toLowerCase().contains(skuList.get(i).toLowerCase())){
+											logger.debug("--->test:"+test );
+											if(test.toLowerCase().equals(skuList.get(i).toLowerCase())){
 												findCount++;
 												driver.executeScript("var tar=arguments[0];tar.click();", label);
 												Utils.sleep(3500);
