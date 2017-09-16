@@ -368,7 +368,7 @@ public class AutoBuySpring extends AutoBuy {
 			for(WebElement w:attrs){
 				for (int i = 0; i < skuList.size(); i++){
 					if (i % 2 == 1){
-						if(w.getText().trim().equals(skuList.get(i))){
+						if(w.getText().trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
 							logger.debug("--->属性"+w.getText().trim()+"对的");
 							attnum++;
 						}
