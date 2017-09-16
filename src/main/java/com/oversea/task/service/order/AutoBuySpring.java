@@ -577,6 +577,31 @@ public class AutoBuySpring extends AutoBuy {
 		}catch(Exception e){
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
+		WebDriverWait wait0 = new WebDriverWait(driver, 20);
+		try {
+			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
+		} catch (Exception e) {
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
+			placeOrderElement.click();
+			logger.debug("--->点击付款完成 placeOrder finish1");
+		}
+		try {
+			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
+		} catch (Exception e) {
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+			placeOrderElement.click();;
+			logger.debug("--->点击付款完成 placeOrder finish2");
+		}
+		try {
+			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
+		} catch (Exception e) {
+			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
+			logger.debug("--->点击付款完成 placeOrder finish3");
+		}
 		
 		//查询商城订单号
 		try{
