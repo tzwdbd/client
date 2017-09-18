@@ -774,13 +774,10 @@ public class AutoBuySpring extends AutoBuy {
 		// TODO Auto-generated method stub
 		try{
 			Utils.sleep(2000);
-			driver.get("http://www.6pm.com/");
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Logout')]")));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Account']")));
+			driver.get("https://www.shopspring.com/");
 		}
 		catch (Exception e){
-			logger.error("--->跳转6pm主页面碰到异常");
+			logger.error("--->跳转shopspring主页面碰到异常");
 		}
 		return false;
 	}
