@@ -831,6 +831,7 @@ public class ZcnAutoBuy extends AutoBuy {
 			logger.debug("--->开始比价[" + myPrice + "," + totalPrice + "]");
 			if(!StringUtil.isBlank(getTotalPrice())){
 				AutoBuyStatus priceStatus = comparePrice(totalPrice, getTotalPrice());
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, totalPrice);
 				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
 					logger.error("--->总价差距超过约定,不能下单");
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
