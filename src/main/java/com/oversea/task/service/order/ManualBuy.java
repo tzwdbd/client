@@ -328,7 +328,10 @@ public class ManualBuy{
 				}
 			}
 		}
-		
+		if(!isFind){
+			logger.error(autoOrderScribeExpress.getSiteName()+"--->商城订单:"+mallOrderNo+"找不到");
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+		}
 		return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 	};
 	
