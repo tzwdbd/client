@@ -698,6 +698,10 @@ public class IherbAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			}
+		}else{
+			logger.error("--->找不到 edit地址按钮啊啊啊啊");
+			savePng();
+			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkOutAddrSelct")));
