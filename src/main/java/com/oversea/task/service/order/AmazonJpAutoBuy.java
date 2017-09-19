@@ -1106,7 +1106,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.debug("--->目前共有[" + addrs.size() + "]个可用地址");
 				List<WebElement> availableAddr = new ArrayList<WebElement>();
 				for(WebElement a:addrs){
-					if(a.getText().toUpperCase().contains(userTradeAddress.getState())){
+					if(a.getText().toUpperCase().contains(userTradeAddress.getName())){
 						availableAddr.add(a);
 					}
 				}
