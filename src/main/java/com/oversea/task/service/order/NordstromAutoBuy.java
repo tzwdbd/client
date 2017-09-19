@@ -75,7 +75,7 @@ public class NordstromAutoBuy extends AutoBuy {
 //		}
 		try
 		{
-			driver.get("https://secure.nordstrom.com/SignIn.aspx?cm_sp=SI_SP_A-_-SI_SP_B-_-SI_SP_C&origin=tab&ReturnURL=http%3A%2F%2Fshop.nordstrom.com%2F");
+			driver.get("https://m.secure.nordstrom.com/signin.aspx");
 		}
 		catch (Exception e)
 		{
