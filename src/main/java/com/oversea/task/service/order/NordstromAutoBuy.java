@@ -128,13 +128,13 @@ public class NordstromAutoBuy extends AutoBuy {
 		catch (Exception e)
 		{
 			logger.error("--->没找到main");
-			try {
-				WebDriverWait wait1 = new WebDriverWait(driver, 5);
-				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("mcp")));
-			} catch (Exception e2) {
-				logger.error("--->没找到mcp");
-				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
-			} 
+//			try {
+//				WebDriverWait wait1 = new WebDriverWait(driver, 5);
+//				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("mcp")));
+//			} catch (Exception e2) {
+//				logger.error("--->没找到mcp");
+//				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+//			} 
 		}
 		return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 	}
@@ -951,9 +951,13 @@ public class NordstromAutoBuy extends AutoBuy {
 			
 			//点击 Save & Continue 按钮
 			Utils.sleep(1500);
-			WebElement saveBtn = selectAddr.findElement(By.cssSelector("div.actions input.continue"));
-			saveBtn.click();
-			logger.debug("--->选择地址点击 Save & Continue 按钮成功");
+			List<WebElement> saveBtns = selectAddr.findElements(By.cssSelector("div.actions input.continue"));
+			for(WebElement saveBtn:saveBtns){
+				if(saveBtn.isDisplayed()){
+					saveBtn.click();
+					logger.debug("--->选择地址点击 Save & Continue 按钮成功");
+				}
+			}
 			Utils.sleep(5000);
 			// 点击使用当前地址（不选择推荐地址）
 			try {
