@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class ExpressUtils {
 	
 	private static final Pattern PT_EXPRESS_NO = Pattern.compile("[A-Z0-9]{12,}");
+	private static final Pattern RG_EXPRESS_NO = Pattern.compile("[A-Za-z0-9]{8,}");
 	private static final Pattern PT_CAP_LETTERS = Pattern.compile("^[A-Z]+$");
 	
 	public static String extractExperssNo(String content) {
@@ -18,6 +19,20 @@ public class ExpressUtils {
 			if (PT_CAP_LETTERS.matcher(temp).matches()) {
 				continue;
 			}
+			sb.append(temp);
+			sb.append(',');
+		}
+		
+		return sb.length() > 0 ? sb.substring(0, sb.length() - 1) : sb.toString();
+	}
+	
+	public static String regularExperssNo(String content) {
+		StringBuilder sb = new StringBuilder();
+		
+		Matcher matcher = RG_EXPRESS_NO.matcher(content);
+		String temp;
+		while (matcher.find()) {
+			temp = matcher.group();
 			sb.append(temp);
 			sb.append(',');
 		}

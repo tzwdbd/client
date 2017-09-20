@@ -26,6 +26,7 @@ import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.obj.Task;
 import com.oversea.task.obj.TaskResult;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 public class ManualBuy{
@@ -340,7 +341,7 @@ public class ManualBuy{
 		wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderExpressDetail.getOrderDetailLoadedCode())));
 		WebElement shipment = driver.findElement(By.cssSelector(autoOrderExpressDetail.getExpressNoCode()));
 		logger.error(autoOrderExpressDetail.getSiteName()+"--->找到物流单号 = "+shipment.getText());
-		String expressNo = shipment.getText().replaceAll("[^a-z^A-Z^0-9]", "");
+		String expressNo = ExpressUtils.regularExperssNo(shipment.getText());
 		logger.error(autoOrderExpressDetail.getSiteName()+"--->找到匹配的物流单号 = "+expressNo);
 		String company = "";
 		try {
