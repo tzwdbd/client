@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -112,7 +113,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		try
 		{
 			WebElement btn = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_enterButton"));
-			btn.click();
+			btn.sendKeys(Keys.ENTER);
 			logger.debug("--->开始登陆");
 		}
 		catch (Exception e)
@@ -1396,7 +1397,7 @@ public class NordstromAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
 		}
 		try {
-			String orderUrl ="https://secure.nordstrom.com/myaccount/OrderStatus.aspx?origin=orderhistory&ordernum="+ mallOrderNo;
+			String orderUrl ="https://secure.nordstrom.com/OrderLookupStatus.aspx?ordernum="+ mallOrderNo+"&zipcode=31000&origin=orderinfo";
 			driver.navigate().to(orderUrl);
 			
 			Utils.sleep(5000);
