@@ -44,18 +44,15 @@ public class ManualShipNormalHandler implements ManualShipHandler {
 				if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 					if(autoOrderScribeExpress!=null){
 						status = manualBuy.scribeExpress(orderDetail,autoOrderScribeExpress);
-						if(AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED.equals(status)){
-							orderDetail.setStatus(status.getValue());
-							mark = true;
-						}else if(AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY.equals(status)){
-							orderDetail.setStatus(status.getValue());
-							mark = true;
-						}else if(AutoBuyStatus.AUTO_SCRIBE_SUCCESS.equals(status)){
+						if(AutoBuyStatus.AUTO_SCRIBE_SUCCESS.equals(status)){
 							if(autoOrderExpressDetail!=null){
 								status = manualBuy.expressDetail(orderDetail, autoOrderExpressDetail);
 								orderDetail.setStatus(status.getValue());
 								mark = true;
 							}
+						}else{
+							orderDetail.setStatus(status.getValue());
+							mark = true;
 						}
 					}else{
 						logger.debug("autoOrderScribeExpress 为空");
