@@ -15,10 +15,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.oversea.task.AutoBuyConst;
+import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
+import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
 import com.oversea.task.utils.StringUtils;
@@ -388,7 +391,7 @@ public class AshfordAutoBuy extends AutoBuy {
 	}
 
 	@Override
-	public AutoBuyStatus pay(Map<String, String> param) {
+	public AutoBuyStatus pay(Map<String, String> param,UserTradeAddress userTradeAddress,OrderPayAccount orderPayAccount) {
 		String myPrice = param.get("my_price");
 		if (Utils.isEmpty(myPrice)) {
 			logger.error("--->预算总价没有传值过来,无法比价");
@@ -571,6 +574,134 @@ public class AshfordAutoBuy extends AutoBuy {
 			}
 		} catch (Exception e) {
 			logger.debug("--->选择地址出错 = ", e);
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+		}
+		
+		//直邮
+		try {
+			TimeUnit.SECONDS.sleep(2);
+			try {
+				WebElement newAddressBtn = driver.findElement(By.id("newAddressBtn"));
+				newAddressBtn.click();
+				TimeUnit.SECONDS.sleep(2);
+			} catch (Exception e) {}
+			
+			
+			
+			
+			logger.debug("--->选择收货地址");
+			WebElement countrySelect = driver.findElement(By.id("atg_store_countryName"));
+			Select select = new Select(countrySelect);
+			select.selectByVisibleText("China");
+			TimeUnit.SECONDS.sleep(2);
+			
+			WebElement firstname = driver.findElement(By.id("atg_store_lastNameInput"));
+			logger.debug("--->输入收货人姓"+userTradeAddress.getName().substring(0,1));
+			Utils.sleep(1500);
+			firstname.sendKeys(userTradeAddress.getName().substring(0,1));
+			
+			WebElement lastname = driver.findElement(By.id("atg_store_firstNameInput"));
+			logger.debug("--->输入收货人名"+userTradeAddress.getName().substring(1));
+			Utils.sleep(1500);
+			lastname.sendKeys(userTradeAddress.getName().substring(1));
+			
+			//省份
+			String stateStr = userTradeAddress.getState().trim();
+			WebElement state = driver.findElement(By.id("atg_store_stateSelect"));
+				
+			Select selectState = new Select(state);
+			selectState.selectByVisibleText(stateStr);
+			logger.debug("--->输入省");
+			Utils.sleep(2000);
+			
+			//市
+			WebElement city = driver.findElement(By.id("atg_store_citySelect"));	
+			Select selectCity = new Select(city);
+			String cityStr = userTradeAddress.getCity().trim();
+			try {
+				if("大理市".equals(cityStr)){
+					cityStr = "大理白族自治州";
+				}
+				selectCity.selectByVisibleText(cityStr);
+			} catch (Exception e) {
+				try {
+					if(!cityStr.endsWith("市")){
+						cityStr = cityStr + "市";
+					}
+					selectCity.selectByVisibleText(cityStr);
+				} catch (Exception e2) {
+					logger.debug("--->输入市出错", e2);
+				}
+			}
+			logger.debug("--->输入市");
+			Utils.sleep(2000);
+			
+			//区
+			String districtStr = userTradeAddress.getDistrict().trim();
+			WebElement district = driver.findElement(By.id("atg_store_districtSelect"));	
+			
+			Select selectdistrict = new Select(district);
+			try{
+				selectdistrict.selectByVisibleText(districtStr);
+			}catch(Exception e){
+				if(districtStr.endsWith("区")){//区改市
+					districtStr = districtStr.subSequence(0, districtStr.length()-1)+"市";
+				} else if(districtStr.equals("经济开发区")){
+					districtStr = "经济技术开发区";
+				}
+				try{
+					selectdistrict.selectByVisibleText(districtStr);
+				}catch(Exception ee){
+					selectdistrict.selectByIndex(1);
+				}
+			}
+			logger.debug("--->输入区");
+			Utils.sleep(2000);
+			WebElement street = driver.findElement(By.id("atg_store_streetAddressInput"));
+			
+			street.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入街道地址");
+			Utils.sleep(1500);
+			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
+			
+			WebElement postcode = driver.findElement(By.id("atg_store_postalCodeInput"));
+			postcode.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入邮编");
+			Utils.sleep(1500);
+			postcode.sendKeys(userTradeAddress.getZip());
+			
+			WebElement telephone = driver.findElement(By.id("atg_store_telephoneInput"));
+			telephone.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入电话");
+			Utils.sleep(1500);
+			telephone.sendKeys(userTradeAddress.getMobile());
+			
+			Utils.sleep(1500);
+			WebElement saveAddrBtn = driver.findElement(By.id("saveAddressBtn"));
+			saveAddrBtn.click();
+			Utils.sleep(3000);
+			logger.debug("--->点击保存地址");
+			
+		} catch (Exception e) {
+			logger.debug("--->选择地址出错 = ", e);
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+		}
+		
+		try {
+			WebElement author = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".addressCard-author")));
+			String authorName = author.getText();
+			logger.debug("--->收件人为"+authorName);
+			authorName = authorName.substring(0,1).trim()+authorName.substring(1).trim();
+			logger.debug("--->收件人1为"+authorName);
+			logger.debug("--->收件人2为"+userTradeAddress.getName());
+			if(!authorName.equals(userTradeAddress.getName())){
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->选择地址出错了");
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}
 
@@ -769,7 +900,7 @@ public class AshfordAutoBuy extends AutoBuy {
 							String expressNo = expressNoEle.trim();
 							String expressCompany = expressCompanyEle.trim();
 							
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 							logger.error("expressCompany = " + expressCompany);
 							logger.error("expressNo = " + expressNo);
