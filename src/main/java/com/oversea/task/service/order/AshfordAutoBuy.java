@@ -529,53 +529,53 @@ public class AshfordAutoBuy extends AutoBuy {
 		
 		// 选收货地址
 		logger.debug("--->选择收货地址");
-		try {
-			TimeUnit.SECONDS.sleep(2);
-			try {
-				WebElement otherAddressBtn = driver.findElement(By.xpath("//a[@id='moreAddressBtn' and contains(text(),'其他地址')]"));
-				otherAddressBtn.click();
-				TimeUnit.SECONDS.sleep(2);
-			} catch (Exception e) {}
-			
-			List<WebElement> addressEle = driver.findElements(By.cssSelector("div.checkout-shippingAddress-card"));
-			Iterator<WebElement>  list= addressEle.iterator();
-			while(list.hasNext()){
-				WebElement element = list.next();
-				if(element.getText().contains("310000")){
-					logger.debug("This is billing address!");
-					list.remove();
-				}
-			}
-			if (addressEle != null && addressEle.size() > 0) {
-				logger.debug("--->目前共有[" + addressEle.size() + "]个可用地址");
-				
-				int index = 0;
-				try {
-					index = Integer.valueOf(count);
-					int tarAddr = index % 2;
-
-					WebElement cur = addressEle.get(tarAddr);
-					Utils.sleep(1500);
-					WebElement radio = cur.findElement(By.cssSelector("div.addressCard-radio input[id]"));
-					radio.click();
-					logger.debug("--->选择第" + (tarAddr + 1) + "个地址成功");
-					Utils.sleep(5000);
-				} catch (Exception e) {
-					e.printStackTrace();
-					return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
-				}
-				// 保存收货地址
-				WebElement saveAddressBtn = driver.findElement(By.id("saveAddressBtn"));
-				Utils.sleep(1500);
-				saveAddressBtn.sendKeys(Keys.ENTER);
-				//saveAddressBtn.click();
-				logger.debug("--->保存地址成功");
-				Utils.sleep(5000);
-			}
-		} catch (Exception e) {
-			logger.debug("--->选择地址出错 = ", e);
-			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
-		}
+//		try {
+//			TimeUnit.SECONDS.sleep(2);
+//			try {
+//				WebElement otherAddressBtn = driver.findElement(By.xpath("//a[@id='moreAddressBtn' and contains(text(),'其他地址')]"));
+//				otherAddressBtn.click();
+//				TimeUnit.SECONDS.sleep(2);
+//			} catch (Exception e) {}
+//			
+//			List<WebElement> addressEle = driver.findElements(By.cssSelector("div.checkout-shippingAddress-card"));
+//			Iterator<WebElement>  list= addressEle.iterator();
+//			while(list.hasNext()){
+//				WebElement element = list.next();
+//				if(element.getText().contains("310000")){
+//					logger.debug("This is billing address!");
+//					list.remove();
+//				}
+//			}
+//			if (addressEle != null && addressEle.size() > 0) {
+//				logger.debug("--->目前共有[" + addressEle.size() + "]个可用地址");
+//				
+//				int index = 0;
+//				try {
+//					index = Integer.valueOf(count);
+//					int tarAddr = index % 2;
+//
+//					WebElement cur = addressEle.get(tarAddr);
+//					Utils.sleep(1500);
+//					WebElement radio = cur.findElement(By.cssSelector("div.addressCard-radio input[id]"));
+//					radio.click();
+//					logger.debug("--->选择第" + (tarAddr + 1) + "个地址成功");
+//					Utils.sleep(5000);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+//				}
+//				// 保存收货地址
+//				WebElement saveAddressBtn = driver.findElement(By.id("saveAddressBtn"));
+//				Utils.sleep(1500);
+//				saveAddressBtn.sendKeys(Keys.ENTER);
+//				//saveAddressBtn.click();
+//				logger.debug("--->保存地址成功");
+//				Utils.sleep(5000);
+//			}
+//		} catch (Exception e) {
+//			logger.debug("--->选择地址出错 = ", e);
+//			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+//		}
 		
 		//直邮
 		try {
