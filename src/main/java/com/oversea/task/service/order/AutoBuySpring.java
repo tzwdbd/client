@@ -178,7 +178,7 @@ public class AutoBuySpring extends AutoBuy {
 			//清理
 			logger.error("--->开始清理购物车");
 			//循坏清除
-			List<WebElement> list = driver.findElements(By.cssSelector("button[class^='remove']"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".wrapper_186dbnp-o_O-cartItem_1ef250u button[class^='remove']"));
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
