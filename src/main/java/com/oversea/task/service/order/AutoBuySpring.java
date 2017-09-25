@@ -19,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -89,7 +90,7 @@ public class AutoBuySpring extends AutoBuy {
 	@Override
 	public AutoBuyStatus login(String userName, String passWord) {
 		logger.debug("--->调整浏览器尺寸和位置");
-		driver.manage().window().maximize();
+		driver.manage().window().setSize(new Dimension(1280, 720));
 		
 		try
 		{
