@@ -180,6 +180,7 @@ public class OrderNormalHandler implements OrderHandler {
 							params.put("my_price", String.valueOf(myPrice));
 							
 							params.put("count", count);
+							params.put("size", String.valueOf(orderDetailList.size()));
 							params.put("isPay", String.valueOf(isPay));
 							params.put("cardNo", account.getCardNo());
 							params.put("isPrime", isPrime);

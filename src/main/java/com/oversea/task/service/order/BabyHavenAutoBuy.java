@@ -331,6 +331,11 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				driver.executeScript("(function(){window.scrollBy(300,500);})();");
 				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("AccountButton")));
+				//比较数量
+				List<WebElement> carNumList = driver.findElements(By.cssSelector(".tr-selected"));
+				if(carNumList.size()!=Integer.parseInt(param.get("size"))){
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
 				// 结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
