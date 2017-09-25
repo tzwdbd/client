@@ -467,7 +467,7 @@ public class AutoBuySpring extends AutoBuy {
 			driver.executeScript("(function(){window.scrollBy(0,200);})();");
 			Utils.sleep(2500);
 			WebElement addlink = driver.findElement(By.cssSelector(".text_19ar56z-o_O-addPromoText_er4n8x"));
-			addlink.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", addlink);
 			boolean isEffective = false;
 			HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 			for(String code : promotionList){
