@@ -3832,7 +3832,7 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 					logger.error("--->title1="+smallTitle);
 					logger.error("--->title2="+title);
-					if(!StringUtil.isBlank(smallTitle) && title.contains(smallTitle)){
+					if(!StringUtil.isBlank(smallTitle) && title.startsWith(smallTitle)){
 						logger.error("--->title"+titleWeb.getText());
 						w.findElement(By.cssSelector("a")).click();
 						mark = true;
