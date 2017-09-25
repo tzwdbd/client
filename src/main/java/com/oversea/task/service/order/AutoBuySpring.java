@@ -464,6 +464,8 @@ public class AutoBuySpring extends AutoBuy {
 		Set<String> promotionList = getPromotionList(param.get("promotion"));
 		//优惠码
 		if(promotionList != null && promotionList.size() > 0){
+			driver.executeScript("(function(){window.scrollBy(0,200);})();");
+			Utils.sleep(2500);
 			WebElement addlink = driver.findElement(By.cssSelector(".text_19ar56z-o_O-addPromoText_er4n8x"));
 			addlink.click();
 			boolean isEffective = false;
