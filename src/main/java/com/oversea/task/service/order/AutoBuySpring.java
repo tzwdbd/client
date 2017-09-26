@@ -526,10 +526,10 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		try {
-			WebElement change = driver.findElement(By.cssSelector(".userInfoBox_1x3q7yf a"));
+			WebElement change = driver.findElement(By.cssSelector(".userInfoBox_1915hxd a"));
 			change.click();
 			Utils.sleep(1500);
-			List<WebElement> address =  driver.findElements(By.cssSelector(".li_yud3bt"));
+			List<WebElement> address =  driver.findElements(By.cssSelector("li[class^='li_yud3bt']"));
 			address.get(count%address.size()).click();
 			Utils.sleep(500);
 			WebElement saveAddress = driver.findElement(By.cssSelector(".button_ghuiww"));
@@ -580,34 +580,49 @@ public class AutoBuySpring extends AutoBuy {
 			//placeOrderElement.click();;
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		WebDriverWait wait0 = new WebDriverWait(driver, 20);
 		try {
 			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
-			placeOrderElement.click();
-			logger.debug("--->点击付款完成 placeOrder finish1");
+			try {
+				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
+				placeOrderElement.click();
+				logger.debug("--->点击付款完成 placeOrder finish1");
+			} catch (Exception e2) {
+				logger.debug("--->点击付款完成 placeOrder finish11");
+			}
+			
 		}
 		try {
 			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
-			placeOrderElement.click();;
-			logger.debug("--->点击付款完成 placeOrder finish2");
+			try {
+				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+				placeOrderElement.click();;
+				logger.debug("--->点击付款完成 placeOrder finish2");
+			} catch (Exception e2) {
+				logger.debug("--->点击付款完成 placeOrder finish22");
+			}
+			
 		}
 		try {
 			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
-			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
-			logger.debug("--->点击付款完成 placeOrder finish3");
+			try {
+				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+				driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
+				logger.debug("--->点击付款完成 placeOrder finish3");
+			} catch (Exception e2) {
+				logger.debug("--->点击付款完成 placeOrder finish33");
+			}
+			
 		}
-		
+	
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
