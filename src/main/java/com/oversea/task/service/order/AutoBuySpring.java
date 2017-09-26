@@ -179,7 +179,7 @@ public class AutoBuySpring extends AutoBuy {
 			//清理
 			logger.error("--->开始清理购物车");
 			//循坏清除
-			List<WebElement> list = driver.findElements(By.cssSelector(".remove_wqsnge-o_O-button_10szbjp"));
+			List<WebElement> list = driver.findElements(By.cssSelector("button[class^=remove_wqsnge-o_O-button]"));
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
@@ -187,7 +187,7 @@ public class AutoBuySpring extends AutoBuy {
 					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
 					Utils.sleep(2000);
 					if(size>1){
-						list = driver.findElements(By.cssSelector(".remove_wqsnge-o_O-button_10szbjp"));
+						list = driver.findElements(By.cssSelector("button[class^=remove_wqsnge-o_O-button]"));
 					}else{
 						break;
 					}
@@ -467,40 +467,50 @@ public class AutoBuySpring extends AutoBuy {
 		if(promotionList != null && promotionList.size() > 0){
 			driver.executeScript("(function(){window.scrollBy(0,200);})();");
 			Utils.sleep(2500);
-			WebElement addlink = driver.findElement(By.cssSelector(".text_19ar56z-o_O-addPromoText_er4n8x"));
-			driver.executeScript("var tar=arguments[0];tar.click();", addlink);
-			boolean isEffective = false;
-			HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
-			for(String code : promotionList){
-				if(StringUtil.isNotEmpty(code)){
-					code = code.trim();
-					try{
-						WebElement codeInput = driver.findElement(By.cssSelector(".promoCodesInput_odvh1a"));
-						codeInput.clear();
-						Utils.sleep(2500);
-						codeInput.sendKeys(code);
-						Utils.sleep(1500);
-						driver.findElement(By.cssSelector(".applyButton_tyi7sb")).click();
-						Utils.sleep(5500);
-						
+			boolean mark = true;
+			try {
+				driver.findElement(By.cssSelector("div[class^='promoTitle']"));
+				logger.error("页面上已经有优惠码了");
+				mark =false;
+			} catch (Exception e) {
+				logger.error("页面上没有优惠码了");
+			}
+			if(mark){
+				WebElement addlink = driver.findElement(By.cssSelector("span[class^='text_19ar56z-o_O-addPromoText']"));
+				driver.executeScript("var tar=arguments[0];tar.click();", addlink);
+				boolean isEffective = false;
+				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+				for(String code : promotionList){
+					if(StringUtil.isNotEmpty(code)){
+						code = code.trim();
 						try{
-							driver.findElement(By.cssSelector(".errorMsg_vromzt"));//礼品卡
-							statusMap.put(code, 0);
+							WebElement codeInput = driver.findElement(By.cssSelector("input[class^='promoCodesInput']"));
+							codeInput.clear();
+							Utils.sleep(2500);
+							codeInput.sendKeys(code);
+							Utils.sleep(1500);
+							driver.findElement(By.cssSelector(".applyButton_tyi7sb")).click();
+							Utils.sleep(5500);
+							
+							try{
+								driver.findElement(By.cssSelector(".errorMsg_vromzt"));//礼品卡
+								statusMap.put(code, 0);
+							}catch(Exception e){
+								logger.error("promotionCode:"+code,e);
+								statusMap.put(code, 10);
+								isEffective = true;
+							}
 						}catch(Exception e){
-							logger.error("promotionCode:"+code,e);
-							statusMap.put(code, 10);
-							isEffective = true;
+							logger.error("输入优惠码的时候错误",e);
 						}
-					}catch(Exception e){
-						logger.error("输入优惠码的时候错误",e);
 					}
 				}
-			}
-			setPromotionCodelistStatus(statusMap);
-			
-			if("true".equals(param.get("isStock")) && !isEffective){
-				logger.debug("--->囤货订单优惠码失效,中断采购");
-				return AutoBuyStatus.AUTO_PAY_FAIL;
+				setPromotionCodelistStatus(statusMap);
+				
+				if("true".equals(param.get("isStock")) && !isEffective){
+					logger.debug("--->囤货订单优惠码失效,中断采购");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
 			}
 		}
 		
