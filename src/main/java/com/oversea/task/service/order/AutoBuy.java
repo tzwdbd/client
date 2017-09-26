@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import com.oversea.task.domain.BrushOrderDetail;
+import com.oversea.task.domain.ExternalOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
@@ -41,6 +42,7 @@ abstract public class AutoBuy
 	protected boolean isInitSuccess = false;
 	private Map<Long,String> asinMap = null;
 	private List<RobotOrderDetail> orderDetailList;
+	private List<ExternalOrderDetail> externalOrderDetailList;
 	protected boolean isWap ;
 	private Task task;
 	protected TaskResult taskResult;
@@ -56,6 +58,14 @@ abstract public class AutoBuy
 	private String totalPrice;
 	private BrushOrderDetail brushOrderDetail;
 	
+	public List<ExternalOrderDetail> getExternalOrderDetailList() {
+		return externalOrderDetailList;
+	}
+
+	public void setExternalOrderDetailList(
+			List<ExternalOrderDetail> externalOrderDetailList) {
+		this.externalOrderDetailList = externalOrderDetailList;
+	}
 	public void setTaskResult(TaskResult taskResult){
 		this.taskResult = taskResult;
 	}
@@ -308,6 +318,10 @@ abstract public class AutoBuy
 	 * @return
 	 */
 	public AutoBuyStatus scribeExpress(BrushOrderDetail detail){
+		return scribeExpress(detail);
+	}
+	
+	public AutoBuyStatus scribeExpress(ExternalOrderDetail detail){
 		return scribeExpress(detail);
 	}
 	

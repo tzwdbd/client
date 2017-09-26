@@ -25,6 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.gson.Gson;
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.ExpressNode;
+import com.oversea.task.domain.ExternalOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
@@ -2252,6 +2253,260 @@ public class AmazonJpAutoBuy extends AutoBuy
 //				logger.error("在寻找物流公司和单号码时出现异常:" + e.getMessage());
 //				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 //			}
+		}
+		catch (Exception e)
+		{
+			logger.error("异常:" + e.getMessage());
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
+	}
+	
+	public AutoBuyStatus scribeExpress(ExternalOrderDetail detail)
+	{
+		String productEntityCode = "";
+		if(getAsinMap() != null){
+			productEntityCode = getAsinMap().get(detail.getId());
+		}
+		logger.error("productEntityCode = "+productEntityCode);
+		if (Utils.isEmpty(productEntityCode)){
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+		}
+		
+		String mallOrderNo = detail.getMallOrderNo();
+		logger.error("开始爬去物流,单号:" + mallOrderNo);
+		if (Utils.isEmpty(mallOrderNo))
+		{
+			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
+		}
+		try
+		{
+			//寻找Your Account
+			try
+			{
+				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+				WebElement orderAccount = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-button-avatar")));
+				Utils.sleep(1500);
+				logger.debug("--->查找到Your Account");
+				orderAccount.click();
+			}
+			catch (Exception e)
+			{
+				logger.error("找不到主页上面的Your Account");
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+
+			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			//寻找Your orders
+			try
+			{
+				WebElement order = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='a-size-base' and contains(text(),'注文履歴')]")));
+				Utils.sleep(1500);
+				logger.debug("--->查找到Your orders");
+				order.click();
+			}
+			catch (Exception e)
+			{
+				logger.error("找不到Your orders");
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+
+			WebElement searchBtn = null;
+			boolean findById = true;
+			try
+			{
+				logger.info("--->[1]find search btn");
+				Utils.sleep(3000);
+				searchBtn = driver.findElement(By.id("showSearchBar"));
+				Utils.sleep(1500);
+				searchBtn.click();
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					logger.info("--->[2]find search btn");
+					Utils.sleep(3000);
+					searchBtn = driver.findElement(By.xpath("//a[contains(text(),'すべての注文を検索')]"));
+					Utils.sleep(1500);
+					searchBtn.click();
+					findById = false;
+				}
+				catch (Exception ex)
+				{
+					logger.error("--->查找搜索按钮错误");
+					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+				}
+			}
+
+			try
+			{
+				//寻找订单输入框
+				Utils.sleep(3000);
+				WebElement searchInput = driver.findElement(By.name("search"));
+				Utils.sleep(1500);
+				searchInput.sendKeys(mallOrderNo);
+				Utils.sleep(2000);
+				searchInput.sendKeys(Keys.ENTER);
+				Utils.sleep(1500);
+				logger.debug("--->查找到 搜索框并且点击搜索");
+			}
+			catch (Exception e)
+			{
+				logger.error("查找订单错误");
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+
+			// 被砍单
+			try
+			{
+				Utils.sleep(5000);
+				WebElement result = driver.findElement(By.id("no-result"));
+				if (!result.isDisplayed() && result.getText().contains(mallOrderNo))
+				{
+					logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+				}
+			}
+			catch (Exception e)
+			{
+				if (!findById)
+				{
+					logger.error("找不到这个订单 :" + mallOrderNo);
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+				}
+			}
+			
+			try
+			{
+				WebElement result = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'キャンセル')]"));
+				if (result != null && result.isDisplayed())
+				{
+					logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+				}
+			}
+			catch (Exception e)
+			{
+				logger.error(mallOrderNo + " 这个订单没有被砍，carry on");
+			}
+			
+
+			if (findById)
+			{
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.name("search")));
+			}
+			
+			TimeUnit.SECONDS.sleep(2);
+			
+			//对比asinCode
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section.a-padding-small.js-item")));
+				logger.error("a-padding-small加载完成");
+				List<WebElement> ll = driver.findElements(By.cssSelector(".a-section.a-padding-small.js-item"));
+				if(ll != null && ll.size() > 0){
+					boolean isFind = false;
+					for(WebElement w : ll){
+						WebElement ww = w.findElement(By.cssSelector("div.item-view-left-col-inner a.a-link-normal"));
+						logger.error("a-link-normal加载完成");
+						if(ww != null){
+							String productLink = ww.getAttribute("href");
+							logger.error("productLink = "+productLink);
+							if(productLink != null && productLink.contains(productEntityCode)){
+								try {
+									WebElement seeShip = w.findElement(By.xpath(".//a[@class='a-touch-link a-box']/div[@class='a-box-inner' and contains(text(),'配送状況を確認')]"));
+									if(seeShip != null){
+										isFind = true;
+										seeShip.click();
+										break;
+									}
+								} catch (Exception e) {
+									try{
+										w.findElement(By.xpath(".//a[@class='a-touch-link a-box']/div[@class='a-box-inner' and contains(text(),'注文内容を表示')]")).click();
+										logger.error("点击注文内容を表示");
+									}catch(Exception e1){
+										logger.error("注文内容を表示 出错1");
+										break;
+									}
+									try{
+										wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
+										logger.error("到达配送状況を確認");
+										List<WebElement> groups = driver.findElements(By.cssSelector(".a-section .a-box-group"));
+										for(WebElement group:groups){
+											WebElement aLink = group.findElement(By.cssSelector("a.a-link-normal"));
+											String productLinks = aLink.getAttribute("href");
+											logger.error("aLink = "+productLinks);
+											if(productLinks != null && productLinks.contains(productEntityCode)){
+												WebElement seeShip = group.findElement(By.cssSelector("a.a-touch-link.a-box"));
+												if(seeShip != null){
+													isFind = true;
+													seeShip.click();
+												}
+											}
+										}
+									}catch(Exception e1){
+										logger.error("配送状況を確認 出错1");
+										break;
+									}
+								}
+							}
+						}
+						if(isFind){
+							break;
+						}
+					}
+					if(!isFind){
+						logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+					}
+				}else{
+					logger.debug("--->没找到订单:"+mallOrderNo);
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+				}
+			}catch(Exception e){
+				logger.debug("对比asinCode出现异常,商城还没发货",e);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}
+			
+			
+			//等待物流页面加载完成
+			try{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+			}catch(Exception e){
+				logger.debug("--->等待物流页面加载完成出错",e);
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+			
+			//寻找物流公司和单号页面
+			try
+			{
+				logger.debug("--->获取物流信息");
+				WebElement base = driver.findElement(By.xpath("//div[@class='a-box-group a-spacing-large']/div[@class='a-box'][2]/div[@class='a-box-inner a-padding-medium']"));
+				List<WebElement> ps = base.findElements(By.tagName("p"));
+				if (ps != null && ps.size() == 2)
+				{
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, ps.get(0).getText().trim());
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, ps.get(1).getText().trim());
+
+					logger.error("expressCompany = " + ps.get(0).getText());
+					logger.error("expressNo = " + ps.get(1).getText());
+
+					logger.debug("--->成功获取物流信息");
+
+				}
+				else
+				{
+					logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+				}
+			}
+			catch (Exception e)
+			{
+				logger.error("在寻找物流公司和单号码时出现异常:" + e.getMessage());
+				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			}
+			
+			return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+			
 		}
 		catch (Exception e)
 		{

@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import com.haihu.rpc.common.RemoteService;
 import com.oversea.task.common.TaskService;
 import com.oversea.task.domain.BrushOrderDetail;
+import com.oversea.task.domain.ExternalOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.RobotOrderDetail;
@@ -19,6 +20,8 @@ import com.oversea.task.handle.BrushOrderHandler;
 import com.oversea.task.handle.BrushShipHandler;
 import com.oversea.task.handle.CheckGiftCardAmazonHandler;
 import com.oversea.task.handle.CheckGiftCardAmazonJPHandler;
+import com.oversea.task.handle.ExternalOrderHandler;
+import com.oversea.task.handle.ExternalShipHandler;
 import com.oversea.task.handle.GiftCardCheckHandler;
 import com.oversea.task.handle.ManualOrderHandler;
 import com.oversea.task.handle.ManualShipHandler;
@@ -65,6 +68,10 @@ public class TaskServiceImpl implements TaskService {
 	private ManualShipHandler manualShipHandler;
 	@Resource
 	private ManualOrderHandler manualOrderHandler;
+	@Resource
+	private ExternalOrderHandler externalOrderHandler;
+	@Resource
+	private ExternalShipHandler externalShipHandler;
 
 	@Override
 	public TaskResult orderService(final Task task) {
@@ -81,7 +88,12 @@ public class TaskServiceImpl implements TaskService {
 			Object obj = task.getParam("robotOrderDetails");
 			if(obj == null){
 				logger.error("robotOrderDetails is null");
-				return taskResult;
+			}else{
+				obj = task.getParam("externalOrderDetails");
+				if(obj == null){
+					logger.error("externalOrderDetails is null");
+					return taskResult;
+				}
 			}
 			taskResult.setValue(obj);
 			//开始下单
@@ -368,6 +380,74 @@ public class TaskServiceImpl implements TaskService {
 			}
 		}catch(Throwable e){
 			logger.error("调用manualShip出现异常",e);
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult externalOrder(Task task) {
+		logger.error("externalOrder");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			String mallName = (String) task.getParam("mallName");
+			if(StringUtil.isEmpty(mallName)){
+				logger.error("mallName is null");
+				return taskResult;
+			}
+			logger.error("sitename = " + mallName);
+			Object obj = task.getParam("externalOrderDetails");
+			if(obj == null){
+				logger.error("externalOrderDetails is null");
+				return taskResult;
+			}
+			taskResult.setValue(obj);
+			//开始下单
+			externalOrderHandler.handle(task,taskResult,obj);
+			try {
+				Object obj1 = task.getParam("screentShot");
+				if(obj1 != null){
+					taskResult.addParam("screentShot", obj1);
+				}else{
+					logger.error(mallName+"调用screentShot为空");
+				}
+			} catch (Exception e) {
+				logger.error("调用screentShot出现异常",e);
+			}
+			try {
+				Object card = task.getParam("giftCardList");
+				if(card != null){
+					taskResult.addParam("giftCardList", card);
+				}else{
+					logger.error(mallName+"调用giftCardList为空");
+				}
+			} catch (Exception e) {
+				logger.error("调用giftCardList出现异常",e);
+			}
+			
+		}catch(Throwable e){
+			logger.error("调用orderService出现异常",e);
+		}finally{
+			logger.error("下单任务结束");
+		}
+		return taskResult;
+	}
+
+	@Override
+	public TaskResult externalShip(Task task) {
+		logger.error("externalShip");
+		TaskResult taskResult = new ClientTaskResult();
+		try{
+			List<ExternalOrderDetail> externalOrderDetailList = (List<ExternalOrderDetail>) task.getParam("externalOrderDetails");
+			taskResult.setValue(externalOrderDetailList);
+			if (externalOrderDetailList == null || externalOrderDetailList.size() <= 0){
+				logger.error("externalOrderDetail is null");
+				return taskResult;
+			}
+			
+			//爬物流
+			externalShipHandler.handle(task,taskResult,externalOrderDetailList);
+		}catch(Throwable e){
+			logger.error("调用shipService出现异常",e);
 		}
 		return taskResult;
 	}
