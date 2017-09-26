@@ -584,7 +584,7 @@ public class AutoBuySpring extends AutoBuy {
 		}
 		WebDriverWait wait0 = new WebDriverWait(driver, 20);
 		try {
-			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			By byby = By.cssSelector(".text_17p9f19");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -597,7 +597,7 @@ public class AutoBuySpring extends AutoBuy {
 			
 		}
 		try {
-			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			By byby = By.cssSelector(".text_17p9f19");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -610,7 +610,7 @@ public class AutoBuySpring extends AutoBuy {
 			
 		}
 		try {
-			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
+			By byby = By.cssSelector(".text_17p9f19");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -626,8 +626,9 @@ public class AutoBuySpring extends AutoBuy {
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
-			By byby = By.cssSelector(".text_1b1i93c-o_O-title_1hkiryo");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
+			By byby = By.cssSelector(".text_17p9f19");
+			WebElement wi = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
+			wi.click();
 			logger.debug("--->开始跳转到订单页面");
 			driver.navigate().to("https://www.shopspring.com/me/orders");
 			
