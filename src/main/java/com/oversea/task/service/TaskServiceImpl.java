@@ -88,12 +88,7 @@ public class TaskServiceImpl implements TaskService {
 			Object obj = task.getParam("robotOrderDetails");
 			if(obj == null){
 				logger.error("robotOrderDetails is null");
-			}else{
-				obj = task.getParam("externalOrderDetails");
-				if(obj == null){
-					logger.error("externalOrderDetails is null");
-					return taskResult;
-				}
+				return taskResult;
 			}
 			taskResult.setValue(obj);
 			//开始下单
