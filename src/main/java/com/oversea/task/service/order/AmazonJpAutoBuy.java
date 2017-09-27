@@ -1697,8 +1697,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.error("--->付款出错啦!", e);
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
-
-			String orderNo = getAmazonOrderNo();
+			String orderNo = "";
+			try {
+				orderNo = getAmazonOrderNo();
+			} catch (Exception e) {
+				logger.error("--->获取amazonjp单号出错!");
+				return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
+			}
+			
 			if (!Utils.isEmpty(orderNo))
 			{
 				logger.error("--->获取amazonjp单号成功:\t" + orderNo);
