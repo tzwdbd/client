@@ -1766,7 +1766,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 				{
 					orderNo = ps.get(1).getText();
 				}
-				doScreenShot();
+				//doScreenShot();
 			}
 			catch (Exception e)
 			{

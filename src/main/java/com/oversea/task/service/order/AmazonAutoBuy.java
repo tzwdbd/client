@@ -2136,7 +2136,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}else{
 			logger.debug("--->查找Review or edit order");
-			doScreenShot();
+			//doScreenShot();
 			try {
 				WebElement w =driver.findElement(By.xpath("//span[contains(text(),'Review or edit order')]"));
 				logger.debug("--->找到了Review or edit order");
