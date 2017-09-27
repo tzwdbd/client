@@ -900,7 +900,7 @@ public class AshfordAutoBuy extends AutoBuy {
 							String expressNo = expressNoEle.trim();
 							String expressCompany = expressCompanyEle.trim();
 							
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ueq");
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 							logger.error("expressCompany = " + expressCompany);
 							logger.error("expressNo = " + expressNo);
