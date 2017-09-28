@@ -97,9 +97,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			logger.error("--->第三次关弹窗");
-			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
-			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
-			driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
+			driver.findElement(By.cssSelector("#modal-content .close")).click();
 		} catch (Exception e) {
 		}
 		
