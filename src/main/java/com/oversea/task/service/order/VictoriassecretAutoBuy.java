@@ -94,6 +94,14 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
 		} catch (Exception e) {
 		}
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			logger.error("--->第二次关弹窗");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
+		} catch (Exception e) {
+		}
 		
 		
 		
