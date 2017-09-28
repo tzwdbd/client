@@ -78,16 +78,27 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			logger.error("--->打开登陆页面", e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 		}
-		driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
-		driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
-		driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
+		
+			TimeUnit.SECONDS.sleep(5);
+		} catch (Exception e) {
+			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
+		}
+		
+		
+		
 		try
 		{
 			WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By.id("useremail")));
-			TimeUnit.SECONDS.sleep(5);
 			username.sendKeys(userName);
 			logger.debug("--->输入账号");
-			TimeUnit.SECONDS.sleep(5);
+			TimeUnit.SECONDS.sleep(3);
 		}
 		catch (Exception e)
 		{
@@ -100,7 +111,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			WebElement password = driver.findElement(By.id("userpassword"));
 			password.sendKeys(passWord);
 			logger.debug("--->输入密码");
-			TimeUnit.SECONDS.sleep(5);
+			TimeUnit.SECONDS.sleep(3);
 		}
 		catch (Exception e)
 		{
