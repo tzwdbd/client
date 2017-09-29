@@ -656,14 +656,27 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					logger.debug("code:"+code);
 					TimeUnit.SECONDS.sleep(2);
 					WebElement promoCode = null;
-					if(j==0){
-						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode0"));
-					}
-					if(j==1){
-						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode1"));
-					}
-					if(j==2){
-						promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode2"));
+					if(!StringUtil.isBlank(type) && type.equals("1")){
+						if(j==0){
+							promoCode = driver.findElement(By.cssSelector("#offerCode0"));
+						}
+						if(j==1){
+							promoCode = driver.findElement(By.cssSelector("#offerCode1"));
+						}
+						if(j==2){
+							promoCode = driver.findElement(By.cssSelector("#offerCode2"));
+						}
+						
+					}else{
+						if(j==0){
+							promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode0"));
+						}
+						if(j==1){
+							promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode1"));
+						}
+						if(j==2){
+							promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode2"));
+						}
 					}
 					
 					logger.debug("--->找到优惠码输入框,开始输入");
@@ -686,7 +699,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 						logger.debug("优惠码可用");
 						isEffective = true;
 						statusMap.put(code, 10);
-						promoCode.clear();
+						//promoCode.clear();
 					}
 					j++;
 				} catch (Exception e) {
