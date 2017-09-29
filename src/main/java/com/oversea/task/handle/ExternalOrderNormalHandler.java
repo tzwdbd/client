@@ -165,6 +165,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							params.put("my_price", String.valueOf(myPrice));
 							
 							params.put("count", count);
+							params.put("isPay", String.valueOf(true));
 							params.put("size", String.valueOf(externalOrderDetailList.size()));
 							params.put("isPrime", isPrime);
 							params.put("expressAddress",expressAddress);
