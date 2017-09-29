@@ -656,7 +656,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 					logger.debug("code:"+code);
 					TimeUnit.SECONDS.sleep(2);
 					WebElement promoCode = null;
-					if(!StringUtil.isBlank(type) && type.equals("1")){
+					try {
 						if(j==0){
 							promoCode = driver.findElement(By.cssSelector("#offerCode0"));
 						}
@@ -666,8 +666,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 						if(j==2){
 							promoCode = driver.findElement(By.cssSelector("#offerCode2"));
 						}
-						
-					}else{
+					} catch (Exception e) {
 						if(j==0){
 							promoCode = driver.findElement(By.cssSelector("#offersForm #drawer-offerCode0"));
 						}
