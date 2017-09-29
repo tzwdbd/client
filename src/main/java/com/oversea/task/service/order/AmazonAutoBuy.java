@@ -1344,9 +1344,17 @@ public class AmazonAutoBuy extends AutoBuy
 		try
 		{
 			try{
+				logger.error("选择物流");
+				driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
+				Utils.sleep(5000);
+			}catch(Exception e){
+				logger.error("isgotopay选配送异常",e);
+			}
+			try{
 				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@id='shippingOptionFormId']")));
 			}catch(Exception e){}
+			
 			
 			TimeUnit.SECONDS.sleep(2);
 			
@@ -1845,6 +1853,11 @@ public class AmazonAutoBuy extends AutoBuy
 				status = selectDeliveryOptions();
 				if (status.equals(AutoBuyStatus.AUTO_PAY_SELECT_DElLIVERY_OPTIONS_SUCCESS))
 				{
+					try {
+						driver.findElement(By.cssSelector("#payment-info a.a-first")).click();
+					} catch (Exception e) {
+					}
+			
 					//优惠码
 					String promotionStr = param.get("promotion");
 					Set<String> promotionList = getPromotionList(promotionStr);
