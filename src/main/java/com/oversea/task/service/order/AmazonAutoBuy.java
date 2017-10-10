@@ -2844,25 +2844,36 @@ public class AmazonAutoBuy extends AutoBuy
 		try
 		{
 			// 寻找Search all orders showSearchBar
-			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
+			
 			Utils.sleep(1500);
-			search.click();
-
-			// 寻找订单输入框
-			Utils.sleep(3000);
-			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
+//			WebElement search = 
+//			search.click();
+//
+//			// 寻找订单输入框
+//			Utils.sleep(3000);
+//			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
+//			Utils.sleep(1500);
+//			orderInput.sendKeys(mallOrderNo);
+//			Utils.sleep(2000);
+//			orderInput.sendKeys(Keys.ENTER);
+			
+			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+			for(WebElement w:orderLists){
+				if(w.getAttribute("href").contains(mallOrderNo)){
+					w.click();
+					break;
+				}
+			}
 			Utils.sleep(1500);
-			orderInput.sendKeys(mallOrderNo);
-			Utils.sleep(2000);
-			orderInput.sendKeys(Keys.ENTER);
-			Utils.sleep(1500);
-
 		}
 		catch (Exception e)
 		{
 			logger.error("查找订单错误");
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		
+		
 
 		// 等待Filter orders不可见
 		try
