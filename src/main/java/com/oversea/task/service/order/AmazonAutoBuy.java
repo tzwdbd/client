@@ -2858,14 +2858,14 @@ public class AmazonAutoBuy extends AutoBuy
 //			Utils.sleep(2000);
 //			orderInput.sendKeys(Keys.ENTER);
 			
-			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
-			for(WebElement w:orderLists){
-				if(w.getAttribute("href").contains(mallOrderNo)){
-					w.click();
-					break;
-				}
-			}
-			Utils.sleep(1500);
+//			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+//			for(WebElement w:orderLists){
+//				if(w.getAttribute("href").contains(mallOrderNo)){
+//					w.click();
+//					break;
+//				}
+//			}
+			//Utils.sleep(1500);
 		}
 		catch (Exception e)
 		{
@@ -2887,68 +2887,68 @@ public class AmazonAutoBuy extends AutoBuy
 //			logger.error("等待Filter orders不可见 出异常", e);
 //			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 //		}
-		
-		//Utils.sleep(2000);
+		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
+		Utils.sleep(5000);
+		//对比asinCode
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e3){
-			logger.debug("--->等待物流页面加载完成出错1");
-			//对比asinCode
-			try{
-				List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
-				if(ll != null && ll.size() > 0){
-					boolean isFind = false;
-					for(WebElement w : ll){
-						WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
-						if(ww != null){
-							String productLink = ww.getAttribute("href");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
+			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
+			if(ll != null && ll.size() > 0){
+				for(WebElement w : ll){
+					try {
+						List<WebElement> ww = w.findElements(By.cssSelector(".a-link-normal"));
+						for(WebElement pw:ww){
+							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
-									WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
+									WebElement canceled = w.findElement(By.xpath("/span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
 									if (canceled != null){
 										logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
 										return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 									}
 								}
 								catch (NoSuchElementException e){}
-								try {
-									WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
-									if(seeShip != null){
-										isFind = true;
-										seeShip.click();
-										break;
-									}
-								} catch (Exception e) {
-									try{
-										w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
-									try{
-										driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
-										isFind = true;
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
+								try{
+									w.findElement(By.cssSelector("a.a-touch-link")).click();
+								}catch(Exception e1){
+									logger.error("View tracking details 出错1");
 								}
+								
+//								try {
+//									WebElement seeShip = w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track package')]"));
+//									if(seeShip != null){
+//										seeShip.click();
+//										break;
+//									}
+//								} catch (Exception e) {
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错");
+//									}
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错1");
+//									}
+//								}
+								break;
 							}
+							
 						}
+					} catch (Exception e) {
 					}
-					if(!isFind){
-						logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-					}
-				}else{
-					logger.debug("--->没找到订单:"+mallOrderNo);
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 				}
-			}catch(Exception e){
-				logger.debug("对比asinCode出现异常,商城还没发货",e);
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}else{
+				logger.debug("--->没找到订单:"+mallOrderNo);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 			}
+		}catch(Exception e){
+			logger.debug("对比asinCode出现异常,商城还没发货",e);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		}
-		
 		
 		//等待物流页面加载完成
 		try{
@@ -3127,8 +3127,10 @@ public class AmazonAutoBuy extends AutoBuy
 		try
 		{
 			// 寻找Search all orders showSearchBar
-			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
-//			Utils.sleep(1500);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
+			
+			Utils.sleep(1500);
+//			WebElement search = 
 //			search.click();
 //
 //			// 寻找订单输入框
@@ -3138,24 +3140,25 @@ public class AmazonAutoBuy extends AutoBuy
 //			orderInput.sendKeys(mallOrderNo);
 //			Utils.sleep(2000);
 //			orderInput.sendKeys(Keys.ENTER);
-			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
-			for(WebElement w:orderLists){
-				if(w.getAttribute("href").contains(mallOrderNo)){
-					w.click();
-					break;
-				}
-			}
-			Utils.sleep(1500);
 			
-
+//			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+//			for(WebElement w:orderLists){
+//				if(w.getAttribute("href").contains(mallOrderNo)){
+//					w.click();
+//					break;
+//				}
+//			}
+			//Utils.sleep(1500);
 		}
 		catch (Exception e)
 		{
 			logger.error("查找订单错误");
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		
+		
 
-//		// 等待Filter orders不可见
+		// 等待Filter orders不可见
 //		try
 //		{
 //			boolean isVisbile = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[@id='searchOrdersInput']")));
@@ -3167,68 +3170,68 @@ public class AmazonAutoBuy extends AutoBuy
 //			logger.error("等待Filter orders不可见 出异常", e);
 //			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 //		}
-//		
-//		Utils.sleep(2000);
+		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
+		Utils.sleep(5000);
+		//对比asinCode
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e2){
-			logger.debug("--->等待物流页面加载完成出错1");
-			//对比asinCode
-			try{
-				List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
-				if(ll != null && ll.size() > 0){
-					boolean isFind = false;
-					for(WebElement w : ll){
-						WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
-						if(ww != null){
-							String productLink = ww.getAttribute("href");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
+			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
+			if(ll != null && ll.size() > 0){
+				for(WebElement w : ll){
+					try {
+						List<WebElement> ww = w.findElements(By.cssSelector(".a-link-normal"));
+						for(WebElement pw:ww){
+							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
-									WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
+									WebElement canceled = w.findElement(By.xpath("/span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
 									if (canceled != null){
 										logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
 										return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 									}
 								}
 								catch (NoSuchElementException e){}
-								try {
-									WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
-									if(seeShip != null){
-										isFind = true;
-										seeShip.click();
-										break;
-									}
-								} catch (Exception e) {
-									try{
-										w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
-									try{
-										driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
-										isFind = true;
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
+								try{
+									w.findElement(By.cssSelector("a.a-touch-link")).click();
+								}catch(Exception e1){
+									logger.error("View tracking details 出错1");
 								}
+								
+//								try {
+//									WebElement seeShip = w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track package')]"));
+//									if(seeShip != null){
+//										seeShip.click();
+//										break;
+//									}
+//								} catch (Exception e) {
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错");
+//									}
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错1");
+//									}
+//								}
+								break;
 							}
+							
 						}
+					} catch (Exception e) {
 					}
-					if(!isFind){
-						logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-					}
-				}else{
-					logger.debug("--->没找到订单:"+mallOrderNo);
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 				}
-			}catch(Exception e){
-				logger.debug("对比asinCode出现异常,商城还没发货",e);
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}else{
+				logger.debug("--->没找到订单:"+mallOrderNo);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 			}
+		}catch(Exception e){
+			logger.debug("对比asinCode出现异常,商城还没发货",e);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		}
-		
 		
 		//等待物流页面加载完成
 		try{
@@ -3343,8 +3346,10 @@ public class AmazonAutoBuy extends AutoBuy
 		try
 		{
 			// 寻找Search all orders showSearchBar
-			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
-//			Utils.sleep(1500);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
+			
+			Utils.sleep(1500);
+//			WebElement search = 
 //			search.click();
 //
 //			// 寻找订单输入框
@@ -3354,21 +3359,23 @@ public class AmazonAutoBuy extends AutoBuy
 //			orderInput.sendKeys(mallOrderNo);
 //			Utils.sleep(2000);
 //			orderInput.sendKeys(Keys.ENTER);
-			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
-			for(WebElement w:orderLists){
-				if(w.getAttribute("href").contains(mallOrderNo)){
-					w.click();
-					break;
-				}
-			}
-			Utils.sleep(1500);
-
+			
+//			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+//			for(WebElement w:orderLists){
+//				if(w.getAttribute("href").contains(mallOrderNo)){
+//					w.click();
+//					break;
+//				}
+//			}
+			//Utils.sleep(1500);
 		}
 		catch (Exception e)
 		{
 			logger.error("查找订单错误");
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		
+		
 
 		// 等待Filter orders不可见
 //		try
@@ -3382,68 +3389,68 @@ public class AmazonAutoBuy extends AutoBuy
 //			logger.error("等待Filter orders不可见 出异常", e);
 //			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 //		}
-//		
-//		Utils.sleep(2000);
+		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
+		Utils.sleep(5000);
+		//对比asinCode
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e3){
-			logger.debug("--->等待物流页面加载完成出错1");
-			//对比asinCode
-			try{
-				List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
-				if(ll != null && ll.size() > 0){
-					boolean isFind = false;
-					for(WebElement w : ll){
-						WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
-						if(ww != null){
-							String productLink = ww.getAttribute("href");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
+			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
+			if(ll != null && ll.size() > 0){
+				for(WebElement w : ll){
+					try {
+						List<WebElement> ww = w.findElements(By.cssSelector(".a-link-normal"));
+						for(WebElement pw:ww){
+							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
-									WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
+									WebElement canceled = w.findElement(By.xpath("/span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
 									if (canceled != null){
 										logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
 										return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 									}
 								}
 								catch (NoSuchElementException e){}
-								try {
-									WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
-									if(seeShip != null){
-										isFind = true;
-										seeShip.click();
-										break;
-									}
-								} catch (Exception e) {
-									try{
-										w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
-									try{
-										driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
-										isFind = true;
-									}catch(Exception e1){
-										logger.error("View tracking details 出错1");
-									}
+								try{
+									w.findElement(By.cssSelector("a.a-touch-link")).click();
+								}catch(Exception e1){
+									logger.error("View tracking details 出错1");
 								}
+								
+//								try {
+//									WebElement seeShip = w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track package')]"));
+//									if(seeShip != null){
+//										seeShip.click();
+//										break;
+//									}
+//								} catch (Exception e) {
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错");
+//									}
+//									try{
+//										w.findElement(By.xpath("/div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
+//									}catch(Exception e1){
+//										logger.error("View tracking details 出错1");
+//									}
+//								}
+								break;
 							}
+							
 						}
+					} catch (Exception e) {
 					}
-					if(!isFind){
-						logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-					}
-				}else{
-					logger.debug("--->没找到订单:"+mallOrderNo);
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 				}
-			}catch(Exception e){
-				logger.debug("对比asinCode出现异常,商城还没发货",e);
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}else{
+				logger.debug("--->没找到订单:"+mallOrderNo);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 			}
+		}catch(Exception e){
+			logger.debug("对比asinCode出现异常,商城还没发货",e);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		}
-		
 		
 		//等待物流页面加载完成
 		try{
