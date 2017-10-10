@@ -1915,7 +1915,10 @@ public class AmazonAutoBuy extends AutoBuy
 				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
 					try {
 						logger.error("选择支付方式");
+						try {
 						driver.findElement(By.cssSelector("#payment-info a.a-first")).click();
+						} catch (Exception e) {
+						}
 						//优惠码
 						String promotionStr = param.get("promotion");
 						Set<String> promotionList = getPromotionList(promotionStr);
