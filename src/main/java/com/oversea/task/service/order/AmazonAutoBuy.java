@@ -3200,7 +3200,13 @@ public class AmazonAutoBuy extends AutoBuy
 								}
 								catch (NoSuchElementException e){}
 								try{
-									w.findElement(By.cssSelector("a.a-touch-link")).click();
+									List<WebElement> tracks = w.findElements(By.cssSelector("a.a-touch-link"));
+									for(WebElement tra:tracks){
+										if(tra.getText().contains("Track")){
+											tra.click();
+											break;
+										}
+									}
 								}catch(Exception e1){
 									logger.error("View tracking details 出错1");
 								}
@@ -3419,7 +3425,13 @@ public class AmazonAutoBuy extends AutoBuy
 								}
 								catch (NoSuchElementException e){}
 								try{
-									w.findElement(By.cssSelector("a.a-touch-link")).click();
+									List<WebElement> tracks = w.findElements(By.cssSelector("a.a-touch-link"));
+									for(WebElement tra:tracks){
+										if(tra.getText().contains("Track")){
+											tra.click();
+											break;
+										}
+									}
 								}catch(Exception e1){
 									logger.error("View tracking details 出错1");
 								}
