@@ -3123,17 +3123,25 @@ public class AmazonAutoBuy extends AutoBuy
 		{
 			// 寻找Search all orders showSearchBar
 			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
+//			Utils.sleep(1500);
+//			search.click();
+//
+//			// 寻找订单输入框
+//			Utils.sleep(3000);
+//			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
+//			Utils.sleep(1500);
+//			orderInput.sendKeys(mallOrderNo);
+//			Utils.sleep(2000);
+//			orderInput.sendKeys(Keys.ENTER);
+			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+			for(WebElement w:orderLists){
+				if(w.getAttribute("href").contains(mallOrderNo)){
+					w.click();
+					break;
+				}
+			}
 			Utils.sleep(1500);
-			search.click();
-
-			// 寻找订单输入框
-			Utils.sleep(3000);
-			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
-			Utils.sleep(1500);
-			orderInput.sendKeys(mallOrderNo);
-			Utils.sleep(2000);
-			orderInput.sendKeys(Keys.ENTER);
-			Utils.sleep(1500);
+			
 
 		}
 		catch (Exception e)
@@ -3142,75 +3150,75 @@ public class AmazonAutoBuy extends AutoBuy
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 
-		// 等待Filter orders不可见
-		try
-		{
-			boolean isVisbile = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[@id='searchOrdersInput']")));
-			logger.error("isVisbile = " + isVisbile);
-			Utils.sleep(2000);
-		}
-		catch (Exception e)
-		{
-			logger.error("等待Filter orders不可见 出异常", e);
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-		}
-		
-		Utils.sleep(2000);
+//		// 等待Filter orders不可见
+//		try
+//		{
+//			boolean isVisbile = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[@id='searchOrdersInput']")));
+//			logger.error("isVisbile = " + isVisbile);
+//			Utils.sleep(2000);
+//		}
+//		catch (Exception e)
+//		{
+//			logger.error("等待Filter orders不可见 出异常", e);
+//			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+//		}
+//		
+//		Utils.sleep(2000);
 		
 		//对比asinCode
-		try{
-			List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
-			if(ll != null && ll.size() > 0){
-				boolean isFind = false;
-				for(WebElement w : ll){
-					WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
-					if(ww != null){
-						String productLink = ww.getAttribute("href");
-						if(productLink != null && productLink.contains(productEntityCode)){
-							// 被砍单
-							try{
-								WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
-								if (canceled != null){
-									logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
-									return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-								}
-							}
-							catch (NoSuchElementException e){}
-							try {
-								WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
-								if(seeShip != null){
-									isFind = true;
-									seeShip.click();
-									break;
-								}
-							} catch (Exception e) {
-								try{
-									w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
-								}catch(Exception e1){
-									logger.error("View tracking details 出错1");
-								}
-								try{
-									driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
-									isFind = true;
-								}catch(Exception e1){
-									logger.error("View tracking details 出错1");
-								}
-							}
-						}
-					}
-				}
-				if(!isFind){
-					logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-				}
-			}else{
-				logger.debug("--->没找到订单:"+mallOrderNo);
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-			}
-		}catch(Exception e){
-			logger.debug("对比asinCode出现异常,商城还没发货",e);
-			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-		}
+//		try{
+//			List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
+//			if(ll != null && ll.size() > 0){
+//				boolean isFind = false;
+//				for(WebElement w : ll){
+//					WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
+//					if(ww != null){
+//						String productLink = ww.getAttribute("href");
+//						if(productLink != null && productLink.contains(productEntityCode)){
+//							// 被砍单
+//							try{
+//								WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
+//								if (canceled != null){
+//									logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
+//									return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+//								}
+//							}
+//							catch (NoSuchElementException e){}
+//							try {
+//								WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
+//								if(seeShip != null){
+//									isFind = true;
+//									seeShip.click();
+//									break;
+//								}
+//							} catch (Exception e) {
+//								try{
+//									w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
+//								}catch(Exception e1){
+//									logger.error("View tracking details 出错1");
+//								}
+//								try{
+//									driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
+//									isFind = true;
+//								}catch(Exception e1){
+//									logger.error("View tracking details 出错1");
+//								}
+//							}
+//						}
+//					}
+//				}
+//				if(!isFind){
+//					logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
+//					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+//				}
+//			}else{
+//				logger.debug("--->没找到订单:"+mallOrderNo);
+//				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+//			}
+//		}catch(Exception e){
+//			logger.debug("对比asinCode出现异常,商城还没发货",e);
+//			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+//		}
 		
 		//等待物流页面加载完成
 		try{
@@ -3326,16 +3334,23 @@ public class AmazonAutoBuy extends AutoBuy
 		{
 			// 寻找Search all orders showSearchBar
 			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='showSearchBar']")));
-			Utils.sleep(1500);
-			search.click();
-
-			// 寻找订单输入框
-			Utils.sleep(3000);
-			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
-			Utils.sleep(1500);
-			orderInput.sendKeys(mallOrderNo);
-			Utils.sleep(2000);
-			orderInput.sendKeys(Keys.ENTER);
+//			Utils.sleep(1500);
+//			search.click();
+//
+//			// 寻找订单输入框
+//			Utils.sleep(3000);
+//			WebElement orderInput = driver.findElement(By.xpath("//input[@id='searchOrdersInput']"));
+//			Utils.sleep(1500);
+//			orderInput.sendKeys(mallOrderNo);
+//			Utils.sleep(2000);
+//			orderInput.sendKeys(Keys.ENTER);
+			List<WebElement> orderLists = driver.findElements(By.cssSelector("#ordersContainer .a-section a"));
+			for(WebElement w:orderLists){
+				if(w.getAttribute("href").contains(mallOrderNo)){
+					w.click();
+					break;
+				}
+			}
 			Utils.sleep(1500);
 
 		}
@@ -3346,74 +3361,74 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 
 		// 等待Filter orders不可见
-		try
-		{
-			boolean isVisbile = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[@id='searchOrdersInput']")));
-			logger.error("isVisbile = " + isVisbile);
-			Utils.sleep(2000);
-		}
-		catch (Exception e)
-		{
-			logger.error("等待Filter orders不可见 出异常", e);
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-		}
-		
-		Utils.sleep(2000);
+//		try
+//		{
+//			boolean isVisbile = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//input[@id='searchOrdersInput']")));
+//			logger.error("isVisbile = " + isVisbile);
+//			Utils.sleep(2000);
+//		}
+//		catch (Exception e)
+//		{
+//			logger.error("等待Filter orders不可见 出异常", e);
+//			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+//		}
+//		
+//		Utils.sleep(2000);
 		
 		//对比asinCode
-		try{
-			List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
-			if(ll != null && ll.size() > 0){
-				boolean isFind = false;
-				for(WebElement w : ll){
-					WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
-					if(ww != null){
-						String productLink = ww.getAttribute("href");
-						if(productLink != null && productLink.contains(productEntityCode)){
-							// 被砍单
-							try{
-								WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
-								if (canceled != null){
-									logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
-									return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-								}
-							}
-							catch (NoSuchElementException e){}
-							try {
-								WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
-								if(seeShip != null){
-									isFind = true;
-									seeShip.click();
-									break;
-								}
-							} catch (Exception e) {
-								try{
-									w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
-								}catch(Exception e1){
-									logger.error("View tracking details 出错1");
-								}
-								try{
-									driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
-									isFind = true;
-								}catch(Exception e1){
-									logger.error("View tracking details 出错1");
-								}
-							}
-						}
-					}
-				}
-				if(!isFind){
-					logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
-					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-				}
-			}else{
-				logger.debug("--->没找到订单:"+mallOrderNo);
-				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
-			}
-		}catch(Exception e){
-			logger.debug("对比asinCode出现异常,商城还没发货",e);
-			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-		}
+//		try{
+//			List<WebElement> ll = driver.findElements(By.xpath("//div[@class='a-section a-padding-small js-item']"));
+//			if(ll != null && ll.size() > 0){
+//				boolean isFind = false;
+//				for(WebElement w : ll){
+//					WebElement ww = w.findElement(By.xpath(".//div[@class='item-view-left-col-inner']/a[@class='a-link-normal']"));
+//					if(ww != null){
+//						String productLink = ww.getAttribute("href");
+//						if(productLink != null && productLink.contains(productEntityCode)){
+//							// 被砍单
+//							try{
+//								WebElement canceled = driver.findElement(By.xpath("//span[@class='a-size-small a-color-secondary' and contains(text(),'Cancelled')]"));
+//								if (canceled != null){
+//									logger.error(mallOrderNo + " 这个订单被砍单了,需重新下单");
+//									return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+//								}
+//							}
+//							catch (NoSuchElementException e){}
+//							try {
+//								WebElement seeShip = w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'Track package')]"));
+//								if(seeShip != null){
+//									isFind = true;
+//									seeShip.click();
+//									break;
+//								}
+//							} catch (Exception e) {
+//								try{
+//									w.findElement(By.xpath(".//div[@class='a-box-inner' and contains(text(),'View order details')]")).click();
+//								}catch(Exception e1){
+//									logger.error("View tracking details 出错1");
+//								}
+//								try{
+//									driver.findElement(By.xpath("//div[@class='a-box-inner' and contains(text(),'Track shipment')]")).click();
+//									isFind = true;
+//								}catch(Exception e1){
+//									logger.error("View tracking details 出错1");
+//								}
+//							}
+//						}
+//					}
+//				}
+//				if(!isFind){
+//					logger.debug("--->isFind = false 没找到订单:"+mallOrderNo);
+//					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+//				}
+//			}else{
+//				logger.debug("--->没找到订单:"+mallOrderNo);
+//				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+//			}
+//		}catch(Exception e){
+//			logger.debug("对比asinCode出现异常,商城还没发货",e);
+//			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+//		}
 		
 		//等待物流页面加载完成
 		try{
