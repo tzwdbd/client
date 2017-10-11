@@ -303,13 +303,17 @@ public class AutoBuy6PM extends AutoBuy {
 		//寻找商品单价
 		try{
 			logger.debug("--->开始寻找商品单价");
-			WebElement priceElement = driver.findElement(By.cssSelector("._3r_Ou"));
-			String text = priceElement.getText();
-			String productEntityId = param.get("productEntityId");
-			if(!Utils.isEmpty(text) && text.startsWith("$") && StringUtil.isNotEmpty(productEntityId)){
-				logger.debug("--->找到商品单价 = "+text.substring(1));
-//				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, text.substring(1));
-				priceMap.put(productEntityId, text.substring(1));
+			List<WebElement> priceElements = driver.findElements(By.cssSelector("._3r_Ou"));
+			for(WebElement priceElement:priceElements){
+				if(priceElement.isDisplayed()){
+					String text = priceElement.getText();
+					String productEntityId = param.get("productEntityId");
+					if(!Utils.isEmpty(text) && text.startsWith("$") && StringUtil.isNotEmpty(productEntityId)){
+						logger.debug("--->找到商品单价 = "+text.substring(1));
+		//				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, text.substring(1));
+						priceMap.put(productEntityId, text.substring(1));
+					}
+				}
 			}
 		}catch(Exception e){
 			logger.debug("--->查询商品单价异常",e);
@@ -747,13 +751,14 @@ public class AutoBuy6PM extends AutoBuy {
 				}
 				
 				String status = product.findElement(By.xpath(".//td[@class='shipping']/h5")).getText().trim();
+				logger.debug("status："+status);
 				if(status.equalsIgnoreCase("cancelled")){
 					return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 				}else if(status.equalsIgnoreCase("customer action required")){
 					return AutoBuyStatus.AUTO_SCRIBE_LOGIN_FAIL_NEED_AUTH;
 				}else if(status.equalsIgnoreCase("shipped")){
 					String trackNo = product.findElement(By.xpath(".//p[@class='tracking']")).getText().replace("Track This Shipment", "").replaceAll("[^0-9A-Za-z]", "");
-					
+					logger.debug("trackNo："+trackNo);
 					String expressCompany = "";
 					if(trackNo.startsWith("1Z")){
 						expressCompany = "UPS";
