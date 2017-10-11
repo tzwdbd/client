@@ -2826,7 +2826,7 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 
 		// 寻找Your orders
 		try
@@ -2954,6 +2954,24 @@ public class AmazonAutoBuy extends AutoBuy
 		}catch(Exception e){
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
 			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+		}
+		
+		//等待物流页面加载完成
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+		}catch(Exception e){
+			logger.debug("--->等待物流页面加载完成出错",e);
+			try{
+				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
+				for(WebElement tra:tracks){
+					if(tra.getText().contains("Track")){
+						tra.click();
+						break;
+					}
+				}
+			}catch(Exception e1){
+				logger.error("View tracking details 出错1");
+			}
 		}
 		
 		//等待物流页面加载完成
@@ -3115,7 +3133,7 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 
 		// 寻找Your orders
 		try
@@ -3243,6 +3261,24 @@ public class AmazonAutoBuy extends AutoBuy
 		}catch(Exception e){
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
 			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+		}
+		
+		//等待物流页面加载完成
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+		}catch(Exception e){
+			logger.debug("--->等待物流页面加载完成出错",e);
+			try{
+				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
+				for(WebElement tra:tracks){
+					if(tra.getText().contains("Track")){
+						tra.click();
+						break;
+					}
+				}
+			}catch(Exception e1){
+				logger.error("View tracking details 出错1");
+			}
 		}
 		
 		//等待物流页面加载完成
@@ -3340,7 +3376,7 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 
 		// 寻找Your orders
 		try
@@ -3475,6 +3511,23 @@ public class AmazonAutoBuy extends AutoBuy
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
 		}catch(Exception e){
 			logger.debug("--->等待物流页面加载完成出错",e);
+			try{
+				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
+				for(WebElement tra:tracks){
+					if(tra.getText().contains("Track")){
+						tra.click();
+						break;
+					}
+				}
+			}catch(Exception e1){
+				logger.error("View tracking details 出错1");
+			}
+		}
+		
+		//等待物流页面加载完成
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+		}catch(Exception e){
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 		
