@@ -711,6 +711,8 @@ public class AutoBuy6PM extends AutoBuy {
 					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 				}else if(status.equalsIgnoreCase("PROCESSING")){
 					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+				}else if(status.equalsIgnoreCase("SUBMITTED")){
+					return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 				}else{
 					logger.debug("未知的订单状态:"+status);
 					return AutoBuyStatus.AUTO_SCRIBE_FAIL;
