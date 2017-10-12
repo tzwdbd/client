@@ -138,9 +138,9 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		logger.debug("--->清空购物车");
 		try {
 			logger.error("--->等待购物车加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".deleteSelect")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".operation-delete")));
 			logger.error("--->开始清理购物车");
-			WebElement deleteall = driver.findElement(By.cssSelector(".deleteSelect"));
+			WebElement deleteall = driver.findElement(By.cssSelector(".operation-delete"));
 			deleteall.click();
 			Utils.sleep(1000);
 			driver.findElement(By.id("easyDialogYesBtn")).click();
@@ -160,13 +160,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		} catch (Exception e2) {
 			logger.debug("--->购物车页面清理完成！");
 		}
-		try {
-			logger.error("--->确认购物车是否清空");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".car-not-items")));
-		} catch (Exception e) {
-			logger.debug("--->购物车不为空！");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
-		}
+//		try {
+//			logger.error("--->确认购物车是否清空");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".car-not-items")));
+//		} catch (Exception e) {
+//			logger.debug("--->购物车不为空！",e);
+//			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+//		}
 		
 		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 	}
@@ -289,14 +289,14 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("AccountButton")));
-			WebElement goPay = driver.findElement(By.id("AccountButton"));
+					By.cssSelector("a[sel-id='cart-btn-settle']")));
+			WebElement goPay = driver.findElement(By.cssSelector("a[sel-id='cart-btn-settle']"));
 			driver.executeScript("var tar=arguments[0];tar.click();", goPay);
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			logger.debug("--->加载Pharmacyonline结账出现异常");
-			WebElement goPay = driver.findElement(By.cssSelector(".btn-checkout"));
-			driver.executeScript("var tar=arguments[0];tar.click();", goPay);
+			WebElement goPay = driver.findElement(By.cssSelector("a[sel-id='cart-btn-settle']"));
+			goPay.click();;
 		}
 		
 		String userName = param.get("userName");
@@ -406,39 +406,40 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		String address = userTradeAddress.getAddress();
 		String zipcode = userTradeAddress.getZip();
 		String mobile = userTradeAddress.getMobile();
-		
+		logger.debug("--->删除收货地址");
+		try {
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+			logger.debug("--->收货地址有"+deleteList.size());
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					deleteList.get(0).click();
+					WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
+					driver.executeScript("var tar=arguments[0];tar.click();", ww);
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+					}else{
+						break;
+					}
+				}else{
+					break;
+				}
+			}
+		} catch (Exception e2) {
+			logger.debug("--->删除收货地址出错",e2);
+		}
 		logger.debug("--->选择收货地址");
+		
+		
 		// 选收货地址
 		try {
 			WebElement addAddr = null;
 			try {
-				addAddr = driver.findElement(By.className("address-use-new"));
+				addAddr = driver.findElement(By.cssSelector("a[sel-id='settle-link-new-address']"));
 			} catch (Exception e) {
-				try {
-					List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
-					while (true) {
-						int size = deleteList.size();
-						if(deleteList!=null && size>0){
-							if(deleteList.get(0).isDisplayed()){
-								deleteList.get(0).click();
-								WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
-								driver.executeScript("var tar=arguments[0];tar.click();", ww);
-								Utils.sleep(500);
-								driver.findElement(By.id("easyDialogYesBtn")).click();
-								Utils.sleep(500);
-								if(size>1){
-									deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
-								}else{
-									break;
-								}
-							}
-						}else{
-							break;
-						}
-					}
-					addAddr = driver.findElement(By.cssSelector(".address-btn-create"));
-				} catch (Exception e2) {
-				}
 				
 			}
 			
@@ -1056,7 +1057,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
 		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
 		System.out.println(status);
-//		auto.cleanCart();
+		//auto.cleanCart();
 //	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=6e92qh_aHUeaB3ftss_bzwrrC0oGpbS7GLkSBPNbhgpoapNN_bbNb3raIhNode7R2xN&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1103061.html&tag=");
