@@ -75,15 +75,15 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		
 		try {
 			// 输入账号
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginEmail")));
-			WebElement username = driver.findElement(By.id("LoginEmail"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
+			WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
 			logger.debug("--->输入账号");
 			Utils.sleep(1500);
 			username.sendKeys(userName);
 
 			// 输入密码
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginPwd")));
-			WebElement passward = driver.findElement(By.id("LoginPwd"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
+			WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
 			logger.debug("--->输入密码");
 
 			Utils.sleep(1500);
@@ -91,7 +91,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 
 			// 提交
 			Utils.sleep(1500);
-			WebElement submitBtn = driver.findElement(By.cssSelector(".btn-login"));
+			WebElement submitBtn = driver.findElement(By.id("accout-login"));
 			logger.debug("--->开始提交");
 			submitBtn.click();
 
@@ -103,7 +103,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		try
 		{
 			logger.debug("--->等待登录完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".logout")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome")));
 			logger.debug("--->登录完成");
 		}
 		catch (Exception e)
@@ -821,7 +821,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 			Utils.sleep(2000);
 			driver.get("http://www.ba.de");
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".logout")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".welcome")));
 			return true;
 		} catch (Exception e) {
 			logger.error("--->跳转ba主页面碰到异常");
