@@ -2957,22 +2957,22 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		
 		//等待物流页面加载完成
-		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e){
-			logger.debug("--->等待物流页面加载完成出错",e);
-			try{
-				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
-				for(WebElement tra:tracks){
-					if(tra.getText().contains("Track")){
-						tra.click();
-						break;
-					}
-				}
-			}catch(Exception e1){
-				logger.error("View tracking details 出错1");
-			}
-		}
+//		try{
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+//		}catch(Exception e){
+//			logger.debug("--->等待物流页面加载完成出错",e);
+//			try{
+//				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
+//				for(WebElement tra:tracks){
+//					if(tra.getText().contains("Track")){
+//						tra.click();
+//						break;
+//					}
+//				}
+//			}catch(Exception e1){
+//				logger.error("View tracking details 出错1");
+//			}
+//		}
 		
 		//等待物流页面加载完成
 		try{
@@ -3264,22 +3264,22 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		
 		//等待物流页面加载完成
-		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e){
-			logger.debug("--->等待物流页面加载完成出错",e);
-			try{
-				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
-				for(WebElement tra:tracks){
-					if(tra.getText().contains("Track")){
-						tra.click();
-						break;
-					}
-				}
-			}catch(Exception e1){
-				logger.error("View tracking details 出错1");
-			}
-		}
+//		try{
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
+//		}catch(Exception e){
+//			logger.debug("--->等待物流页面加载完成出错",e);
+//			try{
+//				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
+//				for(WebElement tra:tracks){
+//					if(tra.getText().contains("Track")){
+//						tra.click();
+//						break;
+//					}
+//				}
+//			}catch(Exception e1){
+//				logger.error("View tracking details 出错1");
+//			}
+//		}
 		
 		//等待物流页面加载完成
 		try{
