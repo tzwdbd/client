@@ -284,14 +284,14 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try{
 			WebElement panel = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//div[@id='easyDialogWrapper']")));
+					By.id("easyDialogWrapper")));
 			Utils.sleep(1000);
-			panel.findElement(By.xpath("//div[@class='tip-success-content']"));
+			panel.findElement(By.cssSelector(".tip-success-content"));
 			Utils.sleep(1000);
-			panel.findElement(By.xpath(".//button[@id='easyDialogYesBtn']")).click();
+			panel.findElement(By.id("easyDialogYesBtn")).click();
 			Utils.sleep(1500);
 			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cart']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart")));
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常,",e);
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
