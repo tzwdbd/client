@@ -362,9 +362,18 @@ public class AutoBuySpring extends AutoBuy {
 		
 		//等待购物车页面加载完成
 		logger.debug("--->等待购物车页面加载");
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		try {
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(
+					By.cssSelector(".text_296oy strong")));
+		} catch (Exception e) {
+			logger.debug("刷新页面");
+			driver.navigate().refresh();
+		}
+		logger.debug("--->等待购物车页面加载1");
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector("a.button_16hyqux")));
+					By.cssSelector(".text_296oy strong")));
 			
 			List<WebElement> attrs = driver.findElements(By.cssSelector(".text_296oy strong"));
 			int attnum = 0;
@@ -384,12 +393,13 @@ public class AutoBuySpring extends AutoBuy {
 				logger.debug("--->缺少匹配的sku findCount = "+attnum+" && skuList.size()/2 = "+skuList.size()/2);
 				return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 			}
-			WebElement viewcart = driver.findElement(By.cssSelector("a.button_16hyqux"));
+			WebElement viewcart = driver.findElement(By.cssSelector("a[href='/cart']"));
 			viewcart.click();
 			logger.debug("--->去购物车页面");
 			Utils.sleep(1500);
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常");
+			
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
 		}
 		
