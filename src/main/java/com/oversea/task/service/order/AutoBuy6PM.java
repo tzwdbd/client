@@ -38,28 +38,28 @@ public class AutoBuy6PM extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuy6PM auto = new AutoBuy6PM();
-		AutoBuyStatus status = auto.login("liuyuandong2@hotmail.com", "leixun123456");
-		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = auto.cleanCart();
-			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+//		AutoBuyStatus status = auto.login("liuyuandong2@hotmail.com", "leixun123456");
+//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+//			status = auto.cleanCart();
+//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/coach-chrissy-outline-black-smoke-black-signature-c-nappa/product/8647478/color/604219");
+				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/tommy-hilfiger-corinne-ii-dome-backpack-dory-blue/product/8852166/color/639597");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"color\",\"Khaki/Chestnut Signature C/Nappa\"],[\"size\",\"7.5\"],[\"width\",\"M\"]]");
+				param.put("sku", "[[\"color\",\"Dory Blue\"],[\"size\",\"One Size\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-					Map<String, String> param0 = new HashMap<String, String>();
-					param0.put("my_price", "39.99");
-					param0.put("count", "1");
-					param0.put("isPay", String.valueOf(false));
-					param0.put("cardNo", "4662 4833 6029 1396");
-					status = auto.pay(param0);
+//					Map<String, String> param0 = new HashMap<String, String>();
+//					param0.put("my_price", "39.99");
+//					param0.put("count", "1");
+//					param0.put("isPay", String.valueOf(false));
+//					param0.put("cardNo", "4662 4833 6029 1396");
+//					status = auto.pay(param0);
 				//}
-			}
-		}
+			//}
+		//}
 		//auto.logout();
 	}
 	
@@ -254,8 +254,9 @@ public class AutoBuy6PM extends AutoBuy {
 		Object sku = param.get("sku");
 		//开始选择sku
 		logger.debug("--->开始选择sku");
+		List<String> skuList = null;
 		try{
-			List<String> skuList = Utils.getSku((String) sku);
+			skuList = Utils.getSku((String) sku);
 //			List<WebElement> elements = driver.findElements(By.xpath("//form[@id='prForm']/ul[@class='wingInfo onSale noFreeShip']/li"));
 			List<WebElement> elements = driver.findElements(By.cssSelector("form .VrH5P"));
 			int findCount = 0;
@@ -406,6 +407,29 @@ public class AutoBuy6PM extends AutoBuy {
 				logger.debug("--->选择商品数量碰到异常",e);
 				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 			}
+		}
+		int attnum = 0;
+		try {
+			WebElement detail = driver.findElement(By.cssSelector(".details"));
+			List<WebElement> details = detail.findElements(By.cssSelector("li"));
+			for(WebElement w:details){
+				for (int i = 0; i < skuList.size(); i++){
+					if (i % 2 == 1){
+						if(w.getText().trim().split(":")[1].trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
+							logger.debug("--->属性"+w.getText().trim()+"对的");
+							attnum++;
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.debug("--->选择商品数量碰到异常",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
+		
+		if(attnum < skuList.size()/2){
+			logger.debug("--->缺少匹配的sku findCount = "+attnum+" && skuList.size()/2 = "+skuList.size()/2);
+			return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 		}
 		
 		//查询商品数量是否可买

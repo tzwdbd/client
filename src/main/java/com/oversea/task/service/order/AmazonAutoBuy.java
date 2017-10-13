@@ -2955,7 +2955,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}catch(Exception e){
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
-			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 		if(mark){
 			logger.debug("--->没找到订单:"+mallOrderNo);
@@ -3283,7 +3283,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}catch(Exception e){
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
-			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 		
 		//等待物流页面加载完成
@@ -3547,7 +3547,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		}catch(Exception e){
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
-			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 		if(mark){
 			logger.debug("--->没找到订单:"+mallOrderNo);
