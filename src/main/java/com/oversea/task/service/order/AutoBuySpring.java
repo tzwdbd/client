@@ -50,16 +50,16 @@ public class AutoBuySpring extends AutoBuy {
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
 				param.put("sku", "[[\"Color\",\"Marine\"],[\"Size\",\"S\"]]");
 				param.put("productEntityId", "1112");
-				param.put("num", "1");
+				param.put("num", "2");
 				auto.selectProduct(param);
-//				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
-////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-//				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
-//				param.put("productEntityId", "1112");
-//				param.put("num", "3");
-//				auto.selectProduct(param);
+				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
+//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
+				param.put("productEntityId", "1112");
+				param.put("num", "3");
+				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
 //					param0.put("my_price", "208.50");
@@ -366,41 +366,50 @@ public class AutoBuySpring extends AutoBuy {
 		try {
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(
 					By.cssSelector(".text_296oy strong")));
+			logger.debug("刷新页面1");
+			driver.navigate().refresh();
 		} catch (Exception e) {
 			logger.debug("刷新页面");
 			driver.navigate().refresh();
 		}
-		logger.debug("--->等待购物车页面加载1");
+		int attnum = 0;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector(".text_296oy strong")));
-			
-			List<WebElement> attrs = driver.findElements(By.cssSelector(".text_296oy strong"));
-			int attnum = 0;
-			for(WebElement w:attrs){
-				for (int i = 0; i < skuList.size(); i++){
-					if (i % 2 == 1){
-						if(w.getText().trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
-							logger.debug("--->属性"+w.getText().trim()+"对的");
-							attnum++;
+					By.cssSelector("div[data-xfe-testid='active-item-list'] span[class^='text_296oy']")));
+			List<WebElement> text_296oys = driver.findElements(By.cssSelector("div[data-xfe-testid='active-item-list'] span[class^='text_296oy']"));
+			for(WebElement text_296oy:text_296oys){
+				List<WebElement> attrs = null;
+				try {
+					attrs = text_296oy.findElements(By.cssSelector("div strong"));
+				} catch (Exception e) {
+				}
+				if(attrs!=null && attrs.size()>0){
+					for(WebElement w:attrs){
+						for (int i = 0; i < skuList.size(); i++){
+							if (i % 2 == 1){
+								if(w.getText().trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
+									logger.debug("--->属性"+w.getText().trim()+"对的");
+									attnum++;
+								}
+							}
 						}
 					}
 					
-					
+//					WebElement viewcart = driver.findElement(By.cssSelector("a[href='/cart']"));
+//					viewcart.click();
+//					logger.debug("--->去购物车页面");
+//					Utils.sleep(1500);
+					break;
 				}
 			}
-			if(attnum < skuList.size()/2){
-				logger.debug("--->缺少匹配的sku findCount = "+attnum+" && skuList.size()/2 = "+skuList.size()/2);
-				return AutoBuyStatus.AUTO_SKU_NOT_FIND;
-			}
-			WebElement viewcart = driver.findElement(By.cssSelector("a[href='/cart']"));
-			viewcart.click();
-			logger.debug("--->去购物车页面");
-			Utils.sleep(1500);
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常");
 			
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
+		}
+		if(attnum < skuList.size()/2){
+			logger.debug("--->缺少匹配的sku findCount = "+attnum+" && skuList.size()/2 = "+skuList.size()/2);
+			return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 		}
 		
 		try {
@@ -414,9 +423,9 @@ public class AutoBuySpring extends AutoBuy {
 		if(!Utils.isEmpty(productNum) && !productNum.equals("1")){
 			try{
 				logger.debug("--->商品数量 = "+productNum);
-				WebElement updown = driver.findElement(By.cssSelector("div[data-xfe-testid='cart-active-products'] .priceAndQuantity_12blkl .selectedQuantity_e296pg"));
+				WebElement updown = driver.findElement(By.cssSelector("div[data-xfe-testid='cart-active-products'] div[class^=selectedQuantity]"));
 				updown.click();
-				List<WebElement> upates = driver.findElements(By.cssSelector("div[data-xfe-testid='cart-active-products'] .priceAndQuantity_12blkl .label_1vrcax8 strong"));
+				List<WebElement> upates = driver.findElements(By.cssSelector("div[data-xfe-testid='cart-active-products'] strong[class^='labelQuantity']"));
 				Utils.sleep(2000);
 				for(WebElement upate:upates){
 					logger.debug("--->upate.getText().trim() = "+upate.getText().trim());
