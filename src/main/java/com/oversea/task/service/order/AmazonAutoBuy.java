@@ -2890,6 +2890,7 @@ public class AmazonAutoBuy extends AutoBuy
 		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
 		Utils.sleep(5000);
 		//对比asinCode
+		boolean mark = true;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
 			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
@@ -2900,6 +2901,7 @@ public class AmazonAutoBuy extends AutoBuy
 						for(WebElement pw:ww){
 							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								mark = false;
 								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
@@ -2955,6 +2957,10 @@ public class AmazonAutoBuy extends AutoBuy
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
 			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		}
+		if(mark){
+			logger.debug("--->没找到订单:"+mallOrderNo);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+		}
 		
 		//等待物流页面加载完成
 //		try{
@@ -2978,8 +2984,23 @@ public class AmazonAutoBuy extends AutoBuy
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
 		}catch(Exception e){
-			logger.debug("--->等待物流页面加载完成出错",e);
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			logger.debug("--->等待物流页面加载完成出错");
+			try {
+				WebElement trackNum = driver.findElement(By.cssSelector("#carrierRelatedInfo-container .carrierRelatedInfo-trackingId-text"));
+				WebElement trackingCompany = driver.findElement(By.cssSelector("#carrierRelatedInfo-container h1"));
+				String expressNo = trackNum.getText().replace("Tracking ID", "").trim();
+				
+				String expressCompany = trackingCompany.getText().replace("Shipped with", "").trim();
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+				logger.error("expressCompany = " + expressCompany);
+				logger.error("expressNo = " + expressNo);
+				return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+			} catch (Exception e2) {
+				logger.debug("对比asinCode出现异常,商城还没发货",e2);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}
+			
 		}
 		
 		//查找物流
@@ -3197,6 +3218,7 @@ public class AmazonAutoBuy extends AutoBuy
 		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
 		Utils.sleep(5000);
 		//对比asinCode
+		boolean mark = true;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
 			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
@@ -3207,6 +3229,7 @@ public class AmazonAutoBuy extends AutoBuy
 						for(WebElement pw:ww){
 							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								mark = false;
 								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
@@ -3281,12 +3304,31 @@ public class AmazonAutoBuy extends AutoBuy
 //			}
 //		}
 		
+		if(mark){
+			logger.debug("--->没找到订单:"+mallOrderNo);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+		}
+		
 		//等待物流页面加载完成
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
 		}catch(Exception e){
-			logger.debug("--->等待物流页面加载完成出错",e);
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+			logger.debug("--->等待物流页面加载完成出错");
+			try {
+				WebElement trackNum = driver.findElement(By.cssSelector("#carrierRelatedInfo-container .carrierRelatedInfo-trackingId-text"));
+				WebElement trackingCompany = driver.findElement(By.cssSelector("#carrierRelatedInfo-container h1"));
+				String expressNo = trackNum.getText().replace("Tracking ID", "").trim();
+				
+				String expressCompany = trackingCompany.getText().replace("Shipped with", "").trim();
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+				logger.error("expressCompany = " + expressCompany);
+				logger.error("expressNo = " + expressNo);
+				return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+			} catch (Exception e2) {
+				logger.debug("对比asinCode出现异常,商城还没发货",e2);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+			}
 		}
 		
 		//查找物流
@@ -3440,6 +3482,7 @@ public class AmazonAutoBuy extends AutoBuy
 		driver.get("https://www.amazon.com/gp/your-account/ship-track/ref=oh_aui_i_sh_post_o0?ie=UTF8&itemId=jmlipsjtprpwun&orderId="+mallOrderNo);
 		Utils.sleep(5000);
 		//对比asinCode
+		boolean mark = true;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-section .a-box-group")));
 			List<WebElement> ll = driver.findElements(By.cssSelector(".a-section .a-box-group"));
@@ -3450,6 +3493,7 @@ public class AmazonAutoBuy extends AutoBuy
 						for(WebElement pw:ww){
 							String productLink = pw.getAttribute("href");
 							if(productLink != null && productLink.contains(productEntityCode)){
+								mark = false;
 								logger.error("ll productEntityCode="+productEntityCode);
 								// 被砍单
 								try{
@@ -3505,22 +3549,30 @@ public class AmazonAutoBuy extends AutoBuy
 			logger.debug("对比asinCode出现异常,商城还没发货",e);
 			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		}
+		if(mark){
+			logger.debug("--->没找到订单:"+mallOrderNo);
+			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
+		}
 		
 		//等待物流页面加载完成
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
 		}catch(Exception e){
 			logger.debug("--->等待物流页面加载完成出错",e);
-			try{
-				List<WebElement> tracks = driver.findElements(By.cssSelector(".a-section .a-box-group a.a-touch-link"));
-				for(WebElement tra:tracks){
-					if(tra.getText().contains("Track")){
-						tra.click();
-						break;
-					}
-				}
-			}catch(Exception e1){
-				logger.error("View tracking details 出错1");
+			try {
+				WebElement trackNum = driver.findElement(By.cssSelector("#carrierRelatedInfo-container .carrierRelatedInfo-trackingId-text"));
+				WebElement trackingCompany = driver.findElement(By.cssSelector("#carrierRelatedInfo-container h1"));
+				String expressNo = trackNum.getText().replace("Tracking ID", "").trim();
+				
+				String expressCompany = trackingCompany.getText().replace("Shipped with", "").trim();
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+				logger.error("expressCompany = " + expressCompany);
+				logger.error("expressNo = " + expressNo);
+				return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+			} catch (Exception e2) {
+				logger.debug("对比asinCode出现异常,商城还没发货",e2);
+				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 			}
 		}
 		
