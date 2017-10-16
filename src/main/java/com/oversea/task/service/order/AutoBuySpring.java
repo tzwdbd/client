@@ -720,32 +720,42 @@ public class AutoBuySpring extends AutoBuy {
 				if(w.getText().contains(mallOrderNo.trim())){
 					logger.error("--->找到商城单号"+mallOrderNo);
 					isFind = true;
-					//判断订单是否取消
-					String s = panel.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress'] .text_296oy-o_O-headerLabel_1lelydb")).getText();
-					logger.error("--->OrderStatusCode="+s);
-					if(!StringUtil.isBlank(s) && s.contains("Canceled")){
-						logger.error("--->商城订单:"+mallOrderNo+"已取消");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					}else if(!StringUtil.isBlank(s) && s.contains("Placed")){
-						logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
-					}else if(!StringUtil.isBlank(s) && (s.contains("Shipped") || s.contains("Delivered"))){
-						WebElement expressElement = panel.findElement(By.cssSelector(".orderCard_z5kzmw .shippingLink_1y5ph1v"));
-						String expressNo = expressElement.getText();
-						String expressCompany = "";
-						if(expressNo.startsWith("1Z")){
-							expressCompany = "UPS";
-						}else if(expressNo.startsWith("92")){
-							expressCompany = "FedEx-国际";
+					List<WebElement> orderBodys = panel.findElements(By.cssSelector(".orderBody_maj7wc"));
+					for(WebElement worderBody:orderBodys){
+						WebElement aWeb = worderBody.findElement(By.cssSelector("a"));
+						String link = aWeb.getAttribute("href");
+						logger.error("--->商品链接:"+link);
+						if(detail.getProductUrl().contains(link)){
+							//判断订单是否取消
+							String s = worderBody.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress'] .text_296oy-o_O-headerLabel_1lelydb")).getText();
+							logger.error("--->OrderStatusCode="+s);
+							if(!StringUtil.isBlank(s) && s.contains("Canceled")){
+								logger.error("--->商城订单:"+mallOrderNo+"已取消");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+							}else if(!StringUtil.isBlank(s) && s.contains("Placed")){
+								logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
+							}else if(!StringUtil.isBlank(s) && (s.contains("Shipped") || s.contains("Delivered"))){
+								WebElement expressElement = worderBody.findElement(By.cssSelector(".orderCard_z5kzmw .shippingLink_1y5ph1v"));
+								String expressNo = expressElement.getText();
+								String expressCompany = "";
+								if(expressNo.startsWith("1Z")){
+									expressCompany = "UPS";
+								}else if(expressNo.startsWith("92")){
+									expressCompany = "FedEx-国际";
+								}else if(expressNo.startsWith("40")){
+									expressCompany = "FedEx";
+								}
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+								logger.error("expressCompany = " + expressCompany);
+								logger.error("expressNo = " + expressNo);
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							}else{
+								logger.error("--->商城订单:"+mallOrderNo+"未知状态");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
+							}
 						}
-						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-						logger.error("expressCompany = " + expressCompany);
-						logger.error("expressNo = " + expressNo);
-						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-					}else{
-						logger.error("--->商城订单:"+mallOrderNo+"未知状态");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 					}
 				}
 			}
