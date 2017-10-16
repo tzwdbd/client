@@ -390,6 +390,8 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		String address = userTradeAddress.getAddress();
 		String zipcode = userTradeAddress.getZip();
 		String mobile = userTradeAddress.getMobile();
+		
+		
 		//删除地址
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ctrl-delete")));
@@ -409,6 +411,30 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 			logger.debug("--->删除默认地址出错");
 		}
 		
+		List<WebElement> deleteAddress = driver.findElements(By.cssSelector(".address-item"));
+		for(WebElement wa:deleteAddress){
+			if(wa.isDisplayed()){
+				wa.click();
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ctrl-delete")));
+					List<WebElement> addresss = driver.findElements(By.cssSelector(".ctrl-delete"));
+					for(WebElement w:addresss){
+						if(w.isDisplayed()){
+							w.click();
+							TimeUnit.SECONDS.sleep(1);
+							WebElement yesbtn = driver.findElement(By.id("easyDialogYesBtn"));
+							yesbtn.click();
+							TimeUnit.SECONDS.sleep(1);
+							break;
+						}
+					}
+				
+				} catch (Exception e) {
+					logger.debug("--->删除默认地址出错");
+				}
+			}
+			
+		}
 		
 		logger.debug("--->选择收货地址");
 		// 选收货地址
@@ -723,7 +749,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 							if(StringUtil.isNotEmpty(str) && str.contains("已取消")){
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 							}
-							if (str.equals("已发货")) {
+							if (str.contains("已发货")) {
 								Utils.sleep(2500);
 								logger.debug("--->查找物流单号");
 								WebElement shipOrder = orders.findElement(By.cssSelector(".order-ctrl a"));
@@ -851,7 +877,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		BodyguardapothekeAutoBuy auto = new BodyguardapothekeAutoBuy();
 		AutoBuyStatus status = auto.login("xnangnn2@126.com", "tfb001001");
 		System.out.println(status);
-		auto.cleanCart();
+		//auto.cleanCart();
 	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=f3ceMTHcH1xI6Y44JxqjTh3yFw5V3iGTai2kWcaja07f4APnzhOViTqluoB_ayMq_afiw_c&new=http%3A%2F%2Fwww.ba.de%2F1019391.html&tag=");
