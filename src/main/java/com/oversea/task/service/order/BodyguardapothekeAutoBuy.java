@@ -26,6 +26,7 @@ import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
 import com.oversea.task.utils.DateUtils;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 /** 
@@ -757,30 +758,22 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 								logger.debug("--->跳转url:"+url);
 								driver.navigate().to(url);
 								
-								List<WebElement> allTarTds = driver.findElements(By.cssSelector(".result-info tr td"));
-								if (allTarTds != null && allTarTds.size() > 0) {
-									for (WebElement w : allTarTds) {
-										if (w.getText() != null && w.getText().contains("单号已经生成")) {
-											String expressNo = w.getText().trim().split("，")[0];
-											expressNo = expressNo.split("：")[1];
-											data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
-											data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-											logger.error("expressCompany = EMS" );
-											logger.error("expressNo = " + expressNo);
-											if(!StringUtil.isBlank(expressNo) && expressNo.startsWith("3SCF")){
-												getNodeList(detail.getOrderNo(), expressNo);
-											}
-											return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-										}
-									}
+								WebElement w = driver.findElement(By.cssSelector(".logistics-details"));
+								String expressNo = ExpressUtils.regularExperssNo(w.getText());
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+								logger.error("expressCompany = EMS" );
+								logger.error("expressNo = " + expressNo);
+								if(!StringUtil.isBlank(expressNo) && expressNo.startsWith("3SCF")){
+									getNodeList(detail.getOrderNo(), expressNo);
 								}
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 								
 								
 							} else{
 								logger.error("[1]该订单还没发货,没产生物流单号");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 							}
-							break loop;
 						}
 					}
 				}
