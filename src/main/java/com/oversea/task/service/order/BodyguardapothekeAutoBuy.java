@@ -286,15 +286,15 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		String passWord = param.get("password");
 		try {
 			// 输入账号
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginEmail")));
-			WebElement username = driver.findElement(By.id("LoginEmail"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
+			WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
 			logger.debug("--->输入账号");
 			Utils.sleep(1500);
 			username.sendKeys(userName);
 
 			// 输入密码
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginPwd")));
-			WebElement passward = driver.findElement(By.id("LoginPwd"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
+			WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
 			logger.debug("--->输入密码");
 
 			Utils.sleep(1500);
@@ -302,26 +302,23 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 
 			// 提交
 			Utils.sleep(1500);
-			WebElement submitBtn = driver.findElement(By.cssSelector(".btn-login"));
+			WebElement submitBtn = driver.findElement(By.id("accout-login"));
 			logger.debug("--->开始提交");
 			submitBtn.click();
 
 		} catch (Exception e) {
 			logger.error("--->输入账号或者密码错误", e);
 			try {
-				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("btnCheckout")));
-				goPay.click();
 				// 输入账号
-				wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginEmail")));
-				WebElement username = driver.findElement(By.id("LoginEmail"));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
+				WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
 				logger.debug("--->输入账号");
 				Utils.sleep(1500);
 				username.sendKeys(userName);
 
 				// 输入密码
-				wait.until(ExpectedConditions.elementToBeClickable(By.id("LoginPwd")));
-				WebElement passward = driver.findElement(By.id("LoginPwd"));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
+				WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
 				logger.debug("--->输入密码");
 
 				Utils.sleep(1500);
@@ -329,7 +326,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 
 				// 提交
 				Utils.sleep(1500);
-				WebElement submitBtn = driver.findElement(By.cssSelector(".btn-login"));
+				WebElement submitBtn = driver.findElement(By.id("accout-login"));
 				logger.debug("--->开始提交");
 				submitBtn.click();
 
