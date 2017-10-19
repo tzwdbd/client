@@ -1,29 +1,41 @@
 package com.oversea.task.service.order;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.jsoup.helper.StringUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.AutoOrderCleanCart;
 import com.oversea.task.domain.AutoOrderExpressDetail;
 import com.oversea.task.domain.AutoOrderLogin;
+import com.oversea.task.domain.AutoOrderPay;
 import com.oversea.task.domain.AutoOrderScribeExpress;
+import com.oversea.task.domain.AutoOrderSelectProduct;
 import com.oversea.task.domain.GiftCard;
+import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
+import com.oversea.task.enums.MoneyUnits;
 import com.oversea.task.obj.Task;
 import com.oversea.task.obj.TaskResult;
 import com.oversea.task.utils.ExpressUtils;
@@ -143,7 +155,7 @@ public class ManualBuy{
 	};
 	
 	public void loginUser(String userName, String passWord,AutoOrderLogin autoOrderLogin){
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		// 输入账号
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(autoOrderLogin.getUsernameCode())));
 		WebElement username = driver.findElement(By.cssSelector(autoOrderLogin.getUsernameCode()));
@@ -239,8 +251,125 @@ public class ManualBuy{
 	 * @param param
 	 * @return
 	 */
-	public AutoBuyStatus selectProduct(Map<String, String> param){
-		return null;
+	public AutoBuyStatus selectProduct(RobotOrderDetail detail, AutoOrderSelectProduct autoOrderSelectProduct){
+		logger.debug("--->跳转到商品页面");
+		String productUrl = detail.getProductRebateUrl();
+		if(StringUtil.isBlank(productUrl)){
+			productUrl = detail.getProductUrl();
+		}
+		logger.debug("productUrl = " + productUrl);
+		try{
+			driver.navigate().to(productUrl);
+			TimeUnit.SECONDS.sleep(5);
+		}catch (Exception e){
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		
+		// 等待商品页面加载
+		logger.debug("--->开始等待商品页面加载");
+		WebDriverWait wait = new WebDriverWait(driver, 45);
+		//商品详情页加载完成标识
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderSelectProduct.getProductLoadedCode())));
+		}catch(Exception e){
+			logger.error("--->商品页面加载出现异常",e);
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		
+		try {	
+			logger.debug("--->商品页面加载完成");
+			// 开始选择sku
+			if (!StringUtil.isBlank(detail.getProductSku())) {
+				logger.debug("--->开始选择sku");
+				logger.debug("--->选择sku完成");
+			}
+		}catch (Exception e) {
+			logger.debug("--->选择sku碰到异常",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+		}
+		
+		// 寻找商品单价
+		try {
+			logger.debug("--->开始寻找商品单价");
+			//商品单价元素
+			WebElement priceFilter = driver.findElement(By.cssSelector(autoOrderSelectProduct.getSinglePriceCode()));
+			String units = MoneyUnits.getMoneyUnitsByCode(detail.getUnits()).getValue();
+			logger.debug("--->units:"+units);
+			String text = priceFilter.getText().trim();
+			if (!Utils.isEmpty(text) && text.indexOf(units)!=-1) {
+				String priceStr = text.substring(text.indexOf(units) + 1);
+				logger.debug("--->找到商品单价  = " + priceStr);
+				detail.setSinglePrice(priceStr);
+			}else{
+				String priceStr = text.substring(units.length());
+				logger.debug("--->找到商品单价1  = " + priceStr);
+				detail.setSinglePrice(priceStr);
+			}
+		} catch (Exception e) {
+			logger.debug("--->商品单价查找出错",e);
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		
+		String productNum = String.valueOf(detail.getNum());
+		// 选择商品数量
+		if(!Utils.isEmpty(productNum) && !productNum.equals("1")){
+			try{
+				logger.debug("--->商品数量 = "+productNum);
+				WebElement inputNum = driver.findElement(By.cssSelector(autoOrderSelectProduct.getNumCode()));
+				inputNum.clear();
+				Utils.sleep(1000);
+				inputNum.sendKeys(productNum);
+				Utils.sleep(1000);
+				logger.debug("--->选择商品数量完成");
+			}catch(Exception e){
+				logger.debug("--->选择商品数量碰到异常",e);
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		}
+		
+		// 加购物车
+		logger.debug("--->开始加购物车");
+		try{
+			TimeUnit.SECONDS.sleep(3);
+			WebElement addCard =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderSelectProduct.getAddCartCode())));
+			addCard.click();
+			TimeUnit.SECONDS.sleep(2);
+		}catch(Exception e){
+			logger.error("--->加购物车出现异常",e);
+			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+		}
+		logger.debug("--->确认是否加购物车成功");
+		try{
+			WebElement continueShop = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderSelectProduct.getAddedCode())));
+			continueShop.click();
+			TimeUnit.SECONDS.sleep(2);
+			logger.debug("--->跳转到购物");
+		}catch(Exception e){
+			logger.error("--->加购物车出现异常",e);
+			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+		}
+		
+		try {
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderSelectProduct.getCartLoadedCode())));
+		} catch (Exception e) {
+			logger.error("--->加购物车出现异常",e);
+			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+		}
+		//验证数量
+		try {
+			WebElement numText = driver.findElement(By.cssSelector(autoOrderSelectProduct.getNumedCode()));
+			logger.error("--->数量为:"+numText.getAttribute("value"));
+			if(!numText.getAttribute("value").equals(productNum)){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->选择商品数量碰到异常",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
+		
+			
+		return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 	};
 	
 	/**
@@ -249,8 +378,344 @@ public class ManualBuy{
 	 * @param address
 	 * @return
 	 */
-	public AutoBuyStatus pay(Map<String, String> param,UserTradeAddress address,OrderPayAccount payAccount,List<GiftCard> giftCardList){
-		return null;
+	public AutoBuyStatus pay(List<RobotOrderDetail> details,OrderAccount account,UserTradeAddress userTradeAddress,OrderPayAccount orderPayAccount, AutoOrderLogin autoOrderLogin,AutoOrderPay autoOrderPay){
+		
+		if(StringUtil.isBlank(details.get(0).getTotalPay())){
+			logger.error("--->预算总价没有传值过来,无法比价");
+			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
+		}
+		
+		String cardNo = account.getCardNo();
+		logger.error("cardNo = "+cardNo);
+		
+		//优惠码
+	
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		//等待购物车页面加载完成
+		logger.debug("--->等待购物车页面加载");
+		try {
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getCartLoadedCode())));
+			logger.debug("--->购物车页面加载完成");
+		} catch (Exception e) {
+			logger.error("--->加购物车出现异常",e);
+			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+		}
+		try{
+			WebElement checkout = driver.findElement(By.cssSelector(autoOrderPay.getSubmitCode()));
+			checkout.click();
+			logger.debug("--->点击结算");
+			Utils.sleep(2000);
+		}catch(Exception e){
+			logger.debug("--->点击结算出现异常");
+			return AutoBuyStatus.AUTO_PAY_FAIL;
+		}
+		logger.debug("--->等待输入地址页面加载");
+		
+		//返利链接需要重新登录一次
+		boolean isUseFanli = true;
+		try{
+			loginUser(account.getPayAccount(), account.getLoginPwd(), autoOrderLogin);
+		}catch(Exception e){
+			isUseFanli = false;
+			logger.debug("--->重新登录异常",e);
+		}
+		
+		if(isUseFanli){
+			//等待checkout页面加载完成
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteAddressListCode())));
+			List<WebElement> deleteAddress = driver.findElements(By.cssSelector(autoOrderPay.getDeleteAddressListCode()));
+			for(WebElement wa:deleteAddress){
+				if(wa.isDisplayed()){
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteCode())));
+						WebElement addresss = wa.findElement(By.cssSelector(autoOrderPay.getDeleteCode()));
+						addresss.click();
+						TimeUnit.SECONDS.sleep(1);
+						WebElement yesbtn = driver.findElement(By.cssSelector(autoOrderPay.getDeleteConfirmCode()));
+						yesbtn.click();
+						TimeUnit.SECONDS.sleep(1);
+					} catch (Exception e) {
+						logger.debug("--->删除默认地址出错");
+					}
+				}
+				
+			}
+		}
+		
+		//找到添加新地址
+		try{
+			WebElement w = driver.findElement(By.cssSelector(autoOrderPay.getAddNewAddressCode()));
+			w.click();
+			Utils.sleep(1000);
+		}catch(Exception e){
+			logger.debug("--->添加",e);
+		}
+		
+		//输入收货地址
+		try{
+			//姓名
+			WebElement w = driver.findElement(By.cssSelector(autoOrderPay.getNameCode()));
+			w.clear();
+			Utils.sleep(1500);
+			w.sendKeys(userTradeAddress.getName());
+			Utils.sleep(1500);
+			
+			//省份
+			String stateStr = userTradeAddress.getState().trim();
+			if("广西壮族自治区".equals(stateStr)){
+				stateStr = "广西";
+			}else if("西藏自治区".equals(stateStr)){
+				stateStr = "西藏";
+			}else if("宁夏回族自治区".equals(stateStr)){
+				stateStr = "宁夏";
+			}else if("新疆维吾尔自治区".equals(stateStr)){
+				stateStr = "新疆";
+			}else if("内蒙古自治区".equals(stateStr)){
+				stateStr = "内蒙古";
+			}
+			WebElement state = driver.findElement(By.cssSelector(autoOrderPay.getRegionCode()));	
+			Select selectState = new Select(state);
+			selectState.selectByVisibleText(stateStr);
+			Utils.sleep(2000);
+			
+			//市
+			WebElement city = driver.findElement(By.cssSelector(autoOrderPay.getCityCode()));	
+			Select selectCity = new Select(city);
+			String cityStr = userTradeAddress.getCity().trim();
+			try {
+				if("襄阳市".equals(cityStr)){
+					cityStr = "襄樊市";
+				} else if("上海市".equals(stateStr)){
+					cityStr = "上海市";
+				} else if("北京市".equals(stateStr)){
+					cityStr = "北京市";
+				} else if("重庆市".equals(stateStr)){
+					cityStr = "重庆市";
+				} else if("天津市".equals(stateStr)){
+					cityStr = "天津市";
+				} else if("陵水黎族自治县".equals(cityStr)){
+					cityStr = "陵水县";
+				}
+				selectCity.selectByVisibleText(cityStr);
+			} catch (Exception e) {
+				try {
+					if(!cityStr.endsWith("市")){
+						cityStr = cityStr + "市";
+					}
+					selectCity.selectByVisibleText(cityStr);
+				} catch (Exception e2) {
+					logger.debug("--->输入市出错", e2);
+				}
+			}
+			logger.debug("--->输入市");
+			Utils.sleep(2000);
+			
+			//区
+			String districtStr = userTradeAddress.getDistrict().trim();
+			WebElement district = driver.findElement(By.cssSelector(autoOrderPay.getCountyCode()));	
+			Select selectdistrict = new Select(district);
+			try{
+				selectdistrict.selectByVisibleText(districtStr);
+			}catch(Exception e){				
+				
+				if(districtStr.endsWith("区")){//区改市
+					districtStr = districtStr.subSequence(0, districtStr.length()-1)+"市";
+				} else if(districtStr.equals("经济开发区")){
+					districtStr = "经济技术开发区";
+				}
+				try{
+					selectdistrict.selectByVisibleText(districtStr);
+				}catch(Exception ee){
+					selectdistrict.selectByIndex(1);
+				}
+			}
+			Utils.sleep(2000);
+			//地址
+			WebElement street = driver.findElement(By.cssSelector(autoOrderPay.getStreetCode()));
+			street.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入街道地址");
+			Utils.sleep(1500);
+			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
+			
+			//邮编
+			WebElement postcode = driver.findElement(By.cssSelector(autoOrderPay.getPostcodeCode()));
+			postcode.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入邮编");
+			Utils.sleep(1500);
+			postcode.sendKeys(userTradeAddress.getZip());
+			
+			//电话
+			WebElement telephone = driver.findElement(By.cssSelector(autoOrderPay.getTelephoneCode()));
+			telephone.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入电话");
+			Utils.sleep(1500);
+			telephone.sendKeys(userTradeAddress.getMobile());
+			
+			//常用邮箱
+			WebElement emailEle = driver.findElement(By.cssSelector(autoOrderPay.getEmailCode()));
+			emailEle.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入常用邮箱");
+			Utils.sleep(1500);
+			emailEle.sendKeys(account.getPayAccount());
+			
+			WebElement input = driver.findElement(By.cssSelector(autoOrderPay.getIdentityCode()));
+			input.clear();
+			Utils.sleep(1500);
+			input.sendKeys(userTradeAddress.getIdCard());
+			Utils.sleep(2000);
+			
+			//保存地址
+			driver.findElement(By.cssSelector(autoOrderPay.getSaveAddressCode())).click();
+			Utils.sleep(3000);
+			
+		}catch(Exception e){
+			logger.debug("--->设置收货地址出错",e);
+			return AutoBuyStatus.AUTO_PAY_FAIL;
+		}
+		
+		//选中支付宝
+		try{
+			WebElement alipayPayment = driver.findElement(By.cssSelector(autoOrderPay.getAlipayCode()));
+			driver.executeScript("var tar=arguments[0];tar.click();", alipayPayment);
+		}catch(Exception e){
+			logger.debug("--->选中支付宝出错",e);
+			return AutoBuyStatus.AUTO_PAY_FAIL;
+		}
+		
+		if(!StringUtil.isBlank(details.get(0).getPromotionCodeList())){
+			boolean isEffective = false;
+			Set<String> promotionList = getPromotionList(details.get(0).getPromotionCodeList());
+			if (promotionList != null && promotionList.size() > 0) {
+				for (String code : promotionList) {
+					try {
+						logger.debug("couponCode："+code);
+						WebElement element = driver.findElement(By.cssSelector(autoOrderPay.getCouponTextCode()));
+						element.clear();
+						element.sendKeys(code);
+						TimeUnit.SECONDS.sleep(2);
+						
+						WebElement use = driver.findElement(By.cssSelector(autoOrderPay.getCouponSubmitCode()));
+						driver.executeScript("var tar=arguments[0];tar.click();", use);
+						TimeUnit.SECONDS.sleep(2);
+						
+						try {
+							driver.findElement(By.cssSelector(autoOrderPay.getCouponErrorCode()));
+							logger.debug("优惠码无效："+code);
+							for(RobotOrderDetail detail:details){
+								detail.setPromotionCodeListStatus("0");
+							}
+						} catch (Exception e) {
+							try {
+								logger.debug("优惠码有效："+code);
+								isEffective = true;
+								for(RobotOrderDetail detail:details){
+									detail.setPromotionCodeListStatus("10");
+								}
+								TimeUnit.SECONDS.sleep(5);
+								driver.findElement(By.cssSelector(autoOrderPay.getCouponRightCode()));
+							} catch (Exception e2) {
+								logger.debug("异常："+e);
+							}
+						}
+					} catch (Exception e) {
+						logger.debug("优惠码异常",e);
+					}
+				}
+				if("1".equals(details.get(0).getIsStockpile()) && !isEffective){
+					logger.debug("--->优惠码失效,中断采购");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
+			}		
+		}
+		//查询总价
+		try{
+			logger.debug("--->开始查询总价");
+			WebElement totalPriceElement = driver.findElement(By.cssSelector(autoOrderPay.getTotalPriceCode()));
+			String priceStr = totalPriceElement.getText();
+			for(RobotOrderDetail detail:details){
+				detail.setTotalPrice(priceStr);
+			}
+			logger.debug("--->找到商品结算总价 = "+priceStr);
+			if(!StringUtil.isBlank(details.get(0).getTotalPay())){
+				AutoBuyStatus priceStatus = comparePrice(priceStr, details.get(0).getTotalPay());
+				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+					logger.error("--->总价差距超过约定,不能下单");
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+				}
+			}
+		}catch(Exception e){
+			logger.debug("--->查询结算总价出现异常",e);
+			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+		}
+		
+		//提交订单
+		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
+		try{
+			WebElement placeOrder = driver.findElement(By.cssSelector(autoOrderPay.getOrderPlaceCode()));
+			placeOrder.click();;
+			WebElement gotologin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			gotologin.click();
+			logger.error("支付宝登陆按钮点击");
+			//支付宝账号
+			WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			name.sendKeys(orderPayAccount.getAccount());
+			Utils.sleep(1500);
+			//密码
+			driver.findElement(By.xpath("//input[@id='payPasswd_rsainput']")).sendKeys(orderPayAccount.getPayPassword());
+			Utils.sleep(1500);
+			//下一步
+			driver.findElement(By.xpath("//a[@id='J_newBtn']")).click();
+			Utils.sleep(1500);
+			
+			//输入支付密码
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sixDigitPassword']")));
+			String payPwd = orderPayAccount.getPayPassword();
+			String str = "(function(){var els = document.getElementById('payPassword_rsainput');if(els){els.value='%s';}})();";
+			String ss = String.format(str, payPwd);
+			logger.debug("--->ss = "+ss);
+			driver.executeScript(ss);
+			Utils.sleep(3000);
+			
+			//输入银行卡号
+			try{
+				WebElement bank = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='bankCardNo']")));
+				bank.sendKeys(cardNo);
+			}catch(Exception e){
+				logger.debug("--->没找到输入银行卡的输入框",e);
+			}
+			
+			Utils.sleep(1000);
+			driver.findElement(By.xpath("//input[@id='J_authSubmit']")).click();
+			Utils.sleep(1000);
+			
+		}catch(Exception e){
+			logger.debug("--->点击付款出现异常",e);
+			return AutoBuyStatus.AUTO_PAY_CAN_NOT_FIND_CARDNO;
+		}
+		
+		//查询商城订单号
+		try{
+			logger.debug("--->开始查找商品订单号");
+			wait = new WebDriverWait(driver, 2*WAIT_TIME);
+			By byby = By.cssSelector(autoOrderPay.getMallOrderNoCode());
+			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
+			logger.debug("--->找到商品订单号 = "+orderElement.getText());
+			String mallOrderNo = ExpressUtils.regularExperssNo(orderElement.getText());
+			logger.debug("--->找到商品订单号1 = "+mallOrderNo);
+			for(RobotOrderDetail detail:details){
+				detail.setMallOrderNo(mallOrderNo);
+			}
+			savePng(details.get(0).getOrderNo());
+			return AutoBuyStatus.AUTO_PAY_SUCCESS;
+		}catch(Exception e){
+			logger.debug("--->查找商品订单号出现异常",e);
+			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
+		}
 	}
 
 	/**
@@ -441,24 +906,56 @@ public class ManualBuy{
 	public static void main(String[] args){
 		ManualBuy auto = new ManualBuy(false);
 		AutoOrderLogin autoOrderLogin = new AutoOrderLogin();
-		autoOrderLogin.setLoginUrl("http://cn.getthelabel.com/customer/account/login/");
-		autoOrderLogin.setConfirmCode(".main-container");
-		autoOrderLogin.setMallName("getthelabel");
-		autoOrderLogin.setPasswordCode("#LoginPwd");
-		autoOrderLogin.setUsernameCode("#LoginEmail");
-		autoOrderLogin.setSubmitCode("#PageLogin");
-		AutoBuyStatus status = auto.login("tzwdbd@126.com", "123456",autoOrderLogin);
+		autoOrderLogin.setLoginUrl("https://www.bonpont.com/customer/account/login");
+		autoOrderLogin.setConfirmCode(".top-login");
+		autoOrderLogin.setMallName("bonpont");
+		autoOrderLogin.setPasswordCode("#password");
+		autoOrderLogin.setUsernameCode("#username");
+		autoOrderLogin.setSubmitCode("#loginBtn");
+		AutoBuyStatus status = auto.login("yunzh17@163.com", "tfb001001",autoOrderLogin);
 		System.out.println(status);
 		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
-			autoOrderCleanCart.setCartLoadedCode(".delete-checked");
-			autoOrderCleanCart.setCartUrl("http://cn.getthelabel.com/checkout/cart/");
-			autoOrderCleanCart.setCleanEndCode(".cart-empty");
-			autoOrderCleanCart.setCleanType(1);
-			autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
-			autoOrderCleanCart.setRemoveCode(".delete-checked");
-			autoOrderCleanCart.setSiteName("getthelabel");
-			status = auto.cleanCart(autoOrderCleanCart);
+			RobotOrderDetail detail = new RobotOrderDetail();
+			detail.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003539.html");
+			detail.setUnits("CNY");
+			detail.setNum(2);
+			//detail.setPromotionCodeList("231231");
+			status = auto.selectProduct(detail, null);
+			RobotOrderDetail detail1 = new RobotOrderDetail();
+			detail1.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003346.html");
+			detail1.setUnits("CNY");
+			detail1.setNum(3);
+			//detail.setPromotionCodeList("231231");
+			status = auto.selectProduct(detail1, null);
+//			System.out.println(status);
+//			Map<String, String> param0 = new HashMap<String, String>();
+//			param0.put("my_price", "319.99");
+//			param0.put("count", "1");
+////			param0.put("isPay", String.valueOf(true));
+//			param0.put("cardNo", "4662 4833 6029 1396");
+//			UserTradeAddress userTradeAddress = new UserTradeAddress();
+//			userTradeAddress.setName("刘波");
+//			userTradeAddress.setAddress("西斗门路9号");
+//			userTradeAddress.setState("浙江省");
+//			userTradeAddress.setCity("杭州市");
+//			userTradeAddress.setDistrict("西湖区");
+//			userTradeAddress.setZip("310000");
+//			userTradeAddress.setIdCard("330881198506111918");
+//			userTradeAddress.setMobile("18668084980");
+//			OrderPayAccount orderPayAccount = new OrderPayAccount();
+//			orderPayAccount.setAccount("15268125960");
+//			orderPayAccount.setPayPassword("199027");
+//			status = auto.pay(detail,param0, userTradeAddress, orderPayAccount,"yunzh17@163.com", "tfb001001",autoOrderLogin);
+//			System.out.println(status);
+//			AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
+//			autoOrderCleanCart.setCartLoadedCode(".delete-checked");
+//			autoOrderCleanCart.setCartUrl("http://cn.getthelabel.com/checkout/cart/");
+//			autoOrderCleanCart.setCleanEndCode(".cart-empty");
+//			autoOrderCleanCart.setCleanType(1);
+//			autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
+//			autoOrderCleanCart.setRemoveCode(".delete-checked");
+//			autoOrderCleanCart.setSiteName("getthelabel");
+//			status = auto.cleanCart(autoOrderCleanCart);
 			//if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				
 //				Map<String, String> param = new HashMap<String, String>();
@@ -498,4 +995,88 @@ public class ManualBuy{
 			//}
 		}
 	}
+	
+	protected static Set<String> getPromotionList(String promotionStr){
+		if(!StringUtil.isBlank(promotionStr)){
+			Set<String> promotionList = new HashSet<String>();
+			String[] as = promotionStr.split(";");
+			if(as != null && as.length > 0){
+				for(String a : as){
+					if(!StringUtil.isBlank(a)){
+						String[] aas = a.split(",");
+						if(aas != null && aas.length > 0){
+							for(String aa : aas){
+								if(!StringUtil.isBlank(aa)){
+									promotionList.add(aa.trim());
+								}
+							}
+						}
+					}
+				}
+			}
+			return promotionList;
+		}
+		return null;
+	}
+	public AutoBuyStatus comparePrice(String mallPrice,String totalPay){
+		BigDecimal x = new BigDecimal(totalPay);
+		BigDecimal y = new BigDecimal(mallPrice);
+		BigDecimal v = y.subtract(x);
+		if (v.doubleValue() > 0.00D){
+			logger.error("--->总价差距超过约定,不能下单"+totalPay);
+			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+		}else{
+			return AutoBuyStatus.AUTO_PAY_PARPARE;
+		}
+	}
+	
+	public void savePng(String orderNo){
+		try {
+			byte[] b = doScreenShot(orderNo);
+			if(b!=null){
+				getTask().addParam("screentShot", b);
+			}else{
+				logger.error("--->screentShot为空");
+			}
+		} catch (Exception e) {
+			logger.error("--->截图失败");
+		}
+	}
+	
+	public byte[] doScreenShot(String orderNo){
+		byte[] screenshot = null;
+		if (driver != null){
+			FileOutputStream fos = null;
+			try{
+				File file = new File("screenshot");
+				if (!file.exists()){
+					file.mkdir();
+				}
+				screenshot = driver.getScreenshotAs(OutputType.BYTES);
+				String filePathName = "";
+				if(!StringUtil.isBlank(orderNo)){
+					filePathName = "screenshot/" + orderNo+"-"+System.currentTimeMillis()/1000 + ".png";
+				}else{
+					filePathName = "screenshot/" + System.currentTimeMillis()/1000 + ".png";
+				}
+				logger.debug("--->开始截图,路径:"+filePathName);
+				fos = new FileOutputStream(filePathName);
+				fos.write(screenshot);
+			}
+			catch (Throwable e){
+				logger.debug("--->截图出现异常",e);
+			}finally {  
+			    try {  
+			        if (fos != null) {  
+			        	fos.close();  
+			        } 
+			    } catch (Exception e) {  
+			        e.printStackTrace();  
+			    }  
+			}
+		}
+		Utils.sleep(200);
+		return screenshot;
+	}
+	
 }

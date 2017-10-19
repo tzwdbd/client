@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.oversea.task.domain.AutoOrderCleanCart;
 import com.oversea.task.domain.AutoOrderLogin;
+import com.oversea.task.domain.AutoOrderPay;
+import com.oversea.task.domain.AutoOrderSelectProduct;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.OrderCreditCard;
@@ -32,14 +34,12 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 		UserTradeAddress address = (UserTradeAddress) task.getParam("address");
 		String mallName = (String) task.getParam("mallName");
 		OrderPayAccount payAccount = (OrderPayAccount)task.getParam("orderPayAccount");
-		String expiryDate = (String)task.getParam("expiryDate");
-		String expressAddress = (String)task.getParam("expressAddress");
 		OrderCreditCard orderCreditCard = (OrderCreditCard)task.getParam("orderCreditCard");
 		List<GiftCard> giftCard = (List<GiftCard>) task.getParam("giftCardList");
-		Float rate = (Float)task.getParam("rate");
-		String type = (String) task.getParam("type");
 		AutoOrderLogin autoOrderLogin = (AutoOrderLogin) task.getParam("autoOrderLogin");
 		AutoOrderCleanCart autoOrderCleanCart = (AutoOrderCleanCart) task.getParam("autoOrderCleanCart");
+		AutoOrderSelectProduct autoOrderSelectProduct = (AutoOrderSelectProduct) task.getParam("autoOrderSelectProduct");
+		AutoOrderPay autoOrderPay = (AutoOrderPay) task.getParam("autoOrderPay");
 		
 		
 		List<RobotOrderDetail> orderDetailList = null;
@@ -65,7 +65,21 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 					if(autoOrderCleanCart!=null){
 						status = manualBuy.cleanCart(autoOrderCleanCart);
 						if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-							
+							for(RobotOrderDetail detail:orderDetailList){
+								status = manualBuy.selectProduct(detail, autoOrderSelectProduct);
+								if(!AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+									break;
+								}
+							}
+							if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+								status = manualBuy.pay(orderDetailList, account, address, payAccount, autoOrderLogin,autoOrderPay);
+								if(AutoBuyStatus.AUTO_PAY_SUCCESS.equals(status)){
+									break;
+								}
+								if(AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF.equals(status) || AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL.equals(status)){
+									break;
+								}
+							}
 						}
 					}
 					break;
@@ -74,6 +88,7 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 				logger.debug("ManualOrderNormalHandler.doService 碰到异常 = ", e);
 			}
 			finally{
+				manualBuy.killFirefox();
 				logger.error("=================>ManualOrderNormalHandler成功完结<======================");
 			}
 		}
