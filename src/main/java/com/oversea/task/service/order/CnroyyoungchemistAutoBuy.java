@@ -388,8 +388,10 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		
 		//找到添加新地址
 		try{
-			WebElement w = driver.findElement(By.xpath("//a[@class='address-use-new']"));
-			w.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.cssSelector("a.address-use-new")));
+			WebElement w = driver.findElement(By.cssSelector("a.address-use-new"));
+			driver.executeScript("var tar=arguments[0];tar.click();", w);
 			Utils.sleep(1000);
 		}catch(Exception e){
 			logger.debug("--->添加",e);
@@ -397,6 +399,8 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		
 		//输入收货地址
 		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.id("firstname")));
 			//姓名
 			WebElement w = driver.findElement(By.xpath("//input[@id='firstname']"));
 			w.clear();
