@@ -99,7 +99,13 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 				logger.debug("ManualOrderNormalHandler.doService 碰到异常 = ", e);
 			}
 			finally{
-				manualBuy.killFirefox();
+				try {
+					manualBuy.savePng(orderDetailList.get(0).getOrderNo());
+					manualBuy.killFirefox();
+				} catch (Exception e2) {
+				}
+				
+				
 				logger.error("=================>ManualOrderNormalHandler成功完结<======================");
 			}
 		}
