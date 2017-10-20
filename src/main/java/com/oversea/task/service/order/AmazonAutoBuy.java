@@ -1007,26 +1007,15 @@ public class AmazonAutoBuy extends AutoBuy
 				
 				try
 				{
-					driver.findElement(By.xpath("//a[@id='a-autoid-0-announce']")).click();;
+					driver.findElement(By.id("a-autoid-0-announce")).click();;
 				}
 				catch (Exception e)
 				{
+					logger.debug("没有 a-autoid-0-announce");
 				}
 				Utils.sleep(1000);
 				
-				try{
-					driver.findElement(By.xpath("//a[contains(text(),'check out')]")).click();;
-					Utils.sleep(1000);
-				}catch(Exception e){}
 				
-				try {
-					logger.debug("new check out");
-					WebElement tt = driver.findElement(By.cssSelector("span.a-color-base a.a-link-normal"));
-					String url = tt.getAttribute("herf");
-					driver.navigate().to(url);
-				} catch (Exception e) {
-					logger.error("safss55",e);
-				}
 				
 				try {
 					TimeUnit.SECONDS.sleep(3);
@@ -1038,7 +1027,31 @@ public class AmazonAutoBuy extends AutoBuy
 						driver.navigate().to("https://www.amazon.com/gp/aw/c/ref=navm_hdr_cart");
 					}
 				} catch (Exception e) {
-					logger.error("safss",e);
+					logger.error("safss");
+				}
+				
+				try{
+					Utils.sleep(3000);
+					List<WebElement> checkOuts = driver.findElements(By.cssSelector("a.a-link-normal"));
+					for(WebElement w:checkOuts){
+						if(w.isDisplayed() && w.getText().equals("check out")){
+							w.click();
+							break;
+						}
+					}
+					//driver.findElement(By.xpath("//a[contains(text(),'check out')]")).click();;
+					Utils.sleep(1000);
+				}catch(Exception e){
+					logger.debug("没有 check out");
+				}
+				
+				try {
+					logger.debug("new check out");
+					WebElement tt = driver.findElement(By.cssSelector("span.a-color-base a.a-link-normal"));
+					String url = tt.getAttribute("herf");
+					driver.navigate().to(url);
+				} catch (Exception e) {
+					logger.error("safss55",e);
 				}
 				
 				
@@ -3907,23 +3920,23 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
-		//autoBuy.login("letvtct@163.com", "tfb001001");
+		autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "https://www.amazon.com/dp/B01MTYPQLW");
-		param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01GDIUA8Y?psc=1");
+		param.put("sku", "[[\"color\",\"Redheat\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 		param.put("num", "1");
-		param.put("sign", "0");
-		param.put("productName","silver stud earrings");
-		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
-		param.put("position","30");
+//		param.put("sign", "0");
+//		param.put("productName","silver stud earrings");
+//		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
+//		param.put("position","30");
 		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
