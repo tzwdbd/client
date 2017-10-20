@@ -92,7 +92,6 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 							}
 						}
 					}
-					break;
 				}
 				
 			} catch (Exception e) {
