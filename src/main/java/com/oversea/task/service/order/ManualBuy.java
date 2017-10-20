@@ -422,24 +422,28 @@ public class ManualBuy{
 		}
 		
 		if(isUseFanli){
-			//等待checkout页面加载完成
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteAddressListCode())));
-			List<WebElement> deleteAddress = driver.findElements(By.cssSelector(autoOrderPay.getDeleteAddressListCode()));
-			for(WebElement wa:deleteAddress){
-				if(wa.isDisplayed()){
-					try {
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteCode())));
-						WebElement addresss = wa.findElement(By.cssSelector(autoOrderPay.getDeleteCode()));
-						addresss.click();
-						TimeUnit.SECONDS.sleep(1);
-						WebElement yesbtn = driver.findElement(By.cssSelector(autoOrderPay.getDeleteConfirmCode()));
-						yesbtn.click();
-						TimeUnit.SECONDS.sleep(1);
-					} catch (Exception e) {
-						logger.debug("--->删除默认地址出错");
+			try {
+				//等待checkout页面加载完成
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteAddressListCode())));
+				List<WebElement> deleteAddress = driver.findElements(By.cssSelector(autoOrderPay.getDeleteAddressListCode()));
+				for(WebElement wa:deleteAddress){
+					if(wa.isDisplayed()){
+						try {
+							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteCode())));
+							WebElement addresss = wa.findElement(By.cssSelector(autoOrderPay.getDeleteCode()));
+							addresss.click();
+							TimeUnit.SECONDS.sleep(1);
+							WebElement yesbtn = driver.findElement(By.cssSelector(autoOrderPay.getDeleteConfirmCode()));
+							yesbtn.click();
+							TimeUnit.SECONDS.sleep(1);
+						} catch (Exception e) {
+							logger.debug("--->删除默认地址出错");
+						}
 					}
+					
 				}
-				
+			} catch (Exception e) {
+				logger.debug("--->删除默认地址出错1");
 			}
 		}
 		
@@ -476,7 +480,12 @@ public class ManualBuy{
 			}
 			WebElement state = driver.findElement(By.cssSelector(autoOrderPay.getRegionCode()));	
 			Select selectState = new Select(state);
-			selectState.selectByVisibleText(stateStr);
+			try {
+				selectState.selectByVisibleText(stateStr);
+			} catch (Exception e) {
+				selectState.selectByVisibleText(stateStr+"省");
+			}
+			
 			Utils.sleep(2000);
 			
 			//市

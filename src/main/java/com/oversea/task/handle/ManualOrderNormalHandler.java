@@ -61,18 +61,28 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 			manualBuy.setOrderDetailList(orderDetailList);
 			try {
 				AutoBuyStatus status = manualBuy.login(account.getPayAccount(), account.getLoginPwd(), autoOrderLogin);
-				if(AutoBuyStatus.AUTO_SCRIBE_LOGIN_SUCCESS.equals(status)){
+				for(RobotOrderDetail r:orderDetailList){
+					r.setStatus(status.getValue());
+				}
+				if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 					if(autoOrderCleanCart!=null){
 						status = manualBuy.cleanCart(autoOrderCleanCart);
+						for(RobotOrderDetail r:orderDetailList){
+							r.setStatus(status.getValue());
+						}
 						if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 							for(RobotOrderDetail detail:orderDetailList){
 								status = manualBuy.selectProduct(detail, autoOrderSelectProduct);
+								detail.setStatus(status.getValue());
 								if(!AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 									break;
 								}
 							}
 							if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 								status = manualBuy.pay(orderDetailList, account, address, payAccount, autoOrderLogin,autoOrderPay);
+								for(RobotOrderDetail r:orderDetailList){
+									r.setStatus(status.getValue());
+								}
 								if(AutoBuyStatus.AUTO_PAY_SUCCESS.equals(status)){
 									break;
 								}
@@ -84,6 +94,7 @@ public class ManualOrderNormalHandler implements ManualOrderHandler {
 					}
 					break;
 				}
+				
 			} catch (Exception e) {
 				logger.debug("ManualOrderNormalHandler.doService 碰到异常 = ", e);
 			}
