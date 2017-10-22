@@ -483,7 +483,12 @@ public class ManualBuy{
 			try {
 				selectState.selectByVisibleText(stateStr);
 			} catch (Exception e) {
-				selectState.selectByVisibleText(stateStr+"省");
+				try {
+					selectState.selectByVisibleText(stateStr+"省");
+				} catch (Exception e2) {
+					selectState.selectByVisibleText(stateStr.substring(0,stateStr.length()-1));
+				}
+				
 			}
 			
 			Utils.sleep(2000);
@@ -584,7 +589,7 @@ public class ManualBuy{
 			
 		}catch(Exception e){
 			logger.debug("--->设置收货地址出错",e);
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}
 		
 		//选中支付宝
