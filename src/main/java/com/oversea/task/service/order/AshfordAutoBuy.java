@@ -719,6 +719,20 @@ public class AshfordAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_SELECT_DElLIVERY_OPTIONS_FAIL;
 		}	
 		
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ems_express_0 input[type='radio']")));
+			driver.findElement(By.cssSelector("#ems_express_0 input[type='radio']")).click();
+			Utils.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("atg_store_citizenshipCodeInput_ems_express_0")));
+			WebElement ident = driver.findElement(By.id("atg_store_citizenshipCodeInput_ems_express_0"));
+			ident.sendKeys(userTradeAddress.getIdCard());
+			Utils.sleep(2000);
+			driver.findElement(By.id("additionalInfo_ems_express_0")).click();
+		} catch (Exception e) {
+			logger.debug("--->选择物流失败1");
+			return AutoBuyStatus.AUTO_PAY_SELECT_DElLIVERY_OPTIONS_FAIL;
+		}
+		
 		// 选择信用卡
 		logger.debug("--->选择信用卡");
 		try {
