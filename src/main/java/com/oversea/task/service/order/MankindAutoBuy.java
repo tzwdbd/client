@@ -36,13 +36,14 @@ public class MankindAutoBuy extends AutoBuy {
 		MankindAutoBuy autoBuy = new MankindAutoBuy();
 		AutoBuyStatus status = autoBuy.login("twgdhbl@tom.com", "tfb001001");
 		if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.getValue() == status.getValue()){
-			RobotOrderDetail detail = new RobotOrderDetail();
-			detail.setMallOrderNo("99937357");
-			autoBuy.scribeExpress(detail);
+//			RobotOrderDetail detail = new RobotOrderDetail();
+//			detail.setMallOrderNo("99937357");
+//			autoBuy.scribeExpress(detail);
 			status = autoBuy.cleanCart();
 			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.getValue() == status.getValue()){
 				Map<String,String> param = new HashMap<String,String>();
 				param.put("url", "https://www.mankind.co.uk/molton-brown-black-peppercorn-body-lotion-300ml/10881873.html");
+				param.put("orginalUrl", "https://www.mankind.co.uk/molton-brown-black-peppercorn-body-lotion-300ml/10881873.html");
 				param.put("num", "1");
 				param.put("sku", null);
 				param.put("productEntityId", "4276465");
@@ -63,7 +64,7 @@ public class MankindAutoBuy extends AutoBuy {
 					userTradeAddress.setCity("杭州市");
 					userTradeAddress.setState("浙江省");
 					userTradeAddress.setMobile("18668084980");
-					/*status = autoBuy.pay(param0, userTradeAddress, null);*/
+					status = autoBuy.pay(param0, userTradeAddress, null);
 				}
 			}
 		}
@@ -690,7 +691,7 @@ public class MankindAutoBuy extends AutoBuy {
 			Utils.sleep(1000);
 		}catch(Exception e){
 			logger.error("--->点击添加新地址异常" , e);
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		//输入收货地址

@@ -588,6 +588,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 								case "スタイル":
 									btnElem = driver.findElement(By.id("style_name-button-announce"));
 									break;
+								case "bandcolor":
+									btnElem = driver.findElement(By.id("band_color-button-announce"));
+									break;
 
 								default:
 								{
@@ -903,6 +906,38 @@ public class AmazonJpAutoBuy extends AutoBuy
 					if (!(text.indexOf("Amazon.co.jp が販売、") != -1 || text.indexOf("Amazon.co.jp が発送します") != -1))
 					{
 						logger.debug("第三方商品不支持购买 +url = " + url);
+						
+						//处理第三方其它商家商品
+//						try {
+//							boolean mark = true;
+//							WebElement newProduct = driver.findElement(By.cssSelector(".a-box-inner .a-text-bold"));
+//							if(newProduct.getText().contains("新品")){
+//								newProduct.click();
+//								logger.debug("新品点击");
+//								WebDriverWait wait = new WebDriverWait(driver, 30);
+//								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-box-inner .a-container.olpNoPadding")));
+//								List<WebElement> otherProducts = driver.findElements(By.cssSelector(".a-box-inner .a-container.olpNoPadding"));
+//								for(WebElement w:otherProducts){
+//									WebElement dynamicRow = w.findElement(By.cssSelector(".olpDynamicRow"));
+//									if (dynamicRow.getText().contains("Amazon.co.jp")){
+//										mark = false;
+//										w.click();
+//										logger.debug("到达新品页面");
+//										break;
+//									}
+//								}
+//								if(mark){
+//									logger.debug("mark=true");
+//									return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+//								}
+//							}else{
+//								logger.debug("不包含新品");
+//								return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+//							}
+//						} catch (Exception e) {
+//							logger.debug("第三方页面异常",e);
+//							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+//						}
 						return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
 					}
 				}
@@ -2924,19 +2959,35 @@ public class AmazonJpAutoBuy extends AutoBuy
 		detail.setGmtCreate(new Date());
 		System.out.println("login success");
 		autoBuy.scribeExpress(detail);*/
-		String stockNum = "通常3～4日以内に発送します";
-		if (StringUtil.isNotEmpty(stockNum) && stockNum.contains("通常")){
-			if(!(stockNum.contains("3日以内に発送します") || stockNum.contains("5日以内に発送します") 
-					|| stockNum.contains("3~4日以内に発送")
-					|| stockNum.contains("2~3日以内に発送")
-					|| stockNum.contains("1~2日以内に発送")
-					|| stockNum.contains("3～4日以内に発送")
-					|| stockNum.contains("2～3日以内に発送")
-					|| stockNum.contains("1～2日以内に発送"))){
-				System.out.println("xixi");
-			}else{
-				System.out.println("haha");
-			}
-		}
+//		String stockNum = "通常3～4日以内に発送します";
+//		if (StringUtil.isNotEmpty(stockNum) && stockNum.contains("通常")){
+//			if(!(stockNum.contains("3日以内に発送します") || stockNum.contains("5日以内に発送します") 
+//					|| stockNum.contains("3~4日以内に発送")
+//					|| stockNum.contains("2~3日以内に発送")
+//					|| stockNum.contains("1~2日以内に発送")
+//					|| stockNum.contains("3～4日以内に発送")
+//					|| stockNum.contains("2～3日以内に発送")
+//					|| stockNum.contains("1～2日以内に発送"))){
+//				System.out.println("xixi");
+//			}else{
+//				System.out.println("haha");
+//			}
+//		}
+		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
+		//autoBuy.login("letvtct@163.com", "tfb001001");
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("114-9894719-8964233");
+//		detail.setProductEntityId(4999961L);
+		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
+		Map<String, String> param = new HashMap<>();
+		param.put("url", "http://www.lusterstyle.com/it.php?udid=934&stid=1459&dlink=aHR0cDovL3d3dy5hbWF6b24uY28uanAvZHAvQjA2WFJXWkZYNj9wc2M9MSZ0YWc9bHVzdHIwYS1hZDI3NzgtMjI%3D");
+		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
+//		//param.put("sku", "[[\"color\",\"Red\"]]");
+		param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
+		param.put("num", "1");
+		param.put("productEntityId", "4780644");
+		param.put("num", "1");
+		//param.put("sign", "0");
+		System.out.println(autoBuy.selectProduct(param));
 	}
 }
