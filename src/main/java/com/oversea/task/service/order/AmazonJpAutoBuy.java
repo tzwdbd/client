@@ -2164,13 +2164,18 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.error("addParam expressNodeList"+expressNo);
 					getTask().addParam("expressNodeList", nodeList);
 				}
-				byte[] b = download("www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
-				if(b!=null){
-					logger.error("addJapan Fedroad b");
-					getTask().addParam("fedroadhtml", b);
-				}else{
-					logger.error("addJapan Fedroad");
+				try {
+					byte[] b = download("www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
+					if(b!=null){
+						logger.error("addJapan Fedroad b");
+						getTask().addParam("fedroadhtml", b);
+					}else{
+						logger.error("addJapan Fedroad");
+					}
+				} catch (Exception e) {
+					logger.error("爬取fedload异常");
 				}
+				
 				//250-9937288-7747802
 			}
 			
