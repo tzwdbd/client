@@ -1,6 +1,12 @@
 package com.oversea.task.service.order;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -2158,6 +2164,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.error("addParam expressNodeList"+expressNo);
 					getTask().addParam("expressNodeList", nodeList);
 				}
+				byte[] b = download("www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
+				if(b!=null){
+					logger.error("addJapan Fedroad b");
+					getTask().addParam("fedroadhtml", b);
+				}else{
+					logger.error("addJapan Fedroad");
+				}
+				//250-9937288-7747802
 			}
 			
 			return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
@@ -2946,6 +2960,37 @@ public class AmazonJpAutoBuy extends AutoBuy
 		}
 		return null;
 	}
+	
+	public static byte[] download(String urlString) throws Exception {
+		InputStream is = null;
+		byte[] bb = null;
+		try{
+		    // 构造URL
+		    URL url = new URL(urlString);
+		    // 打开连接
+		    URLConnection con = url.openConnection();
+		    // 输入流
+		    is = con.getInputStream();
+		    StringBuffer out = new StringBuffer();
+		    byte[]  b = new byte[4096];
+		     for (int n; (n = is.read(b)) != -1;) {
+		          out.append(new String(b, 0, n));
+		     }
+		     String s = out.toString().replace("_________________________様", "Fedroad Japan株式会社様");
+		     bb = s.getBytes();
+		}
+		catch (Throwable e){
+		}finally {  
+		    try {  
+		        if (is != null) {  
+		        	is.close();  
+		        } 
+		    } catch (Exception e) {  
+		        e.printStackTrace();  
+		    }  
+		}
+		return bb;
+	}   
 
 	public static void main(String[] args) throws ParseException
 	{

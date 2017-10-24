@@ -141,6 +141,11 @@ public class TaskServiceImpl implements TaskService {
 			if(obj != null){
 				taskResult.addParam("expressNodeList", obj);
 			}
+			Object obj1 = task.getParam("fedroadhtml");
+			if(obj1 != null){
+				taskResult.addParam("fedroadhtml", obj1);
+			}
+			
 		}catch(Throwable e){
 			logger.error("调用shipService出现异常",e);
 		}
