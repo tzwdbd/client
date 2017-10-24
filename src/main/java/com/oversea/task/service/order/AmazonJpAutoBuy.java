@@ -2165,18 +2165,16 @@ public class AmazonJpAutoBuy extends AutoBuy
 					getTask().addParam("expressNodeList", nodeList);
 				}
 				try {
-					byte[] b = download("www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
-					if(b!=null){
-						logger.error("addJapan Fedroad b");
-						getTask().addParam("fedroadhtml", b);
-					}else{
-						logger.error("addJapan Fedroad");
-					}
+					driver.navigate().to("https://www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
+					String text = (String) driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text");
+					text = text.replace("_________________________様", "Fedroad Japan株式会社様");
+					logger.error("text:"+text);
+					getTask().addParam("fedroadtext", text);
 				} catch (Exception e) {
-					logger.error("爬取fedload异常");
+					logger.error("爬 fedroad");
 				}
 				
-				//250-9937288-7747802
+				//gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID=250-9937288-7747802
 			}
 			
 			return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
@@ -2966,26 +2964,40 @@ public class AmazonJpAutoBuy extends AutoBuy
 		return null;
 	}
 	
-	public static byte[] download(String urlString) throws Exception {
+	public static void download(String urlString, String filename) throws Exception {
+		OutputStream os = null;
 		InputStream is = null;
-		byte[] bb = null;
+		InputStream iss = null;
 		try{
-		    // 构造URL
-		    URL url = new URL(urlString);
-		    // 打开连接
-		    URLConnection con = url.openConnection();
 		    // 输入流
-		    is = con.getInputStream();
+		    iss = new ByteArrayInputStream(urlString.getBytes());
 		    StringBuffer out = new StringBuffer();
-		    byte[]  b = new byte[4096];
-		     for (int n; (n = is.read(b)) != -1;) {
+		     byte[] b = new byte[4096];
+		     for (int n; (n = iss.read(b)) != -1;) {
 		          out.append(new String(b, 0, n));
 		     }
 		     String s = out.toString().replace("_________________________様", "Fedroad Japan株式会社様");
-		     bb = s.getBytes();
+		     is = new ByteArrayInputStream(s.getBytes());
+		    // 1K的数据缓冲
+		    byte[] bs = new byte[1024];
+		    // 读取到的数据长度
+		    int len;
+		    // 输出的文件流
+		    os = new FileOutputStream(filename);
+		    // 开始读取
+		    while ((len = is.read(bs)) != -1) {
+		      os.write(bs, 0, len);
+		    }
 		}
 		catch (Throwable e){
 		}finally {  
+			try {  
+		        if (os != null) {  
+		        	os.close();  
+		        } 
+		    } catch (Exception e) {  
+		        e.printStackTrace();  
+		    }  
 		    try {  
 		        if (is != null) {  
 		        	is.close();  
@@ -2994,7 +3006,6 @@ public class AmazonJpAutoBuy extends AutoBuy
 		        e.printStackTrace();  
 		    }  
 		}
-		return bb;
 	}   
 
 	public static void main(String[] args) throws ParseException

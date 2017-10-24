@@ -141,9 +141,9 @@ public class TaskServiceImpl implements TaskService {
 			if(obj != null){
 				taskResult.addParam("expressNodeList", obj);
 			}
-			Object obj1 = task.getParam("fedroadhtml");
+			Object obj1 = task.getParam("fedroadtext");
 			if(obj1 != null){
-				taskResult.addParam("fedroadhtml", obj1);
+				taskResult.addParam("fedroadtext", obj1);
 			}
 			
 		}catch(Throwable e){
