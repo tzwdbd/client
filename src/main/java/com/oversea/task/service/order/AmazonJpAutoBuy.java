@@ -2168,7 +2168,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 					driver.navigate().to("https://www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
 					String text = (String) driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text");
 					text = text.replace("_________________________様", "Fedroad Japan株式会社様");
+					logger.error("--->text:"+text);
 					download(text, "C://auto//screenshot//"+detail.getMallOrderNo()+".html");
+					TimeUnit.SECONDS.sleep(5);
 					driver.get("file:///C:/auto/screenshot/"+detail.getMallOrderNo()+".html");
 					try {
 						byte[] b = doScreenShot();
@@ -2980,11 +2982,6 @@ public class AmazonJpAutoBuy extends AutoBuy
 		try{
 		    // 输入流
 			is = new ByteArrayInputStream(urlString.getBytes());
-		    StringBuffer out = new StringBuffer();
-		     byte[] b = new byte[4096];
-		     for (int n; (n = is.read(b)) != -1;) {
-		          out.append(new String(b, 0, n));
-		     }
 		    // 1K的数据缓冲
 		    byte[] bs = new byte[1024];
 		    // 读取到的数据长度
