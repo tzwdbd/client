@@ -1346,8 +1346,9 @@ public class AmazonAutoBuy extends AutoBuy
 							for(WebElement w:values){
 								for (int j = 0; j < skuList.size(); j++) {
 									if (j % 2 == 1) {
-										String attrValue = skuList.get(j);
-										if(attrValue.equalsIgnoreCase(w.getText().trim())){
+										String attrValue = skuList.get(j).replaceAll(" ", "");
+										String textValue = w.getText().trim().replaceAll(" ", "");
+										if(attrValue.equalsIgnoreCase(textValue)){
 											logger.debug("--->"+attrValue+"加1");
 											findCount++;
 											break;
@@ -1356,7 +1357,7 @@ public class AmazonAutoBuy extends AutoBuy
 								}
 							}
 							if(findCount < skuList.size()/2 || values.size()<skuList.size()/2){
-								logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
+								logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2+" && values.size() = "+values.size());
 								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 							}
 							//logger.debug("找不到keyElement url= " + productUrl + "&& sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
@@ -4631,8 +4632,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B017JG41PC?psc=1s");
-		param.put("sku", "[[\"Configuration\",\"With Special Offers\"],[\"Color\",\"White\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01BFIBRIE?psc=1");
+		param.put("sku", "[[\"Configuration\",\"With Special Offers\"],[\"Color\",\"White\"],[\"ConnectivityTechnology\",\"Wi-Fi  Only\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
