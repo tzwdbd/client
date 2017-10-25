@@ -405,6 +405,8 @@ public class AmazonAutoBuy extends AutoBuy
 		
 		if(!StringUtil.isBlank(sign) && "0".equals(sign)){
 			return selectBrushProduct(param);
+		}else if (!StringUtil.isBlank(sign) && "1".equals(sign)){
+			return externalProduct(param);
 		}else{
 			logger.debug("--->跳转到商品页面");
 			String productUrl = (String) param.get("url");
@@ -1082,6 +1084,709 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("选择sku出现异常:", e);
 				return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 			}
+		}
+	}
+	
+	public AutoBuyStatus externalProduct(Map<String, String> param)
+	{
+		
+		logger.debug("--->跳转到商品页面");
+		String productUrl = (String) param.get("url");
+		logger.debug("productUrl = " + productUrl);
+		logger.debug("--->选择商品");
+		
+		//判断是extrabux的返利链接
+		String extrabuxMark = "&extrabux=1";
+		if(StringUtil.isNotEmpty(productUrl) && productUrl.endsWith(extrabuxMark)){
+			logger.debug("--->找到extrabux的返利原链接" + productUrl);
+			int index = productUrl.indexOf(extrabuxMark);
+			if(index != -1){
+				productUrl = productUrl.substring(0,index);
+			}
+			String rebateUrl = productUrl;
+			productUrl = param.get("orginalUrl");
+			
+			String isFirst = param.get("isFirst");
+			if("true".equals(isFirst)){//只需打开一次返利链接
+				try{
+					driver.navigate().to(rebateUrl);
+					TimeUnit.SECONDS.sleep(5);
+				}catch(Exception e){
+					logger.debug("--->返利链接失败" + rebateUrl);
+				}
+			}
+			
+			logger.debug("--->找到extrabux的返利链接" + rebateUrl);
+			logger.debug("--->找到extrabux对应的商品返利" + productUrl);
+		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			try
+			{
+				driver.navigate().to(productUrl);
+				driver.executeScript("(function(){window.scrollBy(0,250);})();");
+
+				TimeUnit.SECONDS.sleep(5);
+
+				try
+				{
+					driver.findElement(By.xpath("//b[@class='h1' and contains(text(),'Looking for')]"));
+					logger.warn("--->该商品已经下架:" + productUrl);
+					return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+				}
+				catch (Exception e)
+				{
+
+				}
+
+				waitForMainPanel(driver);
+
+				break;
+			}
+			catch (Exception e)
+			{
+				if (i == 2)
+				{
+					logger.debug("--->打开商品页面失败 = " + productUrl);
+					return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+				}
+			}
+		}
+
+		String productNum = (String) param.get("num");
+		Object sku = param.get("sku");
+		try
+		{
+			if (sku != null)
+			{
+				List<String> skuList = Utils.getSku((String) sku);
+				for (int i = 0; i < skuList.size(); i++)
+				{
+					if (i % 2 == 1)
+					{
+						boolean mark = false;
+						logger.error(skuList.get(i - 1) + ":" + skuList.get(i));
+						By byPanel = By.xpath("//div[@id='ppd']");
+						WebDriverWait wait = new WebDriverWait(driver, 30);
+						try {
+							wait.until(ExpectedConditions.visibilityOfElementLocated(byPanel));
+						} catch (Exception e) {
+							mark = true;
+						}
+						
+						// 判断是否是连续选择的sku
+						if (mark){
+							for(int k = 0;k<3;k++){
+								try{
+									Utils.sleep(4500);
+									List<WebElement> lists = driver.findElements(By.cssSelector("ul>li.a-align-center h4"));
+									for(WebElement w:lists){
+										for (int j = 0; j < skuList.size(); j++){
+											if (j % 2 == 1){
+												if(w.getText().equals(skuList.get(j))){
+													logger.error("连续选择:"+skuList.get(j));
+													w.click();
+													break;
+												}
+											}
+										}
+											
+									}
+										
+									Utils.sleep(2500);
+								}catch(Exception e){
+									break;
+								}
+							}
+						}
+						
+						
+						
+						String keyStr = Utils.firstCharUpper(skuList.get(i - 1));
+						// 等待最大的选择面板可见
+						WebElement panel = waitForMainPanel(driver);
+
+						// 不需要选择的sku,比如one size
+						boolean hasOneSize = false;
+						List<WebElement> list = null;
+						try
+						{
+							list = panel.findElements(By.xpath(".//div[@class='a-row a-spacing-small']"));
+						}
+						catch (NoSuchElementException e)
+						{
+						}
+						if (list != null && list.size() > 0)
+						{
+							for (WebElement e : list)
+							{
+								if (e != null)
+								{
+									String v = e.getText();
+									if (!Utils.isEmpty(v))
+									{
+										if (v.indexOf(skuList.get(i)) != -1)
+										{
+											hasOneSize = true;
+											break;
+										}
+										v = v.replaceAll(" ", "");
+										if (v.contains(keyStr))
+										{
+											hasOneSize = true;
+											break;
+										}
+										String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
+										String[] vv = v.split("(?<!^)(?=[A-Z])");
+										if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
+										{
+											for (String sss : ss)
+											{
+												if (vv[0].contains(sss))
+												{
+													hasOneSize = true;
+													break;
+												}
+											}
+											if (hasOneSize)
+											{
+												break;
+											}
+										}
+									}
+
+								}
+							}
+						}
+						
+						if (hasOneSize){
+							logger.debug("find one key first~~");
+							continue;
+						}
+						
+						WebElement keyElement = null;
+						
+						List<WebElement> list0 = driver.findElements(By.cssSelector("div.twisterButton.nocopypaste"));
+						if(list0 != null && list0.size() > 0){
+							//判断onesize
+							for(WebElement w : list0){
+								try{
+									w.findElement(By.cssSelector("span.a-declarative"));
+								}catch(Exception e){
+									String text = w.getText();
+								    if(StringUtil.isNotEmpty(text) && text.contains(skuList.get(i))){
+										hasOneSize = true;
+										break;
+									}
+								}
+							}
+							if(!hasOneSize){
+								//精确匹配
+								for(WebElement w : list0){
+									WebElement ww = w.findElement(By.cssSelector("div.a-column.a-span9"));
+									if(ww != null && StringUtil.isNotEmpty(ww.getText())){
+										String[] ss = ww.getText().split("\n");
+										String text = ss[0].replace(":", "");
+										if(keyStr.equals(text) || keyStr.equalsIgnoreCase(text)){
+											keyElement = w;
+											break;
+										}
+									}
+								}
+								//模糊匹配
+								if(keyElement == null){
+									for(WebElement w : list0){
+										WebElement ww = w.findElement(By.cssSelector("div.a-column.a-span9"));
+										if(ww != null && StringUtil.isNotEmpty(ww.getText())){
+											String[] ss = ww.getText().split("\n");
+											String text = ss[0].replace(":", "");
+											if(StringUtil.isNotEmpty(text) && text.toLowerCase().contains(keyStr.toLowerCase())){
+												keyElement = w;
+												break;
+											}
+										}
+									}
+								}
+							}
+						}
+						
+			
+						
+						if (hasOneSize){
+							logger.debug("find one key second");
+							continue;
+						}
+						
+						//再次寻找 分词匹配
+						if (keyElement == null && !Utils.isEmpty(keyStr)){
+							List<WebElement> keyList = driver.findElements(By.xpath("//div[@class='a-column a-span9']"));
+							keyElement = findClosedWelement(keyStr, keyList);
+						}
+						
+						if(keyElement == null){
+							List<WebElement> l = driver.findElements(By.xpath("//button[@class='a-button-text a-text-left']"));
+							if(l != null && l.size() > 0){
+								for(WebElement w : l){
+									if(w != null){
+										String text = w.getText();
+										if(StringUtil.isNotEmpty(text) && text.toLowerCase().contains(keyStr.toLowerCase())){
+											keyElement = w;
+											break;
+										}
+									}
+									
+								}
+							}
+						}
+
+						if (keyElement == null){
+							int findCount = 0;
+							List<WebElement> values = driver.findElements(By.cssSelector(".dimension-label"));
+							for(WebElement w:values){
+								for (int j = 0; j < skuList.size(); j++) {
+									if (j % 2 == 1) {
+										String attrValue = skuList.get(j);
+										if(attrValue.equalsIgnoreCase(w.getText().trim())){
+											logger.debug("--->"+attrValue+"加1");
+											findCount++;
+											break;
+										}
+									}
+								}
+							}
+							if(findCount < skuList.size()/2 || values.size()<skuList.size()/2){
+								logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
+								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+							}
+							//logger.debug("找不到keyElement url= " + productUrl + "&& sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
+							//return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+						}
+						Utils.sleep(2000);
+						try {
+							if (newStyle)
+							{
+								try
+								{
+									keyElement.findElement(By.cssSelector("div.twister-mobile-tiles-swatch-unavailable"));
+									logger.debug("--->新姿势选择的目标按钮不可点击,商品已经下架");
+									return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+								}
+								catch (Exception e)
+								{
+
+								}
+								keyElement.click();
+								logger.debug("--->新姿势选择:[" + skuList.get(i - 1) + " = " + skuList.get(i) + "]");
+								newStyle = false;
+							}
+							else
+							{
+								logger.debug("--->自动选择:[" + skuList.get(i - 1) + " = " + skuList.get(i) + "]");
+								keyElement.click();
+								try
+								{
+									valueClick(driver, skuList.get(i));
+								}
+								catch (Exception e)
+								{
+									logger.debug("找不到valueElement url= " + productUrl + "&& sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
+									return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+								}
+							}
+						} catch (Exception e) {
+							logger.debug("找不到valueElement");
+						}
+						
+						
+						Utils.sleep(2500);
+					}
+				}
+			}
+
+			// 等待最大的选择面板可见
+			waitForMainPanel(driver);
+			
+			//Currently unavailable 判断这个情况
+			try
+			{
+				WebElement stock = driver.findElement(By.id("availability"));
+				stock.findElement(By.xpath(".//span[contains(text(),'Currently unavailable')]"));
+				logger.warn("--->该商品已经下架:" + productUrl);
+				return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+			}
+			catch (Exception e)
+			{
+			}
+
+			// 是否add-on item凑单商品,不支持购买
+			boolean isAddon = false;
+			WebElement price = null;
+			WebElement addOn = null;
+			By ByAddOn = null;
+			try{
+				ByAddOn = By.xpath(".//i[contains(text(),'Add-on Item')]");
+				price = driver.findElement(By.xpath("//table[@id='price']"));
+				try
+				{
+					addOn = price.findElement(ByAddOn);
+				}
+				catch (NoSuchElementException e)
+				{
+				}
+				if (addOn != null)
+				{
+					isAddon = true;
+				}
+			}catch(Exception e){
+				logger.warn("--->判断addon出现异常",e);
+			}
+			
+			
+			
+			if (!isAddon)
+			{// 换种样式查找
+				WebElement addOnItem = null;
+				try
+				{
+					addOnItem = driver.findElement(By.xpath("//div[@id='addOnItem_feature_div']"));
+				}
+				catch (NoSuchElementException e)
+				{
+				}
+				if (addOnItem != null)
+				{
+					try
+					{
+						addOn = addOnItem.findElement(ByAddOn);
+					}
+					catch (NoSuchElementException e)
+					{
+					}
+				}
+				if (addOn != null)
+				{
+					isAddon = true;
+				}
+			}
+			if (isAddon)
+			{
+				logger.debug("这个商品是Add-on item,凑单商品,不支持购买 url = " + productUrl);
+				return AutoBuyStatus.AUTO_SKU_ADD_ON;
+			}
+			// 订阅商品
+			try
+			{
+				WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+				if (oneTimeBuyBox != null)
+				{
+					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
+					oneTimeBuyBox.click();
+					Utils.sleep(2000);
+					waitForNumPanel(driver);
+				}
+			}
+			catch (NoSuchElementException e)
+			{
+				try
+				{
+					WebElement selectPanel = driver.findElement(By.xpath("//div[@id='ap-options']"));
+					WebElement oneTimePurchase = selectPanel.findElement(By.xpath(".//span[@class='modeTitle a-text-bold' and contains(text(),'One-time Purchase')]"));
+					if (oneTimePurchase != null)
+					{
+						logger.debug("这个商品是订阅商品,选择oneTimePurchase");
+						oneTimePurchase.click();
+						Utils.sleep(2000);
+						waitForNumPanel(driver);
+					}
+				}
+				catch (NoSuchElementException ee)
+				{
+				}
+			}
+
+			// 如果有红包,获取红包
+			try
+			{
+				WebElement coupon = driver.findElementById("oneTimeBuyVpcButton");
+				if (coupon.isDisplayed() && coupon.isEnabled())
+				{
+					logger.debug("--->[1]这个商品有红包优惠,点击领取了");
+					TimeUnit.SECONDS.sleep(1);
+					coupon.click();
+				}
+				else
+				{
+					logger.debug("--->[1]这个商品红包已经领过了");
+				}
+			}
+			catch (Exception e)
+			{
+
+			}
+			try{
+				WebElement coupon = driver.findElement(By.xpath("//div[@id='oneTimeBuyVpcButton']/div/label/input"));
+				if(coupon != null && !coupon.isSelected()){
+					coupon.click();
+					TimeUnit.SECONDS.sleep(1);
+				}
+			}catch(Exception e){
+				logger.debug("--->领红包出错");
+			}
+
+			// 获取单价
+			try
+			{
+				WebElement singlePrice = driver.findElement(By.xpath("//span[@id='priceblock_ourprice']"));
+				if (singlePrice != null)
+				{
+					String singlePriceStr = singlePrice.getText();
+					if (!Utils.isEmpty(singlePriceStr))
+					{
+						String productEntityId = param.get("productEntityId");
+						logger.error("productEntityId = " + productEntityId);
+						int index = singlePriceStr.indexOf("(");
+						if(index != -1){
+							singlePriceStr = singlePriceStr.substring(0,index).trim();
+						}
+						// $24.99 21.91 ($0.18 / Count)
+						if (singlePriceStr.startsWith("$") && singlePriceStr.length() > 1)
+						{
+							singlePriceStr = singlePriceStr.substring(1).replace(" ", ".");
+							if(singlePriceStr.startsWith(".")){
+								singlePriceStr = singlePriceStr.replaceFirst(".", "");								
+							}
+							logger.debug("singlePriceStr:"+singlePriceStr);
+//							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, singlePriceStr.substring(1));
+							if(StringUtil.isNotEmpty(productEntityId)){
+								priceMap.put(productEntityId, singlePriceStr);
+							}
+						}
+						else
+						{
+//							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, singlePriceStr);
+							if(StringUtil.isNotEmpty(productEntityId)){
+								priceMap.put(productEntityId, singlePriceStr);
+							}
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					WebElement pricePanel = driver.findElement(By.cssSelector("table#price td#priceblock_dealprice > span"));
+					String priceStr = pricePanel.getText();
+					if (!Utils.isEmpty(priceStr))
+					{
+						logger.error("--->单价:" + priceStr.replace("$", ""));
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("$", ""));
+					}
+				}
+				catch (Exception ep)
+				{
+					try
+					{
+						WebElement pricePanel = driver.findElement(By.xpath("//span[@id='product-price']"));
+						String priceStr = pricePanel.getText();
+						if (!Utils.isEmpty(priceStr))
+						{
+							logger.error("--->单价:" + priceStr.replace("$", ""));
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("$", ""));
+						}
+						else
+						{
+							logger.error("--->单价获取失败");
+						}
+					}
+					catch (Exception ex)
+					{
+						logger.error("--->获取单价失败");
+					}
+				}
+			}
+
+			try
+			{
+				WebDriverWait wait0 = new WebDriverWait(driver, WAIT_TIME);
+				wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("availability")));
+				WebElement availability = driver.findElement(By.cssSelector("div#availability > span"));
+				String stockNum = availability.getText().toLowerCase();
+				logger.info("--->库存状态:" + stockNum);
+				if (stockNum.contains("out of stock") || stockNum.contains("in stock on"))
+				{
+					logger.warn("--->该商品已经下架:" + productUrl);
+					return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+				}
+			}
+			catch (Exception e)
+			{
+			}
+
+			// 选择数量
+			try
+			{
+				if (!productNum.equals("1"))
+				{
+					Select select = new Select(driver.findElement(By.id("mobileQuantityDropDown")));
+					Utils.sleep(2000);
+					driver.executeScript("window.scrollBy(0,150);");
+					select.selectByValue(productNum);
+					Utils.sleep(2000);
+					WebElement numBtn = driver.findElement(By.xpath("//span[@class='a-button a-button-dropdown a-button-small']"));
+					String txt = numBtn.getText();
+					logger.info("--->选择数量结果:" + txt);
+					if (!txt.contains(productNum))
+					{
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				logger.error("选择数量失败 pruductNum = " + productNum);
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+
+			// 第三方商品,不支持购买
+			try
+			{
+				WebElement third = driver.findElement(By.xpath("//div[@id='merchant-info']"));
+				if (third != null)
+				{
+					String text = third.getText();
+					if (!Utils.isEmpty(text))
+					{
+						if (!(text.indexOf("sold by Amazon") != -1 || text.indexOf("Fulfilled by Amazon") != -1))
+						{
+							logger.debug("第三方商品不支持购买 +productUrl = " + productUrl);
+							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+						}
+					}
+
+				}
+			}
+			catch (NoSuchElementException e)
+			{
+
+			}
+
+			// 加购物车按钮
+			try{
+				driver.findElement(By.id("buybox.addToCart")).click();
+			}catch(Exception e){
+				logger.debug("寻找购物车按钮异常11112121");
+			}
+			Utils.sleep(1000);
+			try{
+				driver.findElement(By.cssSelector("input#add-to-cart-button")).click();
+			}catch(Exception e){
+				logger.debug("寻找购物车按钮异常");
+			}
+			
+			Utils.sleep(3000);
+			
+			
+			try
+			{
+				driver.findElement(By.id("no_thanks_button")).click();
+			}
+			catch (Exception e)
+			{
+			}
+			
+			
+			
+			
+			
+			Utils.sleep(3000);
+			
+			try
+			{
+				driver.findElement(By.xpath("//a[@id='edit-cart-button-announce']")).click();;
+			}
+			catch (Exception e)
+			{
+			}
+			Utils.sleep(1000);
+			
+			try
+			{
+				driver.findElement(By.id("a-autoid-0-announce")).click();;
+			}
+			catch (Exception e)
+			{
+				logger.debug("没有 a-autoid-0-announce");
+			}
+			Utils.sleep(1000);
+			
+			
+			
+			try {
+				TimeUnit.SECONDS.sleep(3);
+				WebElement ad = driver.findElement(By.cssSelector("button[title='Add to Shopping Cart']"));
+				ad.click();
+				Utils.sleep(1000);
+				WebElement tt = driver.findElement(By.xpath("//span[contains(text(),'Added to cart')]"));
+				if(tt!=null){
+					driver.navigate().to("https://www.amazon.com/gp/aw/c/ref=navm_hdr_cart");
+				}
+			} catch (Exception e) {
+				logger.error("safss");
+			}
+			
+			try{
+				Utils.sleep(3000);
+				List<WebElement> checkOuts = driver.findElements(By.cssSelector("a.a-link-normal"));
+				for(WebElement w:checkOuts){
+					if(w.isDisplayed() && w.getText().equals("check out")){
+						w.click();
+						break;
+					}
+				}
+				//driver.findElement(By.xpath("//a[contains(text(),'check out')]")).click();;
+				Utils.sleep(1000);
+			}catch(Exception e){
+				logger.debug("没有 check out");
+			}
+			
+			try {
+				logger.debug("new check out");
+				WebElement tt = driver.findElement(By.cssSelector("span.a-color-base a.a-link-normal"));
+				String url = tt.getAttribute("herf");
+				driver.navigate().to(url);
+			} catch (Exception e) {
+				logger.error("safss55",e);
+			}
+			
+			
+			
+			//等待购物车加载完成
+			try{
+				WebDriverWait wait = new WebDriverWait(driver, 45);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+			}catch(Exception e){
+				logger.error("等待购物车加载完成出错,e");
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+			
+			//判断是否有alert
+			try{
+				WebElement w = driver.findElement(By.cssSelector("div.a-alert-content"));
+				if(w != null && StringUtil.isNotEmpty(w.getText()) && w.getText().contains("Important messages for items in your Cart")){
+					logger.error("购物车页面弹出警告标记");
+					return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+				}
+			}catch(Exception e){}
+			
+			logger.debug("选择sku成功");
+			return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
+		}
+		catch (Exception e)
+		{
+			logger.error("选择sku出现异常:", e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 		}
 	}
 
@@ -3920,20 +4625,20 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
-		autoBuy.login("tukotu@163.com", "tfb001001");
+		//autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01GDIUA8Y?psc=1");
-		param.put("sku", "[[\"color\",\"Redheat\"]]");
+		param.put("url", "http://www.amazon.com/dp/B017JG41PC?psc=1s");
+		param.put("sku", "[[\"Configuration\",\"With Special Offers\"],[\"Color\",\"White\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 		param.put("num", "1");
-//		param.put("sign", "0");
+		param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
 //		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
 //		param.put("position","30");

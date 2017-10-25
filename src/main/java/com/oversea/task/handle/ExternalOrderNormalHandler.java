@@ -127,6 +127,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							parmas.put("sku", externalOrderDetail.getItemAttr());
 							parmas.put("num", String.valueOf(externalOrderDetail.getItemCount()));
 							parmas.put("productEntityId", String.valueOf(externalOrderDetail.getId()));
+							parmas.put("sign", "1");
 							
 							isFirst = false;
 							status = autoBuy.selectProduct(parmas);

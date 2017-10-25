@@ -347,7 +347,7 @@ abstract public class AutoBuy
 		BigDecimal x = new BigDecimal(totalPay);
 		BigDecimal y = new BigDecimal(mallPrice);
 		BigDecimal v = y.subtract(x);
-		if (v.doubleValue() > 0.00D){
+		if (v.doubleValue() >= 0.1D){
 			logger.error("--->总价差距超过约定,不能下单"+totalPay);
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}else{
