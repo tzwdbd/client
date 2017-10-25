@@ -2168,8 +2168,18 @@ public class AmazonJpAutoBuy extends AutoBuy
 					driver.navigate().to("https://www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
 					String text = (String) driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text");
 					text = text.replace("_________________________様", "Fedroad Japan株式会社様");
-					logger.error("text:"+text);
-					getTask().addParam("fedroadtext", text);
+					download(text, "C://auto//screenshot//"+detail.getMallOrderNo()+".html");
+					driver.get("file:///C:/auto/screenshot/"+detail.getMallOrderNo()+".html");
+					try {
+						byte[] b = doScreenShot();
+						if(b!=null){
+							getTask().addParam("fedroadtext", b);
+						}else{
+							logger.error("--->fedroadtext为空");
+						}
+					} catch (Exception e) {
+						logger.error("--->截图失败");
+					}
 				} catch (Exception e) {
 					logger.error("爬 fedroad");
 				}
@@ -2967,17 +2977,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 	public static void download(String urlString, String filename) throws Exception {
 		OutputStream os = null;
 		InputStream is = null;
-		InputStream iss = null;
 		try{
 		    // 输入流
-		    iss = new ByteArrayInputStream(urlString.getBytes());
+			is = new ByteArrayInputStream(urlString.getBytes());
 		    StringBuffer out = new StringBuffer();
 		     byte[] b = new byte[4096];
-		     for (int n; (n = iss.read(b)) != -1;) {
+		     for (int n; (n = is.read(b)) != -1;) {
 		          out.append(new String(b, 0, n));
 		     }
-		     String s = out.toString().replace("_________________________様", "Fedroad Japan株式会社様");
-		     is = new ByteArrayInputStream(s.getBytes());
 		    // 1K的数据缓冲
 		    byte[] bs = new byte[1024];
 		    // 读取到的数据长度
