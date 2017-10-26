@@ -1941,6 +1941,102 @@ public class AmazonAutoBuy extends AutoBuy
 		}
 		return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
 	}
+	AutoBuyStatus selectBrushTargetAddr(String count){
+		try
+		{
+			TimeUnit.SECONDS.sleep(5);
+			//prime member ship include prime video
+			try{
+				driver.findElement(By.cssSelector("button.a-button-text.pet-checkout-button")).click();
+				Utils.sleep(4500);
+			}catch(Exception e){}
+			
+			
+			
+			List<WebElement> addrs = driver.findElements(By.cssSelector("div.address-book-entry"));
+			
+			// todo 根据tarAddr选择地址
+			if (addrs != null && addrs.size() > 0)
+			{
+				logger.debug("--->目前共有[" + addrs.size() + "]个地址");
+				try
+				{
+
+					WebElement cur = addrs.get(0);
+					
+					cur.click();
+					TimeUnit.SECONDS.sleep(2);
+					try {
+						cur.findElement(By.xpath(".//a[ contains(text(), 'Ship to this address')]")).click();
+					} catch (Exception e) {
+						cur.findElement(By.xpath(".//a[ contains(text(), 'Deliver to this address')]")).click();
+					}
+					
+					
+					
+					//判断是否不支持的转运地址
+					try{
+						statusMap.clear();
+						logger.error("--->priceMap = "+new Gson().toJson(priceMap));
+						WebDriverWait wait = new WebDriverWait(driver, 10);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='a-alert-content']/div")));
+						List<WebElement> list = driver.findElements(By.xpath("//div[@class='a-box a-spacing-base stma-line-item-details']"));
+						if(list != null && list.size() > 0){
+							for(WebElement w : list){
+								try{
+									WebElement ww = w.findElement(By.xpath(".//div[@class='a-alert-content']/div"));
+									if(ww != null){
+										String text = ww.getText();
+										if(StringUtil.isNotEmpty(text) && text.contains("can't be shipped to your selected address")){
+											WebElement we = w.findElement(By.xpath(".//span[@class='a-color-price']"));
+											if(we != null){
+												String singlePriceStr = we.getText();
+												logger.error("--->singlePriceStr = "+singlePriceStr);
+												if (StringUtil.isNotEmpty(singlePriceStr) && singlePriceStr.startsWith("$") && singlePriceStr.length() > 1){
+													singlePriceStr = singlePriceStr.substring(1);
+													for (Map.Entry<String, String> entry : priceMap.entrySet()) {
+														if(StringUtil.isNotEmpty(singlePriceStr) && singlePriceStr.equals(entry.getValue())){
+															statusMap.put(entry.getKey(), AutoBuyStatus.AUTO_PAY_NOT_SUPPORT_ADDRESS.getValue());
+														}
+													} 
+												}
+											}
+										}
+									}
+								}catch(Exception e){
+									logger.error("--->没有找到can't be shipped to your selected address");
+								}
+							}
+							logger.error("--->statusMap = "+statusMap.size());
+							return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+						}
+					}catch(Exception e){
+						logger.error("--->没有找到不支持的转运地址");
+					}
+					
+					//保存礼品模式
+					try{
+						WebDriverWait wait = new WebDriverWait(driver, 15);
+						WebElement gift = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='a-section save-gift-button-box']")));
+						gift.click();
+					}catch(Exception e){
+						logger.error("--->等待保存礼品模式出错", e);
+					}
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+
+			}
+		}
+		catch (Exception e)
+		{
+			logger.error("--->选择地址失败", e);
+			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+		}
+		return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
+	}
 
 	AutoBuyStatus selectTargetAddr(String count,String username,UserTradeAddress userTradeAddress)
 	{
@@ -2481,6 +2577,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String myPrice = param.get("my_price");
 		String username = param.get("userName");
 		String payType = param.get("payType");
+		String review = param.get("review");
 		
 		if (Utils.isEmpty(myPrice))
 		{
@@ -2566,7 +2663,12 @@ public class AmazonAutoBuy extends AutoBuy
 			
 		//开始选地址
 		if(!isGotoPay){
-			AutoBuyStatus status = selectTargetAddr(tarAddr,username,userTradeAddress);
+			AutoBuyStatus status = null;
+			if(!StringUtil.isBlank(review)){
+				status = selectBrushTargetAddr(tarAddr);
+			}else{
+				status = selectTargetAddr(tarAddr,username,userTradeAddress);
+			}
 			if (status.equals(AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS))
 			{
 				status = selectDeliveryOptions();
@@ -2621,7 +2723,12 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("isgotopay选地址异常",e);
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
-			AutoBuyStatus status = selectTargetAddr(tarAddr,username,userTradeAddress);
+			AutoBuyStatus status = null;
+			if(!StringUtil.isBlank(review)){
+				status = selectBrushTargetAddr(tarAddr);
+			}else{
+				status = selectTargetAddr(tarAddr,username,userTradeAddress);
+			}
 			if (status.equals(AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS)){
 				try{
 					logger.error("选择物流");
