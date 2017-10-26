@@ -2976,6 +2976,30 @@ public class AmazonJpAutoBuy extends AutoBuy
 		return null;
 	}
 	
+	public String checkCard(){
+		WebDriverWait wait = new WebDriverWait(driver, 35);
+		try {
+			driver.navigate().to("https://www.amazon.co.jp/cpe/managepaymentmethods/ref=ya_mb_mpo");
+		} catch (Exception e) {
+			logger.info("--->跳转account页面出错!");
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pmts-account-tail")));
+			List<WebElement> cards = driver.findElements(By.cssSelector(".pmts-account-tail"));
+			for(WebElement w:cards){
+				String text = w.getText().trim();
+				if(text.contains("Visa")){
+					logger.info("--->Visa:"+text);
+					return text.substring(text.length()-4,text.length());
+				}
+			}
+		}catch (Exception e) {
+			logger.info("--->account获取失败!");
+		}
+		return null;
+		
+	}
+	
 	public static void download(String urlString, String filename) throws Exception {
 		OutputStream os = null;
 		InputStream is = null;
