@@ -151,7 +151,7 @@ public class BrushOrderNormalHandler implements BrushOrderHandler {
 						params.put("isStock", String.valueOf(isStock));
 						params.put("cardNo", account.getCardNo());
 						params.put("payType",brushOrderDetail.getPayType() );
-						params.put("review",brushOrderDetail.getReviewContent() );
+						params.put("review",brushOrderDetail.getIsDirect());
 						if(orderCreditCard != null){
 							params.put("owner", orderCreditCard.getOwner());
 						}
