@@ -266,10 +266,11 @@ public class ZcnAutoBuy extends AutoBuy {
 
 	@Override
 	public AutoBuyStatus selectProduct(Map<String, String> param) {
-		AutoBuyStatus status = deleteIdcard();
-		if(!AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
-		}
+		// TODO 删除身份证
+//		AutoBuyStatus status = deleteIdcard();
+//		if(!AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+//			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+//		}
 		logger.debug("--->跳转到商品页面");
 		String productUrl = (String) param.get("url");
 		logger.debug("productUrl = " + productUrl);
@@ -750,7 +751,7 @@ public class ZcnAutoBuy extends AutoBuy {
 		logger.debug("--->去付款");
 		checkout.click();
 		
-		AutoBuyStatus status = chooseNewAddress(address, payAccount);
+		AutoBuyStatus status = chooseAddress(address, payAccount);
 		if(!AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS.equals(status)){
 			return status;
 		}
@@ -986,92 +987,16 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 		}
 		Utils.sleep(2000);
-		
-		
-		
 		try {
-			logger.error("kyc-number获取");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
-		} catch (Exception e) {
-			logger.error("--->kyc-number", e);
-			try {
-				List<WebElement> checkouts = driver.findElements(By.cssSelector(".a-button-input"));
-				for(WebElement w:checkouts){
-					if(w.isDisplayed()){
-						w.click();
-						break;
-					}
-				}
-			} catch (Exception e2) {
-				logger.error("继续点击失败");
-			}
-			try {
-				logger.error("kyc-number获取1");
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
-			}catch (Exception e1) {
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-			}
-		}
-		try {
-			logger.error("holder-name获取");
-			WebElement holderName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("holder-name")));
-			holderName.clear();
-			holderName.sendKeys(address.getName());
-			TimeUnit.SECONDS.sleep(2);
-		} catch (Exception e) {
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-		}
-		try {
-			WebElement kycNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-number")));
-			kycNumber.sendKeys(address.getIdCard());
-			logger.error("--->IdCard="+address.getIdCard());
-			TimeUnit.SECONDS.sleep(1);
-			Select year = new Select(driver.findElement(By.id("kyc-expiration-year-dropdown")));
-			logger.error("--->ExpireDate="+address.getExpireDate());
-			year.selectByVisibleText(address.getExpireDate().substring(0,4));
-			TimeUnit.SECONDS.sleep(1);
-			Select month = new Select(driver.findElement(By.id("kyc-expiration-month-dropdown")));
-			String monthStr = address.getExpireDate().substring(4,6);
-			if(monthStr.startsWith("0")){
-				monthStr = monthStr.substring(1);
-			}
-			month.selectByVisibleText(monthStr);
-			TimeUnit.SECONDS.sleep(1);
-			Select day = new Select(driver.findElement(By.id("kyc-expiration-day-dropdown")));
-			String dayStr = address.getExpireDate().substring(6,8);
-			if(dayStr.startsWith("0")){
-				dayStr = dayStr.substring(1);
-			}
-			day.selectByVisibleText(dayStr);
-			TimeUnit.SECONDS.sleep(1);
-			
-			try {
-				WebElement alertContent = driver.findElement(By.xpath("//div[@class='a-alert-content' and contains(text(),'请不要选择过期的日期')]"));
-				if (alertContent != null && alertContent.isDisplayed()) {
-					return AutoBuyStatus.AUTO_PAY_SELECT_EXPIRE_DATE_OVERDUE;
-				}
-			} catch (Exception e) {}
-			
-			driver.executeScript("(function(){window.scrollBy(0,200);})();");
-			TimeUnit.SECONDS.sleep(1);
-			WebElement photoFront = driver.findElement(By.cssSelector("input[name=kyc-front-photo]"));// TODO
-			String front = ""+System.currentTimeMillis()/1000;
-			logger.error("--->front="+address.getIdCardFront());
-			download(address.getIdCardFront(), "C://auto//screenshot//"+front+".png");
-			Utils.sleep(1000);
-			photoFront.sendKeys("C:\\auto\\screenshot\\"+front+".png");
-			Utils.sleep(25000);
-			WebElement photoBack = driver.findElement(By.cssSelector("input[name=kyc-back-photo]"));
-			String back = ""+System.currentTimeMillis()/1000;
-			logger.error("--->back="+address.getIdCardBack());
-			download(address.getIdCardBack(), "C://auto//screenshot//"+back+".png");
-			Utils.sleep(1000);
-			photoBack.sendKeys("C:\\auto\\screenshot\\"+back+".png");
-			Utils.sleep(25000);
-			WebDriverWait wait0 = new WebDriverWait(driver, 45);
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("kyc-continue-button-announce")));
-			WebElement checkout = driver.findElement(By.id("kyc-continue-button-announce"));
-			checkout.click();
+			By by = By.cssSelector("#existing-kyc-dropdown + span.kyc-existing-kyc-dropdown");
+			WebElement dropdownButton = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			dropdownButton.click();
+			Utils.sleep(1500);
+			WebElement checkOut = driver.findElementById("existing-kyc-dropdown_0");
+			checkOut.click();
+			Utils.sleep(1500);
+			WebElement continueButton = driver.findElementById("kyc-continue-button-announce");
+			continueButton.click();
 			Utils.sleep(5000);
 			logger.error("--->设置身份证完成");
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
