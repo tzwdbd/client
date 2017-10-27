@@ -3024,7 +3024,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 				//续费时间
 				WebElement time = driver.findElement(By.id("renewalMessageForPrimeCustomer"));
 				String timeText = time.getText();
-				account.setPayPwd(timeText.trim());
+				account.setSuffixNo(timeText.trim());
 			}
 		}catch (Exception e) {
 			logger.info("--->account获取失败!");
