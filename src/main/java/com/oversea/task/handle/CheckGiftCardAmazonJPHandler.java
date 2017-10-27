@@ -40,6 +40,7 @@ public class CheckGiftCardAmazonJPHandler implements GiftCardCheckHandler {
 					}
 					String card = autoBuy.checkCard();
 					account.setFirstName(card);
+					autoBuy.checkPrime(account);
 					break;
 				}
 			}catch (Exception e){

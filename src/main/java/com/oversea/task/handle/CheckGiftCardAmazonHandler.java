@@ -46,6 +46,7 @@ public class CheckGiftCardAmazonHandler implements GiftCardCheckHandler {
 					}
 					String card = autoBuy.checkCard();
 					account.setFirstName(card);
+					autoBuy.checkPrime(account);
 					break;
 				}
 			}catch (Exception e){

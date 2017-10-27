@@ -3,6 +3,7 @@ package com.oversea.task.service.order;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -741,9 +742,9 @@ public class AshfordAutoBuy extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout-payment")));
 			//WebElement checkout = driver.findElement(By.id("checkout-payment"));
 			//WebElement creditCardTabNav = checkout.findElement(By.cssSelector("li#creditCardTabNav a"));
-			WebElement select = driver.findElement(By.xpath("//li[@id='creditCardTabNav']/a"));
-			select.sendKeys(Keys.ENTER);
-			//driver.executeScript("arguments[0].click()", creditCardTabNav);
+			WebElement select = driver.findElement(By.cssSelector("#creditCardTabNav a"));
+			//select.sendKeys(Keys.ENTER);
+			driver.executeScript("arguments[0].click()", select);
 			TimeUnit.SECONDS.sleep(3);
 			logger.debug("--->切换到信用卡页面");
 		} catch (Exception e) {
@@ -964,7 +965,7 @@ public class AshfordAutoBuy extends AutoBuy {
 	}
 
 	public static void main(String[] args) {
-		/*AshfordAutoBuy auto = new AshfordAutoBuy();
+		AshfordAutoBuy auto = new AshfordAutoBuy();
 		auto.login("twgdhbl@tom.com", "tfb001001");
 		auto.cleanCart();
 	
@@ -981,7 +982,7 @@ public class AshfordAutoBuy extends AutoBuy {
 		auto.selectProduct(param);
 		auto.pay(param);
 		
-		RobotOrderDetail detail = new RobotOrderDetail();
+		/*RobotOrderDetail detail = new RobotOrderDetail();
 		detail.setMallOrderNo("1487498458");
 		auto.scribeExpress(detail);
 		auto.logout();*/

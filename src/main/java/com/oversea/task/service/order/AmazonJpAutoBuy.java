@@ -33,6 +33,7 @@ import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.ExpressNode;
 import com.oversea.task.domain.ExternalOrderDetail;
 import com.oversea.task.domain.GiftCard;
+import com.oversea.task.domain.OrderAccount;
 import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
@@ -2992,6 +2993,38 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.info("--->Visa:"+text);
 					return text.substring(text.length()-4,text.length());
 				}
+			}
+		}catch (Exception e) {
+			logger.info("--->account获取失败!");
+		}
+		return null;
+		
+	}
+	
+	public String checkPrime(OrderAccount account){
+		WebDriverWait wait = new WebDriverWait(driver, 35);
+		try {
+			driver.navigate().to("https://www.amazon.co.jp/gp/aw/primecentral/ref=aw_ya_hp_prime_aui");
+		} catch (Exception e) {
+			logger.info("--->跳转account页面出错!");
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#primeCentralResponsiveGreetingContentFromMS3")));
+			WebElement content = driver.findElement(By.cssSelector("#primeCentralResponsiveGreetingContentFromMS3"));
+			if(content.getText().contains("お客様はもうプライム会員ではありません")){
+				//不是会员
+			}else{
+				List<WebElement> rows = content.findElements(By.cssSelector(".a-row"));
+				for(WebElement w:rows){
+					if(w.getText().contains("会員タイプ")){
+						account.setCardNo(w.getText().trim());
+						break;
+					}
+				}
+				//续费时间
+				WebElement time = driver.findElement(By.id("renewalMessageForPrimeCustomer"));
+				String timeText = time.getText();
+				account.setPayPwd(timeText.trim());
 			}
 		}catch (Exception e) {
 			logger.info("--->account获取失败!");
