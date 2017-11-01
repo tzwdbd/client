@@ -209,7 +209,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			}
 		} catch (Exception e) {
 			try {
-				WebElement priceElment = driver.findElement(By.xpath("//div[@class='DetailNoDis PriceNow last_price_sing']"));
+				WebElement priceElment = driver.findElement(By.cssSelector(".price-information .end-price"));
 				String priceStr = priceElment.getText();
 				String productEntityId = param.get("productEntityId");
 				if (!Utils.isEmpty(priceStr) && priceStr.startsWith("AU$") && StringUtil.isNotEmpty(productEntityId)) {
@@ -229,7 +229,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			try
 			{
 				logger.debug("--->选择数量:" + productNum);
-				WebElement numInput = driver.findElement(By.xpath("//input[@id='DetailQty' and @value='1' and @maxlength='3']"));
+				WebElement numInput = driver.findElement(By.cssSelector(".quantity-display"));
 				numInput.clear();
 				TimeUnit.SECONDS.sleep(2);
 				numInput.sendKeys(productNum);
@@ -245,7 +245,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		//加购物车
 		logger.debug("--->开始加购物车");
 		try{
-			WebElement cart = driver.findElement(By.xpath("//button[@id='DetailAddCart' and contains(text(),'加入购物车')]"));
+			WebElement cart = driver.findElement(By.cssSelector(".btn-buy"));
 			Utils.sleep(1500);
 			cart.click();
 			logger.debug("--->加购物车成功");
@@ -256,7 +256,6 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		
 		logger.debug("--->等待购物车页面加载");
 		try {
-			TimeUnit.SECONDS.sleep(5);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("easyDialogYesBtn")));
 			WebElement easyBtn = driver.findElement(By.id("easyDialogYesBtn"));
 			easyBtn.click();
@@ -1055,13 +1054,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 	
 	public static void main(String[] args) {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
-		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
-		System.out.println(status);
+//		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
+//		System.out.println(status);
 		//auto.cleanCart();
 //	
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=6e92qh_aHUeaB3ftss_bzwrrC0oGpbS7GLkSBPNbhgpoapNN_bbNb3raIhNode7R2xN&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1103061.html&tag=");
-		param.put("num", "1");
+		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=e5d3SjZ7JpLUsz8IO8lPw0WSuw7FeaFDPHiYHxSmoimgsq3RenHAdTN5CstYfU2Q&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1106863.html&tag=");
+		param.put("num", "2");
 		param.put("productEntityId", "4288120");
 		param.put("isPay", "false");
 //		param.put("count", "2");
@@ -1092,7 +1091,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		OrderPayAccount payaccount = new OrderPayAccount();
 		payaccount.setAccount("fitboy96430@163.com");
 		payaccount.setPayPassword("0010012");
-		auto.pay(param, address, payaccount);
+		//auto.pay(param, address, payaccount);
 //		
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("614792670649618");
