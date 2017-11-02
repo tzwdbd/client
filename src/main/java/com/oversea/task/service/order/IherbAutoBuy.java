@@ -17,6 +17,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By.ByCssSelector;
+import org.openqa.selenium.remote.server.handler.FindElement;
 import org.openqa.selenium.remote.server.handler.FindElements;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -695,19 +696,54 @@ public class IherbAutoBuy extends AutoBuy
 					logger.error("--->shipAddrChng click");
 					Utils.sleep(2000);
 				} catch (Exception e2) {
-					return AutoBuyStatus.AUTO_PAY_FAIL;
+					//return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			}
 		}else{
 			logger.error("--->找不到 edit地址按钮啊啊啊啊");
-			savePng();
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			try {
+				List<WebElement> address = driver.findElements(By.cssSelector("input[name='addrremove']"));
+				while (true) {
+					int size = address.size();
+					if(address!=null && size>0){
+						address.get(0).click();
+						Utils.sleep(2000);
+						if(size>1){
+							address = driver.findElements(By.cssSelector("input[name='addrremove']"));
+						}else{
+							break;
+						}
+					}else{
+						break;
+					}
+				}
+				
+			} catch (Exception e) {
+				logger.error("--->删除地址 异常");
+				//return AutoBuyStatus.AUTO_PAY_FAIL;
+			}
+			try {
+				Utils.sleep(2000);
+				WebElement edit = driver.findElement(By.id("switchAddr"));
+				edit.click();
+				logger.error("--->switchAddr click");
+			} catch (Exception e) {
+				logger.error("--->switchAddr click 异常");
+			}
+			
+//			savePng();
+//			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkOutAddrSelct")));
 			
 			WebElement addr = driver.findElement(By.id("switchAddr"));
 			addr.click();
+		} catch (Exception e) {
+			logger.error("--->switchAddr switchAddr 异常");
+		}
+		try {
+			
 			WebElement addrcount = driver.findElement(By.id("ddlCountries"));
 			Select select = new Select(addrcount);
 			select.selectByVisibleText("China");
