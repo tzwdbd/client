@@ -760,6 +760,15 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 								
 								WebElement w = driver.findElement(By.cssSelector(".logistics-details"));
 								String expressNo = ExpressUtils.regularExperssNo(w.getText());
+								if(expressNo.length()>20){
+									String[] expressGroup = expressNo.split(",");
+									for(String s:expressGroup){
+										if(s.startsWith("EA")){
+											expressNo = s;
+											break;
+										}
+									}
+								}
 								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
 								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 								logger.error("expressCompany = EMS" );
