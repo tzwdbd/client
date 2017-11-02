@@ -97,7 +97,20 @@ public class AmazonAutoBuy extends AutoBuy
 			catch (Exception e)
 			{
 				logger.error("--->没有找到输入框", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try
+				{
+					Utils.sleep(1000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+					WebElement username = driver.findElement(By.id("ap_email_login"));
+					logger.debug("--->输入账号");
+					username.sendKeys(userName);
+					Utils.sleep(800);
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->没有找到输入框", e1);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
 			}
 
 			try
@@ -4820,7 +4833,7 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
-		//autoBuy.login("tukotu@163.com", "tfb001001");
+		autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
