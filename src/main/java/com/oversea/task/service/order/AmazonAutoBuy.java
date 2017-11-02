@@ -326,7 +326,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			TimeUnit.SECONDS.sleep(4);
 			try{
-				WebElement w = driver.findElement(By.xpath("//span[@class='a-sheet-close']"));
+				WebElement w = driver.findElement(By.cssSelector(".a-sheet-close"));
 				w.click();
 				Utils.sleep(1000);
 				((JavascriptExecutor)driver).executeScript("arguments[0].click();", w);
@@ -4838,17 +4838,17 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
-		autoBuy.login("tukotu@163.com", "tfb001001");
+		//autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01N4EL9P9?psc=1");
-		//param.put("sku", "[[\"Size\",\"7 Fluid Ounce\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01L0AWKDI");
+		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Small\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
-		param.put("num", "2");
+		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 		//param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
