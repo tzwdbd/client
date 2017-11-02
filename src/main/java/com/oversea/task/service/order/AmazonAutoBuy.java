@@ -1973,9 +1973,9 @@ public class AmazonAutoBuy extends AutoBuy
 						logger.error("--->没有找到can't be shipped to your selected address");
 					}
 				}
+				logger.error("--->statusMap = "+statusMap.size());
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
-			logger.error("--->statusMap = "+statusMap.size());
-			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}catch(Exception e){
 			logger.error("--->没有找到不支持的转运地址");
 		}
