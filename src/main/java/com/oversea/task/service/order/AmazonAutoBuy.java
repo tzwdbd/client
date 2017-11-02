@@ -774,10 +774,13 @@ public class AmazonAutoBuy extends AutoBuy
 				// 订阅商品
 				try
 				{
-					WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+					WebElement oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));// 换种样式查找
 					if (oneTimeBuyBox != null)
 					{
 						logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
+						oneTimeBuyBox.click();
+						Utils.sleep(2000);
+						oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
 						oneTimeBuyBox.click();
 						Utils.sleep(2000);
 						waitForNumPanel(driver);
@@ -1057,6 +1060,12 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("safss55",e);
 				}
 				
+				try {
+					WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+					gotocart.click();
+				} catch (Exception e) {
+					logger.error("2222",e);
+				}
 				
 				
 				//等待购物车加载完成
@@ -1491,6 +1500,9 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
 					oneTimeBuyBox.click();
 					Utils.sleep(2000);
+					oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
+					oneTimeBuyBox.click();
+					Utils.sleep(2000);
 					waitForNumPanel(driver);
 				}
 			}
@@ -1768,12 +1780,24 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("safss55",e);
 			}
 			
+			try {
+				WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+				gotocart.click();
+			} catch (Exception e) {
+				logger.error("2222",e);
+			}
 			
 			
 			//等待购物车加载完成
 			try{
 				WebDriverWait wait = new WebDriverWait(driver, 45);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+				logger.error("购物车数量为"+numText.getText().trim());
+				if(!productNum.equals(numText.getText().trim())){
+					logger.error("选择数量失败 pruductNum = " + productNum);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -4802,14 +4826,13 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B073P31V42");
-		//param.put("sku", "[[\"ere\",\"32W x 34L\"],[\"sgsg\",\"Bright White\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01N4EL9P9?psc=1");
+		//param.put("sku", "[[\"Size\",\"7 Fluid Ounce\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
-		param.put("num", "1");
+		param.put("num", "2");
 		param.put("productEntityId", "4780644");
-		param.put("num", "1");
-		param.put("sign", "1");
+		//param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
 //		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
 //		param.put("position","30");
@@ -5438,10 +5461,13 @@ public class AmazonAutoBuy extends AutoBuy
 			// 订阅商品
 			try
 			{
-				WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+				WebElement oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));// 换种样式查找
 				if (oneTimeBuyBox != null)
 				{
 					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
+					oneTimeBuyBox.click();
+					Utils.sleep(2000);
+					oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
 					oneTimeBuyBox.click();
 					Utils.sleep(2000);
 					waitForNumPanel(driver);
@@ -5729,11 +5755,23 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("safss",e);
 			}
 			
+			try {
+				WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+				gotocart.click();
+			} catch (Exception e) {
+				logger.error("2222",e);
+			}
 			
 			
 			//等待购物车加载完成
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+				logger.error("购物车数量为"+numText.getText().trim());
+				if(!productNum.equals(numText.getText().trim())){
+					logger.error("选择数量失败 pruductNum = " + productNum);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
