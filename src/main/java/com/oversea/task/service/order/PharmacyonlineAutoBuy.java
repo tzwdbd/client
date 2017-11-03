@@ -83,25 +83,25 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		
 		try {
 			// 输入账号
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("UnionLoginEmail")));
-			WebElement username = driver.findElement(By.id("UnionLoginEmail"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
+			WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
 			logger.debug("--->输入账号");
 			Utils.sleep(1500);
 			username.sendKeys(userName);
 
 			// 输入密码
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("UnionLoginPwd")));
-			WebElement passward = driver.findElement(By.id("UnionLoginPwd"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
+			WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
 			logger.debug("--->输入密码");
 
 			Utils.sleep(1500);
 			passward.sendKeys(passWord);
 
 			// 提交
-			WebElement submitBtn = driver.findElement(By.xpath("//button[@id='UnionLoginButton']"));
+			Utils.sleep(1500);
+			WebElement submitBtn = driver.findElement(By.id("accout-login"));
 			logger.debug("--->开始提交");
 			submitBtn.click();
-			Utils.sleep(1500);
 
 		} catch (Exception e) {
 			logger.error("--->输入账号或者密码错误", e);
@@ -304,23 +304,24 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			// 因为返利地址的原因需要重新登录
 			TimeUnit.SECONDS.sleep(5);
 			// 输入账号
-			WebElement username = driver.findElement(By.id("UnionLoginEmail"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
+			WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
 			logger.debug("--->输入账号");
 			Utils.sleep(1500);
 			username.sendKeys(userName);
-			Utils.sleep(1500);
-			
+
 			// 输入密码
-			WebElement passward = driver.findElement(By.id("UnionLoginPwd"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
+			WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
 			logger.debug("--->输入密码");
+
 			Utils.sleep(1500);
 			passward.sendKeys(passWord);
-			Utils.sleep(1500);
-			
+
 			// 提交
-			WebElement submitBtn = driver.findElement(By.xpath("//button[@id='UnionLoginButton']"));
-			logger.debug("--->开始提交");
 			Utils.sleep(1500);
+			WebElement submitBtn = driver.findElement(By.id("accout-login"));
+			logger.debug("--->开始提交");
 			submitBtn.click();
 			Utils.sleep(1500);
 			
@@ -1054,7 +1055,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 	
 	public static void main(String[] args) {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
-//		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
+		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
 //		System.out.println(status);
 		//auto.cleanCart();
 //	
