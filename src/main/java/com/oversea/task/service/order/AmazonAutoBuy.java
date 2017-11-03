@@ -66,7 +66,7 @@ public class AmazonAutoBuy extends AutoBuy
 			driver.navigate().to("https://www.amazon.com");
 			Utils.sleep(3000);
 
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			WebDriverWait wait = new WebDriverWait(driver, 45);
 			// 等到[登陆]出现
 
 			try

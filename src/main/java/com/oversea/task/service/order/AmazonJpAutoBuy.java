@@ -70,7 +70,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 		driver.navigate().to("http://www.amazon.co.jp/");
 		Utils.sleep(3000);
 
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		try
 		{
 			By bySignIn = By.xpath("//a[contains(text(),'サインイン')]");
@@ -93,7 +93,19 @@ public class AmazonJpAutoBuy extends AutoBuy
 		catch (Exception e)
 		{
 			logger.error("--->没有找到输入框", e);
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+				WebElement username = driver.findElement(By.id("ap_email_login"));
+				logger.debug("--->输入账号");
+				username.sendKeys(userName);
+				Utils.sleep(800);
+			}
+			catch (Exception e1)
+			{
+				logger.error("--->没有找到输入框", e1);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 
 		try
@@ -354,7 +366,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 			TimeUnit.SECONDS.sleep(4);
 			try{
-				WebElement w = driver.findElement(By.xpath("//span[@class='a-sheet-close']"));
+				WebElement w = driver.findElement(By.cssSelector(".a-sheet-close"));
 				w.click();
 				Utils.sleep(1000);
 				((JavascriptExecutor)driver).executeScript("arguments[0].click();", w);
@@ -1017,6 +1029,13 @@ public class AmazonJpAutoBuy extends AutoBuy
 		} catch (Exception e) {
 			logger.error("safss",e);
 		}
+		
+//		try {
+//			WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+//			gotocart.click();
+//		} catch (Exception e) {
+//			logger.error("2222",e);
+//		}
 		
 		
 		//等待购物车加载完成
@@ -3102,14 +3121,23 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.lusterstyle.com/it.php?udid=934&stid=1459&dlink=aHR0cDovL3d3dy5hbWF6b24uY28uanAvZHAvQjA2WFJXWkZYNj9wc2M9MSZ0YWc9bHVzdHIwYS1hZDI3NzgtMjI%3D");
+		param.put("url", "https://www.amazon.co.jp/dp/B01M68GG29");
 		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
-//		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
+		param.put("sku", "[[\"種類\",\"単品\"]]");
+		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("num", "1");
 		//param.put("sign", "0");
 		System.out.println(autoBuy.selectProduct(param));
+//		Map<String, String> param1 = new HashMap<>();
+//		param1.put("url", "http://haitao.bibiwo.com/j?t=http://www.amazon.co.jp/dp/B01EL660V6?tag=adiemar100052-22");
+//		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
+////		//param.put("sku", "[[\"color\",\"Red\"]]");
+//		param1.put("sku", "[[\"サイズ\",\"1袋\"]]");
+//		param1.put("num", "1");
+//		param1.put("productEntityId", "4780644");
+//		param1.put("num", "1");
+//		//param.put("sign", "0");
+//		System.out.println(autoBuy.selectProduct(param1));
 	}
 }
