@@ -37,37 +37,37 @@ public class GetthelabelAutoBuy extends AutoBuy {
 				
 				Map<String, String> param = new HashMap<String, String>();
 		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
-				param.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1010315.html%2F");
+				param.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1004611.html%2F");
 				param.put("num", "1");
-				param.put("sku", "[[\"color\",\"白色\"],[\"size\",\"XS\"]]");
+				param.put("sku", "[[\"color\",\"Light Grey\"],[\"size\",\"12-14\"]]");
 				param.put("productEntityId", "4241869");
 				auto.selectProduct(param);
-				Map<String, String> param1 = new HashMap<String, String>();
-		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
-				param1.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1023646.html");
-				param1.put("num", "2");
-				param1.put("sku", "[[\"color\",\"Blue\"],[\"size\",\"L\"]]");
-				param1.put("productEntityId", "42418619");
-				auto.selectProduct(param1);
-//				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-//					Map<String, String> param0 = new HashMap<String, String>();
-//					param0.put("my_price", "39.99");
-//					param0.put("count", "1");
-////					param0.put("isPay", String.valueOf(true));
-//					param0.put("cardNo", "4662 4833 6029 1396");
-//					UserTradeAddress userTradeAddress = new UserTradeAddress();
-//					userTradeAddress.setName("刘波");
-//					userTradeAddress.setAddress("西斗门路9号");
-//					userTradeAddress.setState("浙江省");
-//					userTradeAddress.setCity("杭州市");
-//					userTradeAddress.setDistrict("西湖区");
-//					userTradeAddress.setZip("310000");
-//					userTradeAddress.setIdCard("330881198506111918");
-//					userTradeAddress.setMobile("18668084980");
-//					OrderPayAccount orderPayAccount = new OrderPayAccount();
-//					orderPayAccount.setAccount("15268125960");
-//					orderPayAccount.setPayPassword("199027");
-//					status = auto.pay(param0,userTradeAddress,orderPayAccount);
+//				Map<String, String> param1 = new HashMap<String, String>();
+//		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
+//				param1.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1023646.html");
+//				param1.put("num", "2");
+//				param1.put("sku", "[[\"color\",\"Blue\"],[\"size\",\"L\"]]");
+//				param1.put("productEntityId", "42418619");
+//				auto.selectProduct(param1);
+				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+					Map<String, String> param0 = new HashMap<String, String>();
+					param0.put("my_price", "39.99");
+					param0.put("count", "1");
+//					param0.put("isPay", String.valueOf(true));
+					param0.put("cardNo", "4662 4833 6029 1396");
+					UserTradeAddress userTradeAddress = new UserTradeAddress();
+					userTradeAddress.setName("刘波");
+					userTradeAddress.setAddress("西斗门路9号");
+					userTradeAddress.setState("浙江省");
+					userTradeAddress.setCity("杭州市");
+					userTradeAddress.setDistrict("西湖区");
+					userTradeAddress.setZip("310000");
+					userTradeAddress.setIdCard("330881198506111918");
+					userTradeAddress.setMobile("18668084980");
+					OrderPayAccount orderPayAccount = new OrderPayAccount();
+					orderPayAccount.setAccount("15268125960");
+					orderPayAccount.setPayPassword("199027");
+					status = auto.pay(param0,userTradeAddress,orderPayAccount);
 //				}
 			//}
 		}
@@ -287,18 +287,16 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try{
 			WebElement panel = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//div[@id='easyDialogWrapper']")));
-			Utils.sleep(1000);
-			panel.findElement(By.xpath("//div[@class='tip-success-content']"));
-			Utils.sleep(1000);
-			panel.findElement(By.xpath(".//button[@id='easyDialogYesBtn']")).click();
-			Utils.sleep(1500);
-			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cart']")));
+					By.id("easyDialogWrapper")));
+			logger.debug("--->等待购物车页面加载1");
+			panel.findElement(By.id("easyDialogYesBtn")).click();
+			logger.debug("--->等待购物车页面加载2");
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-checkout")));
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常,",e);
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
 		}
+		logger.debug("--->等待购物车页面加载3");
 		return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 	}
 	
@@ -331,13 +329,12 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("AccountButton")));
+					By.cssSelector(".btn-checkout")));
 			goPay.click();
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			logger.debug("--->加载Pharmacyonline结账出现异常");
-			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("AccountButton")));
+			WebElement goPay = driver.findElement(By.cssSelector(".btn-checkout"));
 			goPay.click();
 		}
 		
@@ -372,8 +369,14 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			try {
 				driver.executeScript("(function(){window.scrollBy(300,500);})();");
 				TimeUnit.SECONDS.sleep(5);
-				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("AccountButton")));
+				WebElement goPay = null;
+				try {
+					goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
+							By.cssSelector(".btn-checkout")));
+				} catch (Exception e) {
+					goPay  = driver.findElement(By.cssSelector(".btn-checkout"));
+				}
+				
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
@@ -419,7 +422,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.debug("--->加载Pharmacyonline结账出现异常");
-				return AutoBuyStatus.AUTO_PAY_FAIL;
+				//return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
 		} catch (Exception e) {
 			logger.debug("--->不需要重新登录");
@@ -428,55 +431,79 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		logger.debug("--->等待支付页面加载");
 		try {
 			TimeUnit.SECONDS.sleep(2);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".col-main")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("priceConfirm")));
 			logger.debug("--->支付页面加载完成");
 			TimeUnit.SECONDS.sleep(3);
 		} catch (Exception e) {
 			logger.debug("--->支付页面加载异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		String usedEmail = (String) param.get("userName");
+		logger.debug("--->删除收货地址");
 		try {
-			List<WebElement> deleteList = driver.findElements(By.cssSelector(".address .delete"));
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+			logger.debug("--->收货地址有"+deleteList.size());
 			while (true) {
 				int size = deleteList.size();
 				if(deleteList!=null && size>0){
-					if(deleteList.get(0).isDisplayed()){
-						deleteList.get(0).click();
-						Utils.sleep(1000);
-						driver.findElement(By.id("easyDialogYesBtn")).click();
-						Utils.sleep(1000);
-						if(size>1){
-							deleteList = driver.findElements(By.cssSelector(".address .delete"));
-						}else{
-							break;
-						}
+					deleteList.get(0).click();
+					WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
+					driver.executeScript("var tar=arguments[0];tar.click();", ww);
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+					}else{
+						break;
 					}
 				}else{
 					break;
 				}
 			}
-		} catch (Exception e) {
-			logger.debug("--->删除完了");
+		} catch (Exception e2) {
+			logger.debug("--->删除收货地址出错",e2);
 		}
+		String name = userTradeAddress.getName();
+		String address = userTradeAddress.getAddress();
+		String zipcode = userTradeAddress.getZip();
+		String mobile = userTradeAddress.getMobile();
 		//找到添加新地址
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.address-book-add")));
-			WebElement w = driver.findElement(By.cssSelector("a.address-book-add"));
-			w.click();
-			Utils.sleep(1000);
-		}catch(Exception e){
-			logger.debug("--->添加",e);
-		}
-		
-		//输入收货地址
-		try{
-			//国家
-			WebElement country = driver.findElement(By.xpath("//select[@id='country']"));
-			Select select = new Select(country);
-			select.selectByVisibleText("中国大陆");
-			Utils.sleep(2000);
+			WebElement addAddr = null;
+			try {
+				addAddr = driver.findElement(By.cssSelector("a[sel-id='settle-link-new-address']"));
+			} catch (Exception e) {
+				
+			}
+			
+			try {
+				addAddr.click();
+			} catch (Exception e) {
+			}
+			
+			TimeUnit.SECONDS.sleep(2);
+			
+			WebElement firstname = driver.findElement(By.id("firstname"));
+			logger.debug("--->输入收货人姓名"+name);
+			Utils.sleep(1500);
+			firstname.sendKeys(name);
+			
+			logger.debug("--->选择收货地址");
+			WebElement countrySelect = driver.findElement(By.id("country"));
+			Select select = new Select(countrySelect);
+			List<WebElement> countrys = select.getOptions();
+			if (countrys != null && countrys.size() > 1) {
+				for(WebElement country : countrys){
+					String countryVal =  country.getAttribute("value").trim();
+					if(countryVal.equals("中国大陆")){
+						select.selectByVisibleText(countryVal);
+						break;
+					}
+				}
+			}
+			TimeUnit.SECONDS.sleep(2);
 			
 			//省份
 			String stateStr = userTradeAddress.getState().trim();
@@ -491,9 +518,16 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			}else if("内蒙古自治区".equals(stateStr)){
 				stateStr = "内蒙古";
 			}
-			WebElement state = driver.findElement(By.xpath("//select[@id='region_id']"));	
+			WebElement state = null;
+			try {
+				state = driver.findElement(By.id("region_id"));
+			} catch (Exception e) {
+				state = driver.findElement(By.id("region"));
+			}
+				
 			Select selectState = new Select(state);
 			selectState.selectByVisibleText(stateStr);
+			logger.debug("--->输入省");
 			Utils.sleep(2000);
 			
 			//市
@@ -511,6 +545,8 @@ public class GetthelabelAutoBuy extends AutoBuy {
 					cityStr = "重庆市";
 				} else if("天津市".equals(stateStr)){
 					cityStr = "天津市";
+				} else if("大理市".equals(cityStr)){
+					cityStr = "大理州";
 				} else if("陵水黎族自治县".equals(cityStr)){
 					cityStr = "陵水县";
 				}
@@ -530,12 +566,18 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			
 			//区
 			String districtStr = userTradeAddress.getDistrict().trim();
-			WebElement district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			WebElement district = null;
+			try {
+				district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			} catch (Exception e) {
+				district = driver.findElement(By.id("county"));	
+			}
+			
+			
 			Select selectdistrict = new Select(district);
 			try{
 				selectdistrict.selectByVisibleText(districtStr);
-			}catch(Exception e){				
-				
+			}catch(Exception e){
 				if(districtStr.endsWith("区")){//区改市
 					districtStr = districtStr.subSequence(0, districtStr.length()-1)+"市";
 				} else if(districtStr.equals("经济开发区")){
@@ -547,73 +589,60 @@ public class GetthelabelAutoBuy extends AutoBuy {
 					selectdistrict.selectByIndex(1);
 				}
 			}
+			logger.debug("--->输入区");
 			Utils.sleep(2000);
-			/*//地址
-			driver.findElement(By.xpath("//input[@id='street_1']")).sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
-			Utils.sleep(1500);
-			//邮编
-			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(userTradeAddress.getZip());
-			Utils.sleep(1500);
-			//电话
-			driver.findElement(By.xpath("//input[@id='telephone']")).sendKeys(userTradeAddress.getMobile());
-			Utils.sleep(1500);
-			//常用邮箱
-			driver.findElement(By.xpath("//input[@id='email']")).sendKeys(email);
-			Utils.sleep(1500);*/
+			WebElement street = null;
+			try {
+				street = driver.findElement(By.id("street_1"));
+			} catch (Exception e) {
+				street = driver.findElement(By.cssSelector(".input-textarea"));
+			}
 			
-			//地址
-			WebElement street = driver.findElement(By.id("street_1"));
 			street.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入街道地址");
 			Utils.sleep(1500);
-			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
+			street.sendKeys(userTradeAddress.getDistrict()+address);
 			
-			//邮编
 			WebElement postcode = driver.findElement(By.id("postcode"));
 			postcode.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入邮编");
 			Utils.sleep(1500);
-			postcode.sendKeys(userTradeAddress.getZip());
+			postcode.sendKeys(zipcode);
 			
-			//姓名
-			WebElement w = driver.findElement(By.xpath("//input[@id='firstname']"));
-			w.clear();
-			Utils.sleep(1500);
-			w.sendKeys(userTradeAddress.getName());
-			Utils.sleep(1500);
-			
-			//电话
 			WebElement telephone = driver.findElement(By.id("telephone"));
 			telephone.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入电话");
 			Utils.sleep(1500);
-			telephone.sendKeys(userTradeAddress.getMobile());
+			telephone.sendKeys(mobile);
 			
-			//常用邮箱
-			WebElement emailEle = driver.findElement(By.id("email"));
-			emailEle.clear();
+			WebElement email = driver.findElement(By.id("email"));
+			email.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入常用邮箱");
 			Utils.sleep(1500);
-			emailEle.sendKeys(usedEmail);
+			email.sendKeys(usedEmail);
 			
-			//保存地址
-			driver.findElement(By.xpath("//input[@id='AjaxSaveAddress']")).click();
+			Utils.sleep(1500);
+			WebElement saveAddrBtn = null;
+			try {
+				saveAddrBtn = driver.findElement(By.id("AjaxSaveAddress"));
+			} catch (Exception e) {
+				saveAddrBtn = driver.findElement(By.cssSelector(".btn-save"));
+			}
+			saveAddrBtn.click();
 			Utils.sleep(3000);
-			
+			logger.debug("--->点击保存地址");
 		}catch(Exception e){
-			logger.debug("--->设置收货地址出错",e);
-			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+			logger.debug("--->添加",e);
 		}
 		
-		driver.executeScript("(function(){window.scrollBy(0,100);})();");
 		
 		//选中支付宝
 		try{
-			WebElement alipayPayment = driver.findElement(By.id("p_method_alipay_payment"));
+			WebElement alipayPayment = driver.findElement(By.id("payment-alipay_payment"));
 			//driver.findElement(By.xpath("//input[@id='p_method_alipay_payment']")).click();
 			driver.executeScript("var tar=arguments[0];tar.click();", alipayPayment);
 		}catch(Exception e){
@@ -621,15 +650,91 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
+		//结账
+		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+		boolean isEffective = false;
+		Set<String> promotionList = getPromotionList(param.get("promotion"));
+		if (promotionList != null && promotionList.size() > 0) {
+			try {
+				WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+				promotions.click();
+				TimeUnit.SECONDS.sleep(2);
+				WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+				codepro.click();
+				TimeUnit.SECONDS.sleep(2);
+				for (String code : promotionList) {
+					logger.debug("couponCode："+code);
+					WebElement element = driver.findElement(By.id("derateInputCode"));
+					element.clear();
+					element.sendKeys(code);
+					TimeUnit.SECONDS.sleep(2);
+					
+					WebElement use = driver.findElement(By.id("derateUse"));
+					use.click();
+					TimeUnit.SECONDS.sleep(2);
+					
+					try {
+						WebElement tip = driver.findElement(By.id("derateInputTips"));
+						if(tip.getText().contains("错误")){
+							logger.debug("优惠码无效："+code);
+							statusMap.put(code, 0);
+						}
+					} catch (Exception e) {
+						try {
+							//driver.findElement(By.xpath("//div[@class='coupon-done']"));
+							logger.debug("优惠码有效："+code);
+							isEffective = true;
+							statusMap.put(code, 10);
+						} catch (Exception e2) {
+							logger.debug("异常："+e);
+						}
+					}
+				}
+				setPromotionCodelistStatus(statusMap);
+				System.out.println(statusMap.toString());
+				if("true".equals(param.get("isStock")) && !isEffective){
+					logger.debug("--->优惠码失效,中断采购");
+					return AutoBuyStatus.AUTO_PAY_FAIL;
+				}
+			} catch (Exception e) {
+			}
+		}
+		
 		WebDriverWait wait0 = new WebDriverWait(driver, 20);
-		//查询总价
-		try{
+		// 查询总价
+		try {
 			logger.debug("--->开始查询总价");
-			WebElement totalPriceElement = driver.findElement(By.cssSelector(".should-pay strong"));
+			Utils.sleep(5000);
+			WebElement totalPriceElement = driver
+					.findElement(By.id("div.should-pay p.fee strong"));
 			String text = totalPriceElement.getText();
-			String priceStr = text.substring(1);
+			if (!Utils.isEmpty(text) && text.indexOf("AU$") != -1) {
+				String priceStr = text.replace("AU$", "");
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
+				logger.debug("--->[1]找到商品结算总价 = " + priceStr);
+				if(!StringUtil.isBlank(getTotalPrice())){
+					AutoBuyStatus priceStatus = comparePrice(priceStr, getTotalPrice());
+					if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}else{
+					BigDecimal x = new BigDecimal(myPrice);
+					BigDecimal y = new BigDecimal(priceStr);
+					BigDecimal v = y.subtract(x);
+					if (v.doubleValue() > 20.00D){
+						logger.error("--->总价差距超过约定,不能下单");
+						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.debug("--->查询结算总价出现异常=", e);
+			WebElement totalPriceElement = driver
+					.findElement(By.id("grandTotal"));
+			String priceStr = totalPriceElement.getText();
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
-			logger.debug("--->找到商品结算总价 = "+priceStr);
+			logger.debug("--->[1]找到商品结算总价 = " + priceStr);
 			if(!StringUtil.isBlank(getTotalPrice())){
 				AutoBuyStatus priceStatus = comparePrice(priceStr, getTotalPrice());
 				if(AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT.equals(priceStatus)){
@@ -640,14 +745,11 @@ public class GetthelabelAutoBuy extends AutoBuy {
 				BigDecimal x = new BigDecimal(myPrice);
 				BigDecimal y = new BigDecimal(priceStr);
 				BigDecimal v = y.subtract(x);
-				if (v.doubleValue() > 7.00D){
+				if (v.doubleValue() > 20.00D){
 					logger.error("--->总价差距超过约定,不能下单");
-					throw new Exception();
+					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}
 			}
-		}catch(Exception e){
-			logger.debug("--->查询结算总价出现异常",e);
-			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}
 		
 		// 查询优惠
@@ -656,15 +758,24 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			WebElement totalElement = driver
 					.findElement(By.cssSelector(".computed-price"));
 			
-			WebElement expressElement = totalElement.findElement(By.cssSelector("#H-ship"));
-			BigDecimal totalExpress = new BigDecimal(0);
-			if (!Utils.isEmpty(expressElement.getText()) && expressElement.getText().indexOf("£") != -1) {
-				String express = expressElement.getText().replace("£", "");
-				logger.debug("--->[1]找到运费 = " + express);
-				BigDecimal x = new BigDecimal(express);
-				totalExpress = totalExpress.add(x);
+			List<WebElement> expressElements = totalElement.findElements(By.cssSelector("#H-ship"));
+			BigDecimal totalExpress = new BigDecimal(0); 
+			for(WebElement w:expressElements){
+				if (!Utils.isEmpty(w.getText()) && w.getText().indexOf("AU$") != -1) {
+					String express = w.getText().replace("AU$", "");
+					logger.debug("--->[1]找到运费 = " + express);
+					BigDecimal x = new BigDecimal(express);
+					totalExpress = totalExpress.add(x);
+				}
+				logger.debug("--->[1]找到总运费 = " + totalExpress);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_MALL_EXPRESS_FEE,String.valueOf(totalExpress));
 			}
-			data.put(AutoBuyConst.KEY_AUTO_BUY_MALL_EXPRESS_FEE,String.valueOf(totalExpress));
+			WebElement promotionElement = totalElement.findElement(By.cssSelector("#p-ship"));
+			if (!Utils.isEmpty(promotionElement.getText()) && promotionElement.getText().indexOf("AU$") != -1) {
+				String promotion = promotionElement.getText().replace("-AU$", "");
+				logger.debug("--->[1]找到商品优惠 = " + promotion);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PROMOTION_FEE,promotion);
+			}
 		} catch (Exception e) {
 			logger.debug("--->查询总运费出现异常=", e);
 		}
@@ -672,7 +783,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		//提交订单
 		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
-			WebElement placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
+			WebElement placeOrder = driver.findElement(By.id("priceConfirm"));
 			placeOrder.click();;
 			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
 			gotologin.click();
