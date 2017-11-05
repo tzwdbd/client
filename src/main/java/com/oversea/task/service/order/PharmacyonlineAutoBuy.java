@@ -24,6 +24,7 @@ import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.StringUtils;
 import com.oversea.task.utils.Utils;
 
@@ -928,6 +929,13 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			logger.error("--->跳转到my account页面出现异常", e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			driver.navigate().to("http://cn.pharmacyonline.com.au/sales/order/history");
+		} catch (Exception e) {
+			logger.error("--->没有蒙层不需要关闭");
+		}
+		
 		
 		WebDriverWait wait0 = new WebDriverWait(driver, 30);
 		//等待my account页面加载完成
@@ -944,46 +952,49 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		
 		try {
 			logger.debug("--->找到对应的table");
-			loop:
 			for(int i = 0;i<6;i++){//最多翻6页
-				List<WebElement> orderList = driver.findElements(By.cssSelector("div.order-item table.order-table"));
+				List<WebElement> orderList = driver.findElements(By.cssSelector("table.order-table"));
 				if(orderList != null && orderList.size() > 0){
 					for (WebElement orders : orderList) {
-						WebElement orderNo = orders.findElement(By.cssSelector("td.order-summary span.order-number"));
+						WebElement orderNo = orders.findElement(By.cssSelector(".order-num"));
 						boolean flag = orderNo.getText().trim().replaceAll("[^\\d]", "").contains(mallOrderNo.trim());
 						logger.debug("--->orderNo text:" + orderNo.getText().trim().replaceAll("[^\\d]", "") + "对比结果:" + flag);
 						if (flag) {
 							// 订单编号状态
-							WebElement status = orders.findElement(By.cssSelector("span.order-status"));
+							WebElement status = orders.findElement(By.cssSelector(".order-status"));
 							
 							String str = status.getText().trim();
 							if(StringUtil.isNotEmpty(str) && str.contains("已取消")){
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 							}
-							if (str.equals("已发货")) {
+							if (str.contains("已发货")) {
 								Utils.sleep(2500);
 								logger.debug("--->查找物流单号");
-								
-								List<WebElement> tarTds = orders.findElements(By.cssSelector("div.hb-shipment span"));
-								if(tarTds!=null && tarTds.size() > 0){
-									String expressNoEle = tarTds.get(0).getText();
-									String expressCompanyEle = tarTds.get(1).getText();
+								WebElement shipOrder = orders.findElement(By.cssSelector(".order-details"));
+								String url = shipOrder.getAttribute("href");
+								logger.debug("--->跳转url:"+url);
+								driver.navigate().to(url);
+								Utils.sleep(2500);
+								List<WebElement> tarTds = driver.findElements(By.cssSelector(".remark"));
+								int size = tarTds.size();
+									String expressNoEle = tarTds.get(size-1).getText();
+									logger.error("expressNoEle = " + expressNoEle);
+									String expressNo = ExpressUtils.regularExperssNo(expressNoEle);
 									
-									String expressCompany = expressNoEle.trim().replace("物流厂商:", "");
-									String expressNo = expressCompanyEle.trim().replace("运单号:", "");
-									
-									if(StringUtil.isNotEmpty(expressCompany) && expressCompany.equals("EWE-AU")){
+									if(StringUtil.isNotEmpty(expressNoEle) && expressNoEle.contains("EWE-AU")){
 										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
 									} else {
+										String expressCompany = tarTds.get(size-1).findElement(By.cssSelector("a")).getText();
+										expressCompany = expressCompany.replace("官网", "");
+										logger.error("expressCompany = " + expressCompany);
 										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
 									}
 									
 									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-									logger.error("expressCompany = " + expressCompany);
+									
 									logger.error("expressNo = " + expressNo);
 
 									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-								}
 							} else{
 								try {
 									logger.debug("去EWE官网查一哈");
@@ -1002,7 +1013,6 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 								logger.error("[1]该订单还没发货,没产生物流单号");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 							}
-							break loop;
 						}
 					}
 				}
@@ -1059,45 +1069,45 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 //		System.out.println(status);
 		//auto.cleanCart();
 //	
-		Map<String, String> param = new HashMap<String, String>();
-		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=e5d3SjZ7JpLUsz8IO8lPw0WSuw7FeaFDPHiYHxSmoimgsq3RenHAdTN5CstYfU2Q&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1106863.html&tag=");
-		param.put("num", "2");
-		param.put("productEntityId", "4288120");
-		param.put("isPay", "false");
-//		param.put("count", "2");
-//		param.put("suffixNo", "123");
-		param.put("my_price", "16.45");
-		auto.selectProduct(param);
+//		Map<String, String> param = new HashMap<String, String>();
+//		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=e5d3SjZ7JpLUsz8IO8lPw0WSuw7FeaFDPHiYHxSmoimgsq3RenHAdTN5CstYfU2Q&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1106863.html&tag=");
+//		param.put("num", "2");
+//		param.put("productEntityId", "4288120");
+//		param.put("isPay", "false");
+////		param.put("count", "2");
+////		param.put("suffixNo", "123");
+//		param.put("my_price", "16.45");
+//		auto.selectProduct(param);
 //		Map<String, String> param1 = new HashMap<String, String>();
 //		param1.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=8169bYNrDG8mqBgBHgc7oVMixsRf4wVEmHBot7JgKSCILAR4OUd41GzivIzzFVYo&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1114069.html%2F&tag=");
 //		param1.put("num", "1");
 //		param1.put("productEntityId", "42881200");
 //		param1.put("isPay", "false");
-		param.put("count", "2");
-		param.put("suffixNo", "123");
-		param.put("my_price", "19.25");
-//		auto.selectProduct(param1);
-		param.put("userName", "hanhya@outlook.com");
-		param.put("password", "tfb001001");
-		
-		UserTradeAddress address = new UserTradeAddress();
-		address.setState("上海市");
-		address.setCity("杨浦区");
-		address.setDistrict("杨浦区");
-		address.setAddress("营口北路268号富维江森技术中心");
-		address.setIdCard("22010519880711061X");
-		address.setMobile("13624494790");
-		address.setZip("130000");
-		address.setName("史鑫");
-		OrderPayAccount payaccount = new OrderPayAccount();
-		payaccount.setAccount("fitboy96430@163.com");
-		payaccount.setPayPassword("0010012");
+//		param.put("count", "2");
+//		param.put("suffixNo", "123");
+//		param.put("my_price", "19.25");
+////		auto.selectProduct(param1);
+//		param.put("userName", "hanhya@outlook.com");
+//		param.put("password", "tfb001001");
+//		
+//		UserTradeAddress address = new UserTradeAddress();
+//		address.setState("上海市");
+//		address.setCity("杨浦区");
+//		address.setDistrict("杨浦区");
+//		address.setAddress("营口北路268号富维江森技术中心");
+//		address.setIdCard("22010519880711061X");
+//		address.setMobile("13624494790");
+//		address.setZip("130000");
+//		address.setName("史鑫");
+//		OrderPayAccount payaccount = new OrderPayAccount();
+//		payaccount.setAccount("fitboy96430@163.com");
+//		payaccount.setPayPassword("0010012");
 		//auto.pay(param, address, payaccount);
 //		
-//		RobotOrderDetail detail = new RobotOrderDetail();
-//		detail.setMallOrderNo("614792670649618");
-//		auto.scribeExpress(detail);
-//		auto.logout();
+		RobotOrderDetail detail = new RobotOrderDetail();
+		detail.setMallOrderNo("614792670649618");
+		auto.scribeExpress(detail);
+		//auto.logout();
 	}
 
 }
