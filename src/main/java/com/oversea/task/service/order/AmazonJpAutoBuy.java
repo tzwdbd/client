@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.google.gson.Gson;
 import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.ExpressNode;
 import com.oversea.task.domain.ExternalOrderDetail;
@@ -70,7 +67,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 		driver.navigate().to("http://www.amazon.co.jp/");
 		Utils.sleep(3000);
 
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 15);
 		try
 		{
 			By bySignIn = By.xpath("//a[contains(text(),'サインイン')]");
@@ -93,7 +90,19 @@ public class AmazonJpAutoBuy extends AutoBuy
 		catch (Exception e)
 		{
 			logger.error("--->没有找到输入框", e);
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+				WebElement username = driver.findElement(By.id("ap_email_login"));
+				logger.debug("--->输入账号");
+				username.sendKeys(userName);
+				Utils.sleep(800);
+			}
+			catch (Exception e1)
+			{
+				logger.error("--->没有找到输入框", e1);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 
 		try
@@ -354,7 +363,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 			TimeUnit.SECONDS.sleep(4);
 			try{
-				WebElement w = driver.findElement(By.xpath("//span[@class='a-sheet-close']"));
+				WebElement w = driver.findElement(By.cssSelector(".a-sheet-close"));
 				w.click();
 				Utils.sleep(1000);
 				((JavascriptExecutor)driver).executeScript("arguments[0].click();", w);
@@ -421,43 +430,705 @@ public class AmazonJpAutoBuy extends AutoBuy
 	@Override
 	public AutoBuyStatus selectProduct(Map<String, String> param)
 	{
-		logger.debug("--->跳转到商品页面");
-		String url = param.get("url");
-		logger.debug("--->url:" + url);
-
-		for (int i = 0; i < 3; i++)
-		{
-			try
+		String sign = (String) param.get("sign");
+		
+		if(!StringUtil.isBlank(sign) && "0".equals(sign)){
+			return selectBrushProduct(param);
+		}else{
+			logger.debug("--->跳转到商品页面");
+			String url = param.get("url");
+			logger.debug("--->url:" + url);
+	
+			for (int i = 0; i < 3; i++)
 			{
-				driver.navigate().to(url);
-				// 防止返利地址跳不过去,刷新一下
-				// driver.navigate().refresh();
-				TimeUnit.SECONDS.sleep(3);
-
 				try
 				{
-					WebElement _18 = driver.findElement(By.id("black-curtain-yes"));
-					logger.debug("--->我是成人");
-					_18.click();
+					driver.navigate().to(url);
+					// 防止返利地址跳不过去,刷新一下
+					// driver.navigate().refresh();
+					TimeUnit.SECONDS.sleep(3);
+	
+					try
+					{
+						WebElement _18 = driver.findElement(By.id("black-curtain-yes"));
+						logger.debug("--->我是成人");
+						_18.click();
+					}
+					catch (Exception e)
+					{
+	
+					}
+	
+					waitForMainPanel();
+					break;
 				}
 				catch (Exception e)
 				{
-
+					if (i == 2)
+					{
+						logger.debug("--->打开商品页面失败 :" + url);
+						return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+					}
 				}
-
-				waitForMainPanel();
-				break;
+			}
+	
+			String productNum = param.get("num");
+			Object sku = param.get("sku");
+			if (sku != null)
+			{
+				List<String> skuList = Utils.getSku((String) sku);
+				for (int i = 0; i < skuList.size(); i++)
+				{
+	
+					if (i % 2 == 1)
+					{
+						String attrName = skuList.get(i - 1).toLowerCase();
+						String attrValue = skuList.get(i).replace("～", "~");
+	
+						logger.error("--->" + attrName + ":" + attrValue);
+	
+						// 判断是否是连续选择的sku
+						boolean noStop = false;
+						if (i > 1)
+						{
+							WebDriverWait wait0 = new WebDriverWait(driver, 5);
+							try
+							{
+								wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='a-popover-content-1']")));
+								noStop = true;
+							}
+							catch (Exception e)
+							{
+							}
+							
+							if(!noStop){
+								try
+								{
+									wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='a-popover-header-secondary']")));
+									noStop = true;
+								}
+								catch (TimeoutException e)
+								{
+								}
+							}
+						}
+	
+						if (noStop)
+						{
+							logger.debug("--->找到连续选择sku的模式");
+							try
+							{
+								valueClick(attrValue);
+							}
+							catch (Exception e)
+							{
+								logger.debug("--->找不到对应属性,url= " + url + ",sku = " + (attrName + ":" + attrValue));
+								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+							}
+						}
+						else
+						{
+							// 等待最大的选择面板可见	
+							WebElement panel = waitForMainPanel();
+							logger.debug("--->[1]try onlyYou");
+							boolean onlyYou = false;
+							List<WebElement> list = null;
+							try
+							{
+								list = panel.findElements(By.xpath(".//div[@class='a-row a-spacing-small']"));
+								if (list != null && list.size() > 0)
+								{
+									for (WebElement e : list)
+									{
+										if (e != null)
+										{
+											String v = e.getText();
+											if (!Utils.isEmpty(v) && v.indexOf(attrValue) != -1)
+											{
+												onlyYou = true;
+												break;
+											}
+										}
+									}
+								}
+							}
+							catch (Exception e)
+							{
+							}
+							
+							//继续寻找onlyYou
+							List<WebElement> clicks = driver.findElements(By.cssSelector("div.twisterButton.nocopypaste"));
+							for(WebElement w : clicks){
+								try{
+									w.findElement(By.cssSelector("span.a-declarative"));
+								}catch(Exception e){
+									String text = w.getText();
+								    if(StringUtil.isNotEmpty(text) && text.contains(skuList.get(i))){
+								    	onlyYou = true;
+										break;
+									}
+								}
+							}
+							
+							
+	
+							if (onlyYou)
+							{
+								logger.debug("--->[1]使用默认:[" + skuList.get(i - 1) + " = " + skuList.get(i) + "]");
+								continue;
+							}
+	
+							logger.debug("--->[1]try selectYou");
+							WebElement btnElem = null;
+	
+							try
+							{
+								switch (attrName)
+								{
+									case "size":
+									case "サイズ":
+										btnElem = driver.findElement(By.id("size_name-button-announce"));
+										break;
+									case "color":
+									case "色":
+										btnElem = driver.findElement(By.id("color_name-button-announce"));
+										break;
+									case "unitcount":
+									case "セット数":
+										btnElem = driver.findElement(By.id("unit_count-button-announce"));
+										break;
+									case "patternname":
+									case " パターン(種類)":
+										btnElem = driver.findElement(By.id("pattern_name-button-announce"));
+										break;
+									case "flavorname":
+									case "Flavor":
+										btnElem = driver.findElement(By.id("flavor_name-button-announce"));
+										break;
+									case "style":
+									case "スタイル":
+										btnElem = driver.findElement(By.id("style_name-button-announce"));
+										break;
+									case "bandcolor":
+										btnElem = driver.findElement(By.id("band_color-button-announce"));
+										break;
+	
+									default:
+									{
+										boolean isSuccess = false;
+										try
+										{
+											List<WebElement> alist = driver.findElements(By.xpath("//span[@class='a-button-text']"));
+											if (alist != null && alist.size() > 0)
+											{
+												loop:
+												for (WebElement w : alist)
+												{
+													try
+													{
+														List<WebElement> blist = w.findElements(By.xpath(".//div[@class='a-row']/div"));
+														if(blist != null && blist.size() > 0){
+															for(WebElement ww : blist){
+																if (ww != null)
+																{
+																	if(ww.getText() != null && ww.getText().contains(attrName)){
+																		isSuccess = true;
+																		btnElem = w;
+																		break loop;
+																	}
+																}
+															}
+														}
+														
+													}
+													catch (Exception e)
+													{
+														logger.error(e);
+													}
+												}
+	
+											}
+										}
+										catch (Exception e)
+										{
+											logger.error(e);
+										}
+										if (!isSuccess)
+										{
+											logger.error("-->无法选择：" + attrName);
+											return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+										}
+									}
+								}
+							}
+							catch (Exception mx)
+							{
+								try
+								{
+									logger.warn("--->[2]try selectYou");
+									btnElem = panel.findElement(By.xpath("//span[@class='a-declarative' and contains(@data-mobile-twister,'" + "\"label\":\"" + attrValue + "\"" + "')]/label"));
+									newStyle = true;
+								}
+								catch (Exception ex)
+								{
+									logger.error("-->选择" + attrName + "按钮出错");
+								}
+							}
+	
+							if (newStyle)
+							{
+								try
+								{
+									btnElem.findElement(By.cssSelector("div.twister-mobile-tiles-swatch-unavailable"));
+									logger.debug("--->新姿势选择的目标按钮不可点击,商品已经下架");
+									return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+								}
+								catch (Exception e)
+								{
+	
+								}
+								btnElem.click();
+								logger.debug("--->新姿势选择:[" + attrName + " = " + attrValue + "]");
+								newStyle = false;
+							}
+							else
+							{
+								Utils.sleep(1500);
+								btnElem.click();
+	
+								try
+								{
+									valueClick(attrValue);
+								}
+								catch (Exception e)
+								{
+									logger.debug("找不到valueElement url= " + url + ",sku = " + attrName + ":" + attrValue);
+									return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+								}
+							}
+						}
+						Utils.sleep(1500);
+					}
+				}
+			}
+	
+			// 等待最大的选择面板可见
+			waitForMainPanel();
+	
+			By addonBy = By.xpath(".//i[contains(text(),'あわせ買い対象商品')]");
+			try
+			{
+				WebElement priceTable = driver.findElement(By.xpath("//table[@id='price']"));
+				priceTable.findElement(addonBy);
+				logger.debug("--->[1]遇到add on商品,不支持购买");
+				return AutoBuyStatus.AUTO_SKU_ADD_ON;
 			}
 			catch (Exception e)
 			{
-				if (i == 2)
+				try
 				{
-					logger.debug("--->打开商品页面失败 :" + url);
-					return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+					WebElement addonPanel = driver.findElement(By.xpath("//div[@id='addOnItem_feature_div']"));
+					addonPanel.findElement(addonBy);
+					logger.debug("--->[2]遇到add on商品,不支持购买");
+					return AutoBuyStatus.AUTO_SKU_ADD_ON;
+				}
+				catch (Exception ex)
+				{
 				}
 			}
+	
+			try
+			{
+				WebElement coupon = driver.findElementById("oneTimeBuyVpcButton");
+				if (coupon.isDisplayed() && coupon.isEnabled())
+				{
+					logger.debug("--->[1]这个商品有红包优惠,点击领取了");
+					TimeUnit.SECONDS.sleep(1);
+					coupon.click();
+				}
+				else
+				{
+					logger.debug("--->[1]这个商品红包已经领过了");
+				}
+			}
+			catch (Exception e)
+			{
+			}
+	
+			try
+			{
+				WebElement oneTimeBuy = driver.findElement(By.id("oneTimeBuyBox"));
+				logger.debug("--->[1]这个商品是订阅商品,选择one time purchase 模式");
+				WebElement radio = oneTimeBuy.findElement(By.cssSelector("a.a-declarative"));
+				TimeUnit.SECONDS.sleep(1);
+				radio.click();
+				TimeUnit.SECONDS.sleep(1);
+				radio.click();
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					WebElement selectPanel = driver.findElement(By.xpath("//div[@id='ap-options']"));
+					WebElement oneTimePurchase = selectPanel.findElement(By.xpath(".//span[@class='modeTitle a-text-bold' and contains(text(),'One-time Purchase')]"));
+					logger.debug("--->[2]这个商品是订阅商品,选择one time purchase 模式");
+					TimeUnit.SECONDS.sleep(1);
+					oneTimePurchase.click();
+				}
+				catch (Exception ee)
+				{
+				}
+			}
+	
+			// 获取单价
+			try
+			{
+				WebElement singlePrice = driver.findElement(By.id("priceblock_ourprice"));
+				String priceStr = singlePrice.getText();
+				if (!Utils.isEmpty(priceStr))
+				{
+					priceStr = priceStr.replace("￥", "").replace(",", "");
+					logger.error("--->[1]单价:" + priceStr);
+					priceMap.put(param.get("productEntityId"), priceStr);
+				}
+				else
+				{
+					logger.error("--->单价获取失败");
+				}
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					WebElement pricePanel = driver.findElement(By.cssSelector("table#price td#priceblock_dealprice > span"));
+					String priceStr = pricePanel.getText();
+					if (!Utils.isEmpty(priceStr))
+					{
+						priceStr = priceStr.replace("￥", "").replace(",", "");
+						logger.error("--->[2]单价:" + priceStr);
+						priceMap.put(param.get("productEntityId"), priceStr);
+					}
+					else
+					{
+						logger.error("--->单价获取失败");
+					}
+				}
+				catch (Exception ep)
+				{
+					try
+					{
+						WebElement pricePanel = driver.findElement(By.id("product-price"));
+						String priceStr = pricePanel.getText();
+						if (!Utils.isEmpty(priceStr))
+						{
+							priceStr = priceStr.replace("￥", "").replace(",", "");
+							logger.error("--->[3]单价:" + priceStr);
+							priceMap.put(param.get("productEntityId"), priceStr);
+						}
+						else
+						{
+							logger.error("--->单价获取失败");
+						}
+					}
+					catch (Exception ex)
+					{
+						try {
+							WebElement singlePrice = driver.findElement(By.id("priceblock_dealprice"));
+							String priceStr = singlePrice.getText();
+							if (!Utils.isEmpty(priceStr))
+							{
+								priceStr = priceStr.replace("￥", "").replace(",", "");
+								logger.error("--->[4]单价:" + priceStr);
+								priceMap.put(param.get("productEntityId"), priceStr);
+							}else
+							{
+								logger.error("--->单价获取失败");
+							}
+						} catch (Exception e2) {
+							try {
+								WebElement singlePrice = driver.findElement(By.cssSelector("price-large"));
+								String priceStr = singlePrice.getText();
+								if (!Utils.isEmpty(priceStr))
+								{
+									priceStr = priceStr.replace("￥", "").replace(",", "");
+									logger.error("--->[5]单价:" + priceStr);
+									priceMap.put(param.get("productEntityId"), priceStr);
+								}else
+								{
+									logger.error("--->单价获取失败");
+								}
+							} catch (Exception e3) {
+								logger.error("--->获取单价失败");
+								
+							}
+						}
+					}
+				}
+			}
+	
+			try
+			{
+				WebDriverWait wait0 = new WebDriverWait(driver, WAIT_TIME);
+				wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("availability")));
+				WebElement availability = driver.findElement(By.cssSelector("div#availability > span"));
+				String stockNum = availability.getText();
+				logger.info("--->库存状态:" + stockNum);
+				if (StringUtil.isNotEmpty(stockNum) && stockNum.contains("通常")){
+					if(!(stockNum.contains("3日以内に発送します") || stockNum.contains("5日以内に発送します") 
+							|| stockNum.contains("3~4日以内に発送")
+							|| stockNum.contains("2~3日以内に発送")
+							|| stockNum.contains("1~2日以内に発送")
+							|| stockNum.contains("3～4日以内に発送")
+							|| stockNum.contains("2～3日以内に発送")
+							|| stockNum.contains("1～2日以内に発送"))){
+						logger.warn("--->该商品已经下架:" + url);
+						return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
+					}
+				}
+			}
+			catch (Exception e)
+			{
+			}
+	
+			// 选择数量
+			try
+			{
+				if (!productNum.equals("1"))
+				{
+					Select select = new Select(driver.findElement(By.id("mobileQuantityDropDown")));
+					Utils.sleep(2000);
+					driver.executeScript("window.scrollBy(0,150);");
+					select.selectByValue(productNum);
+					Utils.sleep(2000);
+					WebElement numBtn = driver.findElement(By.xpath("//span[@class='a-button a-button-dropdown a-button-small']"));
+					String txt = numBtn.getText();
+					logger.info("--->选择数量结果:" + txt);
+					if (!txt.contains(productNum))
+					{
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				logger.error("选择数量失败 pruductNum = " + productNum);
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+	
+			// 第三方商品,不支持购买
+			try
+			{
+				WebElement third = driver.findElement(By.xpath("//div[@id='merchant-info']"));
+				if (third != null)
+				{
+					String text = third.getText();
+					if (!Utils.isEmpty(text))
+					{
+						if (!(text.indexOf("Amazon.co.jp が販売、") != -1 || text.indexOf("Amazon.co.jp が発送します") != -1))
+						{
+							logger.debug("第三方商品不支持购买 +url = " + url);
+							
+							//处理第三方其它商家商品
+	//						try {
+	//							boolean mark = true;
+	//							WebElement newProduct = driver.findElement(By.cssSelector(".a-box-inner .a-text-bold"));
+	//							if(newProduct.getText().contains("新品")){
+	//								newProduct.click();
+	//								logger.debug("新品点击");
+	//								WebDriverWait wait = new WebDriverWait(driver, 30);
+	//								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-box-inner .a-container.olpNoPadding")));
+	//								List<WebElement> otherProducts = driver.findElements(By.cssSelector(".a-box-inner .a-container.olpNoPadding"));
+	//								for(WebElement w:otherProducts){
+	//									WebElement dynamicRow = w.findElement(By.cssSelector(".olpDynamicRow"));
+	//									if (dynamicRow.getText().contains("Amazon.co.jp")){
+	//										mark = false;
+	//										w.click();
+	//										logger.debug("到达新品页面");
+	//										break;
+	//									}
+	//								}
+	//								if(mark){
+	//									logger.debug("mark=true");
+	//									return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+	//								}
+	//							}else{
+	//								logger.debug("不包含新品");
+	//								return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+	//							}
+	//						} catch (Exception e) {
+	//							logger.debug("第三方页面异常",e);
+	//							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+	//						}
+							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+	
+			}
+			
+			//如果有优惠,点击优惠
+			try{
+				WebElement coupon = driver.findElement(By.xpath("//span[@id='clickableVpcButton']"));
+				if(coupon != null){
+					coupon.click();
+					TimeUnit.SECONDS.sleep(2);
+				}
+			}catch(Exception e){
+				logger.debug("没有优惠,carry on");
+			}
+			try{
+				WebElement coupon = driver.findElement(By.xpath("//div[@id='oneTimeBuyVpcButton']/div/label/input"));
+				if(coupon != null && !coupon.isSelected()){
+					coupon.click();
+					TimeUnit.SECONDS.sleep(2);
+				}
+			}catch(Exception e){
+				logger.debug("--->领红包出错");
+			}
+	
+			// 加购物车按钮
+			try{
+				driver.findElement(By.id("buybox.addToCart")).click();
+			}catch(Exception e){
+				logger.debug("寻找购物车按钮异常11112121");
+			}
+			Utils.sleep(1000);
+			try{
+				driver.findElement(By.cssSelector("input#add-to-cart-button")).click();
+			}catch(Exception e){
+				logger.debug("寻找购物车按钮异常");
+			}
+	
+			try
+			{
+				TimeUnit.SECONDS.sleep(2);
+				driver.findElement(By.id("no_thanks_button")).click();
+				logger.debug("--->啊,NO THANKS");
+			}
+			catch (Exception e){}
+			
+			try{
+	//			driver.findElement(By.xpath("//a[contains(text(),'時間内に確定されない場合は、無効となります。')]")).click();
+				TimeUnit.SECONDS.sleep(3);
+				driver.findElement(By.xpath("//a[contains(text(),'時間内に確定されない場合は、無効となります。')]")).sendKeys(Keys.ENTER);
+				Utils.sleep(1000);
+			}catch(Exception e){
+				logger.error("time15",e);
+			}
+			
+			try {
+				TimeUnit.SECONDS.sleep(3);
+				WebElement ad = driver.findElement(By.cssSelector("button[title='カートに入れる']"));
+				ad.click();
+				Utils.sleep(1000);
+				WebElement tt = driver.findElement(By.xpath("//span[contains(text(),'カートに入りました')]"));
+				if(tt!=null){
+					driver.navigate().to("https://www.amazon.co.jp/gp/aw/c/ref=navm_hdr_cart");
+				}
+			} catch (Exception e) {
+				logger.error("safss",e);
+			}
+			
+	//		try {
+	//			WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+	//			gotocart.click();
+	//		} catch (Exception e) {
+	//			logger.error("2222",e);
+	//		}
+			
+			
+			//等待购物车加载完成
+			try{
+				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+			}catch(Exception e){
+				logger.error("等待购物车加载完成出错,",e);
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+			
+	
+			logger.debug("--->选择sku成功");
+			return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 		}
+	}
+	
+	public AutoBuyStatus selectBrushProduct(Map<String, String> param)
+	{	
+		driver.get("https://www.amazon.co.jp");
+		Utils.sleep(3000);
+		String key = param.get("productName");
+		String title = param.get("title");
+		int position = Integer.parseInt(param.get("position"));
+		String signs = param.get("signs");
+		position = 30;
+		
+		WebDriverWait wait = new WebDriverWait(driver, 45);
+		// 等到[登陆]出现
 
+		try
+		{
+			WebElement productWord = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-search-keywords")));
+			productWord.sendKeys(key);
+			TimeUnit.SECONDS.sleep(1);
+			logger.debug("--->查找"+key);
+			productWord.sendKeys(Keys.ENTER);
+			Utils.sleep(1500);
+		}
+		catch (Exception e)
+		{
+			logger.error("--->没有找到查找", e);
+			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+		}
+		boolean mark = false;
+		try {
+			for(int i=1;i<position+5;i++){
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("results")));
+				List<WebElement> results = driver.findElements(By.cssSelector("#resultItems li"));
+				for(WebElement w:results){
+					WebElement titleWeb = null;
+					try {
+						titleWeb = w.findElement(By.cssSelector(".sx-title span"));
+					} catch (Exception e) {
+						continue;
+					}
+					String smallTitle = titleWeb.getText();
+					if(smallTitle.contains("...")){
+						smallTitle = smallTitle.replace("...", "");
+					}
+					logger.error("--->title1="+smallTitle);
+					logger.error("--->title2="+title);
+					if(!StringUtil.isBlank(smallTitle) && title.startsWith(smallTitle)){
+						logger.error("--->title"+titleWeb.getText());
+						w.findElement(By.cssSelector("a")).click();
+						mark = true;
+						break;
+					}
+				}
+				if(mark){
+					break;
+				}
+				driver.executeScript("(function(){window.scrollBy(0,400);})();");
+				Utils.sleep(1500);
+				driver.findElement(By.cssSelector("li.a-last a")).click();;
+				Utils.sleep(1500);
+				
+			}
+		} catch (Exception e) {
+			logger.error("--->点击下一页异常", e);
+			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+		}
+		if(!mark){
+			logger.error("--->找不到商品");
+			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		if(StringUtil.isBlank(signs)){
+			logger.error("--->查找clickProduct");
+			return clickProduct(param);
+		}
+		
 		String productNum = param.get("num");
 		Object sku = param.get("sku");
 		if (sku != null)
@@ -508,7 +1179,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 						}
 						catch (Exception e)
 						{
-							logger.debug("--->找不到对应属性,url= " + url + ",sku = " + (attrName + ":" + attrValue));
+							logger.debug("--->找不到对应属性,url= ,sku = " + (attrName + ":" + attrValue));
 							return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 						}
 					}
@@ -688,7 +1359,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 							}
 							catch (Exception e)
 							{
-								logger.debug("找不到valueElement url= " + url + ",sku = " + attrName + ":" + attrValue);
+								logger.debug("找不到valueElement url= ,sku = " + attrName + ":" + attrValue);
 								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 							}
 						}
@@ -867,7 +1538,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 						|| stockNum.contains("3～4日以内に発送")
 						|| stockNum.contains("2～3日以内に発送")
 						|| stockNum.contains("1～2日以内に発送"))){
-					logger.warn("--->该商品已经下架:" + url);
+					logger.warn("--->该商品已经下架:");
 					return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
 				}
 			}
@@ -912,7 +1583,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 				{
 					if (!(text.indexOf("Amazon.co.jp が販売、") != -1 || text.indexOf("Amazon.co.jp が発送します") != -1))
 					{
-						logger.debug("第三方商品不支持购买 +url = " + url);
+						logger.debug("第三方商品不支持购买 +url = ");
 						
 						//处理第三方其它商家商品
 //						try {
@@ -1018,11 +1689,18 @@ public class AmazonJpAutoBuy extends AutoBuy
 			logger.error("safss",e);
 		}
 		
+//		try {
+//			WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+//			gotocart.click();
+//		} catch (Exception e) {
+//			logger.error("2222",e);
+//		}
+		
 		
 		//等待购物车加载完成
 		try{
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+			WebDriverWait wait0 = new WebDriverWait(driver, WAIT_TIME);
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
 		}catch(Exception e){
 			logger.error("等待购物车加载完成出错,",e);
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -1031,6 +1709,29 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 		logger.debug("--->选择sku成功");
 		return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
+	}
+	
+	public AutoBuyStatus clickProduct(Map<String, String> param){
+		WebDriverWait wait = new WebDriverWait(driver, 45);
+		for(int i=0;i<3;i++){
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sp_phone_detail")));
+				driver.executeScript("(function(){window.scrollBy(0,450);})();");
+				Utils.sleep(1000);
+				driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a")).click();
+				Utils.sleep(1500);
+			} catch (Exception e) {
+				logger.error("--->加载商品详情页异常");
+				try {
+					driver.findElement(By.cssSelector("#sims-session .a-link-normal")).click();
+				} catch (Exception e2) {
+				}
+				
+				//return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
+		}
+		param.put("signs", "0");
+		return selectBrushProduct(param);
 	}
 	
 	AutoBuyStatus addAddr(UserTradeAddress userTradeAddress,String userName,int size){
@@ -1329,27 +2030,60 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 	AutoBuyStatus selectGiftCard(String needPay, Boolean isPrime,Set<String> promotionList,Map<String, String> param)
 	{
+		String payType = param.get("payType");
+		logger.debug("--->支付方式为"+payType);
 		try
 		{
 			Utils.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select-payments-view")));
-			try{
-				WebElement radio = driver.findElement(By.id("pm_300"));
-				if(!radio.isSelected()){
-					logger.debug("--->礼品卡没有选中,点击选中");
+			try {
+				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
+				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
+					radios.get(1).click();
+					logger.debug("--->credit 点击");
+					Utils.sleep(1000);
+					try {
+						WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+						card.clear();
+						Utils.sleep(1000);
+						card.sendKeys(param.get("cardNo"));
+						logger.debug("--->cardno="+param.get("cardNo"));
+						List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+						for(WebElement w:sumbits){
+							if(w.isDisplayed()){
+								w.click();
+								logger.debug("--->sumbit 点击");
+								break;
+							}
+						}
+						
+					} catch (Exception e) {
+						logger.debug("--->credit 点击异常");
+					}
 					
+				}else{
 					try{
-						driver.findElement(By.id("existing-gift-card-promo")).click();
-						Utils.sleep(3000);
+						WebElement radio = driver.findElement(By.id("pm_300"));
+						if(!radio.isSelected()){
+							logger.debug("--->礼品卡没有选中,点击选中");
+							
+							try{
+								driver.findElement(By.id("existing-gift-card-promo")).click();
+								Utils.sleep(3000);
+							}catch(Exception e){
+								logger.debug("--->点击选中礼品卡出错",e);
+								return AutoBuyStatus.AUTO_PAY_FAIL;
+							}
+						}
 					}catch(Exception e){
-						logger.debug("--->点击选中礼品卡出错",e);
-						return AutoBuyStatus.AUTO_PAY_FAIL;
+						logger.debug("--->查找礼品卡选中按钮出错",e);
 					}
 				}
-			}catch(Exception e){
+			} catch (Exception e) {
 				logger.debug("--->查找礼品卡选中按钮出错",e);
 			}
+			
 			
 			//使用优惠码0 失效,1互斥 ,9没修改过,10有效
 			if(promotionList != null && promotionList.size() > 0){
@@ -1392,20 +2126,50 @@ public class AmazonJpAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 				
-				try{
-					WebElement radio = driver.findElement(By.xpath("//input[@id='pm_300']"));
-					if(!radio.isSelected()){
-						logger.debug("--->礼品卡没有选中,点击选中");
+				try {
+					List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
+					if(!StringUtil.isBlank(payType) && payType.equals("credit")){
+						radios.get(1).click();
+						logger.debug("--->credit 点击");
+						Utils.sleep(1000);
+						try {
+							WebElement card = driver.findElement(By.id("addCreditCardNumber"));
+							card.clear();
+							Utils.sleep(1000);
+							card.sendKeys(param.get("cardNo"));
+							logger.debug("--->cardno="+param.get("cardNo"));
+							List<WebElement> sumbits = driver.findElements(By.cssSelector(".a-button-input"));
+							for(WebElement w:sumbits){
+								if(w.isDisplayed()){
+									w.click();
+									logger.debug("--->sumbit 点击");
+									break;
+								}
+							}
+							
+						} catch (Exception e) {
+							logger.debug("--->credit 点击异常");
+						}
 						
+					}else{
 						try{
-							driver.findElement(By.xpath("//div[@id='existing-gift-card-promo']")).click();
-							Utils.sleep(3000);
+							WebElement radio = driver.findElement(By.id("pm_300"));
+							if(!radio.isSelected()){
+								logger.debug("--->礼品卡没有选中,点击选中");
+								
+								try{
+									driver.findElement(By.id("existing-gift-card-promo")).click();
+									Utils.sleep(3000);
+								}catch(Exception e){
+									logger.debug("--->点击选中礼品卡出错",e);
+									return AutoBuyStatus.AUTO_PAY_FAIL;
+								}
+							}
 						}catch(Exception e){
-							logger.debug("--->点击选中礼品卡出错",e);
-							return AutoBuyStatus.AUTO_PAY_FAIL;
+							logger.debug("--->查找礼品卡选中按钮出错",e);
 						}
 					}
-				}catch(Exception e){
+				} catch (Exception e) {
 					logger.debug("--->查找礼品卡选中按钮出错",e);
 				}
 			}
@@ -1454,11 +2218,13 @@ public class AmazonJpAutoBuy extends AutoBuy
 							WebElement radio = visaBox.findElement(By.xpath("./label/input"));
 							if(radio != null && radio.isSelected()){
 								logger.debug("--->信用卡选项已经选中,需要充值");
-								return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								if(!StringUtil.isBlank(payType) && !payType.equals("credit")){
+									return AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF;
+								}
 							}
 						}catch(Exception e){
 							logger.debug("--->查找信用卡是否选中出错",e);
-							return AutoBuyStatus.AUTO_PAY_FAIL;
+							//return AutoBuyStatus.AUTO_PAY_FAIL;
 						}
 					}
 					
@@ -1490,6 +2256,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 		String myPrice = param.get("my_price");
 		String primeStr = param.get("isPrime");
 		String username = param.get("userName");
+		String payType = param.get("payType");
 
 		if (Utils.isEmpty(myPrice))
 		{
@@ -1610,9 +2377,16 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 
 			Map<String,String> cache = getTotal();
-			String total = cache.get("amazonギフト券");
+			String total = null;
+			if("credit".equals(payType)){
+				total = cache.get("ご請求額");
+			}else{
+				total = cache.get("amazonギフト券");
+			}
+			
 			String promotionFee = cache.get("割引");
 			String mallFee = cache.get("配送料_手数料");
+			
 			try
 			{
 				logger.error("--->总价:" + total);
@@ -3102,14 +3876,26 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.lusterstyle.com/it.php?udid=934&stid=1459&dlink=aHR0cDovL3d3dy5hbWF6b24uY28uanAvZHAvQjA2WFJXWkZYNj9wc2M9MSZ0YWc9bHVzdHIwYS1hZDI3NzgtMjI%3D");
-		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
-//		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
+		param.put("url", "http://www.amazon.co.jp/dp/B01CDZNAEC");
+		param.put("sku", "[[\"スタイル名\",\"哺乳びん本体\"],[\"サイズ\",\"160ml 耐熱ガラス製\"],[\"色\",\"ライトグリーン 耐熱ガラス製\"]]");
+		//param.put("sku", "[[\"種類\",\"単品\"]]");
+		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("num", "1");
-		//param.put("sign", "0");
+		param.put("sign", "0");
+		param.put("productName","アイマスク 睡眠マスク");
+		param.put("title","Azomovic アイマスク 睡眠マスク 目隠し 天然シルク 遮光性・通気性抜群 圧迫感なし 睡眠、旅行、昼寝に最適 フリーサイズ 超ソフト 軽量 耳栓付き 収納袋付き ブラック");
+		param.put("position","30");
 		System.out.println(autoBuy.selectProduct(param));
+//		Map<String, String> param1 = new HashMap<>();
+//		param1.put("url", "http://haitao.bibiwo.com/j?t=http://www.amazon.co.jp/dp/B01EL660V6?tag=adiemar100052-22");
+//		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
+////		//param.put("sku", "[[\"color\",\"Red\"]]");
+//		param1.put("sku", "[[\"サイズ\",\"1袋\"]]");
+//		param1.put("num", "1");
+//		param1.put("productEntityId", "4780644");
+//		param1.put("num", "1");
+//		//param.put("sign", "0");
+//		System.out.println(autoBuy.selectProduct(param1));
 	}
 }

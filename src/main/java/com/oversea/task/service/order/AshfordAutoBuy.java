@@ -727,6 +727,7 @@ public class AshfordAutoBuy extends AutoBuy {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("atg_store_citizenshipCodeInput_ems_express_0")));
 			WebElement ident = driver.findElement(By.id("atg_store_citizenshipCodeInput_ems_express_0"));
 			ident.sendKeys(userTradeAddress.getIdCard());
+			driver.executeScript("(function(){window.scrollBy(0,200);})();");
 			Utils.sleep(2000);
 			driver.findElement(By.id("additionalInfo_ems_express_0")).click();
 		} catch (Exception e) {
@@ -743,8 +744,8 @@ public class AshfordAutoBuy extends AutoBuy {
 			//WebElement checkout = driver.findElement(By.id("checkout-payment"));
 			//WebElement creditCardTabNav = checkout.findElement(By.cssSelector("li#creditCardTabNav a"));
 			WebElement select = driver.findElement(By.cssSelector("#creditCardTabNav a"));
-			//select.sendKeys(Keys.ENTER);
-			driver.executeScript("arguments[0].click()", select);
+			select.sendKeys(Keys.ENTER);
+			//driver.executeScript("arguments[0].click()", select);
 			TimeUnit.SECONDS.sleep(3);
 			logger.debug("--->切换到信用卡页面");
 		} catch (Exception e) {
@@ -967,20 +968,32 @@ public class AshfordAutoBuy extends AutoBuy {
 	public static void main(String[] args) {
 		AshfordAutoBuy auto = new AshfordAutoBuy();
 		auto.login("twgdhbl@tom.com", "tfb001001");
-		auto.cleanCart();
+		//auto.cleanCart();
 	
 		Map<String, String> param = new LinkedHashMap<>();
 //		param.put("url", "http://zh.ashford.com/us/watches/all+brands/calvin+klein/fly/K9922120.pid?nid=cpg&skid=K9923120");
 //		param.put("sku", "[[\"size\",\"7\"]]");
-		param.put("url", "http://zh.ashford.com/us/watches/fossil/ES3077.pid");
+		param.put("url", "http://zh.ashford.com/us/watches/movado-watches-for-men-and-women/museum/2100004.pid?nid=_cat6045&so=18&nid=_cat6045&so=18");
 		param.put("num", "1");
 		param.put("productEntityId", "4026058");
 		param.put("isPay", "false");
 		param.put("count", "2");
 		param.put("suffixNo", "123");
-		param.put("my_price", "66.15");
-		auto.selectProduct(param);
-		auto.pay(param);
+		param.put("my_price", "188.00");
+		//auto.selectProduct(param);
+		UserTradeAddress userTradeAddress = new UserTradeAddress();
+		userTradeAddress.setName("刘波");
+		userTradeAddress.setAddress("西斗门路9号");
+		userTradeAddress.setState("浙江省");
+		userTradeAddress.setCity("杭州市");
+		userTradeAddress.setDistrict("西湖区");
+		userTradeAddress.setZip("310000");
+		userTradeAddress.setIdCard("330881198506111918");
+		userTradeAddress.setMobile("18668084980");
+		OrderPayAccount orderPayAccount = new OrderPayAccount();
+		orderPayAccount.setAccount("15268125960");
+		orderPayAccount.setPayPassword("199027");
+		auto.pay(param,userTradeAddress,orderPayAccount);
 		
 		/*RobotOrderDetail detail = new RobotOrderDetail();
 		detail.setMallOrderNo("1487498458");

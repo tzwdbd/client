@@ -655,7 +655,7 @@ public class AutoBuySpring extends AutoBuy {
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
-			By byby = By.cssSelector(".text_17p9f19");
+			By byby = By.cssSelector("button[class^='goShoppingButton']");
 			WebElement wi = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
 			wi.click();
 			logger.debug("--->开始跳转到订单页面");
@@ -675,7 +675,7 @@ public class AutoBuySpring extends AutoBuy {
 				}
 			}
 		}catch(Exception e){
-			logger.debug("--->查找商品订单号出现异常");
+			logger.debug("--->查找商品订单号出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 		}
 		return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;

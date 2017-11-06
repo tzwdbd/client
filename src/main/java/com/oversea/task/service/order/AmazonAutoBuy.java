@@ -66,7 +66,7 @@ public class AmazonAutoBuy extends AutoBuy
 			driver.navigate().to("https://www.amazon.com");
 			Utils.sleep(3000);
 
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			WebDriverWait wait = new WebDriverWait(driver, 15);
 			// 等到[登陆]出现
 
 			try
@@ -97,14 +97,32 @@ public class AmazonAutoBuy extends AutoBuy
 			catch (Exception e)
 			{
 				logger.error("--->没有找到输入框", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try
+				{
+					Utils.sleep(1000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+					WebElement username = driver.findElement(By.id("ap_email_login"));
+					logger.debug("--->输入账号");
+					username.sendKeys(userName);
+					Utils.sleep(800);
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->没有找到输入框", e1);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
 			}
 
 			try
 			{
-				WebElement password = driver.findElement(By.id("ap_password"));
+				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
-				password.sendKeys(passWord);
+				for(WebElement password:passwords){
+					if(password.isDisplayed()){
+						password.sendKeys(passWord);
+						break;
+					}
+				}
 				Utils.sleep(1000);
 			}
 			catch (Exception e)
@@ -308,7 +326,7 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			TimeUnit.SECONDS.sleep(4);
 			try{
-				WebElement w = driver.findElement(By.xpath("//span[@class='a-sheet-close']"));
+				WebElement w = driver.findElement(By.cssSelector(".a-sheet-close"));
 				w.click();
 				Utils.sleep(1000);
 				((JavascriptExecutor)driver).executeScript("arguments[0].click();", w);
@@ -774,10 +792,13 @@ public class AmazonAutoBuy extends AutoBuy
 				// 订阅商品
 				try
 				{
-					WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+					WebElement oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));// 换种样式查找
 					if (oneTimeBuyBox != null)
 					{
 						logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
+						oneTimeBuyBox.click();
+						Utils.sleep(2000);
+						oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
 						oneTimeBuyBox.click();
 						Utils.sleep(2000);
 						waitForNumPanel(driver);
@@ -1057,12 +1078,24 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("safss55",e);
 				}
 				
+				try {
+					WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+					gotocart.click();
+				} catch (Exception e) {
+					logger.error("2222",e);
+				}
 				
 				
 				//等待购物车加载完成
 				try{
 					WebDriverWait wait = new WebDriverWait(driver, 45);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+					WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+					logger.error("购物车数量为"+numText.getText().trim());
+					if(!productNum.equals(numText.getText().trim())){
+						logger.error("选择数量失败 pruductNum = " + productNum);
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
 				}catch(Exception e){
 					logger.error("等待购物车加载完成出错,e");
 					return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -1485,6 +1518,9 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
 					oneTimeBuyBox.click();
 					Utils.sleep(2000);
+					oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
+					oneTimeBuyBox.click();
+					Utils.sleep(2000);
 					waitForNumPanel(driver);
 				}
 			}
@@ -1762,12 +1798,24 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("safss55",e);
 			}
 			
+			try {
+				WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+				gotocart.click();
+			} catch (Exception e) {
+				logger.error("2222",e);
+			}
 			
 			
 			//等待购物车加载完成
 			try{
 				WebDriverWait wait = new WebDriverWait(driver, 45);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+				logger.error("购物车数量为"+numText.getText().trim());
+				if(!productNum.equals(numText.getText().trim())){
+					logger.error("选择数量失败 pruductNum = " + productNum);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
@@ -1925,9 +1973,9 @@ public class AmazonAutoBuy extends AutoBuy
 						logger.error("--->没有找到can't be shipped to your selected address");
 					}
 				}
+				logger.error("--->statusMap = "+statusMap.size());
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
-			logger.error("--->statusMap = "+statusMap.size());
-			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 		}catch(Exception e){
 			logger.error("--->没有找到不支持的转运地址");
 		}
@@ -1945,6 +1993,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus selectBrushTargetAddr(String count){
 		try
 		{
+			logger.debug("--->刷单选地址");
 			TimeUnit.SECONDS.sleep(5);
 			//prime member ship include prime video
 			try{
@@ -2029,6 +2078,9 @@ public class AmazonAutoBuy extends AutoBuy
 					e.printStackTrace();
 				}
 
+			}else{
+				logger.error("--->选择地址失败1");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
 		}
 		catch (Exception e)
@@ -2043,6 +2095,7 @@ public class AmazonAutoBuy extends AutoBuy
 	{
 		try
 		{
+			logger.debug("--->选地址");
 			TimeUnit.SECONDS.sleep(5);
 			//prime member ship include prime video
 			try{
@@ -2143,6 +2196,9 @@ public class AmazonAutoBuy extends AutoBuy
 					e.printStackTrace();
 				}
 
+			}else{
+				logger.error("--->选择地址失败1");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
 		}
 		catch (Exception e)
@@ -2579,7 +2635,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String username = param.get("userName");
 		String payType = param.get("payType");
 		String review = param.get("review");
-		
+		logger.error("--->review:"+review);
 		if (Utils.isEmpty(myPrice))
 		{
 			logger.error("--->预算总价没有传值过来,无法比价");
@@ -2847,7 +2903,7 @@ public class AmazonAutoBuy extends AutoBuy
 				BigDecimal x = new BigDecimal(myPrice);
 				BigDecimal y = new BigDecimal(total);
 				BigDecimal v = y.subtract(x);
-				if (v.doubleValue() > 5.00D){
+				if (v.doubleValue() > 1.00D){
 					logger.error("--->总价差距超过约定,不能下单");
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}
@@ -4796,14 +4852,13 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01BFIBRIE?psc=1");
-		param.put("sku", "[[\"Configuration\",\"With Special Offers\"],[\"Color\",\"White\"],[\"ConnectivityTechnology\",\"Wi-Fi  Only\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01L0AWKDI");
+		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Small\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("num", "1");
-		param.put("sign", "1");
+		//param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
 //		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
 //		param.put("position","30");
@@ -5432,10 +5487,13 @@ public class AmazonAutoBuy extends AutoBuy
 			// 订阅商品
 			try
 			{
-				WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+				WebElement oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));// 换种样式查找
 				if (oneTimeBuyBox != null)
 				{
 					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
+					oneTimeBuyBox.click();
+					Utils.sleep(2000);
+					oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));
 					oneTimeBuyBox.click();
 					Utils.sleep(2000);
 					waitForNumPanel(driver);
@@ -5723,11 +5781,23 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("safss",e);
 			}
 			
+			try {
+				WebElement gotocart = driver.findElement(By.id("aislesCartNav"));
+				gotocart.click();
+			} catch (Exception e) {
+				logger.error("2222",e);
+			}
 			
 			
 			//等待购物车加载完成
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+				logger.error("购物车数量为"+numText.getText().trim());
+				if(!productNum.equals(numText.getText().trim())){
+					logger.error("选择数量失败 pruductNum = " + productNum);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
