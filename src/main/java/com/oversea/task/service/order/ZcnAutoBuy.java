@@ -68,20 +68,39 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 			
 			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+				WebDriverWait wait0 = new WebDriverWait(driver, 15);
+				wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
 				WebElement username = driver.findElement(By.id("ap_email"));
 				logger.debug("--->输入账号");
 				username.sendKeys(userName);
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->没有找到输入框", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try
+				{
+					Utils.sleep(1000);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+					WebElement username = driver.findElement(By.id("ap_email_login"));
+					logger.debug("--->输入账号");
+					username.sendKeys(userName);
+					Utils.sleep(800);
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->没有找到输入框", e1);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
 			}
 
 			try {
-				WebElement password = driver.findElement(By.id("ap_password"));
+				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
-				password.sendKeys(passWord);
+				for(WebElement password:passwords){
+					if(password.isDisplayed()){
+						password.sendKeys(passWord);
+						break;
+					}
+				}
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->没有找到密码框", e);
@@ -650,7 +669,7 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 			TimeUnit.SECONDS.sleep(4);
 			try {
-				WebElement w = driver.findElement(By.xpath("//span[@class='a-sheet-close']"));
+				WebElement w = driver.findElement(By.cssSelector(".a-sheet-close"));
 				w.click();
 				Utils.sleep(1000);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", w);

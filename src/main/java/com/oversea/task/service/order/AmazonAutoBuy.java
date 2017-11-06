@@ -66,7 +66,7 @@ public class AmazonAutoBuy extends AutoBuy
 			driver.navigate().to("https://www.amazon.com");
 			Utils.sleep(3000);
 
-			WebDriverWait wait = new WebDriverWait(driver, 45);
+			WebDriverWait wait = new WebDriverWait(driver, 15);
 			// 等到[登陆]出现
 
 			try
@@ -1993,6 +1993,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus selectBrushTargetAddr(String count){
 		try
 		{
+			logger.debug("--->刷单选地址");
 			TimeUnit.SECONDS.sleep(5);
 			//prime member ship include prime video
 			try{
@@ -2077,6 +2078,9 @@ public class AmazonAutoBuy extends AutoBuy
 					e.printStackTrace();
 				}
 
+			}else{
+				logger.error("--->选择地址失败1");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
 		}
 		catch (Exception e)
@@ -2091,6 +2095,7 @@ public class AmazonAutoBuy extends AutoBuy
 	{
 		try
 		{
+			logger.debug("--->选地址");
 			TimeUnit.SECONDS.sleep(5);
 			//prime member ship include prime video
 			try{
@@ -2191,6 +2196,9 @@ public class AmazonAutoBuy extends AutoBuy
 					e.printStackTrace();
 				}
 
+			}else{
+				logger.error("--->选择地址失败1");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
 			}
 		}
 		catch (Exception e)
@@ -2627,7 +2635,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String username = param.get("userName");
 		String payType = param.get("payType");
 		String review = param.get("review");
-		
+		logger.error("--->review:"+review);
 		if (Utils.isEmpty(myPrice))
 		{
 			logger.error("--->预算总价没有传值过来,无法比价");

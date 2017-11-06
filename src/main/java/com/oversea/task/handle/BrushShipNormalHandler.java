@@ -15,6 +15,7 @@ import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.obj.Task;
 import com.oversea.task.obj.TaskResult;
 import com.oversea.task.service.order.AmazonAutoBuy;
+import com.oversea.task.service.order.AmazonJpAutoBuy;
 import com.oversea.task.service.order.ZcnAutoBuy;
 import com.oversea.task.service.order.AutoBuy;
 import com.oversea.task.utils.ClassUtil;
@@ -47,7 +48,11 @@ public class BrushShipNormalHandler implements BrushShipHandler {
 		for (int i = 0; i < RETRY_COUNT; i++){
 			AutoBuy autoBuy = null;
 			if(brushOrderDetail.getExpressStatus()!=null && brushOrderDetail.getExpressStatus()>=5){
-				autoBuy = new AmazonAutoBuy(false);
+				if(brushOrderDetail.getSiteName().equalsIgnoreCase("amazon")){
+					autoBuy = new AmazonAutoBuy(false);
+				}else if(brushOrderDetail.getSiteName().equalsIgnoreCase("amazon.jp")){
+					autoBuy = new AmazonJpAutoBuy(false);
+				}
 			}else{
 				autoBuy = ClassUtil.getAutoBuy(mallName);
 			}
