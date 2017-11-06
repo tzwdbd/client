@@ -984,7 +984,7 @@ public class ZcnAutoBuy extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 
 		if (settlePage) {
-			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
+			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipaddressselect']")).click();
 			Utils.sleep(3000);
 		}
 		
@@ -1007,8 +1007,7 @@ public class ZcnAutoBuy extends AutoBuy {
 		Utils.sleep(5000);
 		
 		if (settlePage) {
-			WebElement shipEle = driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']"));
-			shipEle.findElement(By.xpath("./following-sibling::a")).click();
+			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='spc']")).click();
 			Utils.sleep(3000);
 		}
 		
