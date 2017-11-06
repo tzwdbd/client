@@ -751,9 +751,23 @@ public class ZcnAutoBuy extends AutoBuy {
 		logger.debug("--->去付款");
 		checkout.click();
 		
-		AutoBuyStatus status = chooseAddress(address, payAccount);
+		boolean settlePage = false;
+		Utils.sleep(5000);
+		try {
+			WebElement submitButton = driver.findElement(By.xpath("//span[@class='a-button-text' and contains(text(), '提交订单')]"));
+			if (submitButton != null) {
+				settlePage = true;
+			}
+		} catch (Exception e) {}
+		
+		AutoBuyStatus status = chooseAddress(address, payAccount, settlePage);
 		if(!AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS.equals(status)){
 			return status;
+		}
+		
+		if (settlePage) {
+			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='payselect']")).click();
+			Utils.sleep(3000);
 		}
 		
 		try {
@@ -947,8 +961,14 @@ public class ZcnAutoBuy extends AutoBuy {
 		}
 	}
 	
-	AutoBuyStatus chooseAddress(Address address, OrderPayAccount payAccount) {
+	AutoBuyStatus chooseAddress(Address address, OrderPayAccount payAccount, boolean settlePage) {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+
+		if (settlePage) {
+			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
+			Utils.sleep(3000);
+		}
+		
 		try {
 			By by = By.xpath("//a[@class='a-button-text checkout-continue-link' and contains(text(), '送货到该地址')]");
 			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
@@ -966,6 +986,12 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 		}
 		Utils.sleep(5000);
+		
+		if (settlePage) {
+			WebElement shipEle = driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']"));
+			shipEle.findElement(By.xpath("./following-sibling::a")).click();
+			Utils.sleep(3000);
+		}
 		
 		try {
 			By by = By.xpath("//input[@class='a-button-input' and @value='继续']");
