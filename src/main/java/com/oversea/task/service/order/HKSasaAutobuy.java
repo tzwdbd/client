@@ -47,13 +47,9 @@ public class HKSasaAutobuy extends AutoBuy{
 		driver.get("http://web1.sasa.com//SasaWeb/tch/preference/changePreference.jspa?location=0&currency=1");
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
 		try {
-			By bySignIn = By.xpath("//a[contains(text(),'登入')]");
-			WebElement signIn = driver.findElement(bySignIn);
-			Utils.sleep(1500);
+			driver.get("https://web1.sasa.com/SasaWeb/tch/member/login.jsp");
 			logger.debug("--->跳转到登录页面");
-			signIn.click();
 		} catch (Exception e) {
 			logger.error("--->没有找到登陆按钮", e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
@@ -107,10 +103,8 @@ public class HKSasaAutobuy extends AutoBuy{
 	public AutoBuyStatus cleanCart() {
 		// 跳转到购物车
 		try {
-			WebElement viewCart = driver.findElement(By.id("basketBtnTotalItem"));
+			driver.get("https://web1.sasa.com/SasaWeb/tch/shopping/shopping_order.jsp?s=https://web1.sasa.com/SasaWeb/tch/shopping/shopping_order.jsp");
 			logger.error("--->开始跳转到购物车");
-			TimeUnit.SECONDS.sleep(5);
-			viewCart.click();
 		} catch (Exception e) {
 			logger.error("--->跳转到购物车失败");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
