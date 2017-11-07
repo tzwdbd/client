@@ -2707,11 +2707,11 @@ public class AmazonAutoBuy extends AutoBuy
 		//判断是否直接跳转到结算页面
 		boolean isGotoPay = false;
 		try{
-			WebElement place = driver.findElement(By.cssSelector("input.a-button-input.place-your-order-button"));
-			if(place != null){
-				isGotoPay = true;
-			}
-		}catch(Exception e){}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.a-button-input.place-your-order-button")));
+			isGotoPay = true;
+		}catch(Exception e){
+			logger.error("没有等到结算按钮");
+		}
 		if(isGotoPay){
 			logger.error("直接跳到结算页面");
 		}else{
