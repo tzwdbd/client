@@ -107,9 +107,15 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 		try
 		{
-			WebElement password = driver.findElement(By.id("ap_password"));
+			List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 			logger.debug("--->输入密码");
-			password.sendKeys(passWord);
+			for(WebElement password:passwords){
+				if(password.isDisplayed()){
+					password.sendKeys(passWord);
+					break;
+				}
+			}
+			Utils.sleep(500);
 		}
 		catch (Exception e)
 		{
