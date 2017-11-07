@@ -1005,9 +1005,9 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 		}
 		Utils.sleep(5000);
-		
+
 		if (settlePage) {
-			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='spc']")).click();
+			driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipoptionselect']")).click();
 			Utils.sleep(3000);
 		}
 		
@@ -1031,6 +1031,13 @@ public class ZcnAutoBuy extends AutoBuy {
 			}
 		}
 		Utils.sleep(2000);
+		
+		if (settlePage) {
+			WebElement element = driver.findElement(By.cssSelector("a[data-pipeline-link-to-page='shipaddressselect']"));
+			element.findElement(By.xpath("./following-sibling::a")).click();
+			Utils.sleep(3000);
+		}
+		
 		try {
 			By by = By.cssSelector("#existing-kyc-dropdown + span.kyc-existing-kyc-dropdown");
 			WebElement dropdownButton = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
