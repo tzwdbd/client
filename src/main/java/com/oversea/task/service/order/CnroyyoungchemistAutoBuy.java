@@ -169,6 +169,28 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			logger.debug("--->购物车不为空！");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
+		try {
+			driver.navigate().to("http://cn.royyoungchemist.com.au/customer/address/index");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.delete")));
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("a.delete"));
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					deleteList.get(0).click();
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("a.delete"));
+					}else{
+						break;
+					}
+				}else{
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
 		
 		
 		

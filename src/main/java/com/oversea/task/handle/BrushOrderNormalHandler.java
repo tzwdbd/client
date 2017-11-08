@@ -122,7 +122,7 @@ public class BrushOrderNormalHandler implements BrushOrderHandler {
 					logger.error("hander选择完成");
 					brushOrderDetail.setStatus(status.getValue());
 					if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-						brushOrderDetail.setSinglePrice(autoBuy.getPriceMap().get(String.valueOf(brushOrderDetail.getProductEntityId())));
+						//brushOrderDetail.setSinglePrice(autoBuy.getPriceMap().get(String.valueOf(brushOrderDetail.getProductEntityId())));
 					}else{
 						isSelectSkuSuccess = false;
 					}
