@@ -3541,7 +3541,7 @@ public class AmazonAutoBuy extends AutoBuy
 			
 			logger.error("review打星");
 			WebElement starELe = null;
-			if (getStartCount() == 4) {
+			if (getBooleanByRate(0.2)) {
 				starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"select to rate item four star.\"]"));
 			} else {
 				starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"select to rate item five star.\"]"));
@@ -3624,7 +3624,7 @@ public class AmazonAutoBuy extends AutoBuy
 			
 			logger.error("feedBack打星");
 
-			if (getStartCount() == 4) {
+			if (getBooleanByRate(0.2)) {
 				mainFeedBackContainer.findElement(By.cssSelector("div.a-section.a-spacing-none.starSprite.bigStar.clickable.rating4")).click();
 			} else {
 				mainFeedBackContainer.findElement(By.cssSelector("div.a-section.a-spacing-none.starSprite.bigStar.clickable.rating5")).click();
@@ -5821,16 +5821,17 @@ public class AmazonAutoBuy extends AutoBuy
 			return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 		}
 	}
-	
-	public static int getStartCount() {
-		java.util.Random r = new java.util.Random();
-		return r.nextInt(10) % 2 == 1 ? 5 : 4;
-	}
 
 	@Override
 	public AutoBuyStatus redeemGiftCard(String cardNo, String balance) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public static boolean getBooleanByRate(double rate) {
+		java.util.Random r = new java.util.Random();
+		int i = r.nextInt(999) + 1;
+		return i <= 1000 * rate;
 	}
 
 }

@@ -1038,22 +1038,28 @@ public class ZcnAutoBuy extends AutoBuy {
 			Utils.sleep(3000);
 		}
 		
-		try {
-			By by = By.cssSelector("#existing-kyc-dropdown + span.kyc-existing-kyc-dropdown");
-			WebElement dropdownButton = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-			dropdownButton.click();
-			Utils.sleep(1500);
-			WebElement checkOut = driver.findElementById("existing-kyc-dropdown_0");
-			checkOut.click();
-			Utils.sleep(1500);
-			WebElement continueButton = driver.findElementById("kyc-continue-button-announce");
-			continueButton.click();
-			Utils.sleep(5000);
-			logger.error("--->设置身份证完成");
+		List<WebElement> payment = driver.findElements(By.cssSelector("div.a-box.payment-box.payment-box-aui-template"));
+		if (payment.size() == 0) {
+			try {
+				By by = By.cssSelector("#existing-kyc-dropdown + span.kyc-existing-kyc-dropdown");
+				WebElement dropdownButton = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+				dropdownButton.click();
+				Utils.sleep(1500);
+				WebElement checkOut = driver.findElementById("existing-kyc-dropdown_0");
+				checkOut.click();
+				Utils.sleep(1500);
+				WebElement continueButton = driver.findElementById("kyc-continue-button-announce");
+				continueButton.click();
+				Utils.sleep(5000);
+				logger.error("--->设置身份证完成");
+				return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
+			} catch (Exception e) {
+				logger.error("--->选择地址失败",e);
+				return AutoBuyStatus.AUTO_PAY_SELECT_EXPIRE_DATE_OVERDUE;
+			}
+		} else {
+			logger.error("--->不需要选身份证");
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_SUCCESS;
-		} catch (Exception e) {
-			logger.error("--->选择地址失败",e);
-			return AutoBuyStatus.AUTO_PAY_SELECT_EXPIRE_DATE_OVERDUE;
 		}
 	}
 	
