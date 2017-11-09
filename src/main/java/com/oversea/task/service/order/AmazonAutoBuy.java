@@ -3862,7 +3862,7 @@ public class AmazonAutoBuy extends AutoBuy
 //				logger.error("View tracking details 出错1");
 //			}
 //		}
-		
+		AutoBuyStatus status = AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		//等待物流页面加载完成
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
@@ -3878,7 +3878,7 @@ public class AmazonAutoBuy extends AutoBuy
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 				logger.error("expressCompany = " + expressCompany);
 				logger.error("expressNo = " + expressNo);
-				return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+				status = AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 			} catch (Exception e2) {
 				logger.debug("对比asinCode出现异常,商城还没发货",e2);
 				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
@@ -3888,8 +3888,8 @@ public class AmazonAutoBuy extends AutoBuy
 		
 		//查找物流
 		String expressNo = detail.getExpressNo();
-		AutoBuyStatus status = null;
-		if(detail.getStatus() != 100){
+		
+		if(detail.getStatus() != 100 && !status.equals(AutoBuyStatus.AUTO_SCRIBE_SUCCESS)){
 			try
 			{
 				Utils.sleep(1000);
@@ -4436,7 +4436,7 @@ public class AmazonAutoBuy extends AutoBuy
 			logger.debug("--->没找到订单:"+mallOrderNo);
 			return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_FIND;
 		}
-		
+		AutoBuyStatus status = AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 		//等待物流页面加载完成
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
@@ -4452,24 +4452,17 @@ public class AmazonAutoBuy extends AutoBuy
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 				logger.error("expressCompany = " + expressCompany);
 				logger.error("expressNo = " + expressNo);
-				return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+				status = AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 			} catch (Exception e2) {
 				logger.debug("对比asinCode出现异常,商城还没发货",e2);
 				return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 			}
 		}
 		
-		//等待物流页面加载完成
-		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='ship-track-small-vertical-widget']")));
-		}catch(Exception e){
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-		}
-		
 		//查找物流
 		String expressNo = detail.getExpressNo();
-		AutoBuyStatus status = null;
-		if(detail.getStatus() != 100){
+		
+		if(detail.getStatus() != 100 && !status.equals(AutoBuyStatus.AUTO_SCRIBE_SUCCESS)){
 			try
 			{
 				Utils.sleep(1000);
