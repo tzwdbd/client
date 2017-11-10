@@ -168,6 +168,29 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 //			logger.debug("--->购物车不为空！",e);
 //			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 //		}
+		try {
+			driver.navigate().to("http://cn.pharmacyonline.com.au/customer/address/");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#addressList a.ctrl-delete")));
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList a.ctrl-delete"));
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					deleteList.get(0).click();
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("#addressList a.ctrl-delete"));
+					}else{
+						break;
+					}
+				}else{
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
+		
 		
 		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 	}
@@ -1067,7 +1090,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		PharmacyonlineAutoBuy auto = new PharmacyonlineAutoBuy();
 		AutoBuyStatus status = auto.login("thrmas@163.com", "tfb001001");
 //		System.out.println(status);
-		//auto.cleanCart();
+		auto.cleanCart();
 //	
 //		Map<String, String> param = new HashMap<String, String>();
 //		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=e5d3SjZ7JpLUsz8IO8lPw0WSuw7FeaFDPHiYHxSmoimgsq3RenHAdTN5CstYfU2Q&new=http%3A%2F%2Fcn.pharmacyonline.com.au%2F1106863.html&tag=");
@@ -1104,9 +1127,9 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 //		payaccount.setPayPassword("0010012");
 		//auto.pay(param, address, payaccount);
 //		
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("614792670649618");
-		auto.scribeExpress(detail);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("614792670649618");
+//		auto.scribeExpress(detail);
 		//auto.logout();
 	}
 
