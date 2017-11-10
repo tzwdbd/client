@@ -39,9 +39,9 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-//		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
+		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			status = auto.cleanCart();
+			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
 				param.put("url", "https://www.shopspring.com/products/53905890");
@@ -179,7 +179,7 @@ public class AutoBuySpring extends AutoBuy {
 			//清理
 			logger.error("--->开始清理购物车");
 			//循坏清除
-			List<WebElement> list = driver.findElements(By.cssSelector("button[class^=remove_wqsnge-o_O-button]"));
+			List<WebElement> list = driver.findElements(By.xpath("//span[contains(text(),'Remove')]"));
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
@@ -187,7 +187,7 @@ public class AutoBuySpring extends AutoBuy {
 					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
 					Utils.sleep(2000);
 					if(size>1){
-						list = driver.findElements(By.cssSelector("button[class^=remove_wqsnge-o_O-button]"));
+						list = driver.findElements(By.xpath("//span[contains(text(),'Remove')]"));
 					}else{
 						break;
 					}
@@ -380,28 +380,14 @@ public class AutoBuySpring extends AutoBuy {
 			WebElement productDetails = driver.findElement(By.cssSelector("div[class^='productDetails']"));
 			List<WebElement>text_296oys = productDetails.findElements(By.cssSelector("div[class^='dimensionWrapper']"));
 			for(WebElement text_296oy:text_296oys){
-				List<WebElement> attrs = null;
-				try {
-					attrs = text_296oy.findElements(By.cssSelector("strong"));
-				} catch (Exception e) {
-				}
-				if(attrs!=null && attrs.size()>0){
-					for(WebElement w:attrs){
-						for (int i = 0; i < skuList.size(); i++){
-							if (i % 2 == 1){
-								if(w.getText().trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
-									logger.debug("--->属性"+w.getText().trim()+"对的");
-									attnum++;
-								}
-							}
+				WebElement	w = text_296oy.findElement(By.cssSelector("strong"));
+				for (int i = 0; i < skuList.size(); i++){
+					if (i % 2 == 1){
+						if(w.getText().trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
+							logger.debug("--->属性"+w.getText().trim()+"对的");
+							attnum++;
 						}
 					}
-					
-//					WebElement viewcart = driver.findElement(By.cssSelector("a[href='/cart']"));
-//					viewcart.click();
-//					logger.debug("--->去购物车页面");
-//					Utils.sleep(1500);
-					break;
 				}
 			}
 		}catch(Exception e){
@@ -443,7 +429,7 @@ public class AutoBuySpring extends AutoBuy {
 				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 			}
 		}
-		WebElement productNumElement = driver.findElement(By.cssSelector(".selectedQuantityText_n5t54s"));
+		WebElement productNumElement = driver.findElement(By.cssSelector("span[class^=selectedQuantity]"));
 		logger.debug("--->选择商品数量后为"+productNumElement.getText().trim());
 		if(!productNumElement.getText().trim().equals(productNum)){
 			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
