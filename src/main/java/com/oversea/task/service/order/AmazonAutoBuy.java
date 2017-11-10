@@ -1029,14 +1029,14 @@ public class AmazonAutoBuy extends AutoBuy
 				}
 				Utils.sleep(1000);
 				
-				try
-				{
-					driver.findElement(By.id("a-autoid-0-announce")).click();;
-				}
-				catch (Exception e)
-				{
-					logger.debug("没有 a-autoid-0-announce");
-				}
+//				try
+//				{
+//					driver.findElement(By.id("a-autoid-0-announce")).click();;
+//				}
+//				catch (Exception e)
+//				{
+//					logger.debug("没有 a-autoid-0-announce");
+//				}
 				Utils.sleep(1000);
 				
 				
@@ -1749,14 +1749,14 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			Utils.sleep(1000);
 			
-			try
-			{
-				driver.findElement(By.id("a-autoid-0-announce")).click();;
-			}
-			catch (Exception e)
-			{
-				logger.debug("没有 a-autoid-0-announce");
-			}
+//			try
+//			{
+//				driver.findElement(By.id("a-autoid-0-announce")).click();;
+//			}
+//			catch (Exception e)
+//			{
+//				logger.debug("没有 a-autoid-0-announce");
+//			}
 			Utils.sleep(1000);
 			
 			

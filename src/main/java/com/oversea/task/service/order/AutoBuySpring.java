@@ -52,14 +52,14 @@ public class AutoBuySpring extends AutoBuy {
 				param.put("productEntityId", "1112");
 				param.put("num", "2");
 				auto.selectProduct(param);
-				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
-//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
-				param.put("productEntityId", "1112");
-				param.put("num", "3");
-				auto.selectProduct(param);
+//				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
+////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+//				param.put("sku", "[[\"Color\",\"CHARCOAL\"],[\"Size\",\"XXL\"]]");
+//				param.put("productEntityId", "1112");
+//				param.put("num", "3");
+//				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 //					Map<String, String> param0 = new HashMap<String, String>();
 //					param0.put("my_price", "208.50");
@@ -335,11 +335,12 @@ public class AutoBuySpring extends AutoBuy {
 		//寻找商品单价
 		try{
 			logger.debug("--->开始寻找商品单价");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".priceWrapper_1jq5abk h4")));
-			WebElement priceElement = driver.findElement(By.cssSelector(".priceWrapper_1jq5abk h4"));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class^='priceContainer'] h4")));
+			WebElement priceElement = driver.findElement(By.cssSelector("div[class^='priceContainer'] h4"));
 			String text = priceElement.getText();
 			String productEntityId = param.get("productEntityId");
-			if(!Utils.isEmpty(text) && text.startsWith("$") && StringUtil.isNotEmpty(productEntityId)){
+			if(!Utils.isEmpty(text) && text.contains("$") && StringUtil.isNotEmpty(productEntityId)){
+				text = text.replace("Now", "").trim();
 				logger.debug("--->找到商品单价 = "+text.substring(1));
 //				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, text.substring(1));
 				priceMap.put(productEntityId, text.substring(1));
@@ -375,12 +376,13 @@ public class AutoBuySpring extends AutoBuy {
 		int attnum = 0;
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector("div[data-xfe-testid='active-item-list'] span[class^='text_296oy']")));
-			List<WebElement> text_296oys = driver.findElements(By.cssSelector("div[data-xfe-testid='active-item-list'] span[class^='text_296oy']"));
+					By.cssSelector("div[class^='productDetails']")));
+			WebElement productDetails = driver.findElement(By.cssSelector("div[class^='productDetails']"));
+			List<WebElement>text_296oys = productDetails.findElements(By.cssSelector("div[class^='dimensionWrapper']"));
 			for(WebElement text_296oy:text_296oys){
 				List<WebElement> attrs = null;
 				try {
-					attrs = text_296oy.findElements(By.cssSelector("div strong"));
+					attrs = text_296oy.findElements(By.cssSelector("strong"));
 				} catch (Exception e) {
 				}
 				if(attrs!=null && attrs.size()>0){
