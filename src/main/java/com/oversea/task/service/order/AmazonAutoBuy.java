@@ -196,6 +196,13 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='ap_email']")));
 				email.sendKeys(userName);
 				Utils.sleep(1500);
+				
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				if (continueButton.size() > 0) {
+					continueButton.get(0).click();
+					Utils.sleep(1500);
+				}
+				
 				driver.findElement(By.xpath("//input[@id='ap_password']")).sendKeys(passWord);
 				Utils.sleep(1500);
 				driver.findElement(By.xpath("//input[@id='signInSubmit']")).click();
@@ -3539,6 +3546,12 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
 			}
 			
+			List<WebElement> fitEles = reviewContainer.findElements(By.cssSelector("input.a-button-input[value=TRUE_TO_FIT]"));
+			if (fitEles.size() > 0) {
+				fitEles.get(0).click();
+				Utils.sleep(3000);
+			}
+			
 			logger.error("review打星");
 			WebElement starELe = null;
 			if (getBooleanByRate(0.2)) {
@@ -4838,24 +4851,34 @@ public class AmazonAutoBuy extends AutoBuy
 	}
 	
 	public static void main(String[] args) throws Exception {
-		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
+		AmazonAutoBuy autoBuy = new AmazonAutoBuy(false);
+		autoBuy.login("jjafdae@126.com", "tfb001001");
+		Map<Long, String> asinMap = new HashMap<>();
+		asinMap.put(1111L, "B073J2JZX8");
+		autoBuy.setAsinMap(asinMap);
+		BrushOrderDetail detail = new BrushOrderDetail();
+		detail.setReviewContent("It satisfied me entirely,exceed my expectation.The elastic band strong enough and the velcro can closed tightly,the only suggestion is to wash it before wearing");
+		detail.setReviewTitle("Good waist trimmer");
+		detail.setProductEntityId(1111L);
+		detail.setMallOrderNo("113-1790915-8333006");
+		System.out.println(autoBuy.review(detail));
 		//autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
-		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01L0AWKDI");
-		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Small\"]]");
+//		Map<String, String> param = new HashMap<>();
+//		param.put("url", "http://www.amazon.com/dp/B01L0AWKDI");
+//		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Small\"]]");
 //		//param.put("sku", "[[\"color\",\"Red\"]]");
 //		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
-		param.put("num", "1");
-		param.put("productEntityId", "4780644");
+//		param.put("num", "1");
+//		param.put("productEntityId", "4780644");
 		//param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
 //		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
 //		param.put("position","30");
-		autoBuy.selectProduct(param);
+//		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
 	}
