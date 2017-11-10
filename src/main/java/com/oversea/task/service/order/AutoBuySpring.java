@@ -535,7 +535,7 @@ public class AutoBuySpring extends AutoBuy {
 		//等待支付页面加载完成
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.cssSelector("button[data-xfe-testid='place-order-button']")));
+					By.cssSelector("div[data-xfe-testid='place-order-button']")));
 			Utils.sleep(1500);
 			logger.debug("--->支付页面加载完成");
 		}catch(Exception e){
@@ -560,7 +560,7 @@ public class AutoBuySpring extends AutoBuy {
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
-			WebElement totalPriceElement = driver.findElement(By.cssSelector(".lineItem_y5xc2p-o_O-total_a3qe0k .value_1olrz58"));
+			WebElement totalPriceElement = driver.findElement(By.cssSelector("h5[class *= 'totalPrice']"));
 			String text = totalPriceElement.getText();
 			String priceStr = text.substring(1);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
@@ -592,7 +592,7 @@ public class AutoBuySpring extends AutoBuy {
 		//placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");
 		try{
-			WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
+			WebElement placeOrderElement = driver.findElement(By.cssSelector("div[data-xfe-testid='place-order-button'] span"));
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
 			//placeOrderElement.click();;
 			logger.debug("--->点击付款完成 placeOrder finish");
@@ -605,7 +605,7 @@ public class AutoBuySpring extends AutoBuy {
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
-				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div span"));
+				WebElement placeOrderElement = driver.findElement(By.cssSelector("div[data-xfe-testid='place-order-button'] span"));
 				placeOrderElement.click();
 				logger.debug("--->点击付款完成 placeOrder finish1");
 			} catch (Exception e2) {
@@ -618,7 +618,7 @@ public class AutoBuySpring extends AutoBuy {
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
-				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+				WebElement placeOrderElement = driver.findElement(By.cssSelector("div[data-xfe-testid='place-order-button']"));
 				placeOrderElement.click();;
 				logger.debug("--->点击付款完成 placeOrder finish2");
 			} catch (Exception e2) {
@@ -631,7 +631,7 @@ public class AutoBuySpring extends AutoBuy {
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
-				WebElement placeOrderElement = driver.findElement(By.cssSelector(".buttonSection_wxtaf1 div"));
+				WebElement placeOrderElement = driver.findElement(By.cssSelector("div[data-xfe-testid='place-order-button']"));
 				driver.executeScript("var tar=arguments[0];tar.click();", placeOrderElement);
 				logger.debug("--->点击付款完成 placeOrder finish3");
 			} catch (Exception e2) {
