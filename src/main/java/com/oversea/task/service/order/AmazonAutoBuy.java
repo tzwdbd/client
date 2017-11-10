@@ -3459,8 +3459,8 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
 			}
 			
-			WebElement starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"select to rate item four star.\"]"));
-			if (!starELe.getAttribute("class").contains("yellowStar")) {
+			WebElement starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"select to rate item three star.\"]"));
+			if (starELe.getAttribute("class").contains("yellowStar")) {
 				return AutoBuyStatus.AUTO_CHECK_REVIEW_SUCCESS;
 			} else {
 				starELe.click();

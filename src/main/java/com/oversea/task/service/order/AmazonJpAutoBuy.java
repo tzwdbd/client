@@ -260,12 +260,24 @@ public class AmazonJpAutoBuy extends AutoBuy
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			
 			try{
-				WebElement signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-accountList")));
+				WebElement signin = null;
+				try {
+					signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-accountList")));
+				} catch (Exception e) {
+					signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-yourAccount")));
+				}
 				signin.click();
 				
 				WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='ap_email']")));
 				email.sendKeys(userName);
 				Utils.sleep(1500);
+				
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				if (continueButton.size() > 0) {
+					continueButton.get(0).click();
+					Utils.sleep(1500);
+				}
+				
 				driver.findElement(By.xpath("//input[@id='ap_password']")).sendKeys(passWord);
 				Utils.sleep(1500);
 				driver.findElement(By.xpath("//input[@id='signInSubmit']")).click();
@@ -2729,6 +2741,286 @@ public class AmazonJpAutoBuy extends AutoBuy
 		}
 		return cache;
 	}
+	
+	public AutoBuyStatus checkReview(BrushOrderDetail detail, Map<String, String> param) {
+		String productEntityCode = "";
+		if (getAsinMap() != null) {
+			productEntityCode = getAsinMap().get(detail.getProductEntityId());
+		}
+		logger.error("productEntityCode = " + productEntityCode);
+		if (Utils.isEmpty(productEntityCode)) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+		
+		AutoBuyStatus status = chooseOrder(detail, productEntityCode);
+		if (!AutoBuyStatus.AUTO_CHOOSE_ORDER_SUCCESS.equals(status)) {
+			return status;
+		}
+		
+		List<WebElement> orders = driver.findElementsByCssSelector("div.a-box-group.a-spacing-base.order");
+		if (orders.size() != 1) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+
+		try {
+			WebElement order = orders.get(0);
+			WebElement feedBack = order.findElement(By.id("商品レビューを書く_1"));
+			feedBack.click();
+			Utils.sleep(3000);
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_REVIEW_CAN_NOT_FIND_BUTTON;
+		}
+		
+		try {
+			WebElement reviewContainer = driver.findElement(By.cssSelector("div#reviewSection0"));
+
+			WebElement urlEle = reviewContainer.findElement(By.cssSelector("a.a-size-base.a-link-normal.title[target=_blank]"));
+			logger.error("review product_url:" + urlEle.getAttribute("href"));
+			if (!urlEle.getAttribute("href").contains(productEntityCode)) {
+				return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+			}
+			
+			WebElement starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"星1つを与える商品を選択します。\"]"));
+			if (starELe.getAttribute("class").contains("yellowStar")) {
+				return AutoBuyStatus.AUTO_CHECK_REVIEW_SUCCESS;
+			} else {
+				return AutoBuyStatus.AUTO_CHECK_REVIEW_FAIL;
+			}
+		} catch (Exception e) {
+			logger.error("检查review异常", e);
+			return AutoBuyStatus.AUTO_CHECK_REVIEW_EXCEPTION;
+		}
+	}
+	
+	public AutoBuyStatus review(BrushOrderDetail detail) {
+		String productEntityCode = "";
+		String reviewContent = detail.getReviewContent();
+		String headlineContent = detail.getReviewTitle();
+		if (getAsinMap() != null) {
+			productEntityCode = getAsinMap().get(detail.getProductEntityId());
+		}
+		logger.error("productEntityCode = " + productEntityCode);
+		if (Utils.isEmpty(productEntityCode)) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+		
+		if (StringUtil.isEmpty(reviewContent)) {
+			return AutoBuyStatus.AUTO_REVIEW_FAIL;
+		}
+		
+		AutoBuyStatus status = chooseOrder(detail, productEntityCode);
+		if (!AutoBuyStatus.AUTO_CHOOSE_ORDER_SUCCESS.equals(status)) {
+			return status;
+		}
+		
+		List<WebElement> orders = driver.findElementsByCssSelector("div.a-box-group.a-spacing-base.order");
+		if (orders.size() != 1) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+
+		try {
+			WebElement order = orders.get(0);
+			WebElement feedBack = order.findElement(By.id("商品レビューを書く_1"));
+			feedBack.click();
+			Utils.sleep(3000);
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_REVIEW_CAN_NOT_FIND_BUTTON;
+		}
+		
+		try {
+			List<WebElement> reviewProducts = driver.findElements(By.cssSelector("div#reviewProductsViewport > div"));
+			WebElement reviewContainer = null;
+			for (WebElement reviewProduct : reviewProducts) {
+				List<WebElement> urlEles = reviewProduct.findElements(By.cssSelector("a.a-size-base.a-link-normal.title[target=_blank]"));
+				if (urlEles == null || urlEles.size() == 0) {
+					continue;
+				}
+				logger.error("review product_url:" + urlEles.get(0).getAttribute("href"));
+				if (urlEles.get(0).getAttribute("href").contains(productEntityCode)) {
+					logger.error("review 找到review product");
+					reviewContainer = reviewProduct;
+					break;
+				}
+			}
+			
+			if (reviewContainer == null) {
+				return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+			}
+			
+			logger.error("review打星");
+			WebElement starELe = null;
+			if (getBooleanByRate(0.2)) {
+				starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"星4つを与える商品を選択します。\"]"));
+			} else {
+				starELe = reviewContainer.findElement(By.cssSelector("div[aria-label=\"星5つを与える商品を選択します。\"]"));
+			}
+			if (!starELe.getAttribute("class").contains("yellowStar")) {
+				starELe.click();
+				Utils.sleep(1500);
+			}
+			
+			logger.error("review输入");
+			WebElement reviewTextArea = reviewContainer.findElement(By.cssSelector("div.a-input-text-wrapper.bigTextArea.textField.reviewText.expandingTextSectionHeight[title=\"ここにレビューを記入してください\"] > textarea"));
+			reviewTextArea.sendKeys(reviewContent);
+			Utils.sleep(1500);
+
+			logger.error("review headline输入");
+			WebElement headline = reviewContainer.findElement(By.cssSelector("input.reviewTitle"));
+			headline.sendKeys(headlineContent);
+			Utils.sleep(2500);
+
+			logger.error("review 提交");
+			WebElement submitELe = reviewContainer.findElement(By.cssSelector("span.submitText"));
+			WebElement submitButtom = submitELe.findElement(By.xpath("./parent::span/preceding-sibling::input[1]"));
+			submitButtom.click();
+			Utils.sleep(1500);
+			return AutoBuyStatus.AUTO_REVIEW_SUCCESS;
+		} catch (Exception e) {
+			logger.error("review异常", e);
+			return AutoBuyStatus.AUTO_REVIEW_FAIL;
+		}
+	}
+	
+	public AutoBuyStatus chooseOrder(BrushOrderDetail detail, String productEntityCode) {
+		try {
+			String mallOrderNo = detail.getMallOrderNo();
+			if (Utils.isEmpty(mallOrderNo)) {
+				return AutoBuyStatus.AUTO_CHOOSE_ORDER_MALL_ORDER_EMPTY;
+			}
+
+			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			WebElement signin = null;
+			try {
+				signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-accountList")));
+			} catch (Exception e) {
+				signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-yourAccount")));
+			}
+			signin.click();
+			
+			logger.debug("查找订单，点击我的订单");
+			WebElement ordersEle = driver.findElement(By.cssSelector("div[data-card-identifier=YourOrders]"));
+			ordersEle.click();
+			Utils.sleep(1500);
+
+			logger.debug("查找订单，输入商城订单号：" + mallOrderNo);
+			WebElement searchInput = driver.findElement(By.id("searchOrdersInput"));
+			searchInput.sendKeys(mallOrderNo);
+			Utils.sleep(1500);
+			
+			logger.debug("查找订单，点击查找按钮");
+			WebElement searchButton = driver.findElement(By.xpath("//span[@id='a-autoid-0-announce' and contains(text(), '注文を検索')]"));
+			searchButton.click();
+			Utils.sleep(5000);
+			logger.debug("查找订单完成");
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_SUCCESS;
+		} catch (Exception e) {
+			logger.error("feedBack or review查找订单失败", e);
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_FAIL;
+		}
+	}
+	
+	public AutoBuyStatus feedBack(BrushOrderDetail detail) {
+		String productEntityCode = "";
+		String feedBackContent = detail.getFeedbackContent();
+		if (getAsinMap() != null) {
+			productEntityCode = getAsinMap().get(detail.getProductEntityId());
+		}
+		logger.error("productEntityCode = " + productEntityCode);
+		if (Utils.isEmpty(productEntityCode)) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+		
+		if (StringUtil.isEmpty(feedBackContent)) {
+			return AutoBuyStatus.AUTO_FEED_BACK_FAIL;
+		}
+		
+		AutoBuyStatus status = chooseOrder(detail, productEntityCode);
+		if (!AutoBuyStatus.AUTO_CHOOSE_ORDER_SUCCESS.equals(status)) {
+			return status;
+		}
+		
+		List<WebElement> orders = driver.findElementsByCssSelector("div.a-box-group.a-spacing-base.order");
+		if (orders.size() != 1) {
+			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+		}
+
+		try {
+			WebElement order = orders.get(0);
+			WebElement feedBack = order.findElement(By.id("出品者を評価_1"));
+			feedBack.click();
+			Utils.sleep(3000);
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_FEED_BACK_CAN_NOT_FIND_BUTTON;
+		}
+		
+		try {
+			WebElement mainFeedBackContainer = null;
+			List<WebElement> fbContainers = driver.findElements(By.cssSelector("div.fb_container"));
+			for (WebElement fbContainer : fbContainers) {
+				WebElement urlEle = fbContainer.findElement(By.cssSelector("span > h4 > a[target=_blank]"));
+				logger.error("feedBack product_url:" + urlEle.getAttribute("href"));
+				if (urlEle.getAttribute("href").contains(productEntityCode)) {
+					mainFeedBackContainer = fbContainer;
+					
+				}
+			}
+			if (mainFeedBackContainer == null) {
+				return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
+			}
+			
+			logger.error("feedBack打星");
+
+			if (getBooleanByRate(0.2)) {
+				mainFeedBackContainer.findElement(By.cssSelector("div.a-section.a-spacing-none.starSprite.bigStar.clickable.rating4")).click();
+			} else {
+				mainFeedBackContainer.findElement(By.cssSelector("div.a-section.a-spacing-none.starSprite.bigStar.clickable.rating5")).click();
+			}
+
+			logger.error("feedBack fulfillmentAnswer");
+			List<WebElement> fulfillmentAnswers = mainFeedBackContainer.findElements(By.cssSelector("div.a-radio[data-a-input-name=fulfillmentAnswer] > label > span"));
+			for (WebElement fulfillmentAnswer : fulfillmentAnswers) {
+				if (fulfillmentAnswer.getText().contains("はい")) {
+					fulfillmentAnswer.click();
+					break;
+				}
+			}
+			Utils.sleep(1500);
+
+			logger.error("feedBack itemAsDescribedAnswer");
+			List<WebElement> itemAsDescribedAnswers = mainFeedBackContainer.findElements(By.cssSelector("div.a-radio[data-a-input-name=itemAsDescribedAnswer] > label > span"));
+			for (WebElement itemAsDescribedAnswer : itemAsDescribedAnswers) {
+				if (itemAsDescribedAnswer.getText().contains("はい")) {
+					itemAsDescribedAnswer.click();
+					break;
+				}
+			}
+			Utils.sleep(1500);
+
+			logger.error("feedBack customerServiceAnswer");
+			List<WebElement> customerServiceAnswers = mainFeedBackContainer.findElements(By.cssSelector("div.a-radio[data-a-input-name=customerServiceAnswer] > label > span"));
+			for (WebElement customerServiceAnswer : customerServiceAnswers) {
+				if (customerServiceAnswer.getText().contains("連絡していません")) {
+					customerServiceAnswer.click();
+					break;
+				}
+			}
+			Utils.sleep(1500);
+			
+			logger.error("feedBack填写Comment:" + feedBackContent);
+			WebElement feedbackText = mainFeedBackContainer.findElement(By.id("feedbackText"));
+			feedbackText.sendKeys(feedBackContent);
+			Utils.sleep(1500);
+			
+			WebElement submit = driver.findElement(By.xpath("//span[@id='a-autoid-0-announce' and contains(text(), '評価を送信する')]"));
+			submit.click();
+			Utils.sleep(5000);
+			
+			return AutoBuyStatus.AUTO_FEED_BACK_SUCCESS;
+		} catch (Exception e) {
+			logger.error("feedBack异常", e);
+			return AutoBuyStatus.AUTO_FEED_BACK_FAIL;
+		}
+	}
 
 	@Override
 	public AutoBuyStatus scribeExpress(RobotOrderDetail detail)
@@ -3444,41 +3736,6 @@ public class AmazonJpAutoBuy extends AutoBuy
 			logger.error("异常:" + e.getMessage());
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
-	}
-	
-	public AutoBuyStatus feedBack(BrushOrderDetail detail) {
-		String productEntityCode = "";
-		String feedBackContent = detail.getFeedbackContent();
-		if (getAsinMap() != null) {
-			productEntityCode = getAsinMap().get(detail.getProductEntityId());
-		}
-		logger.error("productEntityCode = " + productEntityCode);
-		if (Utils.isEmpty(productEntityCode)) {
-			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
-		}
-		
-		if (StringUtil.isEmpty(feedBackContent)) {
-			return AutoBuyStatus.AUTO_FEED_BACK_FAIL;
-		}
-		return null;
-	}
-	
-	public AutoBuyStatus review(BrushOrderDetail detail) {
-		String productEntityCode = "";
-		String reviewContent = detail.getReviewContent();
-		String headlineContent = detail.getReviewTitle();
-		if (getAsinMap() != null) {
-			productEntityCode = getAsinMap().get(detail.getProductEntityId());
-		}
-		logger.error("productEntityCode = " + productEntityCode);
-		if (Utils.isEmpty(productEntityCode)) {
-			return AutoBuyStatus.AUTO_CHOOSE_ORDER_ORDER_NOT_FIND;
-		}
-		
-		if (StringUtil.isEmpty(reviewContent)) {
-			return AutoBuyStatus.AUTO_REVIEW_FAIL;
-		}
-		return null;
 	}
 	
 	public AutoBuyStatus scribeExpress(ExternalOrderDetail detail)
@@ -4216,7 +4473,13 @@ public class AmazonJpAutoBuy extends AutoBuy
 		        e.printStackTrace();  
 		    }  
 		}
-	}   
+	}
+	
+	public static boolean getBooleanByRate(double rate) {
+		java.util.Random r = new java.util.Random();
+		int i = r.nextInt(999) + 1;
+		return i <= 1000 * rate;
+	}
 
 	public static void main(String[] args) throws ParseException
 	{
@@ -4245,7 +4508,20 @@ public class AmazonJpAutoBuy extends AutoBuy
 //			}
 //		}
 		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy(false);
-		autoBuy.login("letvtct@163.com", "tfb001001");
+		autoBuy.login("worktfb@163.com", "haihu2015");
+		Map<Long, String> asinMap = new HashMap<>();
+		asinMap.put(1111L, "B00OAY62HM");
+		autoBuy.setAsinMap(asinMap);
+		BrushOrderDetail detail = new BrushOrderDetail();
+		detail.setReviewContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
+		detail.setFeedbackContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
+		detail.setReviewTitle("効果が良い");
+		detail.setProductEntityId(1111L);
+		detail.setMallOrderNo("250-4011291-5617404");
+		//System.out.println(autoBuy.review(detail));
+		System.out.println(autoBuy.checkReview(detail, null));
+		
+		
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
