@@ -190,7 +190,12 @@ public class AmazonAutoBuy extends AutoBuy
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 			
 			try{
-				WebElement signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a#nav-link-accountList")));
+				WebElement signin = null;
+				try {
+					signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-accountList")));
+				} catch (Exception e) {
+					signin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#nav-link-yourAccount")));
+				}
 				signin.click();
 				
 				WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='ap_email']")));
