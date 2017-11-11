@@ -472,7 +472,7 @@ public class ThehutAutoBuy extends AutoBuy {
 			select.selectByVisibleText("China");
 			Utils.sleep(1500);
 			
-			WebElement zip = driver.findElement(By.id("delivery-post-zip-code"));// 邮政编码
+			WebElement zip = driver.findElement(By.id("delivery-post-code"));// 邮政编码
 			zip.sendKeys(address.getZip());
 			Utils.sleep(1500);
 			
@@ -488,7 +488,7 @@ public class ThehutAutoBuy extends AutoBuy {
 			city.sendKeys(address.getCity());
 			Utils.sleep(1500);
 			
-			WebElement county = driver.findElement(By.id("delivery-state-province"));// 省
+			WebElement county = driver.findElement(By.id("delivery-county"));// 省
 			county.sendKeys(address.getState());
 			Utils.sleep(1500);
 			

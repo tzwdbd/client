@@ -38,10 +38,10 @@
 
     </fileSets>
 
-    <dependencySets>
+    <!-- <dependencySets>
         <dependencySet>
             <outputDirectory>/lib</outputDirectory>
         </dependencySet>
-    </dependencySets>
+    </dependencySets> -->
 
 </assembly>
