@@ -3990,7 +3990,7 @@ public class AmazonAutoBuy extends AutoBuy
 											expressNode.setExpressNo(expressNo);
 											expressNode.setName(nodeStr);
 											expressNode.setOccurTime(nodeDate);
-											if(nodeStr.contains("signed by") || nodeStr.contains("was delivered") || nodeStr.contains("Out for delivery")){
+											if(nodeStr.contains("signed by") || nodeStr.contains("was delivered") || nodeStr.contains("Out for delivery") || nodeStr.contains("handed off directly")){
 												expressNode.setStatus(14);//已签收
 											}else{
 												expressNode.setStatus(3);
@@ -4563,7 +4563,7 @@ public class AmazonAutoBuy extends AutoBuy
 											expressNode.setExpressNo(expressNo);
 											expressNode.setName(nodeStr);
 											expressNode.setOccurTime(nodeDate);
-											if(nodeStr.contains("signed by") || nodeStr.contains("was delivered") || nodeStr.contains("Out for delivery")){
+											if(nodeStr.contains("signed by") || nodeStr.contains("was delivered") || nodeStr.contains("Out for delivery") || nodeStr.contains("handed off directly")){
 												expressNode.setStatus(14);//已签收
 											}else{
 												expressNode.setStatus(3);
