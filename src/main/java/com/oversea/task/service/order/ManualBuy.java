@@ -358,10 +358,12 @@ public class ManualBuy{
 		}
 		//验证数量
 		try {
-			WebElement numText = driver.findElement(By.cssSelector(autoOrderSelectProduct.getNumedCode()));
-			logger.error("--->数量为:"+numText.getAttribute("value"));
-			if(!numText.getAttribute("value").equals(productNum)){
-				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			if(!StringUtil.isBlank(autoOrderSelectProduct.getNumedCode())){
+				WebElement numText = driver.findElement(By.cssSelector(autoOrderSelectProduct.getNumedCode()));
+				logger.error("--->数量为:"+numText.getAttribute("value"));
+				if(!numText.getAttribute("value").equals(productNum)){
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
 			}
 		} catch (Exception e) {
 			logger.debug("--->选择商品数量碰到异常",e);
