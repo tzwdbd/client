@@ -4015,6 +4015,29 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("addParam expressNodeList");
 					getTask().addParam("expressNodeList", nodeList);
 				}
+			}else{
+				try {
+					logger.error("查找国外的新的物流节点");
+					WebElement seeDetailsLink = driver.findElement(By.cssSelector(".milestone-primaryMessage"));
+					String nodeStr = seeDetailsLink.getText();
+					List<ExpressNode> nodeList = new ArrayList<ExpressNode>();	
+					nodeStr = nodeStr.trim();
+					ExpressNode expressNode = new ExpressNode();
+					expressNode.setOrderNo(detail.getOrderNo());
+					expressNode.setExpressNo(expressNo);
+					expressNode.setName(nodeStr);
+					if(nodeStr.contains("Delivered")){
+						expressNode.setStatus(14);//已签收
+					}
+					nodeList.add(expressNode);
+					if(nodeList.size() > 0 && getTask() != null){
+						logger.error("addParam expressNodeList");
+						getTask().addParam("expressNodeList", nodeList);
+					}
+				} catch (Exception e) {
+					logger.error("查找国外的新的物流节点出错",e);
+				}
+				
 			}
 		}catch(Exception e){
 			logger.error("查找国外的物流节点出错",e);
@@ -4588,6 +4611,29 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("addParam expressNodeList");
 					getTask().addParam("expressNodeList", nodeList);
 				}
+			}else{
+				try {
+					logger.error("查找国外的新的物流节点");
+					WebElement seeDetailsLink = driver.findElement(By.cssSelector(".milestone-primaryMessage"));
+					String nodeStr = seeDetailsLink.getText();
+					List<ExpressNode> nodeList = new ArrayList<ExpressNode>();	
+					nodeStr = nodeStr.trim();
+					ExpressNode expressNode = new ExpressNode();
+					expressNode.setOrderNo(detail.getOrderNo());
+					expressNode.setExpressNo(expressNo);
+					expressNode.setName(nodeStr);
+					if(nodeStr.contains("Delivered")){
+						expressNode.setStatus(14);//已签收
+					}
+					nodeList.add(expressNode);
+					if(nodeList.size() > 0 && getTask() != null){
+						logger.error("addParam expressNodeList");
+						getTask().addParam("expressNodeList", nodeList);
+					}
+				} catch (Exception e) {
+					logger.error("查找国外的新的物流节点出错",e);
+				}
+				
 			}
 		}catch(Exception e){
 			logger.error("查找国外的物流节点出错",e);
