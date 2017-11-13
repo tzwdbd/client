@@ -2528,7 +2528,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 					BigDecimal y = new BigDecimal(total.trim());
 					BigDecimal v = y.subtract(x);
 					
-					if (v.doubleValue() > 500.00D)
+					if (v.doubleValue() > 50.00D)
 					{
 						logger.error("--->总价差距超过约定,不能下单");
 						return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
