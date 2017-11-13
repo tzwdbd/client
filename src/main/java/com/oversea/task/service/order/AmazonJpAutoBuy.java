@@ -1796,13 +1796,13 @@ public class AmazonJpAutoBuy extends AutoBuy
 			int i = size%4;
 			String name = userName.split("@")[0];
 			if(i==0){
-				name = name+"A "+userTradeAddress.getName();
+				name = name+"A  "+userTradeAddress.getName();
 			}else if(i==1){
-				name = name+"B "+userTradeAddress.getName();
+				name = name+"B  "+userTradeAddress.getName();
 			}else if(i==2){
-				name = name+"C "+userTradeAddress.getName();
+				name = name+"C  "+userTradeAddress.getName();
 			}else{
-				name = name+"D "+userTradeAddress.getName();
+				name = name+"D  "+userTradeAddress.getName();
 			}
 		
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
