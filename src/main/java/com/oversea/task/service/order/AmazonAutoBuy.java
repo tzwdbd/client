@@ -3610,6 +3610,7 @@ public class AmazonAutoBuy extends AutoBuy
 		if (!AutoBuyStatus.AUTO_CHOOSE_ORDER_SUCCESS.equals(status)) {
 			return status;
 		}
+		Utils.sleep(3000);
 		
 		List<WebElement> orders = driver.findElementsByCssSelector("div.a-box-group.a-spacing-base.order");
 		if (orders.size() != 1) {
@@ -3618,8 +3619,12 @@ public class AmazonAutoBuy extends AutoBuy
 
 		try {
 			WebElement order = orders.get(0);
-			WebElement feedBack = order.findElement(By.id("Leave-seller-feedback_1"));
-			feedBack.click();
+			List<WebElement> feedBacks = order.findElements(By.id("Leave-seller-feedback_1"));
+			if (feedBacks.size() == 0) {
+				return AutoBuyStatus.AUTO_FEED_BACK_SUCCESS;
+			} else {
+				feedBacks.get(0).click();
+			}
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			return AutoBuyStatus.AUTO_FEED_BACK_CAN_NOT_FIND_BUTTON;
@@ -3683,8 +3688,13 @@ public class AmazonAutoBuy extends AutoBuy
 			feedbackText.sendKeys(feedBackContent);
 			Utils.sleep(1500);
 			
-			WebElement submit = driver.findElement(By.xpath("//span[@id='a-autoid-0-announce' and contains(text(), 'Submit Feedback')]"));
-			submit.click();
+			WebElement submit = driver.findElementById("a-autoid-0-announce");
+			if (!submit.getText().contains("Submit Feedback")) {
+				logger.error("a-autoid-0-announce 不是feedback");
+				driver.findElement(By.xpath("//span[@id='a-autoid-1-announce' and contains(text(), 'Submit Feedback')]")).click();
+			} else {
+				submit.click();
+			}
 			Utils.sleep(5000);
 			
 			return AutoBuyStatus.AUTO_FEED_BACK_SUCCESS;
@@ -4903,16 +4913,15 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(false);
-		autoBuy.login("jjafdae@126.com", "tfb001001");
+		autoBuy.login("xyz1hh@outlook.com", "tfb001001");
 		Map<Long, String> asinMap = new HashMap<>();
-		asinMap.put(1111L, "B073J2JZX8");
+		asinMap.put(1111L, "B074W66D5J");
 		autoBuy.setAsinMap(asinMap);
 		BrushOrderDetail detail = new BrushOrderDetail();
-		detail.setReviewContent("It satisfied me entirely,exceed my expectation.The elastic band strong enough and the velcro can closed tightly,the only suggestion is to wash it before wearing");
-		detail.setReviewTitle("Good waist trimmer");
+		detail.setFeedbackContent("Just what I needed. ");
 		detail.setProductEntityId(1111L);
-		detail.setMallOrderNo("113-1790915-8333006");
-		System.out.println(autoBuy.review(detail));
+		detail.setMallOrderNo("113-7878063-4592256");
+		System.out.println(autoBuy.feedBack(detail));
 		//autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
