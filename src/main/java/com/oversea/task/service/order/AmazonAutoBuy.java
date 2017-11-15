@@ -581,11 +581,11 @@ public class AmazonAutoBuy extends AutoBuy
 												break;
 											}
 											v = v.replaceAll(" ", "");
-											if (v.contains(keyStr))
-											{
-												hasOneSize = true;
-												break;
-											}
+//											if (v.contains(keyStr))
+//											{
+//												hasOneSize = true;
+//												break;
+//											}
 											String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
 											String[] vv = v.split("(?<!^)(?=[A-Z])");
 											if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
@@ -1278,11 +1278,11 @@ public class AmazonAutoBuy extends AutoBuy
 											break;
 										}
 										v = v.replaceAll(" ", "");
-										if (v.contains(keyStr))
-										{
-											hasOneSize = true;
-											break;
-										}
+//										if (v.contains(keyStr))
+//										{
+//											hasOneSize = true;
+//											break;
+//										}
 										String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
 										String[] vv = v.split("(?<!^)(?=[A-Z])");
 										if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
@@ -4912,33 +4912,33 @@ public class AmazonAutoBuy extends AutoBuy
 	}
 	
 	public static void main(String[] args) throws Exception {
-		AmazonAutoBuy autoBuy = new AmazonAutoBuy(false);
-		autoBuy.login("xyz1hh@outlook.com", "tfb001001");
-		Map<Long, String> asinMap = new HashMap<>();
-		asinMap.put(1111L, "B074W66D5J");
-		autoBuy.setAsinMap(asinMap);
-		BrushOrderDetail detail = new BrushOrderDetail();
-		detail.setFeedbackContent("Just what I needed. ");
-		detail.setProductEntityId(1111L);
-		detail.setMallOrderNo("113-7878063-4592256");
-		System.out.println(autoBuy.feedBack(detail));
+		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
+//		autoBuy.login("xyz1hh@outlook.com", "tfb001001");
+//		Map<Long, String> asinMap = new HashMap<>();
+//		asinMap.put(1111L, "B074W66D5J");
+//		autoBuy.setAsinMap(asinMap);
+//		BrushOrderDetail detail = new BrushOrderDetail();
+//		detail.setFeedbackContent("Just what I needed. ");
+//		detail.setProductEntityId(1111L);
+//		detail.setMallOrderNo("113-7878063-4592256");
+//		System.out.println(autoBuy.feedBack(detail));
 		//autoBuy.login("tukotu@163.com", "tfb001001");
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
-//		Map<String, String> param = new HashMap<>();
-//		param.put("url", "http://www.amazon.com/dp/B01L0AWKDI");
-//		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Small\"]]");
-//		//param.put("sku", "[[\"color\",\"Red\"]]");
-//		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
-//		param.put("num", "1");
-//		param.put("productEntityId", "4780644");
-		//param.put("sign", "1");
+		Map<String, String> param = new HashMap<>();
+		param.put("url", "https://www.amazon.com/dp/B00OLSBDRG");
+		param.put("sku", "[[\"Color\",\"White/White/Green\"],[\"Special Size\",\"Big Kid (8-12 Years)\"],[\"Size\",\"4 M US Big Kid\"]]");
+		//param.put("sku", "[[\"color\",\"Red\"]]");
+		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
+		param.put("num", "1");
+		param.put("productEntityId", "4780644");
+//		param.put("sign", "1");
 //		param.put("productName","silver stud earrings");
 //		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
 //		param.put("position","30");
-//		autoBuy.selectProduct(param);
+		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
 	}
@@ -5340,11 +5340,11 @@ public class AmazonAutoBuy extends AutoBuy
 											break;
 										}
 										v = v.replaceAll(" ", "");
-										if (v.contains(keyStr))
-										{
-											hasOneSize = true;
-											break;
-										}
+//										if (v.contains(keyStr))
+//										{
+//											hasOneSize = true;
+//											break;
+//										}
 										String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
 										String[] vv = v.split("(?<!^)(?=[A-Z])");
 										if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
