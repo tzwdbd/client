@@ -786,12 +786,16 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 //					物流单号:SRYA05838
 					try{
 						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".track_number")));
-						WebElement shipment = driver.findElement(By.cssSelector(".track_number"));
+						List<WebElement> shipments = driver.findElements(By.cssSelector(".track_number"));
+						WebElement shipment = shipments.get(shipments.size()-1);
 						logger.error("--->找到物流单号 = "+shipment.getText());
 						String expressNo = shipment.getText();
 										
 						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "postnl");
+						if(expressNo.startsWith("E")){
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
+						}
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}catch(Exception e){
 						logger.error("--->商城订单:"+mallOrderNo+"还没有发货",e);

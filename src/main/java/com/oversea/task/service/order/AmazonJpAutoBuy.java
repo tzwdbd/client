@@ -2287,7 +2287,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 					
 					
 					//再次寻找
-					continueBtn = driver.findElement((By.xpath("//input[@id='continueButton']")));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continueButton")));
+					continueBtn = driver.findElement(By.id("continueButton"));
 					continueBtn.click();
 				}
 			}else{
@@ -4483,6 +4484,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 	public static void main(String[] args) throws ParseException
 	{
+		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
 		/*AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
 		AutoBuyStatus status = autoBuy.login("hotsuer@outlook.com", "haihu2015");
 		status = Utils.switchStatus(status);
@@ -4507,37 +4509,37 @@ public class AmazonJpAutoBuy extends AutoBuy
 //				System.out.println("haha");
 //			}
 //		}
-		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy(false);
-		autoBuy.login("worktfb@163.com", "haihu2015");
-		Map<Long, String> asinMap = new HashMap<>();
-		asinMap.put(1111L, "B00OAY62HM");
-		autoBuy.setAsinMap(asinMap);
-		BrushOrderDetail detail = new BrushOrderDetail();
-		detail.setReviewContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
-		detail.setFeedbackContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
-		detail.setReviewTitle("効果が良い");
-		detail.setProductEntityId(1111L);
-		detail.setMallOrderNo("250-4011291-5617404");
-		//System.out.println(autoBuy.review(detail));
-		System.out.println(autoBuy.checkReview(detail, null));
+//		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy(false);
+//		autoBuy.login("worktfb@163.com", "haihu2015");
+//		Map<Long, String> asinMap = new HashMap<>();
+//		asinMap.put(1111L, "B00OAY62HM");
+//		autoBuy.setAsinMap(asinMap);
+//		BrushOrderDetail detail = new BrushOrderDetail();
+//		detail.setReviewContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
+//		detail.setFeedbackContent("今まで旅行に行く時、自撮り棒を連れてちょっと面倒だと思いますがこれを購入しました。山頂で友達との集合写真撮影する際に便利です。");
+//		detail.setReviewTitle("効果が良い");
+//		detail.setProductEntityId(1111L);
+//		detail.setMallOrderNo("250-4011291-5617404");
+//		//System.out.println(autoBuy.review(detail));
+//		System.out.println(autoBuy.checkReview(detail, null));
 		
 		
 //		RobotOrderDetail detail = new RobotOrderDetail();
 //		detail.setMallOrderNo("114-9894719-8964233");
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
-//		Map<String, String> param = new HashMap<>();
-//		param.put("url", "http://www.amazon.co.jp/dp/B01CDZNAEC");
-//		param.put("sku", "[[\"スタイル名\",\"哺乳びん本体\"],[\"サイズ\",\"160ml 耐熱ガラス製\"],[\"色\",\"ライトグリーン 耐熱ガラス製\"]]");
-//		//param.put("sku", "[[\"種類\",\"単品\"]]");
-//		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
-//		param.put("num", "1");
-//		param.put("productEntityId", "4780644");
+		Map<String, String> param = new HashMap<>();
+		param.put("url", "http://www.amazon.com/dp/B00U7F6U3E?psc=1");
+		param.put("sku", "[[\"Size\",\"Large\"],[\"Color\",\"Platinum Heather\"]]");
+		//param.put("sku", "[[\"種類\",\"単品\"]]");
+		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
+		param.put("num", "1");
+		param.put("productEntityId", "4780644");
 //		param.put("sign", "0");
 //		param.put("productName","アイマスク 睡眠マスク");
 //		param.put("title","Azomovic アイマスク 睡眠マスク 目隠し 天然シルク 遮光性・通気性抜群 圧迫感なし 睡眠、旅行、昼寝に最適 フリーサイズ 超ソフト 軽量 耳栓付き 収納袋付き ブラック");
 //		param.put("position","30");
-//		System.out.println(autoBuy.selectProduct(param));
+		System.out.println(autoBuy.selectProduct(param));
 //		Map<String, String> param1 = new HashMap<>();
 //		param1.put("url", "http://haitao.bibiwo.com/j?t=http://www.amazon.co.jp/dp/B01EL660V6?tag=adiemar100052-22");
 //		//param.put("sku", "[[\"color\",\"Red\"],[\"Special Size\",\"Little Boys\"],[\"size\",\"4\"]]");
