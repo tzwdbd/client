@@ -113,7 +113,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		try
 		{
 			WebElement btn = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_enterButton"));
-			btn.sendKeys(Keys.ENTER);
+			btn.click();;
 			logger.debug("--->开始登陆");
 		}
 		catch (Exception e)
@@ -902,6 +902,15 @@ public class NordstromAutoBuy extends AutoBuy {
 			TimeUnit.SECONDS.sleep(5);
 		} catch (Exception e) {
 			logger.debug("--->付款时帐号登录失败");
+			try {
+				WebElement btn = driver.findElement(By.xpath("//input[@class='continue button primary' and @value='Sign In and Check Out']"));
+				btn.click();
+				logger.debug("--->开始登陆1");
+				TimeUnit.SECONDS.sleep(5);
+			} catch (Exception e2) {
+				logger.debug("--->付款时帐号登录失败1");
+			}
+			
 			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
