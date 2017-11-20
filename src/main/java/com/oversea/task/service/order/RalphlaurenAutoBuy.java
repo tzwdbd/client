@@ -59,32 +59,48 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		
 		logger.debug("开始登陆");
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li#accountsel a")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dwfrm_login")));
+			logger.debug("开始登陆2");
+			List<WebElement> accounts = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Email Address']"));
+
+			for(WebElement account:accounts){
+				if(account.isDisplayed()){
+					account.sendKeys(userName);
+				}
+			}
 			TimeUnit.SECONDS.sleep(1);
-			driver.findElementByCssSelector("li#accountsel a").click();
-			WebElement account =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emailId")));
+			List<WebElement> passwords = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Password']"));
+			for(WebElement password:passwords){
+				if(password.isDisplayed()){
+					password.sendKeys(passWord);
+				}
+			}
 			TimeUnit.SECONDS.sleep(1);
-			account.sendKeys(userName);
-			TimeUnit.SECONDS.sleep(1);
-			driver.findElement(By.id("passwd")).sendKeys(passWord);
-			TimeUnit.SECONDS.sleep(1);
-			driver.findElement(By.xpath("//form[@name='returningCustomer']")).submit();
+			driver.findElement(By.cssSelector(".valid")).submit();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Shopping Bag']")));
 			logger.debug("登录成功");
 			return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 		} catch (Exception e) {
 			logger.debug("登录失败");
+			driver.executeScript("(function(){window.scrollBy(0,350);})();");
 			try {
 				TimeUnit.SECONDS.sleep(1);
-				driver.findElementByCssSelector("li#accountsel a").click();
-				WebElement account =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emailId")));
+				List<WebElement> accounts = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Email Address']"));
+				for(WebElement account:accounts){
+					if(account.isDisplayed()){
+						account.sendKeys(userName);
+					}
+				}
 				TimeUnit.SECONDS.sleep(1);
-				account.sendKeys(userName);
+				List<WebElement> passwords = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Password']"));
+				for(WebElement password:passwords){
+					if(password.isDisplayed()){
+						password.sendKeys(passWord);
+					}
+				}
 				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.id("passwd")).sendKeys(passWord);
-				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.xpath("//form[@name='returningCustomer']")).submit();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Shopping Bag']")));
+				driver.findElement(By.cssSelector("button.valid")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".myaccount")));
 				logger.debug("登录成功");
 				return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 			} catch (Exception e1) {
@@ -253,8 +269,21 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		}
 		logger.debug(mallOrderNo);
 		try {
-			driver.navigate().to("https://www.ralphlauren.com/checkout/index.jsp?process=poloOrderTrackingDetail&orderId="+mallOrderNo);
+			driver.navigate().to("https://www.ralphlauren.com/orders");
 			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-history-header")));
+			List<WebElement> ww = driver.findElements(By.cssSelector(".order-history-header"));
+			for(WebElement w:ww){
+				WebElement order = w.findElement(By.cssSelector(".order-number"));
+				WebElement orderStatus = w.findElement(By.cssSelector(".order-status"));
+				if(order.getText().contains(mallOrderNo)){
+					if(orderStatus.getText().contains("Awaiting")){
+						logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}
+					w.findElement(By.cssSelector("button")).click();
+				}
+			}
 			List<String>  skuValueList = Utils.getSku(detail.getProductSku());
 			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.upperTxt.notBold")));
 			List<WebElement> rows = driver.findElements(By.cssSelector(".alternate-row"));
@@ -507,17 +536,17 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 	public static void main(String[] args) {
 		RalphlaurenAutoBuy autoBuy = new RalphlaurenAutoBuy();
 		autoBuy.login("nmbwoc@163.com", "tfb001001");
-		RobotOrderDetail detail = new RobotOrderDetail();
-		autoBuy.cleanCart();
-//		Map<String, String> param = new HashMap<String, String>();
-//		param.put("url", "http://www.ralphlauren.com/product/index.jsp?productId=119352126");
-//		param.put("sku", "[[\"size\",\"10 D\"],[\"color\",\"Newport Navy\"]]");
-//		param.put("num", "1");
-//		autoBuy.selectProduct(param );
-		//autoBuy.pay(param);
-		detail.setMallOrderNo("5230585745");
-		detail.setProductUrl("http://www.ralphlauren.com/product/index.jsp?productId=127749496");
-		detail.setProductSku("[[\"color\",\"Polo Black\"],[\"size\",\"L\"]]");
-		autoBuy.scribeExpress(detail );
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		autoBuy.cleanCart();
+////		Map<String, String> param = new HashMap<String, String>();
+////		param.put("url", "http://www.ralphlauren.com/product/index.jsp?productId=119352126");
+////		param.put("sku", "[[\"size\",\"10 D\"],[\"color\",\"Newport Navy\"]]");
+////		param.put("num", "1");
+////		autoBuy.selectProduct(param );
+//		//autoBuy.pay(param);
+//		detail.setMallOrderNo("5230585745");
+//		detail.setProductUrl("http://www.ralphlauren.com/product/index.jsp?productId=127749496");
+//		detail.setProductSku("[[\"color\",\"Polo Black\"],[\"size\",\"L\"]]");
+//		autoBuy.scribeExpress(detail );
 	}
 }
