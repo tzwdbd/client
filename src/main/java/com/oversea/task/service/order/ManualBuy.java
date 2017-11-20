@@ -242,7 +242,30 @@ public class ManualBuy{
 			logger.debug(autoOrderCleanCart.getSiteName()+"--->购物车不为空！");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
-		
+		try {
+			driver.navigate().to("https://www.bonpont.com/customer/address/");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".card-item .item-operation")));
+			List<WebElement> deleteList = driver.findElements(By.cssSelector(".card-item .item-operation"));
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					deleteList.get(0).click();
+					WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
+					driver.executeScript("var tar=arguments[0];tar.click();", ww);
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector(".card-item .item-operation"));
+					}else{
+						break;
+					}
+				}else{
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
 		
 		
 		return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
@@ -356,7 +379,7 @@ public class ManualBuy{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderSelectProduct.getCartLoadedCode())));
 		} catch (Exception e) {
 			logger.error("--->加购物车出现异常",e);
-			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+			//return AutoBuyStatus.AUTO_ADD_CART_FAIL;
 		}
 		//验证数量
 		try {
@@ -403,17 +426,35 @@ public class ManualBuy{
 			logger.debug("--->购物车页面加载完成");
 		} catch (Exception e) {
 			logger.error("--->加购物车出现异常",e);
-			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
+			//return AutoBuyStatus.AUTO_ADD_CART_FAIL;
 		}
-		try{
-			WebElement checkout = driver.findElement(By.cssSelector(autoOrderPay.getSubmitCode()));
-			checkout.click();
-			logger.debug("--->点击结算");
-			Utils.sleep(2000);
-		}catch(Exception e){
-			logger.debug("--->点击结算出现异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.cssSelector(autoOrderPay.getSubmitCode())));
+			WebElement goPay = driver.findElement((By.cssSelector(autoOrderPay.getSubmitCode())));
+			driver.executeScript("var tar=arguments[0];tar.click();", goPay);
+			Utils.sleep(3000);
+		} catch (Exception e) {
+			logger.debug("--->加载结账出现异常");
+			try {
+				WebElement goPay = driver.findElement(By.cssSelector(autoOrderPay.getSubmitCode()));
+				goPay.click();
+			} catch (Exception e2) {
+				logger.debug("--->点击结算出现异常");
+				return AutoBuyStatus.AUTO_PAY_FAIL;
+			}
+			
 		}
+//		try{
+//			WebElement checkout = driver.findElement(By.cssSelector(autoOrderPay.getSubmitCode()));
+//			checkout.click();
+//			logger.debug("--->点击结算");
+//			Utils.sleep(2000);
+//		}catch(Exception e){
+//			logger.debug("--->点击结算出现异常");
+//			return AutoBuyStatus.AUTO_PAY_FAIL;
+//		}
 		logger.debug("--->等待输入地址页面加载");
 		
 		//返利链接需要重新登录一次
@@ -424,50 +465,85 @@ public class ManualBuy{
 			isUseFanli = false;
 			logger.debug("--->重新登录异常",e);
 		}
+		logger.debug("--->等待支付页面加载");
+		try {
+			TimeUnit.SECONDS.sleep(2);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addressSection")));
+			logger.debug("--->支付页面加载完成");
+			TimeUnit.SECONDS.sleep(3);
+		} catch (Exception e) {
+			logger.debug("--->支付页面加载异常");
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
+		}
 		
-		if(isUseFanli){
-			try {
-				//等待checkout页面加载完成
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteAddressListCode())));
-				List<WebElement> deleteAddress = driver.findElements(By.cssSelector(autoOrderPay.getDeleteAddressListCode()));
-				for(WebElement wa:deleteAddress){
-					if(wa.isDisplayed()){
-						try {
-							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(autoOrderPay.getDeleteCode())));
-							WebElement addresss = wa.findElement(By.cssSelector(autoOrderPay.getDeleteCode()));
-							addresss.click();
-							TimeUnit.SECONDS.sleep(1);
-							WebElement yesbtn = driver.findElement(By.cssSelector(autoOrderPay.getDeleteConfirmCode()));
-							yesbtn.click();
-							TimeUnit.SECONDS.sleep(1);
-						} catch (Exception e) {
-							logger.debug("--->删除默认地址出错");
-						}
+		String usedEmail = account.getPayAccount();
+		String name = userTradeAddress.getName();
+		String address = userTradeAddress.getAddress();
+		String zipcode = userTradeAddress.getZip();
+		String mobile = userTradeAddress.getMobile();
+		logger.debug("--->删除收货地址");
+		try {
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+			logger.debug("--->收货地址有"+deleteList.size());
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					deleteList.get(0).click();
+					WebElement ww = driver.findElement(By.xpath("//a[@class='operation-type' and contains(text(),'删除')]"));
+					driver.executeScript("var tar=arguments[0];tar.click();", ww);
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("#addressList .address-item"));
+					}else{
+						break;
 					}
-					
+				}else{
+					break;
 				}
-			} catch (Exception e) {
-				logger.debug("--->删除默认地址出错1");
 			}
+		} catch (Exception e2) {
+			logger.debug("--->删除收货地址出错",e2);
 		}
+		logger.debug("--->选择收货地址");
 		
-		//找到添加新地址
-		try{
-			WebElement w = driver.findElement(By.cssSelector(autoOrderPay.getAddNewAddressCode()));
-			w.click();
-			Utils.sleep(1000);
-		}catch(Exception e){
-			logger.debug("--->添加",e);
-		}
 		
-		//输入收货地址
-		try{
-			//姓名
-			WebElement w = driver.findElement(By.cssSelector(autoOrderPay.getNameCode()));
-			w.clear();
+		// 选收货地址
+		try {
+			WebElement addAddr = null;
+			try {
+				addAddr = driver.findElement(By.cssSelector("a[sel-id='settle-link-new-address']"));
+			} catch (Exception e) {
+				
+			}
+			
+			try {
+				addAddr.click();
+			} catch (Exception e) {
+			}
+			
+			TimeUnit.SECONDS.sleep(2);
+			
+			WebElement firstname = driver.findElement(By.id("firstname"));
+			logger.debug("--->输入收货人姓名"+name);
 			Utils.sleep(1500);
-			w.sendKeys(userTradeAddress.getName());
-			Utils.sleep(1500);
+			firstname.sendKeys(name);
+			
+			logger.debug("--->选择收货地址");
+			WebElement countrySelect = driver.findElement(By.id("country"));
+			Select select = new Select(countrySelect);
+			List<WebElement> countrys = select.getOptions();
+			if (countrys != null && countrys.size() > 1) {
+				for(WebElement country : countrys){
+					String countryVal =  country.getAttribute("value").trim();
+					if(countryVal.equals("中国大陆")){
+						select.selectByVisibleText(countryVal);
+						break;
+					}
+				}
+			}
+			TimeUnit.SECONDS.sleep(2);
 			
 			//省份
 			String stateStr = userTradeAddress.getState().trim();
@@ -482,23 +558,20 @@ public class ManualBuy{
 			}else if("内蒙古自治区".equals(stateStr)){
 				stateStr = "内蒙古";
 			}
-			WebElement state = driver.findElement(By.cssSelector(autoOrderPay.getRegionCode()));	
-			Select selectState = new Select(state);
+			WebElement state = null;
 			try {
-				selectState.selectByVisibleText(stateStr);
+				state = driver.findElement(By.id("region_id"));
 			} catch (Exception e) {
-				try {
-					selectState.selectByVisibleText(stateStr+"省");
-				} catch (Exception e2) {
-					selectState.selectByVisibleText(stateStr.substring(0,stateStr.length()-1));
-				}
-				
+				state = driver.findElement(By.id("region"));
 			}
-			
+				
+			Select selectState = new Select(state);
+			selectState.selectByVisibleText(stateStr);
+			logger.debug("--->输入省");
 			Utils.sleep(2000);
 			
 			//市
-			WebElement city = driver.findElement(By.cssSelector(autoOrderPay.getCityCode()));	
+			WebElement city = driver.findElement(By.xpath("//select[@id='city']"));	
 			Select selectCity = new Select(city);
 			String cityStr = userTradeAddress.getCity().trim();
 			try {
@@ -512,6 +585,8 @@ public class ManualBuy{
 					cityStr = "重庆市";
 				} else if("天津市".equals(stateStr)){
 					cityStr = "天津市";
+				} else if("大理市".equals(cityStr)){
+					cityStr = "大理州";
 				} else if("陵水黎族自治县".equals(cityStr)){
 					cityStr = "陵水县";
 				}
@@ -531,12 +606,18 @@ public class ManualBuy{
 			
 			//区
 			String districtStr = userTradeAddress.getDistrict().trim();
-			WebElement district = driver.findElement(By.cssSelector(autoOrderPay.getCountyCode()));	
+			WebElement district = null;
+			try {
+				district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			} catch (Exception e) {
+				district = driver.findElement(By.id("county"));	
+			}
+			
+			
 			Select selectdistrict = new Select(district);
 			try{
 				selectdistrict.selectByVisibleText(districtStr);
-			}catch(Exception e){				
-				
+			}catch(Exception e){
 				if(districtStr.endsWith("区")){//区改市
 					districtStr = districtStr.subSequence(0, districtStr.length()-1)+"市";
 				} else if(districtStr.equals("经济开发区")){
@@ -548,52 +629,96 @@ public class ManualBuy{
 					selectdistrict.selectByIndex(1);
 				}
 			}
+			logger.debug("--->输入区");
 			Utils.sleep(2000);
-			//地址
-			WebElement street = driver.findElement(By.cssSelector(autoOrderPay.getStreetCode()));
+			WebElement street = null;
+			try {
+				street = driver.findElement(By.id("street_1"));
+			} catch (Exception e) {
+				street = driver.findElement(By.cssSelector(".input-textarea"));
+			}
+			
 			street.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入街道地址");
 			Utils.sleep(1500);
-			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
+			street.sendKeys(userTradeAddress.getDistrict()+address);
 			
-			//邮编
-			WebElement postcode = driver.findElement(By.cssSelector(autoOrderPay.getPostcodeCode()));
+			WebElement postcode = driver.findElement(By.id("postcode"));
 			postcode.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入邮编");
 			Utils.sleep(1500);
-			postcode.sendKeys(userTradeAddress.getZip());
+			postcode.sendKeys(zipcode);
 			
-			//电话
-			WebElement telephone = driver.findElement(By.cssSelector(autoOrderPay.getTelephoneCode()));
+			WebElement telephone = driver.findElement(By.id("telephone"));
 			telephone.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入电话");
 			Utils.sleep(1500);
-			telephone.sendKeys(userTradeAddress.getMobile());
+			telephone.sendKeys(mobile);
 			
-			//常用邮箱
-			WebElement emailEle = driver.findElement(By.cssSelector(autoOrderPay.getEmailCode()));
-			emailEle.clear();
+			WebElement email = driver.findElement(By.id("email"));
+			email.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入常用邮箱");
 			Utils.sleep(1500);
-			emailEle.sendKeys(account.getPayAccount());
+			email.sendKeys(usedEmail);
 			
-			WebElement input = driver.findElement(By.cssSelector(autoOrderPay.getIdentityCode()));
-			input.clear();
 			Utils.sleep(1500);
-			input.sendKeys(userTradeAddress.getIdCard());
-			Utils.sleep(2000);
-			
-			//保存地址
-			driver.findElement(By.cssSelector(autoOrderPay.getSaveAddressCode())).click();
+			WebElement saveAddrBtn = null;
+			try {
+				saveAddrBtn = driver.findElement(By.id("AjaxSaveAddress"));
+			} catch (Exception e) {
+				saveAddrBtn = driver.findElement(By.cssSelector(".btn-save"));
+			}
+			saveAddrBtn.click();
 			Utils.sleep(3000);
+			logger.debug("--->点击保存地址");
 			
-		}catch(Exception e){
-			logger.debug("--->设置收货地址出错",e);
+		} catch (Exception e) {
+			logger.debug("--->选择地址出现异常 = ",e);
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+		}
+		
+		//输入身份证号码
+		boolean isSuccess = false;
+		WebDriverWait wait0 = new WebDriverWait(driver, 8);
+		for(int i=0;i<3;i++){
+			try{
+				WebElement input = null;
+				try {
+					input = driver.findElement(By.xpath("//input[@id='receiver-id']"));
+				} catch (Exception e2) {
+					input = driver.findElement(By.id("identityNumber"));
+				}
+				
+				input.clear();
+				Utils.sleep(1500);
+				input.sendKeys(userTradeAddress.getIdCard());
+				Utils.sleep(2000);
+				try {
+					driver.findElement(By.xpath("//span[@id='idSubBtn']")).click();
+				} catch (Exception e) {
+					driver.findElement(By.cssSelector(".btn-identity")).click();
+				}
+				
+				Utils.sleep(1000);
+				try {
+					wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pass-validate']")));
+				} catch (Exception e) {
+					wait0.until(ExpectedConditions.visibilityOfElementLocated(By.id("identityResult")));
+				}
+				
+				isSuccess = true;
+				break;
+			}catch(Exception e){
+				logger.debug("--->身份证检验出错",e);
+			}
+		}
+		if(!isSuccess){
+			logger.debug("--->身份证校验出错");
+			return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
 		}
 		
 		//选中支付宝
@@ -605,51 +730,55 @@ public class ManualBuy{
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
-		if(!StringUtil.isBlank(details.get(0).getPromotionCodeList())){
-			boolean isEffective = false;
-			Set<String> promotionList = getPromotionList(details.get(0).getPromotionCodeList());
-			if (promotionList != null && promotionList.size() > 0) {
+		//结账
+		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+		boolean isEffective = false;
+		Set<String> promotionList = getPromotionList(details.get(0).getPromotionCodeList());
+		if (promotionList != null && promotionList.size() > 0) {
+			try {
+				WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+				promotions.click();
+				TimeUnit.SECONDS.sleep(2);
+				WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+				codepro.click();
+				TimeUnit.SECONDS.sleep(2);
 				for (String code : promotionList) {
+					logger.debug("couponCode："+code);
+					WebElement element = driver.findElement(By.id("derateInputCode"));
+					element.clear();
+					element.sendKeys(code);
+					TimeUnit.SECONDS.sleep(2);
+					
+					WebElement use = driver.findElement(By.id("derateUse"));
+					use.click();
+					TimeUnit.SECONDS.sleep(2);
+					
 					try {
-						logger.debug("couponCode："+code);
-						WebElement element = driver.findElement(By.cssSelector(autoOrderPay.getCouponTextCode()));
-						element.clear();
-						element.sendKeys(code);
-						TimeUnit.SECONDS.sleep(2);
-						
-						WebElement use = driver.findElement(By.cssSelector(autoOrderPay.getCouponSubmitCode()));
-						driver.executeScript("var tar=arguments[0];tar.click();", use);
-						TimeUnit.SECONDS.sleep(2);
-						
-						try {
-							driver.findElement(By.cssSelector(autoOrderPay.getCouponErrorCode()));
+						WebElement tip = driver.findElement(By.id("derateInputTips"));
+						if(tip.getText().contains("错误")){
 							logger.debug("优惠码无效："+code);
-							for(RobotOrderDetail detail:details){
-								detail.setPromotionCodeListStatus("0");
-							}
-						} catch (Exception e) {
-							try {
-								logger.debug("优惠码有效："+code);
-								isEffective = true;
-								for(RobotOrderDetail detail:details){
-									detail.setPromotionCodeListStatus("10");
-								}
-								TimeUnit.SECONDS.sleep(5);
-								driver.findElement(By.cssSelector(autoOrderPay.getCouponRightCode()));
-							} catch (Exception e2) {
-								logger.debug("异常："+e);
-							}
+							statusMap.put(code, 0);
 						}
 					} catch (Exception e) {
-						logger.debug("优惠码异常",e);
+						try {
+							//driver.findElement(By.xpath("//div[@class='coupon-done']"));
+							logger.debug("优惠码有效："+code);
+							isEffective = true;
+							statusMap.put(code, 10);
+						} catch (Exception e2) {
+							logger.debug("异常："+e);
+						}
 					}
 				}
+				System.out.println(statusMap.toString());
 				if("1".equals(details.get(0).getIsStockpile()) && !isEffective){
 					logger.debug("--->优惠码失效,中断采购");
 					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
-			}		
+			} catch (Exception e) {
+			}
 		}
+		
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
@@ -680,8 +809,8 @@ public class ManualBuy{
 			gotologin.click();
 			logger.error("支付宝登陆按钮点击");
 			//支付宝账号
-			WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
-			name.sendKeys(orderPayAccount.getAccount());
+			WebElement name1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			name1.sendKeys(orderPayAccount.getAccount());
 			Utils.sleep(1500);
 			//密码
 			driver.findElement(By.xpath("//input[@id='payPasswd_rsainput']")).sendKeys(orderPayAccount.getPayPassword());
@@ -931,96 +1060,96 @@ public class ManualBuy{
 		autoOrderLogin.setUsernameCode("#username");
 		autoOrderLogin.setSubmitCode("#loginBtn");
 		AutoBuyStatus status = auto.login("yunzh17@163.com", "tfb001001",autoOrderLogin);
-		AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
-		autoOrderCleanCart.setCartLoadedCode(".cart-wrap");
-		autoOrderCleanCart.setCartUrl("https://www.bonpont.com/cart/index/index");
-		autoOrderCleanCart.setCleanEndCode("#emptyHandler");
-		autoOrderCleanCart.setCleanType(0);
-		autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
-		autoOrderCleanCart.setRemoveCode(".delete");
-		autoOrderCleanCart.setSiteName("bonpont");
-		status = auto.cleanCart(autoOrderCleanCart);
+//		AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
+//		autoOrderCleanCart.setCartLoadedCode(".cart-wrap");
+//		autoOrderCleanCart.setCartUrl("https://www.bonpont.com/cart/index/index");
+//		autoOrderCleanCart.setCleanEndCode("#emptyHandler");
+//		autoOrderCleanCart.setCleanType(0);
+//		autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
+//		autoOrderCleanCart.setRemoveCode(".delete");
+//		autoOrderCleanCart.setSiteName("bonpont");
+//		status = auto.cleanCart(autoOrderCleanCart);
 		System.out.println(status);
-//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-//			RobotOrderDetail detail = new RobotOrderDetail();
-//			detail.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003539.html");
-//			detail.setUnits("CNY");
-//			detail.setNum(2);
-//			//detail.setPromotionCodeList("231231");
-//			status = auto.selectProduct(detail, null);
-//			RobotOrderDetail detail1 = new RobotOrderDetail();
-//			detail1.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003346.html");
-//			detail1.setUnits("CNY");
-//			detail1.setNum(3);
-//			//detail.setPromotionCodeList("231231");
-//			status = auto.selectProduct(detail1, null);
-////			System.out.println(status);
-////			Map<String, String> param0 = new HashMap<String, String>();
-////			param0.put("my_price", "319.99");
-////			param0.put("count", "1");
-//////			param0.put("isPay", String.valueOf(true));
-////			param0.put("cardNo", "4662 4833 6029 1396");
-////			UserTradeAddress userTradeAddress = new UserTradeAddress();
-////			userTradeAddress.setName("刘波");
-////			userTradeAddress.setAddress("西斗门路9号");
-////			userTradeAddress.setState("浙江省");
-////			userTradeAddress.setCity("杭州市");
-////			userTradeAddress.setDistrict("西湖区");
-////			userTradeAddress.setZip("310000");
-////			userTradeAddress.setIdCard("330881198506111918");
-////			userTradeAddress.setMobile("18668084980");
-////			OrderPayAccount orderPayAccount = new OrderPayAccount();
-////			orderPayAccount.setAccount("15268125960");
-////			orderPayAccount.setPayPassword("199027");
-////			status = auto.pay(detail,param0, userTradeAddress, orderPayAccount,"yunzh17@163.com", "tfb001001",autoOrderLogin);
-////			System.out.println(status);
-////			AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
-////			autoOrderCleanCart.setCartLoadedCode(".delete-checked");
-////			autoOrderCleanCart.setCartUrl("http://cn.getthelabel.com/checkout/cart/");
-////			autoOrderCleanCart.setCleanEndCode(".cart-empty");
-////			autoOrderCleanCart.setCleanType(1);
-////			autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
-////			autoOrderCleanCart.setRemoveCode(".delete-checked");
-////			autoOrderCleanCart.setSiteName("getthelabel");
-////			status = auto.cleanCart(autoOrderCleanCart);
-//			//if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-//				
-////				Map<String, String> param = new HashMap<String, String>();
-////		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
-////				param.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1010315.html%2F");
-////				param.put("num", "1");
-////				param.put("sku", "[[\"color\",\"白色\"],[\"size\",\"XS\"]]");
-////				param.put("productEntityId", "4241869");
-////				auto.selectProduct(param);
-////				Map<String, String> param1 = new HashMap<String, String>();
-////		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
-////				param1.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1023646.html");
-////				param1.put("num", "2");
-////				param1.put("sku", "[[\"color\",\"Blue\"],[\"size\",\"L\"]]");
-////				param1.put("productEntityId", "42418619");
-////				auto.selectProduct(param1);
-////				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-////					Map<String, String> param0 = new HashMap<String, String>();
-////					param0.put("my_price", "39.99");
-////					param0.put("count", "1");
-//////					param0.put("isPay", String.valueOf(true));
-////					param0.put("cardNo", "4662 4833 6029 1396");
-////					UserTradeAddress userTradeAddress = new UserTradeAddress();
-////					userTradeAddress.setName("刘波");
-////					userTradeAddress.setAddress("西斗门路9号");
-////					userTradeAddress.setState("浙江省");
-////					userTradeAddress.setCity("杭州市");
-////					userTradeAddress.setDistrict("西湖区");
-////					userTradeAddress.setZip("310000");
-////					userTradeAddress.setIdCard("330881198506111918");
-////					userTradeAddress.setMobile("18668084980");
-////					OrderPayAccount orderPayAccount = new OrderPayAccount();
-////					orderPayAccount.setAccount("15268125960");
-////					orderPayAccount.setPayPassword("199027");
-////					status = auto.pay(param0,userTradeAddress,orderPayAccount);
-////				}
-//			//}
-//		}
+		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+			RobotOrderDetail detail = new RobotOrderDetail();
+			detail.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003539.html");
+			detail.setUnits("CNY");
+			detail.setNum(2);
+			//detail.setPromotionCodeList("231231");
+			status = auto.selectProduct(detail, null);
+			RobotOrderDetail detail1 = new RobotOrderDetail();
+			detail1.setProductRebateUrl("https://p.gouwuke.com/c?w=858413&c=19247&i=43784&pf=y&e=&t=https://www.bonpont.com/1003346.html");
+			detail1.setUnits("CNY");
+			detail1.setNum(3);
+			//detail.setPromotionCodeList("231231");
+			status = auto.selectProduct(detail1, null);
+//			System.out.println(status);
+//			Map<String, String> param0 = new HashMap<String, String>();
+//			param0.put("my_price", "319.99");
+//			param0.put("count", "1");
+////			param0.put("isPay", String.valueOf(true));
+//			param0.put("cardNo", "4662 4833 6029 1396");
+//			UserTradeAddress userTradeAddress = new UserTradeAddress();
+//			userTradeAddress.setName("刘波");
+//			userTradeAddress.setAddress("西斗门路9号");
+//			userTradeAddress.setState("浙江省");
+//			userTradeAddress.setCity("杭州市");
+//			userTradeAddress.setDistrict("西湖区");
+//			userTradeAddress.setZip("310000");
+//			userTradeAddress.setIdCard("330881198506111918");
+//			userTradeAddress.setMobile("18668084980");
+//			OrderPayAccount orderPayAccount = new OrderPayAccount();
+//			orderPayAccount.setAccount("15268125960");
+//			orderPayAccount.setPayPassword("199027");
+//			status = auto.pay(detail,param0, userTradeAddress, orderPayAccount,"yunzh17@163.com", "tfb001001",autoOrderLogin);
+//			System.out.println(status);
+//			AutoOrderCleanCart autoOrderCleanCart = new AutoOrderCleanCart();
+//			autoOrderCleanCart.setCartLoadedCode(".delete-checked");
+//			autoOrderCleanCart.setCartUrl("http://cn.getthelabel.com/checkout/cart/");
+//			autoOrderCleanCart.setCleanEndCode(".cart-empty");
+//			autoOrderCleanCart.setCleanType(1);
+//			autoOrderCleanCart.setConfirmCode("#easyDialogYesBtn");
+//			autoOrderCleanCart.setRemoveCode(".delete-checked");
+//			autoOrderCleanCart.setSiteName("getthelabel");
+//			status = auto.cleanCart(autoOrderCleanCart);
+			//if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+				
+//				Map<String, String> param = new HashMap<String, String>();
+//		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
+//				param.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1010315.html%2F");
+//				param.put("num", "1");
+//				param.put("sku", "[[\"color\",\"白色\"],[\"size\",\"XS\"]]");
+//				param.put("productEntityId", "4241869");
+//				auto.selectProduct(param);
+//				Map<String, String> param1 = new HashMap<String, String>();
+//		//		param.put("url", "http://cn.royyoungchemist.com.au/1131511.html/");
+//				param1.put("url", "http://www.rebatesme.com/zh/click/?key=3b27c8fda4c3ff307a5ec0766a50d0a2&sitecode=haihu&showpage=0&partneruname=wenzhe@taofen8.com&checkcode=0995f957e0c90e5563b6b7cd85a70e03&targetUrl=http%3A%2F%2Fcn.getthelabel.com%2F1023646.html");
+//				param1.put("num", "2");
+//				param1.put("sku", "[[\"color\",\"Blue\"],[\"size\",\"L\"]]");
+//				param1.put("productEntityId", "42418619");
+//				auto.selectProduct(param1);
+//				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+//					Map<String, String> param0 = new HashMap<String, String>();
+//					param0.put("my_price", "39.99");
+//					param0.put("count", "1");
+////					param0.put("isPay", String.valueOf(true));
+//					param0.put("cardNo", "4662 4833 6029 1396");
+//					UserTradeAddress userTradeAddress = new UserTradeAddress();
+//					userTradeAddress.setName("刘波");
+//					userTradeAddress.setAddress("西斗门路9号");
+//					userTradeAddress.setState("浙江省");
+//					userTradeAddress.setCity("杭州市");
+//					userTradeAddress.setDistrict("西湖区");
+//					userTradeAddress.setZip("310000");
+//					userTradeAddress.setIdCard("330881198506111918");
+//					userTradeAddress.setMobile("18668084980");
+//					OrderPayAccount orderPayAccount = new OrderPayAccount();
+//					orderPayAccount.setAccount("15268125960");
+//					orderPayAccount.setPayPassword("199027");
+//					status = auto.pay(param0,userTradeAddress,orderPayAccount);
+//				}
+			//}
+		}
 	}
 	
 	protected static Set<String> getPromotionList(String promotionStr){
