@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.oversea.task.AutoBuyConst;
@@ -48,7 +49,7 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		driver.manage().window().maximize();
 		this.userName =userName;
 		pwd=passWord;
-		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		try {
 			driver.navigate().to("https://www.ralphlauren.com/checkout/index.jsp?process=login&ab=global_ma_signin");
 			closeAdv();
@@ -115,12 +116,12 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		try {
 			driver.navigate().to("http://www.ralphlauren.com/cart/index.jsp?ab=global_bag");
 			logger.debug("开始清空购物车");
-			List<WebElement> list = driver.findElements(By.xpath("//a[@class='remove']"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".remove-item"));
 			while(null!=list && list.size()!=0){
 				list.get(0).click();
 				list.remove(0);
 				Thread.sleep(1000);
-				list = driver.findElements(By.xpath("//a[@class='remove']"));
+				list = driver.findElements(By.cssSelector(".remove-item"));
 			}
 		} catch (Exception e) {
 			logger.debug("清空购物车失败：",e);
@@ -130,7 +131,7 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		try {
 			logger.error("--->确认购物车是否清空");
 			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emptyCartCMS")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-empty")));
 		} catch (Exception e) {
 			logger.debug("--->购物车不为空！");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
@@ -147,53 +148,79 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		String productNum = (String) param.get("num");
 		String color="";
 		String size="";
-		String code = "";
+		//String code = "";
+		WebDriverWait wait = new WebDriverWait(driver, 45);
 		logger.debug("选择商品 productUrl = " + productUrl);
 		try {
 			driver.navigate().to(productUrl);
-			closeAdv();
-			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("style-num")));
-			code = driver.findElementByClassName("style-num").getText().toLowerCase();
+			//closeAdv();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pdpMain")));
+			//code = driver.findElementByClassName("style-num").getText().toLowerCase();
 		} catch (Exception e) {
 			logger.error("打开商品页面失败："+e);
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
-		for (int i = 0; i < skuValueList.size(); i++) {
-			String skuName = skuValueList.get(i);
-			String skuValue = skuValueList.get(++i);
-			if("color".equalsIgnoreCase(skuName)){
-				logger.debug("开始选择颜色："+skuValue);
-				try {
-					color = skuValue.toLowerCase();
-					driver.findElement(By.xpath("//li[@title='"+skuValue+"']")).click();
-					TimeUnit.SECONDS.sleep(1);
-				} catch (Exception e) {
-					logger.debug("选择颜色失败");
-					return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
+		int skuNum = 0;
+		try {
+			for (int i = 0; i < skuValueList.size(); i++) {
+				String skuName = skuValueList.get(i);
+				String skuValue = skuValueList.get(++i);
+				logger.error("skuName = "+skuName +" && skuValue = "+skuValue);
+				List<WebElement> skus =  driver.findElements(By.cssSelector("li.attribute"));
+				logger.error("skus size= "+skus.size() );
+				for(WebElement w:skus){
+					WebElement value = w.findElement(By.cssSelector(".value"));
+					logger.error("value text= "+value.getText() );
+					if(value.getText().toLowerCase().contains(skuName.toLowerCase())){
+						WebElement attribute = w.findElement(By.cssSelector(".attribute-list"));
+						try {
+							wait.until(ExpectedConditions.elementToBeClickable(attribute));
+						} catch (Exception e) {
+							w.click();
+						}
+						TimeUnit.SECONDS.sleep(1);
+						List<WebElement> lis = w.findElements(By.cssSelector(".selectable"));
+						logger.error("lis size= "+lis.size() );
+						for(WebElement l:lis){
+							if(l.isDisplayed()){
+								WebElement aw = l.findElement(By.cssSelector("a"));
+								if("color".equalsIgnoreCase(skuName)){
+									WebElement imgs = aw.findElement(By.cssSelector("img"));
+									if(imgs.getAttribute("alt").equalsIgnoreCase(skuValue)){
+										imgs.click();
+										TimeUnit.SECONDS.sleep(1);
+										skuNum++;
+										break;
+									}
+								}else{
+									logger.error("aw text= "+aw.getText() );
+									if(aw.getText().equalsIgnoreCase(skuValue)){
+										aw.click();
+										TimeUnit.SECONDS.sleep(1);
+										skuNum++;
+										break;
+									}
+								}
+								
+							}
+						}
+						break;
+					}
 				}
-				logger.debug("选择颜色完成");
-			}else if("size".equalsIgnoreCase(skuName)){
-				logger.debug("开始选择大小："+skuValue);
-				try {
-					size = skuValue.toLowerCase();
-					driver.findElement(By.xpath("//li[@title='"+skuValue+"']")).click();
-					TimeUnit.SECONDS.sleep(1);
-				} catch (Exception e) {
-					logger.debug("选择size失败",e);
-					return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
-				}
-				logger.debug("选择大小完成");
 			}
+			int t = skuValueList.size()/2;
+			if(skuNum < t){
+				logger.error("findCount = "+skuNum +" && skuList.size() = "+t);
+				return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+			}
+		} catch (Exception e) {
+			logger.error("选择sku异常",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 		}
+		
 		try {
 			TimeUnit.SECONDS.sleep(2);
-			String container = driver.findElement(By.id("waitlist-container")).getText();
-			if(StringUtil.isNotEmpty(container) && container.toLowerCase().contains("sorry")){
-				logger.debug("售罄啦");
-				return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
-			}
-			String price = driver.findElement(By.xpath("//span[@itemprop='price']")).getText().replaceAll("[^0-9.]", "");
+			String price = driver.findElement(By.cssSelector(".price-sales")).getText().trim().substring(1);
 			logger.debug("单价："+price);
 			
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, price);
@@ -206,56 +233,42 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		} catch (Exception e) {
 			logger.debug(e);
 		}
-		logger.debug("还有的");
+		
 
 		if(!"1".equalsIgnoreCase(productNum)){
-			try {
-				for (int j = 0; j < Integer.parseInt(productNum) -1; j++) {
-					logger.debug("调整数量");
-					driver.executeScript("document.querySelector('div.quantity-control.add').click();");
-					Thread.sleep(1000);
-				}
-			} catch (Exception e) {
-				logger.debug("增加数量失败",e);
-				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
-			}
+			WebElement s = driver.findElement(By.id("Quantity"));
+			Select select = new Select(s);
+			select.selectByVisibleText(productNum);
+			logger.debug("选择了:"+productNum);
 		}
 		
 		try {
 			logger.debug("加入购物车");
 			TimeUnit.SECONDS.sleep(2);
-			driver.executeScript("document.getElementById('addToCart').click();");
-			TimeUnit.SECONDS.sleep(2);
+			driver.executeScript("document.getElementById('add-to-cart').click();");
+			TimeUnit.SECONDS.sleep(1);
+			driver.findElement(By.cssSelector(".mini-cart-link-checkout")).click();
 		} catch (Exception e) {
 			logger.debug(e);
 			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
 		}
 		//去购物车检查了到底有没有加入购物城成功 数量对不对
-		boolean find = false;
 		try {
-			driver.navigate().to("http://www.ralphlauren.com/cart/index.jsp?ab=global_bag");
 			TimeUnit.SECONDS.sleep(2);
-			List<WebElement> list = driver.findElements(By.xpath("//table[@class='cart']/tbody/tr"));
-			for (WebElement webElement : list) {
-				String text = webElement.getText().toLowerCase();
-				if(text.contains(size) && text.contains(color) && text.contains(code)){
-					logger.debug("检查数量："+size+" "+code+" "+color);
-					WebElement numIn = webElement.findElement(By.cssSelector(".quantity"));
-					if(numIn.getAttribute("value").equalsIgnoreCase(productNum)){
-						logger.debug("数量ok");
-					}else{
-						logger.debug("数量异常");
+			WebElement webElement = driver.findElement(By.cssSelector(".quantityinput"));
+			Select select = new Select(webElement);
+			List<WebElement> op = select.getOptions();
+			for(WebElement o:op){
+				if(o.isSelected()){
+					logger.debug("select:"+o.getText());
+					if(!o.getText().equals(productNum)){
+						logger.debug("--->选择商品数量碰到异常");
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 					}
-					find =true;
-					break;
 				}
 			}
 		} catch (Exception e) {
 			logger.debug(e);
-			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
-		}
-		if(find == false){
-			logger.debug("并没有加入购物车");
 			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
 		}
 		return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
@@ -386,22 +399,21 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		if (promotionList != null && promotionList.size() > 0) {
 			for (String code : promotionList) {
 				try {
-					WebElement input = driver.findElement(By.id("promoCode"));
+					WebElement input = driver.findElement(By.id("dwfrm_billing_couponCode"));
 					input.clear();
 					Thread.sleep(100);
 					input.sendKeys(code);
 					Thread.sleep(100);
-					WebElement  apply= driver.findElement(By.id("promoApply"));
+					WebElement  apply= driver.findElement(By.id("add-coupon"));
 					apply.click();
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("promoApply")));
 					try {
-						driver.findElement(By.cssSelector("p.error.promoError"));
-						logger.debug("优惠码不可用");
-						statusMap.put(code, 0);
-					} catch (Exception e) {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".discount")));
 						logger.debug("优惠码可用");
 						statusMap.put(code, 10);
 						isEffective = true;
+					} catch (Exception e) {
+						logger.debug("优惠码不可用");
+						statusMap.put(code, 0);
 					}
 				} catch (Exception e) {
 					logger.debug("输入优惠码异常");
@@ -418,64 +430,34 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 	
 		try {
 			logger.debug("开始付款");
-			driver.executeScript("document.getElementById('proceedToCheckoutBtn').click();");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addressBook")));
+			
+			WebElement gotopay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_cart_checkoutCart']")));
+			gotopay.click();
+//			try {
+//				logger.debug("再次登录");
+//				TimeUnit.SECONDS.sleep(1);
+//				driver.findElement(By.xpath("//form[@id='login']/input[@id='email']")).sendKeys(userName);
+//				TimeUnit.SECONDS.sleep(1);
+//				driver.findElement(By.xpath("//form[@id='login']/input[@id='password']")).sendKeys(pwd);
+//				TimeUnit.SECONDS.sleep(1);
+//				driver.findElement(By.xpath("//form[@id='login']/button[@class='submit css-button primary']")).click();;
+//				TimeUnit.SECONDS.sleep(1);
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("right-side")));
+//			} catch (Exception e) {
+//				logger.debug(e);
+//			}
+			WebElement shipping = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_singleshipping_shippingAddress_save']")));
+			shipping.click();
 			try {
-				logger.debug("再次登录");
-				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.xpath("//form[@id='login']/input[@id='email']")).sendKeys(userName);
-				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.xpath("//form[@id='login']/input[@id='password']")).sendKeys(pwd);
-				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.xpath("//form[@id='login']/button[@class='submit css-button primary']")).click();;
-				TimeUnit.SECONDS.sleep(1);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("right-side")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".creditCardListPayment")));
+				WebElement card = driver.findElement(By.cssSelector(".creditCardListPayment"));
+				card.click();
 			} catch (Exception e) {
-				logger.debug(e);
+				logger.error("--->没有绑定信用卡",e);
+				return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
 			}
-			List<WebElement> trList = driver.findElements(By.xpath("//table[@id='addressBook']/tbody/tr"));
-			trList.remove(0);
-			Iterator<WebElement> iterator = trList.iterator();
-			while(iterator.hasNext()){
-				WebElement now = iterator.next();
-				if(now.getText().toLowerCase().contains("310000")){
-					logger.debug("找到账单地址了");
-					WebElement zd = now.findElement(By.xpath(".//td[@class='radio border']/input"));
-					zd.click();
-					iterator.remove();
-				}else if(now.getText().toLowerCase().contains("add a new address") || now.getText().toLowerCase().contains("ship to more than o") ){
-					iterator.remove();
-				}
-			}
-			
-			int s = trList.size();
-			logger.debug("有："+s+"个地址");
-			int target = count % s;
-			logger.debug("选第"+target+"个地址");
-			TimeUnit.SECONDS.sleep(2);
-			trList.get(target).findElement(By.xpath(".//td[@class='radio']/input")).click();
-			TimeUnit.SECONDS.sleep(1);
-			
-			logger.debug("继续结算");
-			driver.findElement(By.xpath("//button[@class='continue css-button primary']")).click();
-			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("td.td-gift")));
-			
-			TimeUnit.SECONDS.sleep(2);
-			logger.debug("选择物流");
-			driver.executeScript("document.getElementById('shippingBucketsByAddress0.shippingBuckets0.currentShippingOptionId2').click();");
-			
-			TimeUnit.SECONDS.sleep(2);
-			logger.debug("物流选择页继续");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='proceed']/button"))).click();
-			
-			logger.debug("开始输入安全码");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='text pin cIDNum']"))).sendKeys(suffixNo);
-			
-			logger.debug("安全码页结算");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='proceed']/button"))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("tr.total")));
-			String price = driver.findElement(By.cssSelector("tr.total")).getText().replaceAll("[^0-9.]", "");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-value")));
+			String price = driver.findElement(By.cssSelector(".order-value")).getText().substring(1);
 			logger.debug("price:"+price);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, price);
 			if(!StringUtil.isBlank(getTotalPrice())){
@@ -493,28 +475,20 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}
 			}
-			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='procee']/a[@class='sendOrder css-button primary']"))).click();;
 			
 			if(isPay){
 				logger.debug("开始付款");
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='sendOrder css-button primary']"))).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".button-fancy-large"))).click();
 				logger.error("付款成功");
 				TimeUnit.SECONDS.sleep(10);
 			}
 			
 			logger.debug("开始获取订单号");
 			try {
-				String str = driver.findElement(By.cssSelector("h3 span")).getText();
-				Matcher m = Pattern.compile("[0-9]{8,15}").matcher(str);
-				if(m.find()){
-					String mallOrderNo = m.group();
-					logger.debug("商城订单号："+mallOrderNo);
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, mallOrderNo);
-					savePng();
-				}else{
-					logger.debug("--->查找商品订单号出现异常");
-					return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
-				}
+				String mallOrderNo = driver.findElement(By.cssSelector(".order-number .value")).getText();
+				logger.debug("商城订单号："+mallOrderNo);
+				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, mallOrderNo);
+				savePng();
 			} catch (Exception e) {
 				logger.debug("查找商品订单号出现异常");
 				logger.debug("整个html:"+driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text"));
