@@ -59,7 +59,9 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		}
 		
 		logger.debug("开始登陆");
+		driver.executeScript("(function(){window.scrollBy(0,350);})();");
 		try {
+			TimeUnit.SECONDS.sleep(1);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dwfrm_login")));
 			logger.debug("开始登陆2");
 			List<WebElement> accounts = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Email Address']"));
@@ -83,7 +85,6 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 		} catch (Exception e) {
 			logger.debug("登录失败");
-			driver.executeScript("(function(){window.scrollBy(0,350);})();");
 			try {
 				TimeUnit.SECONDS.sleep(1);
 				List<WebElement> accounts = driver.findElements(By.cssSelector("#dwfrm_login input[placeholder='Email Address']"));
