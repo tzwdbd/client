@@ -1354,7 +1354,13 @@ public class KatespadeAutoBuy extends AutoBuy {
 		AutoBuyStatus status = AutoBuyStatus.AUTO_SCRIBE_FAIL; 
 		List<WebElement> orders = driver.findElements(By.cssSelector(".search-result-items"));
 		for (WebElement order:orders) {
-			WebElement sectionHeader = order.findElement(By.cssSelector(".order-history-order-number-title"));
+			WebElement sectionHeader = null;
+			try {
+				sectionHeader =  order.findElement(By.cssSelector(".order-history-order-number-title"));
+			} catch (Exception e) {
+				sectionHeader =  order.findElement(By.cssSelector(".section-header"));
+			}
+			
 			String orderText = sectionHeader.getText() ;
 			if(!StringUtil.isBlank(orderText)&&orderText.contains(mallOrderNo)){
 				try{
@@ -1370,7 +1376,11 @@ public class KatespadeAutoBuy extends AutoBuy {
 						logger.debug("商城砍单，商城订单号："+mallOrderNo);
 						status = AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED ;
 					}else if("shipped".equals(orderStatus.toLowerCase())){
-						WebElement td = order.findElement(By.cssSelector(".order-tracking .value"));
+						WebElement detaillink = order.findElement(By.cssSelector(".details-link"));
+						detaillink.click();
+						Utils.sleep(1000);
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("..order-details-trackingnumber-order")));
+						WebElement td = order.findElement(By.cssSelector(".order-details-trackingnumber-order"));
 						
 						String trackNo = td.getText() ;
 						logger.debug("已发货，开始查找物流单号");
