@@ -1376,11 +1376,11 @@ public class KatespadeAutoBuy extends AutoBuy {
 						logger.debug("商城砍单，商城订单号："+mallOrderNo);
 						status = AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED ;
 					}else if("shipped".equals(orderStatus.toLowerCase())){
-						WebElement detaillink = order.findElement(By.cssSelector(".details-link"));
+						WebElement detaillink = order.findElement(By.cssSelector(".details-link button"));
 						detaillink.click();
 						Utils.sleep(1000);
-						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("..order-details-trackingnumber-order")));
-						WebElement td = order.findElement(By.cssSelector(".order-details-trackingnumber-order"));
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackingnumber")));
+						WebElement td = driver.findElement(By.cssSelector(".trackingnumber"));
 						
 						String trackNo = td.getText() ;
 						logger.debug("已发货，开始查找物流单号");
