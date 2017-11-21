@@ -287,25 +287,37 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		String passWord = param.get("password");
 		try {
 			// 输入账号
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-username']")));
-			WebElement username = driver.findElement(By.cssSelector("input[sel-id='login-text-username']"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='username']")));
+			List<WebElement> usernames = driver.findElements(By.cssSelector("input[name='username']"));
 			logger.debug("--->输入账号");
 			Utils.sleep(1500);
-			username.sendKeys(userName);
+			for(WebElement username:usernames){
+				if(username.isDisplayed()){
+					username.sendKeys(userName);
+				}
+			}
 
 			// 输入密码
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[sel-id='login-text-password']")));
-			WebElement passward = driver.findElement(By.cssSelector("input[sel-id='login-text-password']"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='password']")));
+			List<WebElement> passwards = driver.findElements(By.cssSelector("input[name='password']"));
 			logger.debug("--->输入密码");
 
 			Utils.sleep(1500);
-			passward.sendKeys(passWord);
+			for(WebElement passward:passwards){
+				if(passward.isDisplayed()){
+					passward.sendKeys(passWord);
+				}
+			}
 
 			// 提交
 			Utils.sleep(1500);
-			WebElement submitBtn = driver.findElement(By.id("accout-login"));
+			List<WebElement> submitBtns = driver.findElements(By.cssSelector(".accout-btn"));
 			logger.debug("--->开始提交");
-			submitBtn.click();
+			for(WebElement submitBtn:submitBtns){
+				if(submitBtn.isDisplayed()){
+					submitBtn.click();
+				}
+			}
 
 		} catch (Exception e) {
 			logger.error("--->输入账号或者密码错误", e);
