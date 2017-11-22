@@ -656,8 +656,13 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		Set<String> promotionList = getPromotionList(param.get("promotion"));
 		if (promotionList != null && promotionList.size() > 0) {
 			try {
-				WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
-				promotions.click();
+				try {
+					WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+					promotions.click();
+				} catch (Exception e) {
+					
+				}
+				
 				TimeUnit.SECONDS.sleep(2);
 				WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
 				codepro.click();
