@@ -108,6 +108,20 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 						boolean isSelectSkuSuccess = true;
 						boolean isFirst = true;
 						String promotion = "";
+						float myPrice = 0f ;
+						
+						for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
+							int num = 1;
+							if(externalOrderDetail.getItemCount() != null){
+								num = externalOrderDetail.getItemCount().intValue();
+							}
+							if(num < 1){
+								num = 1;
+							}
+							try{
+								myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.03;
+							}catch(Exception ee){}
+						}
 						for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
 							Map<String, String> parmas = new HashMap<String, String>();
 							String url = Utils.isEmpty(externalOrderDetail.getProductRebateUrl()) ? externalOrderDetail.getProductUrl() : externalOrderDetail.getProductRebateUrl();
@@ -115,11 +129,21 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								logger.error("商品链接url为空");
 								return;
 							}
+							
 							//添加优惠码
 							String promotionStr = externalOrderDetail.getDiscountCode();
 							if(StringUtil.isNotEmpty(promotionStr)){
 								promotion += promotionStr;
 								promotion += ";";
+							}
+							if(mallName.equalsIgnoreCase("amazon")){
+								if(myPrice>=25.75){
+									parmas.put("addon", "1");
+								}
+							}else if (mallName.equalsIgnoreCase("amazon.jp")){
+								if(myPrice>=2060){
+									parmas.put("addon", "1");
+								}
 							}
 							parmas.put("orginalUrl", externalOrderDetail.getProductUrl());
 							parmas.put("isFirst", String.valueOf(isFirst));
@@ -142,20 +166,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 						
 						boolean isStock = false;
 						if(isSelectSkuSuccess){
-							float myPrice = 0f ;
 							
-							for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
-								int num = 1;
-								if(externalOrderDetail.getItemCount() != null){
-									num = externalOrderDetail.getItemCount().intValue();
-								}
-								if(num < 1){
-									num = 1;
-								}
-								try{
-									myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.03;
-								}catch(Exception ee){}
-							}
 							
 							ExternalOrderDetail externalOrderDetail = externalOrderDetailList.get(0);
 							if(!StringUtil.isBlank(externalOrderDetail.getOrderAmount())){
@@ -163,15 +174,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							}
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
-							if(mallName.equalsIgnoreCase("amazon")){
-								if(myPrice>=25.75){
-									params.put("addon", "1");
-								}
-							}else if (mallName.equalsIgnoreCase("amazon.jp")){
-								if(myPrice>=2060){
-									params.put("addon", "1");
-								}
-							}
+							
 							params.put("my_price", String.valueOf(myPrice));
 							params.put("count", count);
 							params.put("isPay", String.valueOf(true));
