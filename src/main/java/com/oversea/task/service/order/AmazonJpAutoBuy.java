@@ -772,21 +772,26 @@ public class AmazonJpAutoBuy extends AutoBuy
 			waitForMainPanel();
 	
 			By addonBy = By.xpath(".//i[contains(text(),'あわせ買い対象商品')]");
+			String addon = param.get("addon");
 			try
 			{
-				WebElement priceTable = driver.findElement(By.xpath("//table[@id='price']"));
-				priceTable.findElement(addonBy);
-				logger.debug("--->[1]遇到add on商品,不支持购买");
-				return AutoBuyStatus.AUTO_SKU_ADD_ON;
+				if(StringUtil.isBlank(addon)){
+					WebElement priceTable = driver.findElement(By.xpath("//table[@id='price']"));
+					priceTable.findElement(addonBy);
+					logger.debug("--->[1]遇到add on商品,不支持购买");
+					return AutoBuyStatus.AUTO_SKU_ADD_ON;
+				}
 			}
 			catch (Exception e)
 			{
 				try
 				{
-					WebElement addonPanel = driver.findElement(By.xpath("//div[@id='addOnItem_feature_div']"));
-					addonPanel.findElement(addonBy);
-					logger.debug("--->[2]遇到add on商品,不支持购买");
-					return AutoBuyStatus.AUTO_SKU_ADD_ON;
+					if(StringUtil.isBlank(addon)){
+						WebElement addonPanel = driver.findElement(By.xpath("//div[@id='addOnItem_feature_div']"));
+						addonPanel.findElement(addonBy);
+						logger.debug("--->[2]遇到add on商品,不支持购买");
+						return AutoBuyStatus.AUTO_SKU_ADD_ON;
+					}
 				}
 				catch (Exception ex)
 				{

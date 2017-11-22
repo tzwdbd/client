@@ -32,7 +32,7 @@ abstract public class AutoBuy
 
 	protected FirefoxDriver driver = null;
 
-	public static final int WAIT_TIME = 90;
+	public static final int WAIT_TIME = 45;
 	public static final String path = "C:\\Users\\Administrator\\AppData\\Local\\Temp";
 
 	// 不要static
