@@ -164,11 +164,11 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
 							if(mallName.equalsIgnoreCase("amazon")){
-								if(myPrice>=25){
+								if(myPrice>=25.75){
 									params.put("addon", "1");
 								}
 							}else if (mallName.equalsIgnoreCase("amazon.jp")){
-								if(myPrice>=2000){
+								if(myPrice>=2060){
 									params.put("addon", "1");
 								}
 							}
