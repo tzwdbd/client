@@ -135,7 +135,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		//跳转到购物车
 		try{
 			Utils.sleep(1000);
-			driver.get("http://cn.getthelabel.com/checkout/cart/");
+			driver.get("http://cn.getthelabel.com/cart/index");
 			logger.error("--->开始跳转到购物车");
 		}catch(Exception e){
 			logger.error("--->跳转到购物车失败",e);
@@ -149,7 +149,9 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			WebElement deleteall = driver.findElement(By.cssSelector(".delete-checked"));
 			deleteall.click();
 			Utils.sleep(1000);
-			driver.findElement(By.id("easyDialogYesBtn")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("easyDialogYesBtn")));
+			WebElement w = driver.findElement(By.id("easyDialogYesBtn"));
+			driver.executeScript("var tar=arguments[0];tar.click();", w);
 			logger.error("--->购物车页面清理完成");
 		} catch (Exception e) {
 			logger.error("--->购物车页面清理完成");
@@ -157,7 +159,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 			
 		try {
 			logger.error("--->确认购物车是否清空");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-empty")));
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".po-cart-not")));
 		} catch (Exception e) {
 			logger.debug("--->购物车不为空！");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;

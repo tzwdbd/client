@@ -729,10 +729,40 @@ public class AmazonAutoBuy extends AutoBuy
 							Utils.sleep(2500);
 						}
 					}
+					int findCount = 0;
+					try {
+						WebDriverWait wait = new WebDriverWait(driver, 30);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dimension-label")));
+						List<WebElement> dimensions = driver.findElements(By.cssSelector(".dimension-label"));
+						for(WebElement w:dimensions){
+							
+							String s = w.getText();
+							for (int i = 0; i < skuList.size(); i++) {
+								if (i % 2 == 1) {
+									String attrValue = skuList.get(i);
+									if(attrValue.equalsIgnoreCase(s)){
+										logger.debug("--->"+attrValue+"加1");
+										findCount++;
+										break;
+									}
+								}
+							}
+						}
+						logger.debug("--->sku findCount = "+findCount+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions.size());
+						if(findCount < skuList.size()/2 || dimensions.size()<skuList.size()/2){
+							logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
+							return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+						}
+					} catch (Exception e) {
+						logger.debug("售罄 ");
+						return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+					}
 				}
 	
 				// 等待最大的选择面板可见
 				waitForMainPanel(driver);
+				
+				
 				
 				//Currently unavailable 判断这个情况
 				try
@@ -863,6 +893,8 @@ public class AmazonAutoBuy extends AutoBuy
 				}catch(Exception e){
 					logger.debug("--->领红包出错");
 				}
+				
+				
 	
 				// 获取单价
 				try
@@ -4928,16 +4960,16 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "https://www.amazon.com/dp/B00OLSBDRG");
-		param.put("sku", "[[\"Color\",\"White/White/Green\"],[\"Special Size\",\"Big Kid (8-12 Years)\"],[\"Size\",\"4 M US Big Kid\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01N10K4OR");
+		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Medium\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-//		param.put("sign", "1");
-//		param.put("productName","silver stud earrings");
-//		param.put("title","3 Pair 925 Sterling Silver Round Cut Simulation Diamond CZ Stud Earrings Set");
-//		param.put("position","30");
+		param.put("sign", "0");
+		param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
+		param.put("title","Yoga pants Mesh Workout legging");
+		param.put("position","30");
 		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
