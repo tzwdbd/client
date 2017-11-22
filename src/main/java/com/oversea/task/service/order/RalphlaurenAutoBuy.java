@@ -21,6 +21,7 @@ import com.oversea.task.AutoBuyConst;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 /**
@@ -296,75 +297,26 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}
 					w.findElement(By.cssSelector("button")).click();
-				}
-			}
-			List<String>  skuValueList = Utils.getSku(detail.getProductSku());
-			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.upperTxt.notBold")));
-			List<WebElement> rows = driver.findElements(By.cssSelector(".alternate-row"));
-			for(WebElement w:rows){
-				WebElement row =  w.findElement(By.cssSelector(".prodtitle"));
-				WebElement att = w.findElement(By.cssSelector(".firstColmnAcc"));
-				List<WebElement> attbs = w.findElements(By.cssSelector(".firstColmnAcc b"));
-				WebElement atta = w.findElement(By.cssSelector(".firstColmnAcc a"));
-				String attS = att.getText();
-				for(WebElement attb:attbs){
-					attS = attS.replace(attb.getText(), "");
-				}
-				attS = attS.replace(atta.getText(), "");
-				logger.debug(attS);
-				boolean mark =true;
-				if(row.getAttribute("href").equals(detail.getProductUrl()) ){
-					int i=0;
-					for(String s:skuValueList){
-						if(i%2==0){
-							if(!att.getText().toUpperCase().contains(s.toUpperCase())){
-								mark = false;
-								break;
-							}
-						}else{
-							if(!attS.contains(s)){
-								mark = false;
-								break;
-							}
+					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackingnumber")));
+					WebElement trackingnumber = driver.findElement(By.cssSelector(".trackingnumber"));
+					String expressNo = ExpressUtils.regularExperssNo(trackingnumber.getText());
+					String[] expressGroup = expressNo.split(",");
+					for(String s:expressGroup){
+						if(!s.startsWith("T")){
+							expressNo = s;
+							break;
 						}
-						i++;
 					}
-					if(mark){
-						String text = w.findElement(By.cssSelector("div.upperTxt.notBold")).getText();
-						if(text.toLowerCase().contains("will")){
-							logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
-							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-						}else if(text.toLowerCase().contains("shipped")){
-							logger.debug("已经发货了");
-							Matcher upsMatcher = Pattern.compile("1Z.+").matcher(text);
-							Matcher fedExMatcher = Pattern.compile("[0-9]{10,100}").matcher(text.toLowerCase());
-							if(upsMatcher.find()){
-								String trackNo = upsMatcher.group();
-								logger.debug(trackNo);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ups");
-								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-							}else if(fedExMatcher.find()){
-								String trackNo =  fedExMatcher.group();
-								logger.debug(trackNo);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "FedEx");
-								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-							}
-						}else if(text.toLowerCase().contains("cancel")){
-							logger.debug("被砍单了");
-							return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-						}else{
-							logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
-							return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-						}
-						break;
-					}
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "UPS");
+					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+					logger.error("expressCompany =UPS " );
+					logger.error("expressNo = " + expressNo);
+					return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 				}
 			}
 			
 		} catch (Exception e) {
-			logger.debug("爬取物流异常");
+			logger.debug("爬取物流异常",e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
 		return AutoBuyStatus.AUTO_SCRIBE_FAIL;
