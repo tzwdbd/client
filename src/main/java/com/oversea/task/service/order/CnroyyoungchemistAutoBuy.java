@@ -296,7 +296,8 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 		try{
 			WebElement cart = driver.findElement(By.id("DetailAddCart"));
 			Utils.sleep(1500);
-			cart.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", cart);
+			//cart.click();
 		}catch(Exception e){
 			logger.debug("--->加购物车按钮找不到");
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
