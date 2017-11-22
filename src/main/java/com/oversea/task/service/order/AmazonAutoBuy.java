@@ -736,10 +736,10 @@ public class AmazonAutoBuy extends AutoBuy
 						List<WebElement> dimensions = driver.findElements(By.cssSelector(".dimension-label"));
 						for(WebElement w:dimensions){
 							
-							String s = w.getText();
+							String s = w.getText().trim().replaceAll(" ", "");
 							for (int i = 0; i < skuList.size(); i++) {
 								if (i % 2 == 1) {
-									String attrValue = skuList.get(i);
+									String attrValue = skuList.get(i).replaceAll(" ", "");
 									if(attrValue.equalsIgnoreCase(s)){
 										logger.debug("--->"+attrValue+"加1");
 										findCount++;
