@@ -1172,7 +1172,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String productUrl = (String) param.get("url");
 		logger.debug("productUrl = " + productUrl);
 		logger.debug("--->选择商品");
-		
+		String addon = (String) param.get("addon");
 		//判断是extrabux的返利链接
 		String extrabuxMark = "&extrabux=1";
 		if(StringUtil.isNotEmpty(productUrl) && productUrl.endsWith(extrabuxMark)){
@@ -1548,7 +1548,7 @@ public class AmazonAutoBuy extends AutoBuy
 					isAddon = true;
 				}
 			}
-			if (isAddon)
+			if (isAddon && StringUtil.isBlank(addon))
 			{
 				logger.debug("这个商品是Add-on item,凑单商品,不支持购买 url = " + productUrl);
 				return AutoBuyStatus.AUTO_SKU_ADD_ON;
@@ -2947,7 +2947,7 @@ public class AmazonAutoBuy extends AutoBuy
 				BigDecimal x = new BigDecimal(myPrice);
 				BigDecimal y = new BigDecimal(total);
 				BigDecimal v = y.subtract(x);
-				if (v.doubleValue() > 1.00D){
+				if (v.doubleValue() > 0D){
 					logger.error("--->总价差距超过约定,不能下单");
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}

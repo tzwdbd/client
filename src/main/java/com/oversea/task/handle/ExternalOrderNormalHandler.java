@@ -153,7 +153,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 									num = 1;
 								}
 								try{
-									myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num;
+									myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.03;
 								}catch(Exception ee){}
 							}
 							
@@ -163,8 +163,10 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							}
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
+							if(myPrice>=25){
+								params.put("addon", "1");
+							}
 							params.put("my_price", String.valueOf(myPrice));
-							
 							params.put("count", count);
 							params.put("isPay", String.valueOf(true));
 							params.put("size", String.valueOf(externalOrderDetailList.size()));
