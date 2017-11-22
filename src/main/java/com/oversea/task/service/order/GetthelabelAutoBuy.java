@@ -654,18 +654,25 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 		boolean isEffective = false;
 		Set<String> promotionList = getPromotionList(param.get("promotion"));
+		logger.debug("--->promotionList size"+promotionList.size());
 		if (promotionList != null && promotionList.size() > 0) {
 			try {
 				try {
-					WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
-					promotions.click();
+					wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".derate-label-code")));
+					WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+					codepro.click();
 				} catch (Exception e) {
-					
+					try {
+						WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+						promotions.click();
+						TimeUnit.SECONDS.sleep(2);
+						WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+						codepro.click();
+					} catch (Exception e1) {
+						logger.debug("--->优惠码异常1",e1);
+					}
 				}
 				
-				TimeUnit.SECONDS.sleep(2);
-				WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
-				codepro.click();
 				TimeUnit.SECONDS.sleep(2);
 				for (String code : promotionList) {
 					logger.debug("couponCode："+code);
@@ -702,6 +709,7 @@ public class GetthelabelAutoBuy extends AutoBuy {
 					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			} catch (Exception e) {
+				logger.debug("--->优惠码异常",e);
 			}
 		}
 		
