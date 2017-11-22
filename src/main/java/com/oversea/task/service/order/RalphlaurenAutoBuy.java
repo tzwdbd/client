@@ -295,6 +295,9 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 					if(orderStatus.getText().contains("Awaiting")){
 						logger.error(mallOrderNo + "该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}else if(orderStatus.getText().contains("Cancelled")){
+						logger.error("该订单被砍单了");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 					}
 					w.findElement(By.cssSelector("button")).click();
 					wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackingnumber")));
