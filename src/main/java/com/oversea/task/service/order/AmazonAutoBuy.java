@@ -586,23 +586,23 @@ public class AmazonAutoBuy extends AutoBuy
 //												hasOneSize = true;
 //												break;
 //											}
-											String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
-											String[] vv = v.split("(?<!^)(?=[A-Z])");
-											if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
-											{
-												for (String sss : ss)
-												{
-													if (vv[0].contains(sss))
-													{
-														hasOneSize = true;
-														break;
-													}
-												}
-												if (hasOneSize)
-												{
-													break;
-												}
-											}
+//											String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
+//											String[] vv = v.split("(?<!^)(?=[A-Z])");
+//											if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
+//											{
+//												for (String sss : ss)
+//												{
+//													if (vv[0].contains(sss))
+//													{
+//														hasOneSize = true;
+//														break;
+//													}
+//												}
+//												if (hasOneSize)
+//												{
+//													break;
+//												}
+//											}
 										}
 	
 									}
@@ -749,7 +749,7 @@ public class AmazonAutoBuy extends AutoBuy
 							}
 						}
 						logger.debug("--->sku findCount = "+findCount+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions.size());
-						if(findCount < skuList.size()/2 || dimensions.size()<skuList.size()/2){
+						if(findCount < dimensions.size() ){
 							logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
 							return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 						}
@@ -4968,8 +4968,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "https://lustrelife.com/it.php?udid=933&stid=948&dlink=aHR0cDovL3d3dy5hbWF6b24uY29tL2RwL0IwMEJJTzVaMlU%2FdGFnPWx1c3RyMGEtYWQyNTcxLTIw");
-		//param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Medium\"]]");
+		param.put("url", "https://lustrelife.com/it.php?udid=933&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBFOVVTRjBZP3RhZz1sdXN0cjBhLWFkMjU3MS0yMA%3D%3D");
+		param.put("sku", "[[\"Color\",\"White\"],[\"Size\",\"7\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");

@@ -431,7 +431,7 @@ public class NinewestAutoBuy extends AutoBuy {
 		
 		// 查询总价
 		try {
-			WebElement total = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='value']")));
+			WebElement total = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-total-value")));
 			String price = total.getText();
 			Matcher m = Pattern.compile("[0-9.]+").matcher(price);
 			if(m.find()){
