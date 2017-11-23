@@ -174,7 +174,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							}
 							String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 							Map<String, String> params = new HashMap<String, String>();
-							
+							autoBuy.setTotalPrice(String.valueOf(myPrice));
 							params.put("my_price", String.valueOf(myPrice));
 							params.put("count", count);
 							params.put("isPay", String.valueOf(true));

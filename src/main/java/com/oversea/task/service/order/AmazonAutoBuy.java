@@ -1556,7 +1556,7 @@ public class AmazonAutoBuy extends AutoBuy
 			// 订阅商品
 			try
 			{
-				WebElement oneTimeBuyBox = driver.findElement(By.xpath("//div[@id='oneTimeBuyBox']"));// 换种样式查找
+				WebElement oneTimeBuyBox = driver.findElement(By.id("oneTimeBuyBox"));// 换种样式查找
 				if (oneTimeBuyBox != null)
 				{
 					logger.debug("这个商品是订阅商品00,选择oneTimePurchase");
@@ -4960,7 +4960,7 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01N10K4OR");
+		param.put("url", "http://www.amazon.com/dp/B00PFCSX7U?psc=1");
 		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Medium\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
