@@ -1162,6 +1162,14 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("2222",e);
 				}
 				
+				try {
+					TimeUnit.SECONDS.sleep(1);
+					WebElement tt = driver.findElement(By.xpath("//span[contains(text(),'Continue')]"));
+					tt.click();
+					TimeUnit.SECONDS.sleep(1);
+				} catch (Exception e) {
+					logger.error("Continue 点击出错");
+				}
 				
 				//等待购物车加载完成
 				try{
@@ -2108,7 +2116,14 @@ public class AmazonAutoBuy extends AutoBuy
 			} catch (Exception e) {
 				logger.error("2222",e);
 			}
-			
+			try {
+				TimeUnit.SECONDS.sleep(1);
+				WebElement tt = driver.findElement(By.xpath("//span[contains(text(),'Continue')]"));
+				tt.click();
+				TimeUnit.SECONDS.sleep(1);
+			} catch (Exception e) {
+				logger.error("Continue 点击出错");
+			}
 			
 			//等待购物车加载完成
 			try{
@@ -5224,13 +5239,13 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B001DTHPEQ");
-		param.put("sku", "[[\"Package Quantity\",\"1\"],[\"Size\",\"Mini\"]]");
+		param.put("url", "http://www.amazon.com/dp/B01J90O7KK?psc=1");
+		param.put("sku", "[[\"DigitalStorageCapacity\",\"8 GB\"],[\"Configuration\",\"With Special Offers\"],[\"Color\",\"Canary Yellow\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		//param.put("sign", "0");
+		param.put("sign", "1");
 		//param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
 		//param.put("title","Yoga pants Mesh Workout legging");
 		//param.put("position","30");
