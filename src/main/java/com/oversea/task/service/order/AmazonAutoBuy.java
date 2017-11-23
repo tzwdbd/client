@@ -1134,11 +1134,15 @@ public class AmazonAutoBuy extends AutoBuy
 				try{
 					WebDriverWait wait = new WebDriverWait(driver, 45);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
-					WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
-					logger.error("购物车数量为"+numText.getText().trim());
-					if(!productNum.equals(numText.getText().trim())){
-						logger.error("选择数量失败 pruductNum = " + productNum);
-						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					try{
+						WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+						logger.error("购物车数量为"+numText.getText().trim());
+						if(!productNum.equals(numText.getText().trim())){
+							logger.error("选择数量失败 pruductNum = " + productNum);
+							return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+						}
+					}catch(Exception e){
+						logger.error("等待购物车数量出错");
 					}
 				}catch(Exception e){
 					logger.error("等待购物车加载完成出错,e");
@@ -1854,11 +1858,15 @@ public class AmazonAutoBuy extends AutoBuy
 			try{
 				WebDriverWait wait = new WebDriverWait(driver, 45);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
-				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
-				logger.error("购物车数量为"+numText.getText().trim());
-				if(!productNum.equals(numText.getText().trim())){
-					logger.error("选择数量失败 pruductNum = " + productNum);
-					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				try{
+					WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+					logger.error("购物车数量为"+numText.getText().trim());
+					if(!productNum.equals(numText.getText().trim())){
+						logger.error("选择数量失败 pruductNum = " + productNum);
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				}catch(Exception e){
+					logger.error("等待购物车数量出错");
 				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
@@ -4960,16 +4968,16 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B00PFCSX7U?psc=1");
-		param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Medium\"]]");
+		param.put("url", "https://lustrelife.com/it.php?udid=933&stid=948&dlink=aHR0cDovL3d3dy5hbWF6b24uY29tL2RwL0IwMEJJTzVaMlU%2FdGFnPWx1c3RyMGEtYWQyNTcxLTIw");
+		//param.put("sku", "[[\"Color\",\"Black\"],[\"Size\",\"Medium\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("sign", "0");
-		param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
-		param.put("title","Yoga pants Mesh Workout legging");
-		param.put("position","30");
+		//param.put("sign", "0");
+		//param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
+		//param.put("title","Yoga pants Mesh Workout legging");
+		//param.put("position","30");
 		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
@@ -5900,11 +5908,15 @@ public class AmazonAutoBuy extends AutoBuy
 			//等待购物车加载完成
 			try{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
-				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
-				logger.error("购物车数量为"+numText.getText().trim());
-				if(!productNum.equals(numText.getText().trim())){
-					logger.error("选择数量失败 pruductNum = " + productNum);
-					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				try{
+					WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+					logger.error("购物车数量为"+numText.getText().trim());
+					if(!productNum.equals(numText.getText().trim())){
+						logger.error("选择数量失败 pruductNum = " + productNum);
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				}catch(Exception e){
+					logger.error("等待购物车数量出错");
 				}
 			}catch(Exception e){
 				logger.error("等待购物车加载完成出错,e");
