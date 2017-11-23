@@ -732,7 +732,12 @@ public class AmazonAutoBuy extends AutoBuy
 					int findCount = 0;
 					try {
 						WebDriverWait wait = new WebDriverWait(driver, 30);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dimension-label")));
+						try {
+							wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dimension-label")));
+						} catch (Exception e) {
+							logger.debug("都是一个sku ");
+						}
+						
 						List<WebElement> dimensions = driver.findElements(By.cssSelector(".dimension-label"));
 						for(WebElement w:dimensions){
 							
@@ -5219,8 +5224,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B001R4BY1W");
-		param.put("sku", "[[\"Color\",\"Honey\"],[\"Special Size\",\"standard\"],[\"Size\",\"7.5 D(M) US\"]]");
+		param.put("url", "http://www.amazon.com/dp/B001DTHPEQ");
+		param.put("sku", "[[\"Package Quantity\",\"1\"],[\"Size\",\"Mini\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
