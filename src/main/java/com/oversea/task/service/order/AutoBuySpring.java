@@ -483,24 +483,29 @@ public class AutoBuySpring extends AutoBuy {
 				logger.error("页面上没有优惠码了");
 			}
 			if(mark){
-				WebElement addlink = driver.findElement(By.cssSelector("span[class^='text_19ar56z-o_O-addPromoText']"));
-				driver.executeScript("var tar=arguments[0];tar.click();", addlink);
+				try {
+					WebElement addlink = driver.findElement(By.cssSelector("span[class^='text_19ar56z-o_O-addPromoText']"));
+					driver.executeScript("var tar=arguments[0];tar.click();", addlink);
+				} catch (Exception e) {
+				}
+				
+				
 				boolean isEffective = false;
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				for(String code : promotionList){
 					if(StringUtil.isNotEmpty(code)){
 						code = code.trim();
 						try{
-							WebElement codeInput = driver.findElement(By.cssSelector("input[class^='promoCodesInput']"));
+							WebElement codeInput = driver.findElement(By.cssSelector("input[class^='promoCodeInput']"));
 							codeInput.clear();
 							Utils.sleep(2500);
 							codeInput.sendKeys(code);
 							Utils.sleep(1500);
-							driver.findElement(By.cssSelector(".applyButton_tyi7sb")).click();
+							driver.findElement(By.cssSelector("button[class^='applyPromoButton']")).click();
 							Utils.sleep(5500);
 							
 							try{
-								driver.findElement(By.cssSelector(".errorMsg_vromzt"));//礼品卡
+								driver.findElement(By.cssSelector("span[class*='errorMessage']"));//礼品卡
 								statusMap.put(code, 0);
 							}catch(Exception e){
 								logger.error("promotionCode:"+code,e);

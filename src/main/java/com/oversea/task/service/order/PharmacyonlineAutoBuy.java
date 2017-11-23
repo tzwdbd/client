@@ -735,11 +735,21 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			Set<String> promotionList = getPromotionList(param.get("promotion"));
 			if (promotionList != null && promotionList.size() > 0) {
 				try {
-					WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
-					promotions.click();
-					TimeUnit.SECONDS.sleep(2);
-					WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
-					codepro.click();
+					try {
+						wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".derate-label-code")));
+						WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+						codepro.click();
+					} catch (Exception e) {
+						try {
+							WebElement promotions = driver.findElement(By.cssSelector(".derate-handler"));
+							promotions.click();
+							TimeUnit.SECONDS.sleep(2);
+							WebElement codepro = driver.findElement(By.cssSelector(".derate-label-code"));
+							codepro.click();
+						} catch (Exception e1) {
+							logger.debug("--->优惠码异常1",e1);
+						}
+					}
 					TimeUnit.SECONDS.sleep(2);
 					for (String code : promotionList) {
 						logger.debug("couponCode："+code);
