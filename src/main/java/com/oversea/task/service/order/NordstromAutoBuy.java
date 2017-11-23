@@ -76,7 +76,7 @@ public class NordstromAutoBuy extends AutoBuy {
 //		}
 		try
 		{
-			driver.get("https://m.secure.nordstrom.com/signin.aspx");
+			driver.get("https://secure.nordstrom.com/SignIn.aspx?cm_sp=SI_SP_A-_-SI_SP_B-_-SI_SP_C&origin=tab&ReturnURL=https%3A%2F%2Fshop.nordstrom.com%2F");
 		}
 		catch (Exception e)
 		{
@@ -113,7 +113,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		try
 		{
 			WebElement btn = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_enterButton"));
-			btn.click();;
+			btn.click();
 			logger.debug("--->开始登陆");
 		}
 		catch (Exception e)
@@ -234,6 +234,12 @@ public class NordstromAutoBuy extends AutoBuy {
 		catch (Exception e)
 		{
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+		}
+		try {
+			TimeUnit.SECONDS.sleep(3);
+			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
+		} catch (Exception e) {
 		}
 		
 		//商品页面找不到,商品也是下架
