@@ -359,23 +359,25 @@ public class NinewestAutoBuy extends AutoBuy {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			logger.debug("开始选择地址");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#shipping-addressForm")));
-			List<WebElement> savedAddresses =  driver.findElements(By.cssSelector("div#shipping-addressForm div.saved-addresses__item-actions input"));
-			closeAdv();
-			int sumAddress = savedAddresses.size()-1;
-			logger.debug("共有"+sumAddress+"个地址可选");
-			int target = count % sumAddress;
-			savedAddresses.get(target).click();
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#shipping-addressForm")));
+//			List<WebElement> savedAddresses =  driver.findElements(By.cssSelector("div#shipping-addressForm div.saved-addresses__item-actions input"));
+//			closeAdv();
+//			int sumAddress = savedAddresses.size()-1;
+//			logger.debug("共有"+sumAddress+"个地址可选");
+//			int target = count % sumAddress;
+//			savedAddresses.get(target).click();
 			logger.debug("选择地址成功");
 			TimeUnit.SECONDS.sleep(1);
-			closeAdv();
-			WebElement submit = driver.findElement(By.xpath("//input[@class='submit-button fluid-checkout-button fluid-checkout-button--primary continue-button']"));
-			submit.click();
+			//closeAdv();
+			WebElement submit = driver.findElement(By.cssSelector("input[value='Continue to Billing']"));
+			//WebElement submit = driver.findElement(By.xpath("//input[@class='submit-button fluid-checkout-button fluid-checkout-button--primary continue-button']"));
+			//submit.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", submit);
 			TimeUnit.SECONDS.sleep(5);
-			try {
-				TimeUnit.SECONDS.sleep(2);
-				driver.findElement(By.xpath("//input[@class='submit-button secondary-button continue-button']")).click();
-			} catch (Exception e) {}
+//			try {
+//				TimeUnit.SECONDS.sleep(2);
+//				driver.findElement(By.xpath("//input[@class='submit-button secondary-button continue-button']")).click();
+//			} catch (Exception e) {}
 		} catch (Exception e) {
 			logger.debug("选择地址出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_FAIL; 
@@ -402,25 +404,33 @@ public class NinewestAutoBuy extends AutoBuy {
 				Select ySelect = new Select(year);
 				ySelect.selectByValue(time[0]);
 				
-				try {
-					TimeUnit.SECONDS.sleep(5);
-					WebElement uses = driver.findElement(By.xpath("//div[@class='use-shipping-address checkbox']/input"));
-					uses.click();
-				} catch (Exception e) {
-				}
-				
-				closeAdv();
-				try {
-					logger.debug("信用卡信息输入完成");
-					driver.findElement(By.xpath("//input[@class='fluid-checkout-button--primary submit-button primary-button continue-button']")).click();;
-					TimeUnit.SECONDS.sleep(5);
-				} catch (Exception e) {
-				}
+//				try {
+//					TimeUnit.SECONDS.sleep(5);
+//					WebElement uses = driver.findElement(By.xpath("//div[@class='use-shipping-address checkbox']/input"));
+//					uses.click();
+//				} catch (Exception e) {
+//				}
+//				
+//				closeAdv();
+//				try {
+//					logger.debug("信用卡信息输入完成");
+//					driver.findElement(By.xpath("//input[@class='fluid-checkout-button--primary submit-button primary-button continue-button']")).click();;
+//					TimeUnit.SECONDS.sleep(5);
+//				} catch (Exception e) {
+//				}
 			} catch (Exception e) {
 			}
 			try {
 				WebElement element = driver.findElement(By.xpath("//input[@class='fluid-checkout-button--primary submit-button primary-button continue-button']"));
 				element.click();
+				List<WebElement> elements = driver.findElements(By.cssSelector("input[value='Continue to Order Review']"));
+				for(WebElement w:elements){
+					if(w.isDisplayed()){
+						driver.executeScript("var tar=arguments[0];tar.click();", w);
+						break;
+					}
+				}
+				
 				logger.debug("确认信用卡信息");
 			} catch (Exception e) {
 			}

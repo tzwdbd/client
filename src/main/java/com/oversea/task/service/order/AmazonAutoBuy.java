@@ -751,7 +751,35 @@ public class AmazonAutoBuy extends AutoBuy
 						logger.debug("--->sku findCount = "+findCount+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions.size());
 						if(findCount < dimensions.size() ){
 							logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
-							return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+							selectsku(sku);
+							
+							int findCount1 = 0;
+							try {
+								wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dimension-label")));
+								List<WebElement> dimensions1 = driver.findElements(By.cssSelector(".dimension-label"));
+								for(WebElement w:dimensions1){
+									
+									String s = w.getText().trim().replaceAll(" ", "");
+									for (int i = 0; i < skuList.size(); i++) {
+										if (i % 2 == 1) {
+											String attrValue = skuList.get(i).replaceAll(" ", "");
+											if(attrValue.equalsIgnoreCase(s)){
+												logger.debug("--->"+attrValue+"加1");
+												findCount1++;
+												break;
+											}
+										}
+									}
+								}
+								logger.debug("--->sku findCount = "+findCount1+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions1.size());
+								if(findCount1 < dimensions1.size() ){
+									logger.debug("--->缺少匹配的sku findCount = "+findCount1+" && skuList.size()/2 = "+skuList.size()/2);
+									return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+								}
+							} catch (Exception e) {
+								logger.debug("售罄 ");
+								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+							}
 						}
 					} catch (Exception e) {
 						logger.debug("售罄 ");
@@ -1166,6 +1194,229 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("选择sku出现异常:", e);
 				return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 			}
+		}
+	}
+	
+	public void selectsku(Object sku){
+		if (sku != null){
+			List<String> skuList = Utils.getSku((String) sku);
+			for (int i = 0; i < skuList.size(); i++)
+			{
+				if (i % 2 == 1)
+				{
+					boolean mark = false;
+					logger.error(skuList.get(i - 1) + ":" + skuList.get(i));
+					By byPanel = By.xpath("//div[@id='ppd']");
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(byPanel));
+					} catch (Exception e) {
+						mark = true;
+					}
+					
+					// 判断是否是连续选择的sku
+					if (mark){
+						for(int k = 0;k<3;k++){
+							try{
+								Utils.sleep(4500);
+								List<WebElement> lists = driver.findElements(By.cssSelector("ul>li.a-align-center h4"));
+								for(WebElement w:lists){
+									for (int j = 0; j < skuList.size(); j++){
+										if (j % 2 == 1){
+											if(w.getText().equals(skuList.get(j))){
+												logger.error("连续选择:"+skuList.get(j));
+												w.click();
+												break;
+											}
+										}
+									}
+										
+								}
+									
+								Utils.sleep(2500);
+							}catch(Exception e){
+								break;
+							}
+						}
+					}
+					
+					
+					
+					String keyStr = Utils.firstCharUpper(skuList.get(i - 1));
+					// 等待最大的选择面板可见
+					WebElement panel = waitForMainPanel(driver);
+	
+					// 不需要选择的sku,比如one size
+					boolean hasOneSize = false;
+					List<WebElement> list = null;
+					try
+					{
+						list = panel.findElements(By.xpath(".//div[@class='a-row a-spacing-small']"));
+					}
+					catch (NoSuchElementException e)
+					{
+					}
+					if (list != null && list.size() > 0)
+					{
+						for (WebElement e : list)
+						{
+							if (e != null)
+							{
+								String v = e.getText();
+								if (!Utils.isEmpty(v))
+								{
+									if (v.indexOf(skuList.get(i)) != -1)
+									{
+										hasOneSize = true;
+										break;
+									}
+									v = v.replaceAll(" ", "");
+	//								if (v.contains(keyStr))
+	//								{
+	//									hasOneSize = true;
+	//									break;
+	//								}
+	//								String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
+	//								String[] vv = v.split("(?<!^)(?=[A-Z])");
+	//								if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
+	//								{
+	//									for (String sss : ss)
+	//									{
+	//										if (vv[0].contains(sss))
+	//										{
+	//											hasOneSize = true;
+	//											break;
+	//										}
+	//									}
+	//									if (hasOneSize)
+	//									{
+	//										break;
+	//									}
+	//								}
+								}
+	
+							}
+						}
+					}
+					
+					if (hasOneSize){
+						logger.debug("find one key first~~");
+						continue;
+					}
+					
+					WebElement keyElement = null;
+					
+					List<WebElement> list0 = driver.findElements(By.cssSelector("div.twisterButton.nocopypaste"));
+					if(list0 != null && list0.size() > 0){
+						//判断onesize
+						for(WebElement w : list0){
+							try{
+								w.findElement(By.cssSelector("span.a-declarative"));
+							}catch(Exception e){
+								String text = w.getText();
+							    if(StringUtil.isNotEmpty(text) && text.contains(skuList.get(i))){
+									hasOneSize = true;
+									break;
+								}
+							}
+						}
+						if(!hasOneSize){
+							//精确匹配
+							for(WebElement w : list0){
+								WebElement ww = w.findElement(By.cssSelector("div.a-column.a-span9"));
+								if(ww != null && StringUtil.isNotEmpty(ww.getText())){
+									String[] ss = ww.getText().split("\n");
+									String text = ss[0].replace(":", "");
+									if(keyStr.equals(text) || keyStr.equalsIgnoreCase(text)){
+										keyElement = w;
+										break;
+									}
+								}
+							}
+							//模糊匹配
+							if(keyElement == null){
+								for(WebElement w : list0){
+									WebElement ww = w.findElement(By.cssSelector("div.a-column.a-span9"));
+									if(ww != null && StringUtil.isNotEmpty(ww.getText())){
+										String[] ss = ww.getText().split("\n");
+										String text = ss[0].replace(":", "");
+										if(StringUtil.isNotEmpty(text) && text.toLowerCase().contains(keyStr.toLowerCase())){
+											keyElement = w;
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+					
+		
+					
+					if (hasOneSize){
+						logger.debug("find one key second");
+						continue;
+					}
+					
+					//再次寻找 分词匹配
+					if (keyElement == null && !Utils.isEmpty(keyStr)){
+						List<WebElement> keyList = driver.findElements(By.xpath("//div[@class='a-column a-span9']"));
+						keyElement = findClosedWelement(keyStr, keyList);
+					}
+					
+					if(keyElement == null){
+						List<WebElement> l = driver.findElements(By.xpath("//button[@class='a-button-text a-text-left']"));
+						if(l != null && l.size() > 0){
+							for(WebElement w : l){
+								if(w != null){
+									String text = w.getText();
+									if(StringUtil.isNotEmpty(text) && text.toLowerCase().contains(keyStr.toLowerCase())){
+										keyElement = w;
+										break;
+									}
+								}
+								
+							}
+						}
+					}
+	
+					if (keyElement == null){
+						logger.debug("找不到keyElement url= && sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
+					}
+					Utils.sleep(2000);
+	
+					if (newStyle)
+					{
+						try
+						{
+							keyElement.findElement(By.cssSelector("div.twister-mobile-tiles-swatch-unavailable"));
+							logger.debug("--->新姿势选择的目标按钮不可点击,商品已经下架");
+						}
+						catch (Exception e)
+						{
+	
+						}
+						keyElement.click();
+						logger.debug("--->新姿势选择:[" + skuList.get(i - 1) + " = " + skuList.get(i) + "]");
+						newStyle = false;
+					}
+					else
+					{
+						logger.debug("--->自动选择:[" + skuList.get(i - 1) + " = " + skuList.get(i) + "]");
+						keyElement.click();
+						try
+						{
+							valueClick(driver, skuList.get(i));
+						}
+						catch (Exception e)
+						{
+							logger.debug("找不到valueElement url= && sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
+						}
+					}
+					
+					Utils.sleep(2500);
+				}
+			}
+			
 		}
 	}
 	
@@ -4968,8 +5219,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "https://lustrelife.com/it.php?udid=933&stid=948&dlink=aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9kcC9CMDBFOVVTRjBZP3RhZz1sdXN0cjBhLWFkMjU3MS0yMA%3D%3D");
-		param.put("sku", "[[\"Color\",\"White\"],[\"Size\",\"7\"]]");
+		param.put("url", "http://www.amazon.com/dp/B001R4BY1W");
+		param.put("sku", "[[\"Color\",\"Honey\"],[\"Special Size\",\"standard\"],[\"Size\",\"7.5 D(M) US\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
