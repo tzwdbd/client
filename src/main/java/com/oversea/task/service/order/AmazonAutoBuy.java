@@ -2210,7 +2210,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus addAddr(UserTradeAddress userTradeAddress,String userName,int size){
 		
 		try {
-			int i = size%4;
+			int i = size%6;
 			String name = userName.split("@")[0];
 			if(i==0){
 				name = name+"A  "+userTradeAddress.getName();
@@ -2218,8 +2218,12 @@ public class AmazonAutoBuy extends AutoBuy
 				name = name+"B  "+userTradeAddress.getName();
 			}else if(i==2){
 				name = name+"C  "+userTradeAddress.getName();
-			}else{
+			}else if(i==3){
 				name = name+"D  "+userTradeAddress.getName();
+			}else if(i==4){
+				name = name+"E  "+userTradeAddress.getName();
+			}else{
+				name = name+"F  "+userTradeAddress.getName();
 			}
 		
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
@@ -2441,7 +2445,7 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 				}
 				logger.debug("--->下单的地址有[" + availableAddr.size() + "]个可用");
-				if(availableAddr.size()<4){
+				if(availableAddr.size()<6){
 					//添加地址
 					WebElement addAddress = driver.findElement(By.cssSelector("a[data-pipeline-link-from-page='address']"));
 					addAddress.click();
@@ -2451,7 +2455,7 @@ public class AmazonAutoBuy extends AutoBuy
 				try
 				{
 					index = Integer.valueOf(count);
-					int tarAddr = index % 4;
+					int tarAddr = index % 6;
 
 					WebElement cur = availableAddr.get(tarAddr);
 					

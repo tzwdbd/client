@@ -879,7 +879,8 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 			if (isPay) {
 				logger.debug("------------------");
 				logger.debug("--->啊啊啊啊，我要付款啦！！！");
-				placeOrderButton.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", placeOrderButton);
+				//placeOrderButton.click();
 				logger.debug("------------------");
 			}
 			logger.debug("--->点击付款完成 placeOrder finish");
