@@ -322,7 +322,7 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 							if(skuEle.getText().equalsIgnoreCase("color")){
 								List<WebElement> colorList = c.findElements(By.cssSelector("img"));
 								for(WebElement color:colorList){
-									if(!StringUtil.isBlank(color.getAttribute("alt")) && color.getAttribute("alt").equals(skuMap.get("color"))){
+									if(!StringUtil.isBlank(color.getAttribute("alt")) && color.getAttribute("alt").equalsIgnoreCase(skuMap.get("color"))){
 										logger.debug("--->选择Color:" + skuMap.get("color"));
 										if(!"true".equals(c.getAttribute("data-is-selected"))){
 											color.click();
@@ -1073,16 +1073,16 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 	public static void main(String[] args)
 	{
 		VictoriassecretAutoBuy auto = new VictoriassecretAutoBuy();
-		AutoBuyStatus status = auto.login("tzwdbd@126.com", "Tfb001001");
-		System.out.println(status);
+		//AutoBuyStatus status = auto.login("tzwdbd@126.com", "Tfb001001");
+		//System.out.println(status);
 		/*AutoBuyStatus status1 = auto.cleanCart();
 		System.out.println(status1);*/
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("url", "https://www.victoriassecret.com/clearance/bras/mesh-plunge-bralette-the-bralette-collection?ProductID=337567&CatalogueType=OLS");
+		param.put("url", "https://www.victoriassecret.com/bras/shop-all-bras/add-2-cups-multi-way-push-up-bra-bombshell?ProductID=303412&CatalogueType=OLS");
 //		param.put("sku", "[[\"color\",\"Black\"],[\"size\",\"10\"],[\"width\",\"M\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("orginalUrl", "https://www.victoriassecret.com/clearance/bras/mesh-plunge-bralette-the-bralette-collection?ProductID=337567&CatalogueType=OLS");
-		param.put("sku", "[[\"color\",\"Sterling Pewter Two Tone Print\"],[\"size\",\"S\"]]");
+		param.put("orginalUrl", "https://www.victoriassecret.com/bras/shop-all-bras/add-2-cups-multi-way-push-up-bra-bombshell?ProductID=303412&CatalogueType=OLS");
+		param.put("sku", "[[\"color\",\"black\"],[\"bandSize\",\"34\"],[\"cupSize\",\"DD\"]]");
 		param.put("num", "3");
 		param.put("productEntityId", "7512528");
 		param.put("isPay", "false");
