@@ -38,10 +38,11 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		driver.get("http://cn.babyhaven.com/");
 		// 点击登录
 		try {
-			By bySignIn = By.xpath("//a[@class='HeaderWord login' and contains(text(), '登录')]");
-			WebElement signIn = driver.findElement(bySignIn);
-			logger.debug("--->跳转到登录页面");
-			signIn.click();
+			driver.get("https://cn.babyhaven.com/customer/account/login");
+//			By bySignIn = By.xpath("//a[@class='HeaderWord login' and contains(text(), '登录')]");
+//			WebElement signIn = driver.findElement(bySignIn);
+//			logger.debug("--->跳转到登录页面");
+//			signIn.click();
 			Utils.sleep(1500);
 		} catch (Exception e) {
 			logger.error("--->没有找到登陆按钮", e);
