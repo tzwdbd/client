@@ -807,6 +807,7 @@ public class IherbAutoBuy extends AutoBuy
 			Utils.sleep(1500);
 		} catch (Exception e) {
 			logger.debug("--->identification",e);
+			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		try {
