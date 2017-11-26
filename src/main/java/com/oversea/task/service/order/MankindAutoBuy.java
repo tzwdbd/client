@@ -687,7 +687,7 @@ public class MankindAutoBuy extends AutoBuy {
 		//找到添加新地址
 		try{
 			logger.debug("--->点击添加新地址");
-			driver.findElement(By.xpath("//label[@id='lbl-add-new-address']")).click();
+			driver.findElement(By.id("lbl-add-new-address")).click();
 			Utils.sleep(1000);
 		}catch(Exception e){
 			logger.error("--->点击添加新地址异常" , e);
@@ -707,25 +707,25 @@ public class MankindAutoBuy extends AutoBuy {
 			countrySelect.selectByVisibleText("China");
 			Utils.sleep(3000);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-post-zip-code']")).sendKeys(address.getZip());
+			driver.findElement(By.id("delivery-post-code")).sendKeys(address.getZip());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-name-number']")).sendKeys("x");
+			driver.findElement(By.id("delivery-name-number")).sendKeys("x");
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-street-name']")).sendKeys(address.getAddress());
+			driver.findElement(By.id("delivery-street-name")).sendKeys(address.getAddress());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-address-line-2']")).sendKeys(address.getDistrict());
+			driver.findElement(By.id("delivery-address-line2")).sendKeys(address.getDistrict());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-town-city']")).sendKeys(address.getCity());
+			driver.findElement(By.id("delivery-town-city")).sendKeys(address.getCity());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='delivery-state-province']")).sendKeys(address.getState());
+			driver.findElement(By.id("delivery-county")).sendKeys(address.getState());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.xpath("//input[@id='order-contact-number']")).sendKeys("+86"+address.getMobile());
+			driver.findElement(By.id("order-contact-number")).sendKeys("+86"+address.getMobile());
 			Utils.sleep(1500);
 		}catch(Exception e){
 			logger.error("--->设置收货地址出错" , e);
