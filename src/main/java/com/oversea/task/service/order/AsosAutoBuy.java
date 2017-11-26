@@ -344,7 +344,7 @@ public class AsosAutoBuy extends AutoBuy {
 			WebElement priceElment = driver.findElement(By.xpath("//span[@class='current-price product-price-discounted']"));
 			String priceStr = priceElment.getText();
 			String productEntityId = param.get("productEntityId");
-			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("$") && StringUtil.isNotEmpty(productEntityId)) {
+			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("£") && StringUtil.isNotEmpty(productEntityId)) {
 				logger.debug("--->找到商品单价 = " + priceStr.substring(1));
 //				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.substring(1));
 				priceMap.put(productEntityId, priceStr.substring(1));
@@ -355,16 +355,16 @@ public class AsosAutoBuy extends AutoBuy {
 				String priceStr = pricePanel.getText();
 				String productEntityId = param.get("productEntityId");
 				if (!Utils.isEmpty(priceStr) && StringUtil.isNotEmpty(productEntityId)) {
-					logger.error("--->单价:" + priceStr.replace("$", ""));
-//					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("$", ""));
-					priceMap.put(productEntityId, priceStr.replace("$", ""));
+					logger.error("--->单价:" + priceStr.replace("£", ""));
+//					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, priceStr.replace("£", ""));
+					priceMap.put(productEntityId, priceStr.replace("£", ""));
 				} else{
 					WebElement mypricePanel = driver.findElement(By.id("ctl00_ContentMainPage_ctlSeparateProduct_lblProductPrice"));
 					String myPriceStr = mypricePanel.getText();
 					if (!Utils.isEmpty(myPriceStr) && StringUtil.isNotEmpty(productEntityId)) {
-						logger.error("--->单价:" + myPriceStr.replace("$", ""));
-//						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, myPriceStr.replace("$", ""));
-						priceMap.put(productEntityId, myPriceStr.replace("$", ""));
+						logger.error("--->单价:" + myPriceStr.replace("£", ""));
+//						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_SINGLE_PRICE, myPriceStr.replace("£", ""));
+						priceMap.put(productEntityId, myPriceStr.replace("£", ""));
 					} else
 					{
 						logger.error("--->单价获取失败");
@@ -673,8 +673,8 @@ public class AsosAutoBuy extends AutoBuy {
 			WebElement totalPriceElement = driver
 					.findElement(By.xpath("//div[@data-bind='currency: total']"));
 			String text = totalPriceElement.getText();
-			if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
-				String priceStr = text.substring(text.indexOf("$") + 1);
+			if (!Utils.isEmpty(text) && text.indexOf("£") != -1) {
+				String priceStr = text.substring(text.indexOf("£") + 1);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 				logger.debug("--->[1]找到商品结算总价 = " + priceStr);
 				if(!StringUtil.isBlank(getTotalPrice())){
@@ -701,8 +701,8 @@ public class AsosAutoBuy extends AutoBuy {
 				WebElement totalPriceElement = driver
 						.findElement(By.id("_ctl0_ContentBody_ctlReceiptSummary_rptReceiptItems__ctl2_lblGrandTotal"));
 				String text = totalPriceElement.getText();
-				if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
-					String priceStr = text.substring(text.indexOf("$") + 1);
+				if (!Utils.isEmpty(text) && text.indexOf("£") != -1) {
+					String priceStr = text.substring(text.indexOf("£") + 1);
 					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
 					logger.debug("--->[2]找到商品结算总价 = " + priceStr);
 //					BigDecimal x = new BigDecimal(myPrice);
