@@ -282,8 +282,8 @@ public class ThehutAutoBuy extends AutoBuy {
 				cart.click();
 			}
 			Utils.sleep(1500);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("basketAlertClose")));
-			WebElement viewBasket = driver.findElement(By.id("basketAlertClose"));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".js-e2e-quickView-basket")));
+			WebElement viewBasket = driver.findElement(By.cssSelector(".js-e2e-quickView-basket"));
 			viewBasket.click();
 			Utils.sleep(1500);
 		} catch (Exception e) {
