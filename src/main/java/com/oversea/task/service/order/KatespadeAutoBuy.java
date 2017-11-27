@@ -29,6 +29,7 @@ import com.oversea.task.service.express.ExpressSpiderFactory;
 import com.oversea.task.service.express.UPSExpressSpider;
 import com.oversea.task.service.express.entity.ResultItem;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 public class KatespadeAutoBuy extends AutoBuy {
@@ -1352,7 +1353,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}
 		//查找物流
 		AutoBuyStatus status = AutoBuyStatus.AUTO_SCRIBE_FAIL; 
-		List<WebElement> orders = driver.findElements(By.cssSelector(".search-result-items"));
+		List<WebElement> orders = driver.findElements(By.cssSelector(".search-result-items li"));
 		for (WebElement order:orders) {
 			WebElement sectionHeader = null;
 			try {
@@ -1362,6 +1363,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 			}
 			
 			String orderText = sectionHeader.getText() ;
+			logger.debug("orderText："+orderText);
 			if(!StringUtil.isBlank(orderText)&&orderText.contains(mallOrderNo)){
 				try{
 					WebElement orderStatusEle = order.findElement(By.cssSelector(".order-status"));
@@ -1376,11 +1378,22 @@ public class KatespadeAutoBuy extends AutoBuy {
 						logger.debug("商城砍单，商城订单号："+mallOrderNo);
 						status = AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED ;
 					}else if("shipped".equals(orderStatus.toLowerCase())){
-						WebElement detaillink = order.findElement(By.cssSelector(".details-link button"));
+						logger.debug("商城已发货，订单号："+mallOrderNo);
+						WebElement detaillink = null;
+						try {
+							detaillink = order.findElement(By.cssSelector(".order-history-order-view-order-details button"));
+						} catch (Exception e) {
+							WebElement trade = order.findElement(By.cssSelector(".trackingnumber a"));
+							logger.debug("找到物流单号："+trade.getText());
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trade.getText());
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "UPS");
+							return  AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+						}
+						 
 						detaillink.click();
 						Utils.sleep(1000);
-						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackingnumber")));
-						WebElement td = driver.findElement(By.cssSelector(".trackingnumber"));
+						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-details-trackingnumber-order")));
+						WebElement td = driver.findElement(By.cssSelector(".order-details-trackingnumber-order"));
 						
 						String trackNo = td.getText() ;
 						logger.debug("已发货，开始查找物流单号");
@@ -1388,8 +1401,16 @@ public class KatespadeAutoBuy extends AutoBuy {
 							logger.debug("找不到订单号");
 							status = AutoBuyStatus.AUTO_SCRIBE_FAIL;
 						}else{
-							logger.debug("找到物流单号："+trackNo);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackNo);
+							String expressNo = ExpressUtils.regularExperssNo(td.getText());
+							String[] expressGroup = expressNo.split(",");
+							for(String s:expressGroup){
+								if(!s.startsWith("T")){
+									expressNo = s;
+									break;
+								}
+							}
+							logger.debug("找到物流单号："+expressNo);
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "UPS");
 							return  AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 							//查找国外的物流节点
@@ -1428,7 +1449,12 @@ public class KatespadeAutoBuy extends AutoBuy {
 	public boolean gotoMainPage() {
 		try{
 			Utils.sleep(2000);
-			driver.get("https://www.katespade.com/");
+			if(isLoginSuccessWWW){
+				driver.get("https://www.katespade.com/");
+			}else{
+				driver.get("https://surprise.katespade.com/");
+			}
+			
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Logout')]")));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='loginHopupLink']")));
