@@ -113,7 +113,8 @@ public class NordstromAutoBuy extends AutoBuy {
 		try
 		{
 			WebElement btn = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_enterButton"));
-			btn.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", btn);
+			//btn.click();
 			logger.debug("--->开始登陆");
 		}
 		catch (Exception e)

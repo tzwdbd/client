@@ -682,7 +682,8 @@ public class AshfordAutoBuy extends AutoBuy {
 			
 			Utils.sleep(1500);
 			WebElement saveAddrBtn = driver.findElement(By.id("saveAddressBtn"));
-			saveAddrBtn.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", saveAddrBtn);
+			//saveAddrBtn.click();
 			Utils.sleep(3000);
 			logger.debug("--->点击保存地址");
 			
