@@ -447,7 +447,10 @@ public class AutoBuySpring extends AutoBuy {
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
 		}
 		//优惠码
-	
+		try {
+			doScreenShot();
+		} catch (Exception e) {
+		}
 		//设置价格
 		logger.error("--->myPrice = "+myPrice);
 		

@@ -2319,7 +2319,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 		String primeStr = param.get("isPrime");
 		String username = param.get("userName");
 		String payType = param.get("payType");
-
+		try {
+			doScreenShot();
+		} catch (Exception e) {
+		}
+		
 		if (Utils.isEmpty(myPrice))
 		{
 			logger.error("--->预算总价没有传值过来,无法比价");
