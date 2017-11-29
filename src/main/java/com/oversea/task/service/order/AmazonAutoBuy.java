@@ -2210,7 +2210,7 @@ public class AmazonAutoBuy extends AutoBuy
 	AutoBuyStatus addAddr(UserTradeAddress userTradeAddress,String userName,int size){
 		
 		try {
-			int i = size%6;
+			int i = size%4;
 			String name = userName.split("@")[0];
 			if(i==0){
 				name = name+"A  "+userTradeAddress.getName();
@@ -2445,7 +2445,7 @@ public class AmazonAutoBuy extends AutoBuy
 					}
 				}
 				logger.debug("--->下单的地址有[" + availableAddr.size() + "]个可用");
-				if(availableAddr.size()<6){
+				if(availableAddr.size()<4){
 					//添加地址
 					WebElement addAddress = driver.findElement(By.cssSelector("a[data-pipeline-link-from-page='address']"));
 					addAddress.click();
@@ -2455,7 +2455,7 @@ public class AmazonAutoBuy extends AutoBuy
 				try
 				{
 					index = Integer.valueOf(count);
-					int tarAddr = index % 6;
+					int tarAddr = index % 4;
 
 					WebElement cur = availableAddr.get(tarAddr);
 					
