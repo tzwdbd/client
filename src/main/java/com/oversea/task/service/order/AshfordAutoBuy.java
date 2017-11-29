@@ -723,14 +723,16 @@ public class AshfordAutoBuy extends AutoBuy {
 		
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ems_express_0 input[type='radio']")));
-			driver.findElement(By.cssSelector("#ems_express_0 input[type='radio']")).click();
+			WebElement emsExpress = driver.findElement(By.cssSelector("#ems_express_0 input[type='radio']"));
+			driver.executeScript("var tar=arguments[0];tar.click();", emsExpress);
 			Utils.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("atg_store_citizenshipCodeInput_ems_express_0")));
 			WebElement ident = driver.findElement(By.id("atg_store_citizenshipCodeInput_ems_express_0"));
 			ident.sendKeys(userTradeAddress.getIdCard());
 			driver.executeScript("(function(){window.scrollBy(0,200);})();");
 			Utils.sleep(2000);
-			driver.findElement(By.id("additionalInfo_ems_express_0")).click();
+			WebElement additionalInfo = driver.findElement(By.id("additionalInfo_ems_express_0"));
+			driver.executeScript("var tar=arguments[0];tar.click();", additionalInfo);
 		} catch (Exception e) {
 			logger.debug("--->选择物流失败1");
 			return AutoBuyStatus.AUTO_PAY_SELECT_DElLIVERY_OPTIONS_FAIL;
