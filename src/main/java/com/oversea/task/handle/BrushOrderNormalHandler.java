@@ -138,6 +138,7 @@ public class BrushOrderNormalHandler implements BrushOrderHandler {
 						String isPrime = "yes".equalsIgnoreCase(account.getIsPrime()) ? String.valueOf(true) : String.valueOf(false);
 						Map<String, String> params = new HashMap<String, String>();
 						params.put("my_price", String.valueOf(myPrice));
+						params.put("size", "1");
 						params.put("count", count);
 						params.put("isPay", String.valueOf(isPay));
 						params.put("cardNo", account.getCardNo());

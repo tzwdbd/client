@@ -2977,7 +2977,8 @@ public class AmazonAutoBuy extends AutoBuy
 		try {
 			List<WebElement> goodsInCart = driver.findElements(By.className("sc-action-delete"));
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
-			if(!size.equals(goodsInCart.size())){
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
 		} catch (Exception e) {
