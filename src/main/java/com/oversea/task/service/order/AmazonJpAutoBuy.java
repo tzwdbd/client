@@ -2355,11 +2355,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
-				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 			}
 		} catch (Exception e) {
 			logger.debug("--->购物车数量验证失败",e);
-			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 		}
 
 		Boolean isPrime = false;
