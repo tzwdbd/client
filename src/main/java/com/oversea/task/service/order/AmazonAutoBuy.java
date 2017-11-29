@@ -2962,11 +2962,27 @@ public class AmazonAutoBuy extends AutoBuy
 		String username = param.get("userName");
 		String payType = param.get("payType");
 		String review = param.get("review");
+		String size = param.get("size");
 		logger.error("--->review:"+review);
 		if (Utils.isEmpty(myPrice))
 		{
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
+		}
+		try {
+			doScreenShot();
+		} catch (Exception e) {
+		}
+		
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.className("sc-action-delete"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			if(!size.equals(goodsInCart.size())){
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 
 		// 设置价格
@@ -5243,8 +5259,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B01J90O7KK?psc=1");
-		param.put("sku", "[[\"DigitalStorageCapacity\",\"8 GB\"],[\"Configuration\",\"With Special Offers\"],[\"Color\",\"Canary Yellow\"]]");
+		param.put("url", "http://www.amazon.com/dp/B00GBQF6D8?psc=1");
+		param.put("sku", "[[\"Size\",\"38C\"],[\"Color\",\"Silver Dream Zebra\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");

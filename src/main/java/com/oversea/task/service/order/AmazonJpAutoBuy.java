@@ -1103,10 +1103,20 @@ public class AmazonJpAutoBuy extends AutoBuy
 			
 			//等待购物车加载完成
 			try{
-				WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				WebDriverWait wait1 = new WebDriverWait(driver, 45);
+				wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+				try{
+					WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+					logger.error("购物车数量为"+numText.getText().trim());
+					if(!productNum.equals(numText.getText().trim())){
+						logger.error("选择数量失败 pruductNum = " + productNum);
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				}catch(Exception e){
+					logger.error("等待购物车数量出错");
+				}
 			}catch(Exception e){
-				logger.error("等待购物车加载完成出错,",e);
+				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
 			
@@ -1760,10 +1770,20 @@ public class AmazonJpAutoBuy extends AutoBuy
 		
 		//等待购物车加载完成
 		try{
-			WebDriverWait wait0 = new WebDriverWait(driver, WAIT_TIME);
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+			WebDriverWait wait1 = new WebDriverWait(driver, 45);
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='sc-buy-box']")));
+			try{
+				WebElement numText = driver.findElement(By.cssSelector(".a-dropdown-prompt"));
+				logger.error("购物车数量为"+numText.getText().trim());
+				if(!productNum.equals(numText.getText().trim())){
+					logger.error("选择数量失败 pruductNum = " + productNum);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
+			}catch(Exception e){
+				logger.error("等待购物车数量出错");
+			}
 		}catch(Exception e){
-			logger.error("等待购物车加载完成出错,",e);
+			logger.error("等待购物车加载完成出错,e");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		
@@ -2319,6 +2339,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 		String primeStr = param.get("isPrime");
 		String username = param.get("userName");
 		String payType = param.get("payType");
+		String size = param.get("size");
 		try {
 			doScreenShot();
 		} catch (Exception e) {
@@ -2328,6 +2349,16 @@ public class AmazonJpAutoBuy extends AutoBuy
 		{
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
+		}
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.className("sc-action-delete"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			if(!size.equals(goodsInCart.size())){
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车数量验证失败",e);
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 
 		Boolean isPrime = false;

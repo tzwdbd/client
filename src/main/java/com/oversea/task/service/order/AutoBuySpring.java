@@ -442,6 +442,7 @@ public class AutoBuySpring extends AutoBuy {
 	public AutoBuyStatus pay(Map<String, String> param) {
 		// TODO Auto-generated method stub
 		String myPrice = param.get("my_price");
+		String size = param.get("size");
 		if (Utils.isEmpty(myPrice)){
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
@@ -450,6 +451,17 @@ public class AutoBuySpring extends AutoBuy {
 		try {
 			doScreenShot();
 		} catch (Exception e) {
+		}
+		
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.xpath("//span[contains(text(),'Remove')]"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			if(!size.equals(goodsInCart.size())){
+				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车数量验证失败",e);
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		//设置价格
 		logger.error("--->myPrice = "+myPrice);
