@@ -709,7 +709,7 @@ public class AutoBuySpring extends AutoBuy {
 		
 		//查询所有可见的订单
 		boolean isFind = false; 
-		for(int i = 0;i<7;i++){
+		for(int i = 0;i<12;i++){
 			List<WebElement> list = driver.findElements(By.cssSelector(".orderCard_z5kzmw"));
 			for(WebElement panel : list){
 				WebElement w = panel.findElement(By.cssSelector(".orderHeader_1yzb2uh"));
