@@ -119,10 +119,24 @@ public class AmazonAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 				}
 			}
+			
+			try {
+				Utils.sleep(900);
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				for(WebElement w:continueButton){
+					if(w.isDisplayed()){
+						w.click();
+						Utils.sleep(1000);
+						break;
+					}
+				}
+			} catch (Exception e1) {
+				logger.error("--->continue");
+			}
 
 			try
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
+				Utils.sleep(800);
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){
@@ -135,35 +149,9 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			catch (Exception e)
 			{
-				try {
-					List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
-					for(WebElement w:continueButton){
-						if(w.isDisplayed()){
-							w.click();
-							Utils.sleep(1000);
-							break;
-						}
-					}
-				} catch (Exception e1) {
-					logger.error("--->continue");
-				}
-				try
-				{
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
-					List<WebElement> passwords = driver.findElements(By.id("ap_password"));
-					logger.debug("--->输入密码");
-					for(WebElement password:passwords){
-						if(password.isDisplayed()){
-							password.sendKeys(passWord);
-							break;
-						}
-					}
-					Utils.sleep(1000);
-				}
-				catch (Exception e1){
-					logger.error("--->没有找到密码框", e1);
-					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-				}
+				
+				logger.error("--->没有找到密码框", e);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
 
 			try
