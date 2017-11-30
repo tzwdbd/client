@@ -147,7 +147,7 @@ public class AmazonAutoBuy extends AutoBuy
 			{
 				WebElement btn = driver.findElement(By.id("signInSubmit"));
 				logger.debug("--->开始登陆");
-				//btn.click();
+				btn.click();
 				Utils.sleep(800);
 			}
 			catch (Exception e)
