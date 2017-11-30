@@ -76,7 +76,9 @@ public class AmazonAutoBuy extends AutoBuy
 				WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(bySignIn));
 				TimeUnit.SECONDS.sleep(1);
 				logger.debug("--->跳转到登录页面");
-				signIn.click();
+				String url = signIn.getAttribute("href");
+				driver.navigate().to(url);
+				//signIn.click();
 			}
 			catch (Exception e)
 			{
@@ -112,6 +114,16 @@ public class AmazonAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 				}
 			}
+			try {
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				if (continueButton.size() > 0) {
+					continueButton.get(0).click();
+					Utils.sleep(1500);
+				}
+			} catch (Exception e) {
+				logger.error("--->continue");
+			}
+			
 
 			try
 			{
@@ -135,7 +147,7 @@ public class AmazonAutoBuy extends AutoBuy
 			{
 				WebElement btn = driver.findElement(By.id("signInSubmit"));
 				logger.debug("--->开始登陆");
-				btn.click();
+				//btn.click();
 				Utils.sleep(800);
 			}
 			catch (Exception e)
@@ -5245,7 +5257,7 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public static void main(String[] args) throws Exception {
 		AmazonAutoBuy autoBuy = new AmazonAutoBuy(true);
-//		autoBuy.login("xyz1hh@outlook.com", "tfb001001");
+		autoBuy.login("xyz1hh@outlook.com", "tfb001001");
 //		Map<Long, String> asinMap = new HashMap<>();
 //		asinMap.put(1111L, "B074W66D5J");
 //		autoBuy.setAsinMap(asinMap);

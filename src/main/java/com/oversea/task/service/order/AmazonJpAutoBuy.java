@@ -75,7 +75,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 				By bySignIn = By.xpath("//a[contains(text(),'サインイン')]");
 				WebElement signIn = driver.findElement(bySignIn);
 				logger.debug("--->跳转到登录页面");
-				signIn.click();
+				String url = signIn.getAttribute("href");
+				driver.navigate().to(url);
+				//signIn.click();
 			}
 			catch (Exception e)
 			{
@@ -105,6 +107,16 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.error("--->没有找到输入框", e1);
 					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 				}
+			}
+			
+			try {
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				if (continueButton.size() > 0) {
+					continueButton.get(0).click();
+					Utils.sleep(1500);
+				}
+			} catch (Exception e) {
+				logger.error("--->continue");
 			}
 	
 			try
