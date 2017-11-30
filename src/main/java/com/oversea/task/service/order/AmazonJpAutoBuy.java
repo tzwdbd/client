@@ -96,6 +96,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.error("--->没有找到输入框", e);
 				try
 				{
+					String currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
+					driver.navigate().to(currentUrl);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
 					WebElement username = driver.findElement(By.id("ap_email_login"));
 					logger.debug("--->输入账号");
@@ -110,7 +112,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 			
 			try {
-				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continue")));
+				List<WebElement> continueButton = driver.findElements(By.id("continue"));
 				if (continueButton.size() > 0) {
 					continueButton.get(0).click();
 					Utils.sleep(1500);

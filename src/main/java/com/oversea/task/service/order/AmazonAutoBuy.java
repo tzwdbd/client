@@ -79,6 +79,8 @@ public class AmazonAutoBuy extends AutoBuy
 				String url = signIn.getAttribute("href");
 				driver.navigate().to(url);
 				//signIn.click();
+				
+				
 			}
 			catch (Exception e)
 			{
@@ -101,9 +103,10 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("--->没有找到输入框", e);
 				try
 				{
-					Utils.sleep(1000);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
-					WebElement username = driver.findElement(By.id("ap_email_login"));
+					String currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
+					driver.navigate().to(currentUrl);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+					WebElement username = driver.findElement(By.id("ap_email"));
 					logger.debug("--->输入账号");
 					username.sendKeys(userName);
 					Utils.sleep(800);
@@ -115,7 +118,8 @@ public class AmazonAutoBuy extends AutoBuy
 				}
 			}
 			try {
-				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continue")));
+				List<WebElement> continueButton = driver.findElements(By.id("continue"));
 				if (continueButton.size() > 0) {
 					continueButton.get(0).click();
 					Utils.sleep(1500);
