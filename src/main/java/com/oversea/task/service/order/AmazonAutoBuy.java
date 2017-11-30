@@ -92,8 +92,8 @@ public class AmazonAutoBuy extends AutoBuy
 			try
 			{
 				Utils.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
-				WebElement username = driver.findElement(By.id("ap_email"));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+				WebElement username = driver.findElement(By.id("ap_email_login"));
 				logger.debug("--->输入账号");
 				username.sendKeys(userName);
 				Utils.sleep(800);
@@ -105,8 +105,8 @@ public class AmazonAutoBuy extends AutoBuy
 				{
 					String currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
 					driver.navigate().to(currentUrl);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
-					WebElement username = driver.findElement(By.id("ap_email"));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
+					WebElement username = driver.findElement(By.id("ap_email_login"));
 					logger.debug("--->输入账号");
 					username.sendKeys(userName);
 					Utils.sleep(800);
@@ -120,9 +120,12 @@ public class AmazonAutoBuy extends AutoBuy
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continue")));
 				List<WebElement> continueButton = driver.findElements(By.id("continue"));
-				if (continueButton.size() > 0) {
-					continueButton.get(0).click();
-					Utils.sleep(1500);
+				for(WebElement w:continueButton){
+					if(w.isDisplayed()){
+						w.click();
+						Utils.sleep(1000);
+						break;
+					}
 				}
 			} catch (Exception e) {
 				logger.error("--->continue");
@@ -131,6 +134,7 @@ public class AmazonAutoBuy extends AutoBuy
 
 			try
 			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){
