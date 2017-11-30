@@ -59,31 +59,35 @@ public class AmazonAutoBuy extends AutoBuy
 		if(isWap){
 			logger.debug("--->调整浏览器尺寸和位置");
 			driver.manage().window().maximize();
-			Utils.sleep(3000);
 			
 			driver.get("https://www.amazon.com");
-			Utils.sleep(3000);
-			driver.navigate().to("https://www.amazon.com");
-			Utils.sleep(3000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 15);
 			// 等到[登陆]出现
-
 			try
 			{
 				By bySignIn = By.xpath("//a[@id='nav-logobar-greeting']");
-//				WebElement signIn = driver.findElement(bySignIn);
 				WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(bySignIn));
-				TimeUnit.SECONDS.sleep(1);
 				logger.debug("--->跳转到登录页面");
-				String url = signIn.getAttribute("href");
-				driver.navigate().to(url);
-				//signIn.click();
+//				String url = signIn.getAttribute("href");
+//				driver.navigate().to(url);
+				signIn.click();
 				
 				
 			}
 			catch (Exception e)
 			{
+				logger.error("--->没有找到登陆按钮", e);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
+			
+			try {
+				String currentUrl = driver.getCurrentUrl();
+				if(currentUrl.contains("pre-prod.")){
+					currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
+					driver.navigate().to(currentUrl);
+				}
+			} catch (Exception e) {
 				logger.error("--->没有找到登陆按钮", e);
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
@@ -103,10 +107,8 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("--->没有找到输入框", e);
 				try
 				{
-					String currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
-					driver.navigate().to(currentUrl);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
-					WebElement username = driver.findElement(By.id("ap_email_login"));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+					WebElement username = driver.findElement(By.id("ap_email"));
 					logger.debug("--->输入账号");
 					username.sendKeys(userName);
 					Utils.sleep(1200);
@@ -117,22 +119,10 @@ public class AmazonAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 				}
 			}
-			try {
-				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
-				for(WebElement w:continueButton){
-					if(w.isDisplayed()){
-						w.click();
-						Utils.sleep(1000);
-						break;
-					}
-				}
-			} catch (Exception e) {
-				logger.error("--->continue");
-			}
-			
 
 			try
 			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){
@@ -145,8 +135,35 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			catch (Exception e)
 			{
-				logger.error("--->没有找到密码框", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try {
+					List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+					for(WebElement w:continueButton){
+						if(w.isDisplayed()){
+							w.click();
+							Utils.sleep(1000);
+							break;
+						}
+					}
+				} catch (Exception e1) {
+					logger.error("--->continue");
+				}
+				try
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
+					List<WebElement> passwords = driver.findElements(By.id("ap_password"));
+					logger.debug("--->输入密码");
+					for(WebElement password:passwords){
+						if(password.isDisplayed()){
+							password.sendKeys(passWord);
+							break;
+						}
+					}
+					Utils.sleep(1000);
+				}
+				catch (Exception e1){
+					logger.error("--->没有找到密码框", e1);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
 			}
 
 			try
@@ -171,15 +188,20 @@ public class AmazonAutoBuy extends AutoBuy
 				logger.error("--->登陆失败,开始判断和处理账号异常");
 				try
 				{
-					WebElement username = driver.findElement(By.id("ap_email"));
+					WebElement username = driver.findElement(By.id("ap_email_login"));
 					logger.debug("--->输入账号1");
 					username.clear();
 					username.sendKeys(userName);
 					Utils.sleep(800);
-					WebElement password = driver.findElement(By.id("ap_password"));
-					logger.debug("--->输入密码1");
-					password.clear();
-					password.sendKeys(passWord);
+					List<WebElement> passwords = driver.findElements(By.id("ap_password"));
+					for(WebElement password:passwords){
+						if(password.isDisplayed()){
+							password.clear();
+							logger.debug("--->输入密码1");
+							password.sendKeys(passWord);
+							break;
+						}
+					}
 					Utils.sleep(1000);
 					WebElement btn = driver.findElement(By.id("signInSubmit"));
 					logger.debug("--->开始登陆1");

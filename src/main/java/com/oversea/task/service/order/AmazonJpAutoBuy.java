@@ -65,29 +65,36 @@ public class AmazonJpAutoBuy extends AutoBuy
 			driver.manage().window().maximize();
 			driver.get("http://www.amazon.co.jp/");
 			
-			Utils.sleep(3000);
-			driver.navigate().to("http://www.amazon.co.jp/");
-			Utils.sleep(3000);
-	
 			WebDriverWait wait = new WebDriverWait(driver, 15);
 			try
 			{
 				By bySignIn = By.xpath("//a[contains(text(),'サインイン')]");
 				WebElement signIn = driver.findElement(bySignIn);
 				logger.debug("--->跳转到登录页面");
-				String url = signIn.getAttribute("href");
-				driver.navigate().to(url);
-				//signIn.click();
+//				String url = signIn.getAttribute("href");
+//				driver.navigate().to(url);
+				signIn.click();
 			}
 			catch (Exception e)
 			{
 				logger.error("--->没有找到登陆按钮", e);
 				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 			}
+			
+			try {
+				String currentUrl = driver.getCurrentUrl();
+				if(currentUrl.contains("pre-prod.")){
+					currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
+					driver.navigate().to(currentUrl);
+				}
+			} catch (Exception e) {
+				logger.error("--->没有找到登陆按钮", e);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 	
 			try
 			{
-				WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+				WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
 				logger.debug("--->输入账号");
 				username.sendKeys(userName);
 			}
@@ -96,10 +103,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.error("--->没有找到输入框", e);
 				try
 				{
-					String currentUrl = driver.getCurrentUrl().replace("pre-prod.", "");
-					driver.navigate().to(currentUrl);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email_login")));
-					WebElement username = driver.findElement(By.id("ap_email_login"));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+					WebElement username = driver.findElement(By.id("ap_email"));
 					logger.debug("--->输入账号");
 					username.sendKeys(userName);
 					Utils.sleep(800);
@@ -111,21 +116,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 				}
 			}
 			
-			try {
-				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
-				for(WebElement w:continueButton){
-					if(w.isDisplayed()){
-						w.click();
-						Utils.sleep(1000);
-						break;
-					}
-				}
-			} catch (Exception e) {
-				logger.error("--->continue");
-			}
-	
 			try
 			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){
@@ -138,8 +131,35 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 			catch (Exception e)
 			{
-				logger.error("--->没有找到密码框", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try {
+					List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
+					for(WebElement w:continueButton){
+						if(w.isDisplayed()){
+							w.click();
+							Utils.sleep(1000);
+							break;
+						}
+					}
+				} catch (Exception e1) {
+					logger.error("--->continue");
+				}
+				try
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
+					List<WebElement> passwords = driver.findElements(By.id("ap_password"));
+					logger.debug("--->输入密码");
+					for(WebElement password:passwords){
+						if(password.isDisplayed()){
+							password.sendKeys(passWord);
+							break;
+						}
+					}
+					Utils.sleep(1000);
+				}
+				catch (Exception e1){
+					logger.error("--->没有找到密码框", e1);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
 			}
 	
 			try
@@ -161,107 +181,35 @@ public class AmazonJpAutoBuy extends AutoBuy
 			catch (Exception e)
 			{
 				logger.error("--->登陆失败,开始判断和处理账号异常");
-				// todo 处理异常
-	//			try
-	//			{
-	//				boolean newStyle = false;
-	//				WebElement codeDiv = null;
-	//				WebElement capImage = null;
-	//				try
-	//				{
-	//					codeDiv = driver.findElement(By.id("ap_captcha_img"));
-	//				}
-	//				catch (Exception ex)
-	//				{
-	//					capImage = driver.findElement(By.id("auth-captcha-image"));
-	//					newStyle = true;
-	//					logger.error("--->验证码新样式");
-	//				}
-	//
-	//				if (!newStyle)
-	//					capImage = codeDiv.findElement(By.tagName("img"));
-	//				logger.error("--->开始破解验证码");
-	//				String src = capImage.getAttribute("src");
-	//				logger.error("--->src:" + src);
-	//				if (!Utils.isEmpty(src))
-	//				{
-	//					try
-	//					{
-	//						WebElement password = driver.findElement(By.id("ap_password"));
-	//						logger.debug("--->输入密码");
-	//						password.sendKeys(passWord);
-	//					}
-	//					catch (Exception ex)
-	//					{
-	//						logger.error("--->没有找到密码框", ex);
-	//						return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-	//					}
-	//
-	//					HashMap<String, String> param = new HashMap<>();
-	//					param.put("imgSrc", src);
-	//					param.put("from", NetUtil.getExternalIp());
-	//
-	//					String cap = Utils.httpPost(capPath, param);
-	//					try
-	//					{
-	//						WebElement capGuess = null;
-	//						if (!newStyle)
-	//							capGuess = driver.findElement(By.id("ap_captcha_guess"));
-	//						else
-	//						{
-	//							capGuess = driver.findElement(By.id("auth-captcha-guess"));
-	//						}
-	//						logger.debug("--->输入验证码");
-	//						capGuess.sendKeys(cap);
-	//					}
-	//					catch (Exception ex)
-	//					{
-	//						logger.error("--->没有找到验证码框", ex);
-	//						return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-	//					}
-	//
-	//					try
-	//					{
-	//						WebElement btn = driver.findElement(By.id("signInSubmit"));
-	//						logger.debug("--->开始登陆");
-	//						btn.click();
-	//
-	//						try
-	//						{
-	//							wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-ftr-auth")));
-	//							driver.findElement(By.id("nav-ftr-auth"));
-	//							return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
-	//						}
-	//						catch (Exception eo)
-	//						{
-	//							logger.error("--->破解验证码失败");
-	//							return AutoBuyStatus.AUTO_LOGIN_EXP_MEET_VALIDATE_CODE;
-	//						}
-	//					}
-	//					catch (Exception em)
-	//					{
-	//						logger.error("--->没有找到登陆确定按钮", em);
-	//						return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-	//					}
-	//				}
-	//			}
-	//			catch (Exception ex)
-	//			{
-	//			}
-	//
-	//			try
-	//			{
-	//				WebElement el = driver.findElement(By.id("answer_dcq_question_subjective_1"));
-	//				logger.error("--->需要输入zipcode");
-	//				el.sendKeys("");
-	//				return AutoBuyStatus.AUTO_LOGIN_EXP_MEET_ZIPCODE;
-	//			}
-	//			catch (Exception ex)
-	//			{
-	//
-	//			}
-	
-				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				try
+				{
+					WebElement username = driver.findElement(By.id("ap_email_login"));
+					logger.debug("--->输入账号1");
+					username.clear();
+					username.sendKeys(userName);
+					Utils.sleep(800);
+					List<WebElement> passwords = driver.findElements(By.id("ap_password"));
+					for(WebElement password:passwords){
+						if(password.isDisplayed()){
+							password.clear();
+							logger.debug("--->输入密码1");
+							password.sendKeys(passWord);
+							break;
+						}
+					}
+					Utils.sleep(1000);
+					WebElement btn = driver.findElement(By.id("signInSubmit"));
+					logger.debug("--->开始登陆1");
+					btn.click();
+					Utils.sleep(800);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-greeting-name")));
+				}
+				catch (Exception e1)
+				{
+					logger.error("--->登陆失败,开始判断和处理账号异常1");
+					// todo 处理异常
+					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+				}
 			}
 			logger.debug("--->登陆成功,开始跳转");
 			return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
@@ -4543,10 +4491,10 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 	public static void main(String[] args) throws ParseException
 	{
-		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
-		/*AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
+		AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy(true);
+		//AmazonJpAutoBuy autoBuy = new AmazonJpAutoBuy();
 		AutoBuyStatus status = autoBuy.login("hotsuer@outlook.com", "haihu2015");
-		status = Utils.switchStatus(status);
+		/*status = Utils.switchStatus(status);
 		RobotOrderDetail detail = new RobotOrderDetail();
 		detail.setOrderNo("1111");
 		detail.setProductEntityId(110l);
