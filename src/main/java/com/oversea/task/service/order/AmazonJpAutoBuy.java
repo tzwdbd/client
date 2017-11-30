@@ -112,8 +112,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 			
 			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continue")));
-				List<WebElement> continueButton = driver.findElements(By.id("continue"));
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
 				for(WebElement w:continueButton){
 					if(w.isDisplayed()){
 						w.click();
@@ -127,7 +126,6 @@ public class AmazonJpAutoBuy extends AutoBuy
 	
 			try
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){

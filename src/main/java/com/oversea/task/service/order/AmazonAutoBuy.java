@@ -109,7 +109,7 @@ public class AmazonAutoBuy extends AutoBuy
 					WebElement username = driver.findElement(By.id("ap_email_login"));
 					logger.debug("--->输入账号");
 					username.sendKeys(userName);
-					Utils.sleep(800);
+					Utils.sleep(1200);
 				}
 				catch (Exception e1)
 				{
@@ -118,8 +118,7 @@ public class AmazonAutoBuy extends AutoBuy
 				}
 			}
 			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("continue")));
-				List<WebElement> continueButton = driver.findElements(By.id("continue"));
+				List<WebElement> continueButton = driver.findElementsByCssSelector("input#continue");
 				for(WebElement w:continueButton){
 					if(w.isDisplayed()){
 						w.click();
@@ -134,7 +133,6 @@ public class AmazonAutoBuy extends AutoBuy
 
 			try
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
 				List<WebElement> passwords = driver.findElements(By.id("ap_password"));
 				logger.debug("--->输入密码");
 				for(WebElement password:passwords){
