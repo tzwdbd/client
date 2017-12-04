@@ -230,7 +230,7 @@ public class OrderNormalHandler implements OrderHandler {
 								setOrderDetailListBalancewb(orderDetailList, autoBuy.getData().get(AutoBuyConst.KEY_AUTO_BALANCE_WB));
 								break;
 							}
-							if(AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF.equals(status) || AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL.equals(status)){
+							if(AutoBuyStatus.AUTO_PAY_GIFTCARD_IS_TAKEOFF.equals(status) || AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL.equals(status) || AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW.equals(status)){
 								break;
 							}
 						}

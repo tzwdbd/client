@@ -415,6 +415,10 @@ public class ManualBuy{
 		String cardNo = account.getCardNo();
 		logger.error("cardNo = "+cardNo);
 		
+		try {
+			doScreenShot(details.get(0).getOrderNo());
+		} catch (Exception e) {
+		}
 		//优惠码
 	
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -437,6 +441,18 @@ public class ManualBuy{
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			logger.debug("--->加载结账出现异常");
+			String size = String.valueOf(details.size());
+			try {
+				List<WebElement> goodsInCart =  driver.findElements(By.cssSelector(".operation-delete"));
+				logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+				logger.debug("--->size有 [" + size + "]件商品");
+				if(!size.equals(String.valueOf(goodsInCart.size()))){
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+				}
+			} catch (Exception e1) {
+				logger.debug("--->购物车验证数量出错",e1);
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
 			try {
 				WebElement goPay = driver.findElement(By.cssSelector(autoOrderPay.getSubmitCode()));
 				goPay.click();
