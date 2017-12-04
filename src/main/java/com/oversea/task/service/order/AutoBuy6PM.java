@@ -589,9 +589,9 @@ public class AutoBuy6PM extends AutoBuy {
 						Utils.sleep(1500);
 						driver.findElement(By.xpath("//button[@id='redeem-gc-announce']")).click();
 						Utils.sleep(5500);
-						
+						WebDriverWait wait0 = new WebDriverWait(driver, 15);
 						try{
-							driver.findElement(By.xpath("//p[@id='gc-success']"));//礼品卡有效
+							wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p#gc-success")));
 							statusMap.put(code, 10);
 							isEffective = true;
 						}catch(Exception e){
