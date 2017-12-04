@@ -1230,6 +1230,10 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->查询结算总价出现异常");
 		}
+		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		//确认
 		try{
 			//输入信用卡点确定
@@ -1242,10 +1246,7 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->没找到信用卡输入框"+e);
 		}
-		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
-		if(!isPay){
-			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
-		}
+		
 		//确认
 		try{
 			//输入信用卡点确定
