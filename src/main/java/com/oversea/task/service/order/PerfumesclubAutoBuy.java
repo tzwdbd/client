@@ -292,7 +292,18 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 	
 		//设置价格
 		logger.error("--->myPrice = "+myPrice);
-		
+		String size = param.get("size");
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".cart-btn-remove"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		//等待购物车页面加载完成

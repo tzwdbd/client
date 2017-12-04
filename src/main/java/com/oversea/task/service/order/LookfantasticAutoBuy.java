@@ -398,6 +398,18 @@ public class LookfantasticAutoBuy extends AutoBuy {
 			logger.debug("--->加载Proceed to Checkout出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
+		String size = param.get("size");
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='auto-basketaction-trash productdelete']"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		
 		//使用优惠码0 失效,1互斥 ,9没修改过,10有效
 		String promotionStr = param.get("promotion");

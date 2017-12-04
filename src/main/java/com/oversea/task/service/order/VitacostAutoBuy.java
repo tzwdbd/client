@@ -291,11 +291,22 @@ public class VitacostAutoBuy extends AutoBuy {
 			logger.debug("--->跳转到购物车页面出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
-		
+		String size = param.get("size");
+		try {
+			TimeUnit.SECONDS.sleep(5);
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector("li.delete-cart-item a.delete"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		// 等待购物车页面加载完成
 		logger.debug("--->等待购物车页面加载");
 		try {
-			TimeUnit.SECONDS.sleep(5);
 			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("IamMasterFrameYesIam_ctl02_btnCheckOut2")));
 			Utils.sleep(1500);
 			goPay.click();

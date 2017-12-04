@@ -908,6 +908,24 @@ public class KatespadeAutoBuy extends AutoBuy {
 			logger.debug("--->关闭弹窗");
 			Utils.sleep(1500);
 		}catch(Exception ee){}
+		String removeKey = "";
+		if(homeUrl.contains("surprise")){
+			removeKey = "button[value='Remove']";
+		}else{
+			removeKey = ".item-details button[value='Remove']";
+		}
+		try {
+			String size = param.get("size");
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(removeKey));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		
 		String countTemp = (String)param.get("count");
 		int count = 0;

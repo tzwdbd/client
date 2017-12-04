@@ -533,6 +533,19 @@ public class IherbAutoBuy extends AutoBuy
 			logger.error("--->跳转到购物车失败");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
+		try {
+			String size = param.get("size");
+			List<WebElement> goodsInCart = driver.findElements(By.xpath("//button[@class='btn btn-remove-item']"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
+		
 //		validateVisaCard(param);
 		
 		

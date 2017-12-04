@@ -341,6 +341,18 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		String suffixNo = param.get("suffixNo").replaceAll("[^0-9]", "").trim();
 		String myPrice = param.get("my_price");
 		logger.debug("myPrice="+myPrice);
+		String size = param.get("size");
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".remove-item"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
 		boolean isEffective = false;
 		String countTemp = (String) param.get("count");

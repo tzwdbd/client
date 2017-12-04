@@ -308,6 +308,20 @@ public class NinewestAutoBuy extends AutoBuy {
 			logger.debug("--->加载Checkout出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
+		String size = param.get("size");
+		try {
+			TimeUnit.SECONDS.sleep(3);
+			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='cart-item-row__actions-link remove-product']"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
+		
 		logger.debug("--->等待支付页面加载");
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();

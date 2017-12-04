@@ -756,6 +756,18 @@ public class ZcnAutoBuy extends AutoBuy {
 		if (!status0.equals(AutoBuyStatus.AUTO_CLICK_CART_SUCCESS)) {
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
+		String size = param.get("size");
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.className("sc-action-delete"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		// 等待购物车页面加载完成
 		WebDriverWait wait = new WebDriverWait(driver, 15);
 		By by = By.xpath("//button[@class='a-button-text' and contains(text(), '进入结算中心')]");

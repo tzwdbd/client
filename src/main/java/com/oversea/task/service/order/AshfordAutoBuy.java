@@ -2,7 +2,6 @@ package com.oversea.task.service.order;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,6 @@ import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
-import com.oversea.task.utils.StringUtils;
 import com.oversea.task.utils.Utils;
 
 /** 
@@ -398,8 +396,18 @@ public class AshfordAutoBuy extends AutoBuy {
 			logger.error("--->预算总价没有传值过来,无法比价");
 			return AutoBuyStatus.AUTO_ORDER_PARAM_IS_NULL;
 		}
-		
-		
+		String size = param.get("size");
+		try {
+			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='remove btn_temp_1']"));
+			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->size有 [" + size + "]件商品");
+			if(!size.equals(String.valueOf(goodsInCart.size()))){
+				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+			}
+		} catch (Exception e) {
+			logger.debug("--->购物车验证数量出错",e);
+			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+		}
 		// 设置价格
 		logger.error("--->myPrice = " + myPrice);
 
