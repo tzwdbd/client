@@ -1891,7 +1891,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 					//添加地址
 					WebElement addAddress = driver.findElement(By.cssSelector("a[data-pipeline-link-from-page='address']"));
 					addAddress.click();
-					return addAddr(userTradeAddress, username, addrs.size());
+					return addAddr(userTradeAddress, username, availableAddr.size());
 				}
 				int index = 0;
 				try

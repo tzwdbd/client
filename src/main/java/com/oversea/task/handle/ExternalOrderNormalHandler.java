@@ -119,7 +119,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								num = 1;
 							}
 							try{
-								myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.03;
+								myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.02;
 							}catch(Exception ee){}
 						}
 						for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
@@ -137,11 +137,11 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								promotion += ";";
 							}
 							if(mallName.equalsIgnoreCase("amazon")){
-								if(myPrice>=25.75){
+								if(myPrice>=25.5){
 									parmas.put("addon", "1");
 								}
 							}else if (mallName.equalsIgnoreCase("amazon.jp")){
-								if(myPrice>=2060){
+								if(myPrice>=2040){
 									parmas.put("addon", "1");
 								}
 							}
