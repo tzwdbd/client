@@ -815,6 +815,8 @@ public class AshfordAutoBuy extends AutoBuy {
 				placeOrderElement.sendKeys(Keys.ENTER);;
 				Utils.sleep(1500);
 				logger.debug("------------------");
+			}else{
+				return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
 			}
 			logger.debug("--->点击付款完成");
 		} catch (Exception e) {

@@ -737,6 +737,8 @@ public class AsosAutoBuy extends AutoBuy {
 				logger.debug("--->啊啊啊啊，我要付款啦！！！");
 				placeOrderElement.click();
 				logger.debug("------------------");
+			}else{
+				return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
 			}
 			logger.debug("--->点击付款完成 placeOrder finish");
 		} catch (Exception e) {

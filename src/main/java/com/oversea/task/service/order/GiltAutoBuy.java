@@ -689,6 +689,9 @@ public class GiltAutoBuy extends AutoBuy {
 			logger.debug("--->查询结算总价出现异常");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		//确认
 		try{
 			WebElement submit = driver.findElement(By.xpath("//div[@class='alt-submit medium wide super-wide']/button[@class='button-large-primary submit top-submit']")) ;

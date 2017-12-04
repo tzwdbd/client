@@ -609,6 +609,10 @@ public class AutoBuySpring extends AutoBuy {
 			logger.debug("--->查询结算总价出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}
+		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		
 		//placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");

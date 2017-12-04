@@ -431,7 +431,9 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}
 			}
-			
+			if(!isPay){
+				return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+			}
 			if(isPay){
 				logger.debug("开始付款");
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".button-fancy-large"))).click();

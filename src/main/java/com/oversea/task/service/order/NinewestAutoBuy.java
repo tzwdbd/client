@@ -438,7 +438,9 @@ public class NinewestAutoBuy extends AutoBuy {
 			logger.debug("输入信用卡信息出错",e);
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
-		
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		// 查询总价
 		try {
 			WebElement total = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-total-value")));

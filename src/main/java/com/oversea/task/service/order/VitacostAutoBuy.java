@@ -438,7 +438,9 @@ public class VitacostAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->查询结算总价出现异常");
 		}
-		
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		// placeOrder 点击付款
 		logger.debug("--->开始点击付款 place my Order");
 		try {

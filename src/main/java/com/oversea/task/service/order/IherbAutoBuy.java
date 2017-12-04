@@ -966,6 +966,9 @@ public class IherbAutoBuy extends AutoBuy
 			logger.debug("--->查询结算总价出现异常");
 			return AutoBuyStatus.AUTO_PAY_GET_TOTAL_PRICE_FAIL;
 		}
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		
 		//placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");

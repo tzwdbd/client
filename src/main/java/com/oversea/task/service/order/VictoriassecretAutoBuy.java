@@ -870,6 +870,9 @@ public class VictoriassecretAutoBuy extends AutoBuy {
 		}
 		driver.executeScript("(function(){window.scrollBy(1,400);})();");
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		// placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");
 		WebDriverWait wait0 = new WebDriverWait(driver, 30);

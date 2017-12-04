@@ -879,6 +879,10 @@ public class ZcnAutoBuy extends AutoBuy {
 					return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 				}
 			}
+			Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+			if(!isPay){
+				return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+			}
 			doScreenShot();
 			
 			try {

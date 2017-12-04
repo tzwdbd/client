@@ -43,11 +43,11 @@ public class AutoBuy6PM extends AutoBuy {
 //			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/tommy-hilfiger-corinne-ii-dome-backpack-dory-blue/product/8852166/color/639597");
+				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/ugg-haylie-red/product/8906050/color/585");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"color\",\"Dory Blue\"],[\"size\",\"One Size\"]]");
+				param.put("sku", "[[\"color\",\"Navy\"],[\"size\",\"7\"],[\"width\",\"B - Medium\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
@@ -660,6 +660,8 @@ public class AutoBuy6PM extends AutoBuy {
 			if(isPay){
 				logger.debug("--->啊啊啊啊啊，我要付款了");
 				placeOrderElement.click();
+			}else{
+				return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
 			}
 			logger.debug("--->点击付款完成 placeOrder finish");
 		}catch(Exception e){}

@@ -1356,6 +1356,9 @@ public class NordstromAutoBuy extends AutoBuy {
 		data.put(AutoBuyConst.KEY_AUTO_BUY_MALL_EXPRESS_FEE,"0");
 		data.put(AutoBuyConst.KEY_AUTO_BUY_PROMOTION_FEE,"0");
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		// placeOrder 点击付款
 		logger.debug("--->开始点击付款 placeOrder");
 		try {

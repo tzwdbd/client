@@ -638,7 +638,10 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->查询总运费出现异常=", e);
 		}
-
+		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		String cardNo = param.get("cardNo");
 		logger.error("cardNo = " + cardNo);
 

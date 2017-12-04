@@ -627,7 +627,9 @@ public class GncAutoBuy extends AutoBuy{
 			logger.debug("查询总价错误");
 			return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
-		
+		if(!isPay){
+			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
+		}
 		try {
 			logger.debug("等待结算页面加载");
 			WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='submit-order-top']")));
