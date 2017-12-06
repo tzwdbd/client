@@ -771,7 +771,7 @@ public class ManualBuy{
 					
 					try {
 						WebElement tip = driver.findElement(By.id("derateInputTips"));
-						if(tip.getText().contains("错误")){
+						if(tip.getText().contains("错误") || tip.getText().contains("已过期")){
 							logger.debug("优惠码无效："+code);
 							statusMap.put(code, 0);
 						}

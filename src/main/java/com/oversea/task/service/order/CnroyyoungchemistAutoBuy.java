@@ -630,18 +630,20 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 					TimeUnit.SECONDS.sleep(2);
 					
 					try {
-						driver.findElement(By.xpath("//div[@class='tip-notice-content']"));
-						logger.debug("优惠码无效："+code);
-						driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']")).click();
+						driver.findElement(By.xpath("//div[@class='coupon-done']"));
+						logger.debug("优惠码有效："+code);
+						isEffective = true;
+						statusMap.put(code,10);
 						TimeUnit.SECONDS.sleep(5);
-						statusMap.put(code, 0);
 					} catch (Exception e) {
 						try {
-							driver.findElement(By.xpath("//div[@class='coupon-done']"));
-							logger.debug("优惠码有效："+code);
-							isEffective = true;
-							statusMap.put(code,10);
-							TimeUnit.SECONDS.sleep(5);
+							WebElement easydialog = driver.findElement(By.cssSelector(".easyDialog_text"));
+							if(easydialog.getText().contains("无效优惠")){
+								logger.debug("优惠码无效："+code);
+								driver.findElement(By.xpath("//button[@id='easyDialogYesBtn']")).click();
+								TimeUnit.SECONDS.sleep(5);
+								statusMap.put(code, 0);
+							}
 						} catch (Exception e2) {
 							logger.debug("异常："+e);
 						}
