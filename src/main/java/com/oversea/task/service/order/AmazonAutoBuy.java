@@ -1611,23 +1611,23 @@ public class AmazonAutoBuy extends AutoBuy
 //											hasOneSize = true;
 //											break;
 //										}
-										String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
-										String[] vv = v.split("(?<!^)(?=[A-Z])");
-										if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
-										{
-											for (String sss : ss)
-											{
-												if (vv[0].contains(sss))
-												{
-													hasOneSize = true;
-													break;
-												}
-											}
-											if (hasOneSize)
-											{
-												break;
-											}
-										}
+//										String[] ss = keyStr.split("(?<!^)(?=[A-Z])");
+//										String[] vv = v.split("(?<!^)(?=[A-Z])");
+//										if (vv != null && vv.length > 0 && !Utils.isEmpty(vv[0]))
+//										{
+//											for (String sss : ss)
+//											{
+//												if (vv[0].contains(sss))
+//												{
+//													hasOneSize = true;
+//													break;
+//												}
+//											}
+//											if (hasOneSize)
+//											{
+//												break;
+//											}
+//										}
 									}
 
 								}
@@ -1714,29 +1714,6 @@ public class AmazonAutoBuy extends AutoBuy
 							}
 						}
 
-						if (keyElement == null){
-							int findCount = 0;
-							List<WebElement> values = driver.findElements(By.cssSelector(".dimension-label"));
-							for(WebElement w:values){
-								for (int j = 0; j < skuList.size(); j++) {
-									if (j % 2 == 1) {
-										String attrValue = skuList.get(j).replaceAll(" ", "");
-										String textValue = w.getText().trim().replaceAll(" ", "");
-										if(attrValue.equalsIgnoreCase(textValue)){
-											logger.debug("--->"+attrValue+"加1");
-											findCount++;
-											break;
-										}
-									}
-								}
-							}
-							if(findCount < skuList.size()/2 || values.size()<skuList.size()/2){
-								logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2+" && values.size() = "+values.size());
-								return AutoBuyStatus.AUTO_SKU_NOT_FIND;
-							}
-							//logger.debug("找不到keyElement url= " + productUrl + "&& sku = " + (skuList.get(i - 1) + ":" + skuList.get(i)));
-							//return AutoBuyStatus.AUTO_SKU_NOT_FIND;
-						}
 						Utils.sleep(2000);
 						try {
 							if (newStyle)
@@ -1776,6 +1753,40 @@ public class AmazonAutoBuy extends AutoBuy
 						
 						Utils.sleep(2500);
 					}
+				}
+				
+				int findCount = 0;
+				try {
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".dimension-label")));
+					} catch (Exception e) {
+						logger.debug("都是一个sku ");
+					}
+					
+					List<WebElement> dimensions = driver.findElements(By.cssSelector(".dimension-label"));
+					for(WebElement w:dimensions){
+						
+						String s = w.getText().trim().replaceAll(" ", "");
+						for (int i = 0; i < skuList.size(); i++) {
+							if (i % 2 == 1) {
+								String attrValue = skuList.get(i).replaceAll(" ", "");
+								if(attrValue.equalsIgnoreCase(s)){
+									logger.debug("--->"+attrValue+"加1");
+									findCount++;
+									break;
+								}
+							}
+						}
+					}
+					logger.debug("--->sku findCount = "+findCount+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions.size());
+					if(findCount < dimensions.size() ){
+						logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
+						return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+					}
+				} catch (Exception e) {
+					logger.debug("售罄 ");
+					return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 				}
 			}
 
