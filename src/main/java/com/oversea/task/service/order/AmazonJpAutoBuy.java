@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -4428,6 +4429,37 @@ public class AmazonJpAutoBuy extends AutoBuy
 			}
 		}catch (Exception e) {
 			logger.info("--->account获取失败!");
+		}
+		try {
+			driver.navigate().to("https://www.amazon.co.jp/a/addresses/ref=mobile_ya_address_book");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".id-addr-ux-search-item")));
+			List<WebElement> addressLists = driver.findElements(By.cssSelector(".id-addr-ux-search-item"));
+			Map<String,Object> map = new HashMap<String, Object>();
+			Iterator<WebElement> it = addressLists.iterator();
+	        while (it.hasNext()) {
+	        	WebElement w = (WebElement) it.next();
+	        	WebElement address = w.findElement(By.id("address-ui-widgets-FullName"));
+				String key = address.getText().replace(" ", "");
+				logger.info("--->key:"+key);
+				if(!StringUtil.isBlank(key)){
+					if(map.containsKey(key)){
+						logger.info("--->重复:"+key);
+						w.findElement(By.cssSelector("span[id*='address-delete']")).click();
+						Utils.sleep(1000);
+						List<WebElement> deletes = driver.findElements(By.cssSelector("span[id*='deleteAddressModal']"));
+						for(WebElement del:deletes){
+							if(del.isDisplayed() && del.getText().contains("はい")){
+								del.click();
+								break;
+							}
+						}
+					}else{
+						map.put(key, "1");
+					}
+				}
+	        }
+		} catch (Exception e) {
+			logger.info("--->address获取失败!",e);
 		}
 		return null;
 		
