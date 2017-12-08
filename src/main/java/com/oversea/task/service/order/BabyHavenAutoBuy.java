@@ -344,7 +344,12 @@ public class BabyHavenAutoBuy extends AutoBuy {
 			try {
 				driver.executeScript("(function(){window.scrollBy(300,500);})();");
 				TimeUnit.SECONDS.sleep(5);
-				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("AccountButton")));
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("AccountButton")));
+				} catch (Exception e) {
+					logger.debug("--->AccountButton 异常");
+				}
+				 
 				//比较数量
 				List<WebElement> carNumList = driver.findElements(By.cssSelector(".tr-selected"));
 				if(carNumList.size()!=Integer.parseInt(param.get("size"))){
@@ -391,11 +396,11 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				}
 
 				Utils.sleep(1500);
-				
+				WebElement goPay = driver.findElement(By.id("AccountButton"));
 				driver.executeScript("var tar=arguments[0];tar.click();", goPay);
 				Utils.sleep(5000);
 			} catch (Exception e) {
-				logger.debug("--->加载结账出现异常");
+				logger.debug("--->加载结账出现异常",e);
 				return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
 		} catch (Exception e) {
@@ -836,7 +841,9 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		
 		Map<String, String> param = new HashMap<>();
 		param.put("promotion", "BHHAIHU05");
-		param.put("count", null);
+		param.put("count", "1");
+		param.put("size", "1");
+		param.put("isPay", "false");
 		param.put("my_price", "50");
 		param.put("userName", "huhy@taofen8.com");
 		param.put("cardNo", "6225757555082164");
@@ -867,7 +874,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				autoBuy.selectProduct(param);
 			}
 
-			//System.out.println(autoBuy.pay(param, address, payaccount));
+			System.out.println(autoBuy.pay(param, address, payaccount));
 			
 //			RobotOrderDetail detail = new RobotOrderDetail();
 //			detail.setMallOrderNo("98027671");
