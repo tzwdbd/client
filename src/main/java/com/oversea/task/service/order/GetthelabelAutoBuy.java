@@ -22,6 +22,7 @@ import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 public class GetthelabelAutoBuy extends AutoBuy {
@@ -943,9 +944,27 @@ public class GetthelabelAutoBuy extends AutoBuy {
 						WebElement status = driver.findElement(By.cssSelector(".status"));
 						String text = status.getText();
 						if(StringUtil.isNotEmpty(text) && text.equals("已发货")){
-							WebElement shipment = driver.findElement(By.cssSelector(".hb-shipment span"));
-							logger.error("--->找到物流单号 = "+shipment.getText().substring(4));
-							String expressNo = shipment.getText().substring(4);
+							WebElement shipment =null;
+							String expressNo = "";
+							try {
+								shipment = driver.findElement(By.cssSelector(".hb-shipment span"));
+								logger.error("--->找到物流单号 = "+shipment.getText().substring(4));
+								expressNo = shipment.getText().substring(4);
+							} catch (Exception e) {
+								List<WebElement> shipments = driver.findElements(By.cssSelector(".predict"));
+								for(WebElement w:shipments){
+									if(w.getText().contains("您的EMS单号已经生成")){
+										shipment = w;
+										expressNo = ExpressUtils.regularExperssNo(shipment.getText());;
+										logger.error("--->找到物流单号1 = "+expressNo);
+										break;
+									}
+								}
+							}
+							 
+							
+							
+							
 							driver.navigate().to("http://www.trackmytrakpak.com/?MyTrakPakNumber="+expressNo);
 							List<WebElement> tempList = driver.findElements(By.xpath("//table/tbody/tr"));
 							if(tempList != null && tempList.size() > 0){
