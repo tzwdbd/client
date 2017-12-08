@@ -523,7 +523,7 @@ public class IherbAutoBuy extends AutoBuy
 		try
 		{
 			logger.error("--->跳转到购物车");
-			WebElement cart = driver.findElement(By.xpath("//i[@class ='icon-cart']"));
+			WebElement cart = driver.findElement(By.cssSelector(".icon-cart"));
 			Utils.sleep(1000);
 			cart.click();
 			Utils.sleep(3500);
