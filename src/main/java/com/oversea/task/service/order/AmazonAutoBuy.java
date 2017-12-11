@@ -5595,6 +5595,11 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public AutoBuyStatus selectBrushProduct(Map<String, String> param)
 	{	
+		String productUrl = (String) param.get("url");
+		try {
+			driver.navigate().to(productUrl);
+		} catch (Exception e) {
+		}
 		driver.get("https://www.amazon.com");
 		Utils.sleep(3000);
 		String key = param.get("productName");
