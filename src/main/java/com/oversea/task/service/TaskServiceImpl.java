@@ -446,6 +446,10 @@ public class TaskServiceImpl implements TaskService {
 			
 			//爬物流
 			externalShipHandler.handle(task,taskResult,externalOrderDetailList);
+			Object obj1 = task.getParam("fedroadtext");
+			if(obj1 != null){
+				taskResult.addParam("fedroadtext", obj1);
+			}
 		}catch(Throwable e){
 			logger.error("调用shipService出现异常",e);
 		}

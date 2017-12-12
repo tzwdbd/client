@@ -68,16 +68,12 @@ public class MacyAutoBuy extends AutoBuy {
 
 		driver.get("https://www.macys.com/");
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		try {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#globalUserDetails a")));
-		} catch (Exception e) {
-			logger.error("--->加载首页异常");
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-		}
 		
 		try {
-			WebElement gotoLogin = driver.findElement(By.cssSelector("#globalUserDetails a"));
-			gotoLogin.click();
+			TimeUnit.SECONDS.sleep(5);
+			//WebElement gotoLogin = driver.findElement(By.cssSelector("#globalUserDetails a"));
+			//gotoLogin.click();
+			driver.navigate().to("https://www.macys.com/account/signin?cm_sp=navigation-_-top_nav-_-signin");
 		} catch (Exception e) {
 			logger.error("--->点击去登录页面异常",e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
@@ -158,8 +154,8 @@ public class MacyAutoBuy extends AutoBuy {
 			Utils.sleep(2000);
 			logger.error("--->购物车页面加载完成");
 			//清理
-			logger.error("--->开始清理购物车");
-			List<WebElement> list = driver.findElements(By.cssSelector("removeLink"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".removeLink"));
+			logger.error("--->开始清理购物车"+list.size());
 			List<WebElement> newList = new ArrayList<WebElement>();
 			if(list!=null && list.size()>0){
 				for(WebElement w:list){
@@ -175,7 +171,7 @@ public class MacyAutoBuy extends AutoBuy {
 					newList.get(0).click();
 					Utils.sleep(2000);
 					if(size>1){
-						list = driver.findElements(By.cssSelector("removeLink"));
+						list = driver.findElements(By.cssSelector(".removeLink"));
 						newList = new ArrayList<WebElement>();
 						if(list!=null && list.size()>0){
 							for(WebElement w:list){
@@ -194,7 +190,7 @@ public class MacyAutoBuy extends AutoBuy {
 			Utils.sleep(2000);
 			logger.error("--->购物车页面清理完成");
 		}catch(Exception e){
-			logger.error("--->跳转到购物车失败");
+			logger.error("--->跳转到购物车失败",e);
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
 		try {
@@ -226,7 +222,12 @@ public class MacyAutoBuy extends AutoBuy {
 			logger.debug("--->打开商品页面失败 = " + productUrl);
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
-		
+		try {
+			TimeUnit.SECONDS.sleep(3);
+			driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
+			driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
+		} catch (Exception e) {
+		}
 		
 		// 等待商品页面加载
 		logger.debug("--->开始等待商品页面加载");
@@ -449,7 +450,7 @@ public class MacyAutoBuy extends AutoBuy {
 		}
 		String size = param.get("size");
 		try {
-			List<WebElement> list = driver.findElements(By.cssSelector("removeLink"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".removeLink"));
 			List<WebElement> goodsInCart = new ArrayList<WebElement>();
 			if(list!=null && list.size()>0){
 				for(WebElement w:list){
@@ -458,7 +459,7 @@ public class MacyAutoBuy extends AutoBuy {
 					}
 				}
 			}
-			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
+			logger.debug("--->购物车"+list.size()+"有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
 				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
@@ -527,7 +528,9 @@ public class MacyAutoBuy extends AutoBuy {
 			Utils.sleep(1000);
 			logger.debug("--->点击address edit按钮,等待address 打开");
 			String expressAddress = param.get("expressAddress");
-			logger.debug("--->传过来的转运公司标识为:"+expressAddress);
+			if(!StringUtil.isBlank(expressAddress)){
+				logger.debug("--->传过来的转运公司标识为:"+expressAddress);
+			}
 			List<WebElement> addressList = driver.findElements(By.cssSelector("#rc-shipping-addresses-list li"));
 			logger.debug("--->总共有"+addressList.size()+"个地址");
 			List<WebElement> addrs = new ArrayList<WebElement>();
@@ -538,7 +541,7 @@ public class MacyAutoBuy extends AutoBuy {
 			}
 			logger.debug("--->默认地址:"+count);
 			for(WebElement w:addressList){
-				if(w.getText().contains(expressAddress)){
+				if(StringUtil.isBlank(expressAddress) || w.getText().contains(expressAddress)){
 					addrs.add(w);
 				}
 			}

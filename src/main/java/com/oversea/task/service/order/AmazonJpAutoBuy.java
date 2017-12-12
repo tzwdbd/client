@@ -2074,6 +2074,24 @@ public class AmazonJpAutoBuy extends AutoBuy
 		{
 			Utils.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select-payments-view")));
+			} catch (Exception e) {
+				By by = By.xpath("//input[@class='a-button-text' and  contains(@value, '次に進む')]");
+				WebElement next = null;
+				try
+				{
+					next = driver.findElement(by);
+					this.logger.debug("--->[3]next delivery");
+				}
+				catch (Exception e1)
+				{
+					by = By.xpath("//input[@class='a-button-input' and  contains(@value, '次に進む')]");
+					next = driver.findElement(by);
+					this.logger.debug("--->[4]next delivery");
+				}
+				next.click();
+			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select-payments-view")));
 			try {
 				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
@@ -3981,7 +3999,30 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.error("在寻找物流公司和单号码时出现异常:" + e.getMessage());
 				return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 			}
-			
+			String expressNo = data.get(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO);
+			if(!StringUtils.isBlank(detail.getSaleOrderCode()) && !StringUtils.isBlank(expressNo)){
+				try {
+					driver.navigate().to("https://www.amazon.co.jp/gp/css/summary/print.html/ref=oh_aui_pi_o01_?ie=UTF8&orderID="+detail.getMallOrderNo());
+					String text = (String) driver.executeScript("var text = document.getElementsByTagName('html')[0].innerHTML;return text");
+					text = text.replace("_________________________様", "Fedroad Japan株式会社様");
+					logger.error("--->text:"+text);
+					download(text, "C://auto//screenshot//"+detail.getMallOrderNo()+".html");
+					TimeUnit.SECONDS.sleep(5);
+					driver.get("file:///C:/auto/screenshot/"+detail.getMallOrderNo()+".html");
+					try {
+						byte[] b = doScreenShot();
+						if(b!=null){
+							getTask().addParam("fedroadtext", b);
+						}else{
+							logger.error("--->fedroadtext为空");
+						}
+					} catch (Exception e) {
+						logger.error("--->截图失败");
+					}
+				} catch (Exception e) {
+					logger.error("爬 fedroad");
+				}
+			}
 			return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 			
 		}
