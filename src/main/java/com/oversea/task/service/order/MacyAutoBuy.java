@@ -739,18 +739,18 @@ public class MacyAutoBuy extends AutoBuy {
 		// 查询商城订单号
 		try {
 			logger.debug("--->等待订单页面加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("thankYouDetail")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rc-at-order-number")));
 			logger.debug("--->订单页面加载完成");
-			WebElement order = driver.findElement(By.cssSelector(".thankYouDetail h2"));
+			WebElement order = driver.findElement(By.id("rc-at-order-number"));
 			String orderNumber = order.getText().trim();
 
 			if (!Utils.isEmpty(orderNumber)) {
-				logger.error("--->获取Victoriassecret单号成功:\t" + orderNumber);
+				logger.error("--->获取macy单号成功:\t" + orderNumber);
 				data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNumber);
 				savePng();
 				getTask().addParam("giftCardList", giftCardList);
 			} else {
-				logger.error("--->获取Victoriassecret单号出错!");
+				logger.error("--->获取macy单号出错!");
 				return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 			}
 		} catch (Exception e) {
@@ -788,42 +788,35 @@ public class MacyAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
 		}
 		try {
-			String orderUrl ="https://www.victoriassecret.com/account/orderstatus";
+			String orderUrl ="https://www.macys.com/service/order-status?cm_sp=navigation-_-top_nav-_-my_order_history";
 			driver.navigate().to(orderUrl);
 			logger.error("爬取物流开始");
 			Utils.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("content")));
-			WebElement wb = null;
-			try {
-				
-				wb = driver.findElement(By.cssSelector(".order-status"));
-					
-			} catch (Exception e) {
-				logger.error("物流只能查看邮箱");
-				return AutoBuyStatus.AUTO_SCRIBE_CALL_CUSTOMER_SERVICE;
-			}
-			List<WebElement> orders = wb.findElements(By.cssSelector("tbody tr"));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderHistoryDetail")));
+			List<WebElement> orders = driver.findElements(By.cssSelector(".orderHistoryDetail"));
 			int find = 0;
 			for(WebElement o:orders){
-				String str = o.getText().toLowerCase();
+				WebElement w = o.findElement(By.cssSelector(".devider"));
+				String str = w.getText().toLowerCase();
 				if(str.contains(mallOrderNo)){
+					WebElement orderStatus = w.findElement(By.cssSelector(".orderStatus h2"));
 					find = 1;
-					if(str.contains("cancelled")){
+					if(orderStatus.getText().contains("cancelled")){
 						logger.error("该订单被砍单了");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					}else if(str.contains("in process")){
+					}else if(orderStatus.getText().contains("processing")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(str.contains("order placed")){
+					}else if(orderStatus.getText().contains("order placed")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(str.contains("preparing to ship")){
+					}else if(orderStatus.getText().contains("preparing to ship")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(str.contains("payment pending")){
+					}else if(orderStatus.getText().contains("payment pending")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(str.contains("shipped")){
+					}else if(orderStatus.getText().contains("shipped")){
 						// 商城订单号一样 包裹号不一样
 						WebElement orderNoElement = o.findElement(By.cssSelector("td a"));
 						driver.navigate().to(orderNoElement.getAttribute("href"));

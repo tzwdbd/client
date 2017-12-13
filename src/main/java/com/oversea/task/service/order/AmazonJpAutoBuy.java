@@ -2303,6 +2303,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 			logger.error("--->选择礼品卡出错",e);
 			return AutoBuyStatus.AUTO_PAY_SELECT_GIFTCARD_FAIL;
 		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pet-checkout-button")));
+			driver.findElement(By.cssSelector(".pet-checkout-button")).click();
+		} catch (Exception e) {
+			logger.error("--->没出现注文を続ける");
+		}
 		return AutoBuyStatus.AUTO_PAY_SELECT_GIFTCARD_SUCCESS;
 	}
 
