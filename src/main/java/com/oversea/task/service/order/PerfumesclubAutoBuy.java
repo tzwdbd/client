@@ -802,6 +802,15 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					try{
 						wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".track_number")));
 						List<WebElement> shipments = driver.findElements(By.cssSelector(".track_number"));
+						for(WebElement w:shipments){
+							if(w.getText().startsWith("E")){
+								String expressNo = w.getText();
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EMS");
+								logger.error("--->找到物流单号 = "+w.getText());
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							}
+						}
 						WebElement shipment = shipments.get(shipments.size()-1);
 						logger.error("--->找到物流单号 = "+shipment.getText());
 						String expressNo = shipment.getText();

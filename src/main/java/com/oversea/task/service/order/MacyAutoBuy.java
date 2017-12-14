@@ -634,9 +634,7 @@ public class MacyAutoBuy extends AutoBuy {
 				giftCard.click();
 				logger.error("--->点击giftCard");
 				TimeUnit.SECONDS.sleep(1);
-				BigDecimal cardTotal = new BigDecimal(0.00);
 				WebDriverWait wait0 = new WebDriverWait(driver, 20);
-				boolean marks=false;
 				for(GiftCard card:giftCardList){
 					WebElement giftCardNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rc-gc-cardNumber")));
 					logger.debug("--->礼品卡号"+card.getSecurityCode());
@@ -648,6 +646,13 @@ public class MacyAutoBuy extends AutoBuy {
 					logger.debug("--->礼品卡密码"+card.getPassWord());
 					giftCardPin.clear();
 					giftCardPin.sendKeys(card.getPassWord());
+					TimeUnit.SECONDS.sleep(2);
+					
+					//
+					WebElement giftCardCaptcha = driver.findElement((By.id("rc-giftcard-captcha")));
+					logger.debug("--->礼品卡验证码");
+					giftCardCaptcha.clear();
+					giftCardCaptcha.sendKeys("111");
 					TimeUnit.SECONDS.sleep(2);
 					
 					WebElement checkBalance = driver.findElement((By.id("rc-apply-gift-cards")));
@@ -665,48 +670,25 @@ public class MacyAutoBuy extends AutoBuy {
 						continue;
 					}
 					
+					
 					logger.debug("--->礼品卡余额:"+balanceElement.getText());
 					
-					
-					String text = balanceElement.getText().replace("USD.", "").trim();
+					WebElement totalPriceElement =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rc-at-order-total-value")));
+					String text = totalPriceElement.getText().replace(",", "").trim();
 					if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
 						String priceStr = text.substring(text.indexOf("$") + 1);
-						logger.debug("--->礼品卡总额 = " + priceStr);
-						BigDecimal y = new BigDecimal(priceStr);
-						BigDecimal x = new BigDecimal(card.getRealBalance());
-						if(x.doubleValue()!=y.doubleValue()){
-							logger.debug("--->x = " + x+"--->y = "+y);
-							//card.setIsSuspect("yes");
-							//continue;
-						}
-						WebElement apply = driver.findElement(By.cssSelector("#giftCard button[name='Apply Gift Card']"));
-						driver.executeScript("var tar=arguments[0];tar.click();", apply);//apply.click();
-						logger.debug("--->apply click");
-						TimeUnit.SECONDS.sleep(2);
-						driver.executeScript("(function(){window.scrollBy(1,50);})();");
-						TimeUnit.SECONDS.sleep(2);
-						cardTotal = cardTotal.add(y);
-						BigDecimal v = total.subtract(cardTotal);
-						if (v.doubleValue() > 0.00D) {
-							card.setRealBalance("0");
+						BigDecimal priceTotal = new BigDecimal(priceStr);
+						if(priceTotal.doubleValue()>0){
 							logger.error("--->礼品卡不够继续，继续添加");
-							
+							card.setRealBalance("0");
+							wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rc-apply-another-gift-card")));
+							driver.findElement(By.id("rc-apply-another-gift-card")).click();
 						}else{
-							BigDecimal z = cardTotal.subtract(total);
-							card.setRealBalance(String.valueOf(z));
 							logger.error("--->礼品卡够了");
-							marks = true;
 							break;
 						}
 					}
 					
-				}
-				if(marks){
-					WebElement paymentCommit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("paymentCommit")));
-					driver.executeScript("var tar=arguments[0];tar.click();", paymentCommit);//paymentCommit.click();
-					TimeUnit.SECONDS.sleep(2);
-				}else{
-					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			}catch (Exception e){
 				logger.error("--->点击giftCard失败",e);
