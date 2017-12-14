@@ -122,6 +122,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								myPrice += Float.parseFloat(externalOrderDetail.getRealPriceOrg()) * num *1.02;
 							}catch(Exception ee){}
 						}
+						int skuNum = 0;
 						for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
 							Map<String, String> parmas = new HashMap<String, String>();
 							String url = Utils.isEmpty(externalOrderDetail.getProductRebateUrl()) ? externalOrderDetail.getProductUrl() : externalOrderDetail.getProductRebateUrl();
@@ -129,6 +130,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								logger.error("商品链接url为空");
 								return;
 							}
+							skuNum += externalOrderDetail.getItemCount();
 							
 							//添加优惠码
 							String promotionStr = externalOrderDetail.getDiscountCode();
@@ -145,6 +147,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 									parmas.put("addon", "1");
 								}
 							}
+							parmas.put("skuNum", String.valueOf(skuNum));
 							parmas.put("orginalUrl", externalOrderDetail.getProductUrl());
 							parmas.put("isFirst", String.valueOf(isFirst));
 							parmas.put("url", url);

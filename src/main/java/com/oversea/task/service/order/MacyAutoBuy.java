@@ -169,17 +169,18 @@ public class MacyAutoBuy extends AutoBuy {
 				logger.error("--->开始清理"+newList.size());
 				if(newList!=null && size>0){
 					newList.get(0).click();
-					Utils.sleep(2000);
+					Utils.sleep(5000);
 					if(size>1){
 						list = driver.findElements(By.cssSelector(".removeLink"));
 						newList = new ArrayList<WebElement>();
 						if(list!=null && list.size()>0){
 							for(WebElement w:list){
-								if(w.isDisplayed()){
+								if(w!=null && w.isDisplayed()){
 									newList.add(w);
 								}
 							}
 						}
+						//cleanCart();
 					}else{
 						break;
 					}
@@ -197,6 +198,7 @@ public class MacyAutoBuy extends AutoBuy {
 			logger.error("--->确认购物车是否清空");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".errorMsg")));
 			WebElement msg = driver.findElement(By.cssSelector(".errorMsg"));
+			logger.error("--->msg:"+msg.getText());
 			if(!msg.getText().contains("Shopping Bag is empty")){
 				logger.debug("--->购物车不为空！");
 				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
@@ -213,13 +215,23 @@ public class MacyAutoBuy extends AutoBuy {
 	public AutoBuyStatus selectProduct(Map<String, String> param) {
 		
 		logger.debug("--->跳转到商品页面");
-		String productUrl = (String) param.get("url");
-		logger.debug("--->选择商品 productUrl = " + productUrl);
+		//String productUrl = (String) param.get("url");
+		String orginalUrl = (String) param.get("orginalUrl");
+		String skuNum = (String) param.get("skuNum");
+		
+		logger.debug("--->选择商品 orginalUrl = " + orginalUrl);
+//		try{
+//			driver.navigate().to(productUrl);
+//		}
+//		catch (Exception e){
+//			logger.debug("--->打开商品页面失败 = " + productUrl);
+//			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+//		}
 		try{
-			driver.navigate().to(productUrl);
+			driver.navigate().to(orginalUrl);
 		}
 		catch (Exception e){
-			logger.debug("--->打开商品页面失败 = " + productUrl);
+			logger.debug("--->打开商品页面失败1 = " + orginalUrl);
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 		try {
@@ -266,11 +278,24 @@ public class MacyAutoBuy extends AutoBuy {
 						for(WebElement w:skuChooseElement){
 							WebElement attributeLabel = w.findElement(By.cssSelector(".attributeLabel"));
 							if(attributeLabel.getText().toLowerCase().contains(skuList.get(i-1).toLowerCase())){
+								logger.debug("--->开始选择"+skuList.get(i-1));
 								try {
 									WebElement skuChooses = w.findElement(By.cssSelector(".swatchesList"));
-									WebElement skuEle = skuChooses.findElement(By.cssSelector("li[aria-label="+skuList.get(i)+"]"));
-									skuEle.click();
+									
+									
+									List<WebElement> skuEles = skuChooses.findElements(By.cssSelector("li"));
+									for(WebElement skuEle:skuEles){
+										String s = skuEle.getAttribute("aria-label").replaceAll(" ", "").trim();
+										String skuAttrs = skuList.get(i).replaceAll(" ", "").trim();
+										logger.debug("--->aria-label="+s+" skuAttrs="+skuAttrs);
+										if(s.equalsIgnoreCase(skuAttrs)){
+											skuEle.click();
+											logger.debug("--->选择"+skuList.get(i));
+											break;
+										}
+									}
 								} catch (Exception e) {
+									logger.debug("--->单sku选择");
 									WebElement skuChooses = w.findElement(By.cssSelector(".swatchName"));
 									if(skuChooses.getText().equalsIgnoreCase(skuList.get(i))){
 										findCount++;
@@ -285,10 +310,12 @@ public class MacyAutoBuy extends AutoBuy {
 				try {
 					List<WebElement> skuChooseElements = driver.findElements(By.cssSelector("#productSidebar div[class$='Section'] li.selected"));
 					for(WebElement w:skuChooseElements){
-						String s = w.getAttribute("aria-label");
+						String s = w.getAttribute("aria-label").trim();
+						logger.debug("--->select:"+s);
 						for (int i = 0; i < skuList.size(); i++) {
 							if (i % 2 == 1) {
-								String attrValue = skuList.get(i);
+								String attrValue = skuList.get(i).trim();
+								logger.debug("--->attrValue:"+attrValue);
 								if(attrValue.equalsIgnoreCase(s)){
 									logger.debug("--->"+attrValue+"加1");
 									findCount++;
@@ -373,10 +400,10 @@ public class MacyAutoBuy extends AutoBuy {
 			logger.error("--->加购物车出现异常",e);
 			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
 		}
-		//验证数量
+//		//验证数量
 		WebElement numText = driver.findElement(By.cssSelector(".atbPageBagTotalQty"));
-		logger.error("--->数量为:"+numText.getText());
-		if(!numText.getText().equals(productNum)){
+		logger.error("--->数量为:"+numText.getText()+"skuum:"+skuNum);
+		if(!numText.getText().equals(skuNum)){
 			return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 		}
 		//
@@ -533,24 +560,26 @@ public class MacyAutoBuy extends AutoBuy {
 			}
 			List<WebElement> addressList = driver.findElements(By.cssSelector("#rc-shipping-addresses-list li"));
 			logger.debug("--->总共有"+addressList.size()+"个地址");
-			List<WebElement> addrs = new ArrayList<WebElement>();
-			String countTemp = (String) param.get("count");
-			int count = 0;
-			if (!Utils.isEmpty(countTemp)) {
-				count = Integer.parseInt(countTemp);
-			}
-			logger.debug("--->默认地址:"+count);
-			for(WebElement w:addressList){
-				if(StringUtil.isBlank(expressAddress) || w.getText().contains(expressAddress)){
-					addrs.add(w);
+			if(addressList.size()>0){
+				List<WebElement> addrs = new ArrayList<WebElement>();
+				String countTemp = (String) param.get("count");
+				int count = 0;
+				if (!Utils.isEmpty(countTemp)) {
+					count = Integer.parseInt(countTemp);
 				}
+				logger.debug("--->默认地址:"+count);
+				for(WebElement w:addressList){
+					if(StringUtil.isBlank(expressAddress) || w.getText().contains(expressAddress)){
+						addrs.add(w);
+					}
+				}
+				int tarAddr = count % addrs.size();
+				WebElement radio = addrs.get(tarAddr).findElement(By.cssSelector("input"));
+				radio.click();
+				Utils.sleep(1000);
+				WebElement saveAddress = driver.findElement(By.id("rc-shipping-address-use"));
+				saveAddress.click();
 			}
-			int tarAddr = count % addrs.size();
-			WebElement radio = addrs.get(tarAddr).findElement(By.cssSelector("input"));
-			radio.click();
-			Utils.sleep(1000);
-			WebElement saveAddress = driver.findElement(By.id("rc-shipping-address-use"));
-			saveAddress.click();
 		} catch (Exception e) {
 			logger.error("--->选择地址失败");
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
