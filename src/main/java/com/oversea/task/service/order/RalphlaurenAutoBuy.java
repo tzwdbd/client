@@ -102,7 +102,8 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 					}
 				}
 				TimeUnit.SECONDS.sleep(1);
-				driver.findElement(By.cssSelector("button.valid")).click();
+				WebElement login = driver.findElement(By.cssSelector("button.valid"));
+				driver.executeScript("var tar=arguments[0];tar.click();", login);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".myaccount")));
 				logger.debug("登录成功");
 				return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
