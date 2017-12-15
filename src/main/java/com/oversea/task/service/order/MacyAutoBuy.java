@@ -16,12 +16,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.oversea.task.AutoBuyConst;
+import com.oversea.task.domain.ExternalOrderDetail;
 import com.oversea.task.domain.GiftCard;
 import com.oversea.task.domain.OrderPayAccount;
 import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.StringUtils;
 import com.oversea.task.utils.Utils;
 
@@ -772,28 +774,9 @@ public class MacyAutoBuy extends AutoBuy {
 	}
 
 	@Override
-	public AutoBuyStatus scribeExpress(RobotOrderDetail detail) {
+	public AutoBuyStatus scribeExpress(ExternalOrderDetail detail) {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		String mallOrderNo = detail.getMallOrderNo();
-		Map<String, String> skuMap = new HashMap<String, String>();
-		String color = "";
-		String size = "";
-		if(detail.getProductSku() != null){
-			List<String> skuList = Utils.getSku(detail.getProductSku());
-			for (int i = 0; i < skuList.size(); i += 2)
-			{
-				skuMap.put(skuList.get(i), skuList.get(i + 1));
-			}
-			
-			color = skuMap.get("color");
-			if(color == null){
-				color = "no color";
-			}
-			size = skuMap.get("size");
-			if(size == null){
-				size = "one size";
-			}
-		}
 		
 		if (Utils.isEmpty(mallOrderNo)) {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
@@ -810,8 +793,9 @@ public class MacyAutoBuy extends AutoBuy {
 				WebElement w = o.findElement(By.cssSelector(".devider"));
 				String str = w.getText().toLowerCase();
 				if(str.contains(mallOrderNo)){
-					WebElement orderStatus = w.findElement(By.cssSelector(".orderStatus h2"));
+					WebElement orderStatus = o.findElement(By.cssSelector(".orderStatus h2"));
 					find = 1;
+					logger.error("text:"+orderStatus.getText());
 					if(orderStatus.getText().contains("cancelled")){
 						logger.error("该订单被砍单了");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
@@ -827,47 +811,41 @@ public class MacyAutoBuy extends AutoBuy {
 					}else if(orderStatus.getText().contains("payment pending")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("shipped")){
+					}else if(orderStatus.getText().contains("shipment")){
 						// 商城订单号一样 包裹号不一样
-						WebElement orderNoElement = o.findElement(By.cssSelector("td a"));
-						driver.navigate().to(orderNoElement.getAttribute("href"));
+						WebElement orderNoElement = o.findElement(By.cssSelector(".trackShipmentBtn"));
+						orderNoElement.click();
 						//orderNoElement.click();
 						Utils.sleep(2000);
-						WebElement trackElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".track")));
-						driver.navigate().to(trackElement.getAttribute("href"));
-						//trackElement.click();
-						Utils.sleep(2000);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("container")));
-						List<WebElement> boxs = driver.findElements(By.cssSelector(".orderinfo.table .row"));
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackID")));
+						WebElement box = o.findElement(By.cssSelector(".trackID"));
 						String expressCompany = "";
-						for(WebElement box : boxs){
-							String s = box.getText().toLowerCase();
-							logger.error("物流公司  " + s);
-							if(s.contains("carrier")){
-								if(s.contains("us")){
-									expressCompany = "USPS";
-									logger.error("expressCompany = " + expressCompany);
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-								}
-								
-							}
-							if(s.contains("carrier tracking number")){
-								String expressNo = s.replace("carrier tracking number ", "");
-								logger.error("expressNo = " + expressNo);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-								if(StringUtils.isBlank(expressCompany)){
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "USPS");
-								}
-								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+						String expressNo = ExpressUtils.regularExperssNo(box.getText());
+						String[] expressGroup = expressNo.split(",");
+						for(String s:expressGroup){
+							if(!s.startsWith("t")){
+								expressNo = s;
+								break;
 							}
 						}
-					}else if(str.contains("delivered")){
-						logger.debug("物流已完成"+str);
-						return AutoBuyStatus.AUTO_SCRIBE_CALL_CUSTOMER_SERVICE;
+						WebElement boxs = o.findElement(By.cssSelector(".trackEventItem"));
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+						if(boxs.getText().contains("USPS")){
+							expressCompany = "USPS";
+							logger.error("expressCompany = " + expressCompany);
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+							
+						}
+						if(boxs.getText().contains("UPS")){
+							expressCompany = "UPS";
+							logger.error("expressCompany = " + expressCompany);
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+						}
+						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else{
 						logger.debug("未识别的物流状态"+str);
+						return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 					}
-					break;
 				}
 			}
 			if(find==0){
@@ -887,13 +865,13 @@ public class MacyAutoBuy extends AutoBuy {
 	public boolean gotoMainPage() {
 		try {
 			Utils.sleep(2000);
-			driver.get("http://www.victoriassecret.com/");
+			driver.get("https://www.macys.com/");
 //			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("wrapper")));
 			Utils.sleep(5000);
 			return true;
 		} catch (Exception e) {
-			logger.error("--->跳转victoriassecret主页面碰到异常");
+			logger.error("--->跳转macys主页面碰到异常");
 		}
 		return false;
 	}
@@ -963,6 +941,13 @@ public class MacyAutoBuy extends AutoBuy {
 		detail.setProductSku("[[\"color\",\"001 Pink\"]]");
 		auto.scribeExpress(detail);*/
 		//auto.logout();
+	}
+
+
+	@Override
+	public AutoBuyStatus scribeExpress(RobotOrderDetail detail) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
