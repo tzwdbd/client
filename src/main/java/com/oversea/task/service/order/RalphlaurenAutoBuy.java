@@ -339,7 +339,7 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 	@Override
 	public AutoBuyStatus pay(Map<String, String> param) {
 		
-		String suffixNo = param.get("suffixNo").replaceAll("[^0-9]", "").trim();
+		String suffixNo = param.get("suffixNo").trim();
 		String myPrice = param.get("my_price");
 		logger.debug("myPrice="+myPrice);
 		String size = param.get("size");
@@ -426,15 +426,55 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			} catch (Exception e) {
 				logger.error("--->用默认地址");
 			}
-			
+			//
+			driver.executeScript("(function(){window.scrollBy(0,300);})();");
 			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".creditCardListPayment")));
-				WebElement card = driver.findElement(By.cssSelector(".creditCardListPayment"));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".payment-type.Master")));
+				WebElement card = driver.findElement(By.cssSelector(".payment-type.Master"));
 				driver.executeScript("var tar=arguments[0];tar.click();", card);
 				//card.click();
 			} catch (Exception e) {
 				logger.error("--->没有绑定信用卡",e);
 				return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
+			}
+			driver.executeScript("(function(){window.scrollBy(0,1000);})();");
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dwfrm_billing_paymentMethods_creditCard_saveCard")));
+				WebElement saveCard = driver.findElement(By.cssSelector("#dwfrm_billing_paymentMethods_creditCard_saveCard"));
+				driver.executeScript("var tar=arguments[0];tar.click();", saveCard);
+				//card.click();
+			} catch (Exception e) {
+				logger.error("--->没有绑定信用卡1");
+				//return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
+			}
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cvn_number")));
+				WebElement paymentMethods = driver.findElement(By.cssSelector(".cvn_number"));
+				paymentMethods.clear();
+				paymentMethods.sendKeys(suffixNo);
+				logger.error("--->suffixNo:"+suffixNo);
+				//card.click();
+			} catch (Exception e) {
+				logger.error("--->没有suffixNo",e);
+				//return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
+			}
+			
+//			try {
+//				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dwfrm_billing_paymentMethods_creditCard_saveCard")));
+//				WebElement saveCard = driver.findElement(By.cssSelector("#dwfrm_billing_paymentMethods_creditCard_saveCard"));
+//				driver.executeScript("var tar=arguments[0];tar.click();", saveCard);
+//				//card.click();
+//			} catch (Exception e) {
+//				logger.error("--->没有saveCard",e);
+//				//return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
+//			}
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#continue_review")));
+				WebElement continuereview = driver.findElement(By.cssSelector("#continue_review"));
+				driver.executeScript("var tar=arguments[0];tar.click();", continuereview);
+			} catch (Exception e) {
+				logger.error("--->没有continuereview",e);
+				//return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
 			}
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-value")));
 			String price = driver.findElement(By.cssSelector(".order-value")).getText().substring(1);
