@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -35,31 +36,9 @@ import com.oversea.task.utils.Utils;
 */
 public class MacyAutoBuy extends AutoBuy {
 	private final Logger logger = Logger.getLogger(getClass());
-	//private Timer timer;
 	
 	public MacyAutoBuy() {
-		super(false);
-		//color1=color
-		//extend4=length
-		//dot3 =size
-		//band3 = Band Size
-		//cup4 = Cup Size
-		//size3 = size radiogroup
-		//num=.plus-icon.base
-		//.fab-alert售罄This item is no longer available.
-//		timer = new Timer();
-//		timer.schedule(new TimerTask()
-//		{
-//			@Override
-//			public void run()
-//			{
-//				driver.executeScript("(function(){var els = document.getElementsByClassName('fsrDeclineButton');if(els && els[0]){els[0].click();}})();");
-//				driver.executeScript("(function(){var els = document.getElementsByClassName('acsCloseButton');if(els && els[0]){els[0].click();}})();");
-//				driver.executeScript("(function(){var els = document.getElementsByClassName('close');if(els && els[0]){els[0].click();}})();");
-//				
-//			}
-//		}, 3000, 3000);
-		
+		super(false,false);
 	}
 	
 
@@ -67,7 +46,6 @@ public class MacyAutoBuy extends AutoBuy {
 	public AutoBuyStatus login(String userName, String passWord) {
 		logger.debug("--->调整浏览器尺寸和位置");
 		driver.manage().window().maximize();
-
 		driver.get("https://www.macys.com/");
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		
@@ -772,7 +750,6 @@ public class MacyAutoBuy extends AutoBuy {
 		}
 		return AutoBuyStatus.AUTO_PAY_SUCCESS;
 	}
-
 	@Override
 	public AutoBuyStatus scribeExpress(ExternalOrderDetail detail) {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
