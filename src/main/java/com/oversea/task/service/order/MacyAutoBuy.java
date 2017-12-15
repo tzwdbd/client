@@ -835,11 +835,22 @@ public class MacyAutoBuy extends AutoBuy {
 							logger.error("expressCompany = " + expressCompany);
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
 							
-						}
-						if(boxs.getText().contains("UPS")){
+						}else if(boxs.getText().contains("UPS")){
 							expressCompany = "UPS";
 							logger.error("expressCompany = " + expressCompany);
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+						}else{
+							WebElement trackCar = o.findElement(By.cssSelector(".trackCarrier"));
+							if(trackCar.getText().contains("USPS")){
+								expressCompany = "USPS";
+								logger.error("expressCompany = " + expressCompany);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+								
+							}else if(trackCar.getText().contains("UPS")){
+								expressCompany = "UPS";
+								logger.error("expressCompany = " + expressCompany);
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+							}
 						}
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else{
