@@ -400,8 +400,11 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 		try {
 			logger.debug("开始付款");
 			
-			WebElement gotopay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_cart_checkoutCart']")));
-			gotopay.click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_cart_checkoutCart']")));
+			WebElement gotopay = driver.findElement(By.cssSelector("button[name='dwfrm_cart_checkoutCart']"));
+			driver.executeScript("var tar=arguments[0];tar.click();", gotopay);
+			logger.debug("点击付款");
+			//gotopay.click();
 //			try {
 //				logger.debug("再次登录");
 //				TimeUnit.SECONDS.sleep(1);
@@ -415,12 +418,20 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 //			} catch (Exception e) {
 //				logger.debug(e);
 //			}
-			WebElement shipping = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_singleshipping_shippingAddress_save']")));
-			shipping.click();
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[name='dwfrm_singleshipping_shippingAddress_save']")));
+				WebElement shipping = driver.findElement(By.cssSelector("button[name='dwfrm_singleshipping_shippingAddress_save']"));
+				driver.executeScript("var tar=arguments[0];tar.click();", shipping);
+				//shipping.click();
+			} catch (Exception e) {
+				logger.error("--->用默认地址");
+			}
+			
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".creditCardListPayment")));
 				WebElement card = driver.findElement(By.cssSelector(".creditCardListPayment"));
-				card.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", card);
+				//card.click();
 			} catch (Exception e) {
 				logger.error("--->没有绑定信用卡",e);
 				return AutoBuyStatus.AUTO_PAY_SELECT_VISA_CARD_FAIL;
@@ -449,7 +460,9 @@ public class RalphlaurenAutoBuy extends AutoBuy{
 			}
 			if(isPay){
 				logger.debug("开始付款");
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".button-fancy-large"))).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".button-fancy-large")));
+				WebElement payWeb = driver.findElement(By.cssSelector(".button-fancy-large"));
+				driver.executeScript("var tar=arguments[0];tar.click();", payWeb);
 				logger.error("付款成功");
 				TimeUnit.SECONDS.sleep(10);
 			}
