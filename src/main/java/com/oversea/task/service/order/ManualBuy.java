@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.jsoup.helper.StringUtil;
@@ -970,6 +972,14 @@ public class ManualBuy{
 		WebElement shipment = driver.findElement(By.cssSelector(autoOrderExpressDetail.getExpressNoCode()));
 		logger.error(autoOrderExpressDetail.getSiteName()+"--->找到物流单号 = "+shipment.getText());
 		String expressNo = ExpressUtils.regularExperssNo(shipment.getText());
+
+		String[] expressGroup = expressNo.split(",");
+		for(String s:expressGroup){
+			if(isContainNumber(s)){
+				expressNo = s;
+				break;
+			}
+		}
 		logger.error(autoOrderExpressDetail.getSiteName()+"--->找到匹配的物流单号 = "+expressNo);
 		String company = "";
 		try {
@@ -1011,7 +1021,15 @@ public class ManualBuy{
 		return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 	}
 
+	public static boolean isContainNumber(String company) {
 
+        Pattern p = Pattern.compile("[0-9]");
+        Matcher m = p.matcher(company);
+        if (m.find()) {
+            return true;
+        }
+        return false;
+    }
 	public boolean productOrderCheck(TaskResult taskResult){
 		return false;
 	}
