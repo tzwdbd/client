@@ -351,9 +351,16 @@ public class BabyHavenAutoBuy extends AutoBuy {
 				}
 				 
 				//比较数量
-				List<WebElement> carNumList = driver.findElements(By.cssSelector(".tr-selected"));
-				if(carNumList.size()!=Integer.parseInt(param.get("size"))){
-					return AutoBuyStatus.AUTO_PAY_FAIL;
+				try {
+					List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='btn-remove btn-remove2' and @title='删除项目']"));
+					logger.debug("--->购物车1有 [" + goodsInCart.size() + "]件商品");
+					logger.debug("--->size1有 [" + size + "]件商品");
+					if(!size.equals(String.valueOf(goodsInCart.size()))){
+						return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
+					}
+				} catch (Exception e) {
+					logger.debug("--->购物车验证数量出错1",e);
+					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 				}
 				// 结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
