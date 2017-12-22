@@ -1769,6 +1769,7 @@ public class AmazonAutoBuy extends AutoBuy
 					for(WebElement w:dimensions){
 						
 						String s = w.getText().trim().replaceAll(" ", "");
+						s = s.replace("\"", "&quot;");
 						for (int i = 0; i < skuList.size(); i++) {
 							if (i % 2 == 1) {
 								String attrValue = skuList.get(i).replaceAll(" ", "");
@@ -5530,8 +5531,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "https://www.amazon.com/dp/B06ZXZ3NW4?psc=1");
-		param.put("sku", "[[\"Color\",\"Glam\"]]");
+		param.put("url", "http://www.amazon.com/dp/B074GR814K?psc=1");
+		param.put("sku", "[[\"Color\",\"18&quot; Black\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
