@@ -662,7 +662,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		}
 		driver.executeScript("(function(){window.scrollBy(0,300);})();");
 		//提交订单
-		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
+		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
 			WebElement placeOrder = driver.findElement(By.id("settle-btn-submit"));
 			placeOrder.click();;

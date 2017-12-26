@@ -889,7 +889,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		logger.error("cardNo = "+cardNo);
 		
 		//提交订单
-		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
+		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
 			WebElement placeOrder = null;
 			try {

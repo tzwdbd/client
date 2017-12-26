@@ -724,7 +724,7 @@ public class CnroyyoungchemistAutoBuy extends AutoBuy {
 			
 		}
 		//提交订单
-		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
+		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
 			WebElement placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
 			placeOrder.click();;

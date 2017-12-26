@@ -1085,7 +1085,11 @@ public class AmazonAutoBuy extends AutoBuy
 							if (!(text.indexOf("sold by Amazon") != -1 || text.indexOf("Fulfilled by Amazon") != -1))
 							{
 								logger.debug("第三方商品不支持购买 +productUrl = " + productUrl);
-								return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+								//看下有没有其它不是第三方
+								boolean b = clickOther();
+								if(!b){
+									return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+								}
 							}
 						}
 	
@@ -1237,6 +1241,37 @@ public class AmazonAutoBuy extends AutoBuy
 				return AutoBuyStatus.AUTO_SKU_SELECT_EXCEPTION;
 			}
 		}
+	}
+	
+	private boolean clickOther() {
+		boolean b = false;
+		try {
+			WebElement olp = driver.findElement(By.cssSelector("#olp a"));
+			//driver.executeScript("var tar=arguments[0];tar.click();", olp);
+			olp.click();
+			logger.error("新品点击");
+			Utils.sleep(500);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".olpMobileOffer")));
+			List<WebElement> skuList = driver.findElements(By.cssSelector(".olpMobileOffer"));
+			for(WebElement w:skuList){
+				WebElement olpName = w.findElement(By.cssSelector(".olpSellerName"));
+				if(olpName.getText().contains("Amazon.com")){
+					List<WebElement> addCard = w.findElements(By.cssSelector("input[name='submit.addToCart']"));
+					for(WebElement card:addCard){
+						if(card.isDisplayed()){
+							card.click();
+							b=true;
+							break;
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.error("选择第三方异常", e);
+		}
+		
+		return b;
 	}
 	
 	public void selectsku(Object sku){
@@ -5531,13 +5566,13 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B074GR814K?psc=1");
-		param.put("sku", "[[\"Color\",\"18&quot; Black\"]]");
+		param.put("url", "http://www.amazon.com/dp/B019DY1XOK");
+		param.put("sku", "[[\"Color\",\"Jester Red/Graphite\"],[\"Size\",\"Medium\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("sign", "1");
+		//param.put("sign", "1");
 		//param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
 		//param.put("title","Yoga pants Mesh Workout legging");
 		//param.put("position","30");

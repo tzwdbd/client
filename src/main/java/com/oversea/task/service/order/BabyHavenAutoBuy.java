@@ -671,7 +671,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		logger.error("cardNo = " + cardNo);
 
 		// 提交订单
-		logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = " + orderPayAccount.getPayPassword());
+		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = " + orderPayAccount.getPayPassword());
 		try {
 			WebElement placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrder);
