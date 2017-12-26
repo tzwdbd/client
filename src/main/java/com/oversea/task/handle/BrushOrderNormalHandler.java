@@ -1,5 +1,6 @@
 package com.oversea.task.handle;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -116,6 +117,11 @@ public class BrushOrderNormalHandler implements BrushOrderHandler {
 					parmas.put("productName",brushInfo.getKeyWord());
 					parmas.put("title",brushInfo.getProductName());
 					parmas.put("position",brushInfo.getProductLocate());
+					if("amazon".equals(mallName)){
+						parmas.put("keywordUrl","https://www.amazon.com/dp/"+asinMap.get(brushOrderDetail.getProductEntityId())+"?th=1&keywords="+URLEncoder.encode(brushInfo.getKeyWord()));
+					}else if("amazon.jp".equals(mallName)){
+						parmas.put("keywordUrl","https://www.amazon.co.jp/dp/"+asinMap.get(brushOrderDetail.getProductEntityId())+"?th=1&keywords="+URLEncoder.encode(brushInfo.getKeyWord()));
+					}
 					
 					isFirst = false;
 					status = autoBuy.selectProduct(parmas);

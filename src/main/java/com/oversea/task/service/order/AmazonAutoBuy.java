@@ -5841,6 +5841,8 @@ public class AmazonAutoBuy extends AutoBuy
 		String title = param.get("title");
 		int position = Integer.parseInt(param.get("position"));
 		String signs = param.get("signs");
+		
+		String keywordUrl = param.get("keywordUrl");
 		position = 30;
 		
 		WebDriverWait wait = new WebDriverWait(driver, 45);
@@ -5896,11 +5898,10 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 		} catch (Exception e) {
 			logger.error("--->点击下一页异常", e);
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-		}
-		if(!mark){
-			logger.error("--->找不到商品");
-			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
+			try {
+				driver.navigate().to(keywordUrl);
+			} catch (Exception e1) {
+			}
 		}
 		if(StringUtil.isBlank(signs)){
 			logger.error("--->查找clickProduct");
