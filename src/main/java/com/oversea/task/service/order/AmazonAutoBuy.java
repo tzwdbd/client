@@ -1204,6 +1204,30 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("Continue 点击出错");
 				}
 				
+				try {
+					TimeUnit.SECONDS.sleep(3);
+					WebElement ad = driver.findElement(By.cssSelector("#seeBuyingChoices span"));
+					ad.click();
+					logger.error("seeBuyingChoices 点击");
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".olpMobileOffer")));
+					List<WebElement> skuList = driver.findElements(By.cssSelector(".olpMobileOffer"));
+					for(WebElement w:skuList){
+						WebElement olpName = w.findElement(By.cssSelector(".olpSellerName"));
+						if(olpName.getText().contains("Amazon.com")){
+							List<WebElement> addCard = w.findElements(By.cssSelector("input[name='submit.addToCart']"));
+							for(WebElement card:addCard){
+								if(card.isDisplayed()){
+									card.click();
+									break;
+								}
+							}
+						}
+					}
+				} catch (Exception e) {
+					logger.error("没有seeBuyingChoices");
+				}
+				
 				//等待购物车加载完成
 				try{
 					WebDriverWait wait = new WebDriverWait(driver, 45);
@@ -2202,6 +2226,30 @@ public class AmazonAutoBuy extends AutoBuy
 				TimeUnit.SECONDS.sleep(1);
 			} catch (Exception e) {
 				logger.error("Continue 点击出错");
+			}
+			
+			try {
+				TimeUnit.SECONDS.sleep(3);
+				WebElement ad = driver.findElement(By.cssSelector("#seeBuyingChoices span"));
+				ad.click();
+				logger.error("seeBuyingChoices 点击");
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".olpMobileOffer")));
+				List<WebElement> skuList = driver.findElements(By.cssSelector(".olpMobileOffer"));
+				for(WebElement w:skuList){
+					WebElement olpName = w.findElement(By.cssSelector(".olpSellerName"));
+					if(olpName.getText().contains("Amazon.com")){
+						List<WebElement> addCard = w.findElements(By.cssSelector("input[name='submit.addToCart']"));
+						for(WebElement card:addCard){
+							if(card.isDisplayed()){
+								card.click();
+								break;
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				logger.error("没有seeBuyingChoices");
 			}
 			
 			//等待购物车加载完成

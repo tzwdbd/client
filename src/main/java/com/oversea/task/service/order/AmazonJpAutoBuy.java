@@ -1048,7 +1048,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 					driver.navigate().to("https://www.amazon.co.jp/gp/aw/c/ref=navm_hdr_cart");
 				}
 			} catch (Exception e) {
-				logger.error("safss",e);
+				logger.error("没有カートに入れる",e);
 			}
 			
 	//		try {
@@ -1057,7 +1057,29 @@ public class AmazonJpAutoBuy extends AutoBuy
 	//		} catch (Exception e) {
 	//			logger.error("2222",e);
 	//		}
-			
+			try {
+				TimeUnit.SECONDS.sleep(3);
+				WebElement ad = driver.findElement(By.cssSelector("#seeBuyingChoices span"));
+				ad.click();
+				logger.error("seeBuyingChoices 点击");
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".olpMobileOffer")));
+				List<WebElement> skuList = driver.findElements(By.cssSelector(".olpMobileOffer"));
+				for(WebElement w:skuList){
+					WebElement olpName = w.findElement(By.cssSelector(".olpSellerName"));
+					if(olpName.getText().contains("Amazon.co.jp")){
+						List<WebElement> addCard = w.findElements(By.cssSelector("input[name='submit.addToCart']"));
+						for(WebElement card:addCard){
+							if(card.isDisplayed()){
+								card.click();
+								break;
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				logger.error("没有seeBuyingChoices");
+			}
 			
 			//等待购物车加载完成
 			try{
@@ -4811,8 +4833,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B06XW9LKK3");
-		param.put("sku", "[[\"ItemDimensions/Length\",\"17.0 センチメートル\"]]");
+		param.put("url", "http://www.amazon.co.jp/dp/B00L1WDIHS");
+		param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
 		//param.put("sku", "[[\"種類\",\"単品\"]]");
 		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
 		param.put("num", "1");
