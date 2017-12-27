@@ -975,7 +975,10 @@ public class AmazonJpAutoBuy extends AutoBuy
 	//							logger.debug("第三方页面异常",e);
 	//							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
 	//						}
-							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+							boolean b = clickOther();
+							if(!b){
+								return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+							}
 						}
 					}
 				}
@@ -1079,6 +1082,37 @@ public class AmazonJpAutoBuy extends AutoBuy
 			logger.debug("--->选择sku成功");
 			return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 		}
+	}
+	
+	private boolean clickOther() {
+		boolean b = false;
+		try {
+			WebElement olp = driver.findElement(By.cssSelector("#olp a"));
+			//driver.executeScript("var tar=arguments[0];tar.click();", olp);
+			olp.click();
+			logger.error("新品点击");
+			Utils.sleep(500);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".olpMobileOffer")));
+			List<WebElement> skuList = driver.findElements(By.cssSelector(".olpMobileOffer"));
+			for(WebElement w:skuList){
+				WebElement olpName = w.findElement(By.cssSelector(".olpSellerName"));
+				if(olpName.getText().contains("Amazon.co.jp")){
+					List<WebElement> addCard = w.findElements(By.cssSelector("input[name='submit.addToCart']"));
+					for(WebElement card:addCard){
+						if(card.isDisplayed()){
+							card.click();
+							b=true;
+							break;
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.error("选择第三方异常", e);
+		}
+		
+		return b;
 	}
 	
 	public AutoBuyStatus selectBrushProduct(Map<String, String> param)
@@ -4777,7 +4811,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B01FVM2DRE?psc=1");
+		param.put("url", "http://www.amazon.co.jp/dp/B06XW9LKK3");
 		param.put("sku", "[[\"ItemDimensions/Length\",\"17.0 センチメートル\"]]");
 		//param.put("sku", "[[\"種類\",\"単品\"]]");
 		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");

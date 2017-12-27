@@ -2087,7 +2087,10 @@ public class AmazonAutoBuy extends AutoBuy
 						if (!(text.indexOf("sold by Amazon") != -1 || text.indexOf("Fulfilled by Amazon") != -1))
 						{
 							logger.debug("第三方商品不支持购买 +productUrl = " + productUrl);
-							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+							boolean b = clickOther();
+							if(!b){
+								return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+							}
 						}
 					}
 
@@ -5566,8 +5569,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B019DY1XOK");
-		param.put("sku", "[[\"Color\",\"Jester Red/Graphite\"],[\"Size\",\"Medium\"]]");
+		param.put("url", "http://www.amazon.com/dp/B00JJFZIP4");
+		param.put("sku", "[[\"Style\",\"Moisture Cream\"],[\"Size\",\"5 Ounce\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
