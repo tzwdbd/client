@@ -1099,7 +1099,15 @@ public class AmazonJpAutoBuy extends AutoBuy
 				logger.error("等待购物车加载完成出错,e");
 				return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 			}
-			
+			if(StringUtil.isBlank(addon)){
+				try{
+					WebElement w = driver.findElement(By.cssSelector(".a-color-alternate-background"));
+					if(w != null && StringUtil.isNotEmpty(w.getText()) && w.getText().contains("あわせ買い対象商品")){
+						logger.debug("这个商品是Add-on item,凑单商品,不支持购买" );
+						return AutoBuyStatus.AUTO_SKU_ADD_ON;
+					}
+				}catch(Exception e){}
+			}
 	
 			logger.debug("--->选择sku成功");
 			return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;

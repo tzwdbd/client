@@ -1255,6 +1255,13 @@ public class AmazonAutoBuy extends AutoBuy
 						return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 					}
 				}catch(Exception e){}
+				try{
+					WebElement w = driver.findElement(By.cssSelector(".a-color-alternate-background"));
+					if(w != null && StringUtil.isNotEmpty(w.getText()) && w.getText().contains("Add-on")){
+						logger.debug("这个商品是Add-on item,凑单商品,不支持购买 url = " + productUrl);
+						return AutoBuyStatus.AUTO_SKU_ADD_ON;
+					}
+				}catch(Exception e){}
 				
 				logger.debug("选择sku成功");
 				return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
@@ -2279,7 +2286,15 @@ public class AmazonAutoBuy extends AutoBuy
 					return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 				}
 			}catch(Exception e){}
-			
+			if(StringUtil.isBlank(addon)){
+				try{
+					WebElement w = driver.findElement(By.cssSelector(".a-color-alternate-background"));
+					if(w != null && StringUtil.isNotEmpty(w.getText()) && w.getText().contains("Add-on")){
+						logger.debug("这个商品是Add-on item,凑单商品,不支持购买 url = " + productUrl);
+						return AutoBuyStatus.AUTO_SKU_ADD_ON;
+					}
+				}catch(Exception e){}
+			}
 			logger.debug("选择sku成功");
 			return AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
 		}
@@ -5617,8 +5632,8 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B00JJFZIP4");
-		param.put("sku", "[[\"Style\",\"Moisture Cream\"],[\"Size\",\"5 Ounce\"]]");
+		param.put("url", "http://www.amazon.com/dp/B00016RLP0?psc=1");
+		param.put("sku", "[[\"Size\",\"4 oz\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
 		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
 		param.put("num", "1");
