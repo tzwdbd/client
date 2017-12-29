@@ -5398,102 +5398,102 @@ public class AmazonAutoBuy extends AutoBuy
 //			logger.info("--->address获取失败!",e);
 //		}
 		
-		try {
-			driver.navigate().to("https://www.amazon.com/a/addresses/ref=mobile_ya_address_book");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".id-addr-ux-search-item")));
-			List<WebElement> addressLists = driver.findElements(By.cssSelector(".id-addr-ux-search-item"));
-			Map<String,Integer> numberMap = new HashMap<String, Integer>();
-			List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-			Map<String,Object> maps = new HashMap<String, Object>();
-			for(WebElement ad:addressLists){
-				WebElement address = ad.findElement(By.id("address-ui-widgets-FullName"));
-				String[] keys = address.getText().split(" ");
-				if(keys.length==2){
-					String key = keys[1];
-					logger.info("--->address:"+address.getText());
-					Map<String,Object> map = new HashMap<String, Object>();
-					map.put(keys[1], keys[0]);
-					list.add(map);
-					if(!StringUtil.isBlank(key)){
-						if(numberMap.containsKey(key)){
-							numberMap.put(key, numberMap.get(key)+1);
-						}else{
-							numberMap.put(key, 1);
-						}
-					}
-				}
-			}
-			for(String i:numberMap.keySet()){
-				if(numberMap.get(i)<4){
-					logger.info("--->4i:"+i);
-					for(Map<String,Object> map :list){
-						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
-							logger.info("--->Di:"+map.get(i));
-							maps.put(i, i);
-						}
-					}
-					
-				}
-				if(numberMap.get(i)<3){
-					logger.info("--->3i:"+i);
-					for(Map<String,Object> map :list){
-						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
-							logger.info("--->Di:"+map.get(i));
-							maps.put(i, i);
-						}
-						if(map.containsKey(i) && map.get(i).toString().endsWith("C")){
-							logger.info("--->Ci:"+map.get(i));
-							maps.put(i, i);
-						}
-					}
-					
-				}
-				if(numberMap.get(i)<2){
-					logger.info("--->2i:"+i);
-					for(Map<String,Object> map :list){
-						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
-							logger.info("--->Di:"+map.get(i));
-							maps.put(i, i);
-						}
-						if(map.containsKey(i) && map.get(i).toString().endsWith("C")){
-							logger.info("--->Ci:"+map.get(i));
-							maps.put(i, i);
-						}
-						if(map.containsKey(i) && map.get(i).toString().endsWith("B")){
-							logger.info("--->Bi:"+map.get(i));
-							maps.put(i, i);
-						}
-					}
-					
-				}
-			}
-			Iterator<WebElement> it = addressLists.iterator();
-	        while (it.hasNext()) {
-	        	WebElement w = (WebElement) it.next();
-	        	WebElement address = w.findElement(By.id("address-ui-widgets-FullName"));
-				String[] keys = address.getText().split(" ");
-				if(keys.length==2){
-					String key = keys[1];
-					logger.info("--->key:"+key);
-					if(!StringUtil.isBlank(key) && maps.containsKey(key)){
-						logger.info("--->删除:"+key);
-						w.findElement(By.cssSelector("span[id*='address-delete']")).click();
-						Utils.sleep(1000);
-						List<WebElement> deletes = driver.findElements(By.cssSelector("span[id*='deleteAddressModal']"));
-						for(WebElement del:deletes){
-							if(del.isDisplayed() && del.getText().contains("Yes")){
-								del.click();
-								break;
-							}
-						}
-					}
-				}
-				
-	        }
-		} catch (Exception e) {
-			logger.info("--->address获取失败!",e);
-			deleteAddress();
-		}
+//		try {
+//			driver.navigate().to("https://www.amazon.com/a/addresses/ref=mobile_ya_address_book");
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".id-addr-ux-search-item")));
+//			List<WebElement> addressLists = driver.findElements(By.cssSelector(".id-addr-ux-search-item"));
+//			Map<String,Integer> numberMap = new HashMap<String, Integer>();
+//			List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+//			Map<String,Object> maps = new HashMap<String, Object>();
+//			for(WebElement ad:addressLists){
+//				WebElement address = ad.findElement(By.id("address-ui-widgets-FullName"));
+//				String[] keys = address.getText().split(" ");
+//				if(keys.length==2){
+//					String key = keys[1];
+//					logger.info("--->address:"+address.getText());
+//					Map<String,Object> map = new HashMap<String, Object>();
+//					map.put(keys[1], keys[0]);
+//					list.add(map);
+//					if(!StringUtil.isBlank(key)){
+//						if(numberMap.containsKey(key)){
+//							numberMap.put(key, numberMap.get(key)+1);
+//						}else{
+//							numberMap.put(key, 1);
+//						}
+//					}
+//				}
+//			}
+//			for(String i:numberMap.keySet()){
+//				if(numberMap.get(i)<4){
+//					logger.info("--->4i:"+i);
+//					for(Map<String,Object> map :list){
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
+//							logger.info("--->Di:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//					}
+//					
+//				}
+//				if(numberMap.get(i)<3){
+//					logger.info("--->3i:"+i);
+//					for(Map<String,Object> map :list){
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
+//							logger.info("--->Di:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("C")){
+//							logger.info("--->Ci:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//					}
+//					
+//				}
+//				if(numberMap.get(i)<2){
+//					logger.info("--->2i:"+i);
+//					for(Map<String,Object> map :list){
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("D")){
+//							logger.info("--->Di:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("C")){
+//							logger.info("--->Ci:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//						if(map.containsKey(i) && map.get(i).toString().endsWith("B")){
+//							logger.info("--->Bi:"+map.get(i));
+//							maps.put(i, i);
+//						}
+//					}
+//					
+//				}
+//			}
+//			Iterator<WebElement> it = addressLists.iterator();
+//	        while (it.hasNext()) {
+//	        	WebElement w = (WebElement) it.next();
+//	        	WebElement address = w.findElement(By.id("address-ui-widgets-FullName"));
+//				String[] keys = address.getText().split(" ");
+//				if(keys.length==2){
+//					String key = keys[1];
+//					logger.info("--->key:"+key);
+//					if(!StringUtil.isBlank(key) && maps.containsKey(key)){
+//						logger.info("--->删除:"+key);
+//						w.findElement(By.cssSelector("span[id*='address-delete']")).click();
+//						Utils.sleep(1000);
+//						List<WebElement> deletes = driver.findElements(By.cssSelector("span[id*='deleteAddressModal']"));
+//						for(WebElement del:deletes){
+//							if(del.isDisplayed() && del.getText().contains("Yes")){
+//								del.click();
+//								break;
+//							}
+//						}
+//					}
+//				}
+//				
+//	        }
+//		} catch (Exception e) {
+//			logger.info("--->address获取失败!",e);
+//			deleteAddress();
+//		}
 		
 		
 		return null;
