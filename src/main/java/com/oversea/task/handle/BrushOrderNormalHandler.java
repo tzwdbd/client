@@ -117,9 +117,9 @@ public class BrushOrderNormalHandler implements BrushOrderHandler {
 					parmas.put("productName",brushInfo.getKeyWord());
 					parmas.put("title",brushInfo.getProductName());
 					parmas.put("position",brushInfo.getProductLocate());
-					if("amazon".equals(mallName)){
+					if("amazon".equalsIgnoreCase(mallName)){
 						parmas.put("keywordUrl","https://www.amazon.com/dp/"+asinMap.get(brushOrderDetail.getProductEntityId())+"?th=1&keywords="+URLEncoder.encode(brushInfo.getKeyWord()));
-					}else if("amazon.jp".equals(mallName)){
+					}else if("amazon.jp".equalsIgnoreCase(mallName)){
 						parmas.put("keywordUrl","https://www.amazon.co.jp/dp/"+asinMap.get(brushOrderDetail.getProductEntityId())+"?th=1&keywords="+URLEncoder.encode(brushInfo.getKeyWord()));
 					}
 					
