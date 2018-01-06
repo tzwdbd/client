@@ -95,7 +95,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		try
 		{
 			logger.debug("--->开始登陆");
-			WebElement btn = driver.findElement(By.id("input[name='LoginBtn']"));
+			WebElement btn = driver.findElement(By.cssSelector("input[name='LoginBtn']"));
 			btn.click();
 			logger.debug("--->点击登陆");
 		}
@@ -201,7 +201,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL;
 		}
 		
-		//driver.executeScript("(function(){window.scrollBy(1,350);})();");
+		driver.executeScript("(function(){window.scrollBy(1,250);})();");
 		List<String> skuList = null;
 		try {	
 			
@@ -226,7 +226,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 				WebElement colorWeb = driver.findElement(By.id("DisplayColor"));
 				if(!skuMap.get("color").toLowerCase().contains(colorWeb.getText().toLowerCase())){
 					logger.debug("--->颜色不对"+colorWeb.getText());
-					return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+					//return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 				}
 				List<WebElement> skuChooseElement = driver.findElements(By.cssSelector(".addToCartControl"));
 				for (int i = 0; i < skuList.size(); i++){
@@ -331,7 +331,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		try{
 			TimeUnit.SECONDS.sleep(3);
 			WebElement addCard =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#AddToCartButton")));
-			addCard.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", addCard);
 		}catch(Exception e){
 			logger.error("--->加购物车出现异常",e);
 			return AutoBuyStatus.AUTO_ADD_CART_FAIL;
@@ -433,7 +433,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 			if(!StringUtil.isBlank(expressAddress)){
 				logger.debug("--->传过来的转运公司标识为:"+expressAddress);
 			}
-			List<WebElement> addressList = driver.findElements(By.cssSelector(".addressLoop .selectAddress"));
+			List<WebElement> addressList = driver.findElements(By.cssSelector(".addressLoop"));
 			logger.debug("--->总共有"+addressList.size()+"个地址");
 			if(addressList.size()>0){
 				List<WebElement> addrs = new ArrayList<WebElement>();
@@ -449,25 +449,30 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 					}
 				}
 				int tarAddr = count % addrs.size();
-				WebElement radio = addrs.get(tarAddr);
+				WebElement radio = addrs.get(tarAddr).findElement(By.cssSelector(".selectAddress"));
 				radio.click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ContinueToPayment")));
-				WebElement saveAddress = driver.findElement(By.id("ContinueToPayment"));
-				saveAddress.click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#UseEnteredSingleMatch")));
-				WebElement useEnteredSingleMatch = driver.findElement(By.id("UseEnteredSingleMatch"));
-				useEnteredSingleMatch.click();
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#ContinueToPayment")));
+					WebElement saveAddress = driver.findElement(By.id("ContinueToPayment"));
+					driver.executeScript("var tar=arguments[0];tar.click();", saveAddress);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#UseEnteredSingleMatch")));
+					WebElement useEnteredSingleMatch = driver.findElement(By.id("UseEnteredSingleMatch"));
+					driver.executeScript("var tar=arguments[0];tar.click();", useEnteredSingleMatch);
+				} catch (Exception e) {
+					logger.error("--->地址已经选了");
+				}
+				
 				
 			}
 		} catch (Exception e) {
-			logger.error("--->选择地址失败");
+			logger.error("--->选择地址失败",e);
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		//选物流
 		try
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shippingMethod")));
-			WebElement shipping = driver.findElement(By.cssSelector(".shippingMethod input[value='Ground']"));
+			WebElement shipping = driver.findElement(By.cssSelector(".shippingMethod input[value='UPSSPPS']"));
 			shipping.click();
 			logger.error("--->选择free 物流");
 		}catch (Exception e){
