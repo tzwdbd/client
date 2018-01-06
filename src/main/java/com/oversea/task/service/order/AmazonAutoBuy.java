@@ -170,7 +170,7 @@ public class AmazonAutoBuy extends AutoBuy
 
 			try
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='nav-greeting-name' and contains(text(),'Hello')]")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-button-avatar")));
 			}
 			catch (Exception e)
 			{
@@ -196,7 +196,7 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.debug("--->开始登陆1");
 					btn.click();
 					Utils.sleep(800);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='nav-greeting-name' and contains(text(),'Hello')]")));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-button-avatar")));
 				}
 				catch (Exception e1)
 				{
