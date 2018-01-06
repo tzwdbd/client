@@ -289,7 +289,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		try {
 			logger.debug("--->[1]开始寻找商品单价");
 			String productEntityId = param.get("productEntityId");
-			WebElement priceFilter = driver.findElement(By.cssSelector("#Price"));
+			WebElement priceFilter = driver.findElement(By.cssSelector("#Price .productPrice"));
 			String text = priceFilter.getText().replace("Sale", "").trim();
 			if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
 				String priceStr = text.substring(text.indexOf("$") + 1);
