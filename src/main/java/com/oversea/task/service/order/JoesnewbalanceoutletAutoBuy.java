@@ -472,7 +472,14 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		try
 		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shippingMethod")));
-			WebElement shipping = driver.findElement(By.cssSelector(".shippingMethod input[value='UPSSPPS']"));
+			WebElement shipping = null;
+			try {
+				shipping = driver.findElement(By.cssSelector(".shippingMethod input[value='UPSSPPS']"));
+			} catch (Exception e) {
+				shipping = driver.findElement(By.cssSelector(".shippingMethod input[value='Ground']"));
+			}
+			
+			
 			shipping.click();
 			logger.error("--->选择free 物流");
 		}catch (Exception e){
