@@ -752,13 +752,11 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 	public boolean gotoMainPage() {
 		try {
 			Utils.sleep(2000);
-			driver.get("https://www.macys.com/");
-//			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("wrapper")));
+			driver.get("https://www.joesnewbalanceoutlet.com/");
 			Utils.sleep(5000);
 			return true;
 		} catch (Exception e) {
-			logger.error("--->跳转macys主页面碰到异常");
+			logger.error("--->跳转joesnewbalanceoutlet主页面碰到异常");
 		}
 		return false;
 	}
@@ -843,8 +841,86 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 
 	@Override
 	public AutoBuyStatus scribeExpress(RobotOrderDetail detail) {
-		// TODO Auto-generated method stub
-		return null;
+		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+		String mallOrderNo = detail.getMallOrderNo();
+		
+		if (Utils.isEmpty(mallOrderNo)) {
+			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
+		}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistory")));
+			WebElement orderListWeb = driver.findElement(By.cssSelector("#OrderHistory"));
+			orderListWeb.click();
+		} catch (Exception e) {
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
+		try {
+			logger.error("爬取物流开始");
+			Utils.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistoryTable")));
+			List<WebElement> orders = driver.findElements(By.cssSelector("#OrderHistoryTable .orderRow"));
+			int find = 0;
+			for(WebElement o:orders){
+				String str = o.getText().toLowerCase();
+				if(str.contains(mallOrderNo)){
+					WebElement orderStatus = o.findElement(By.cssSelector(".orderStatus"));
+					find = 1;
+					logger.error("text:"+orderStatus.getText());
+					if(orderStatus.getText().contains("cancelled")){
+						logger.error("该订单被砍单了");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
+					}else if(orderStatus.getText().contains("Pending")){
+						logger.error("[1]该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}else if(orderStatus.getText().contains("Complete")){
+						// 商城订单号一样 包裹号不一样
+						WebElement orderNoElement = o.findElement(By.cssSelector(".orderNumber"));
+						orderNoElement.click();
+						Utils.sleep(2000);
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#LineItems")));
+						WebElement box = o.findElement(By.cssSelector("#LineItems"));
+						List<WebElement> orderItemList = box.findElements(By.cssSelector(".orderItem"));
+						for(WebElement orderI:orderItemList){
+							WebElement line = orderI.findElement(By.cssSelector(".lineItem"));
+							WebElement aWeb = line.findElement(By.cssSelector(".productDesc"));
+							logger.error("url="+aWeb.getText().toLowerCase());
+							if(detail.getProductUrl().toLowerCase().endsWith(aWeb.getText().toLowerCase())){
+								WebElement track = orderI.findElement(By.cssSelector("#Tracking a"));
+								String url = track.getAttribute("href");
+								logger.error("href="+url);
+								String expressCompany = "";
+								if(url.contains("ups")){
+									expressCompany = "UPS";
+									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
+									String expressNo = ExpressUtils.regularExperssNo(url);
+									String[] expressGroup = expressNo.split(",");
+									for(String s:expressGroup){
+										if(!s.startsWith("1Z")){
+											expressNo = s;
+											break;
+										}
+									}
+									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+								}
+							}
+						}
+					}else{
+						logger.debug("未识别的物流状态"+str);
+						return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+					}
+				}
+			}
+			if(find==0){
+				logger.error("物流只能查看邮箱");
+				return AutoBuyStatus.AUTO_SCRIBE_CALL_CUSTOMER_SERVICE;
+			}
+			
+		} catch (Exception e) {
+			logger.error("--->查询订单异常,找不到该订单",e);
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
+		return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 	}
 	
 }
