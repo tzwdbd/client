@@ -644,7 +644,7 @@ public class IherbAutoBuy extends AutoBuy
 				try
 				{
 					Utils.sleep(2000);
-					WebElement checkout = driver.findElement(By.xpath("//a[@class = 'ihb-btn ihb-btn-orange proceed-to-checkout']"));
+					WebElement checkout = driver.findElement(By.cssSelector(".proceed-to-checkout"));
 					checkout.sendKeys(Keys.RETURN);
 					Utils.sleep(2000);
 					logger.info("--->跳转到结算页面");
