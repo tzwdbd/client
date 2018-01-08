@@ -876,8 +876,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 						// 商城订单号一样 包裹号不一样
 						WebElement orderNoElement = o.findElement(By.cssSelector(".orderNumber"));
 						orderNoElement.click();
-						Utils.sleep(2000);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#LineItems")));
+						Utils.sleep(5000);
 						WebElement box = o.findElement(By.cssSelector("#LineItems"));
 						List<WebElement> orderItemList = box.findElements(By.cssSelector(".orderItem"));
 						for(WebElement orderI:orderItemList){
@@ -895,11 +894,12 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 									String expressNo = ExpressUtils.regularExperssNo(url);
 									String[] expressGroup = expressNo.split(",");
 									for(String s:expressGroup){
-										if(!s.startsWith("1Z")){
+										if(s.startsWith("1Z")){
 											expressNo = s;
 											break;
 										}
 									}
+									logger.error("expressNo="+expressNo);
 									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
 									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 								}
