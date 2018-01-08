@@ -1226,6 +1226,8 @@ public class IherbAutoBuy extends AutoBuy
 							if(trackingStatue.equals("Shipped Out")){
 								logger.debug("--->订单已发货");
 								String trackingNo =  getJSValueByTag(content, "Tracking", ":", "[\\s\\S]+");
+								String[] group = trackingNo.split("=");
+								trackingNo = group[group.length-1];
 								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, trackingNo);
 								logger.debug("--->获取物流单号成功："+trackingNo);
 								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "顺丰");
