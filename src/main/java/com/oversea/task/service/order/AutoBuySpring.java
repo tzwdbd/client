@@ -492,7 +492,7 @@ public class AutoBuySpring extends AutoBuy {
 			Utils.sleep(2500);
 			boolean mark = true;
 			try {
-				driver.findElement(By.cssSelector("div[class^='promoTitle']"));
+				driver.findElement(By.cssSelector("div[class^='promoDescriptionContainer']"));
 				logger.error("页面上已经有优惠码了");
 				mark =false;
 			} catch (Exception e) {
