@@ -421,12 +421,12 @@ public class LookfantasticAutoBuy extends AutoBuy {
 				if(StringUtil.isNotEmpty(code)){
 					code = code.trim();
 					try{
-						WebElement codeInput = driver.findElement(By.xpath("//input[@id='discountcode']"));
+						WebElement codeInput = driver.findElement(By.id("discountcode"));
 						codeInput.clear();
 						Utils.sleep(2500);
 						codeInput.sendKeys(code);
 						Utils.sleep(1500);
-						driver.findElement(By.xpath("//button[@id='add-discount-code']")).click();
+						driver.findElement(By.id("add-discount-code")).click();
 						Utils.sleep(5500);
 						
 						try{
@@ -478,7 +478,7 @@ public class LookfantasticAutoBuy extends AutoBuy {
 		
 		//找到添加新地址
 		try{
-			WebElement w = driver.findElement(By.xpath("//label[@id='lbl-add-new-address']"));
+			WebElement w = driver.findElement(By.id("lbl-add-new-address"));
 			w.click();
 			Utils.sleep(1000);
 		}catch(Exception e){
