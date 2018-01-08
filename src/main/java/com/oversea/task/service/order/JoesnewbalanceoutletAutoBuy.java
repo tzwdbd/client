@@ -848,6 +848,10 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
 		}
 		try {
+			driver.navigate().to("https://www.joesnewbalanceoutlet.com/customer/myaccount");
+		} catch (Exception e) {
+		}
+		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistory")));
 			WebElement orderListWeb = driver.findElement(By.cssSelector("#OrderHistory"));
 			orderListWeb.click();
