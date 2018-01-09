@@ -39,16 +39,16 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
+		//AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			status = auto.cleanCart();
+			//status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.shopspring.com/products/53905890");
+				param.put("url", "https://www.shopspring.com/products/54394304");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"Color\",\"Marine\"],[\"Size\",\"S\"]]");
+				param.put("sku", "[[\"Color\",\"CHILI PEPPER\"],[\"Size\",\"M\"]]");
 				param.put("productEntityId", "1112");
 				param.put("num", "2");
 				auto.selectProduct(param);
@@ -253,7 +253,7 @@ public class AutoBuySpring extends AutoBuy {
 		}catch(Exception e){
 			return AutoBuyStatus.AUTO_SKU_OPEN_FAIL; 
 		}
-		
+		driver.executeScript("(function(){window.scrollBy(1,250);})();");
 		String productNum = (String) param.get("num");
 		Object sku = param.get("sku");
 		//开始选择sku
