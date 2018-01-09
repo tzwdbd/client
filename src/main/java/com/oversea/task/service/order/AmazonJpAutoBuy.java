@@ -163,7 +163,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 	
 			try
 			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-greeting-name")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-button-avatar")));
 			}
 			catch (Exception e)
 			{
@@ -189,7 +189,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.debug("--->开始登陆1");
 					btn.click();
 					Utils.sleep(800);
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-greeting-name")));
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-button-avatar")));
 				}
 				catch (Exception e1)
 				{
@@ -2163,8 +2163,21 @@ public class AmazonJpAutoBuy extends AutoBuy
 			try {
 				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-					radios.get(1).click();
-					logger.debug("--->credit 点击");
+					int i=1;
+					try {
+						List<WebElement> inputradios = driver.findElements(By.cssSelector("input[type='radio']"));
+						i=0;
+						for(WebElement w:inputradios){
+							if(w.getAttribute("value").startsWith("creditCard")){
+								break;
+							}
+							i++;
+						}
+					} catch (Exception e) {
+						logger.debug("--->input radio"+i);
+					}
+					radios.get(i).click();
+					logger.debug("--->credit 点击"+i);
 					Utils.sleep(1000);
 					try {
 						WebElement card = driver.findElement(By.id("addCreditCardNumber"));
@@ -2252,8 +2265,21 @@ public class AmazonJpAutoBuy extends AutoBuy
 				try {
 					List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 					if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-						radios.get(1).click();
-						logger.debug("--->credit 点击");
+						int i=1;
+						try {
+							List<WebElement> inputradios = driver.findElements(By.cssSelector("input[type='radio']"));
+							i=0;
+							for(WebElement w:inputradios){
+								if(w.getAttribute("value").startsWith("creditCard")){
+									break;
+								}
+								i++;
+							}
+						} catch (Exception e) {
+							logger.debug("--->input radio"+i);
+						}
+						radios.get(i).click();
+						logger.debug("--->credit 点击"+i);
 						Utils.sleep(1000);
 						try {
 							WebElement card = driver.findElement(By.id("addCreditCardNumber"));
@@ -4841,11 +4867,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B00L1WDIHS");
-		param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
+		param.put("url", "http://www.amazon.co.jp/dp/B01N54X10O?psc=1");
+		//param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
 		//param.put("sku", "[[\"種類\",\"単品\"]]");
 		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
-		param.put("num", "1");
+		param.put("num", "2");
 		param.put("productEntityId", "4780644");
 //		param.put("sign", "0");
 //		param.put("productName","アイマスク 睡眠マスク");
