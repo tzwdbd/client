@@ -204,7 +204,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		driver.executeScript("(function(){window.scrollBy(1,250);})();");
 		List<String> skuList = null;
 		try {	
-			
+			TimeUnit.SECONDS.sleep(1);
 			logger.debug("--->商品页面加载完成");
 			
 			String sku = param.get("sku");
@@ -752,7 +752,7 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 	public boolean gotoMainPage() {
 		try {
 			Utils.sleep(2000);
-			driver.get("https://www.joesnewbalanceoutlet.com/");
+			driver.get("https://www.joesnewbalanceoutlet.com/customer/myaccount");
 			Utils.sleep(5000);
 			return true;
 		} catch (Exception e) {
@@ -846,10 +846,6 @@ public class JoesnewbalanceoutletAutoBuy extends AutoBuy {
 		
 		if (Utils.isEmpty(mallOrderNo)) {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
-		}
-		try {
-			driver.navigate().to("https://www.joesnewbalanceoutlet.com/customer/myaccount");
-		} catch (Exception e) {
 		}
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistory")));
