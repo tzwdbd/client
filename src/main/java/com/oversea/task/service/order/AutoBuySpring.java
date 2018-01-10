@@ -744,7 +744,7 @@ public class AutoBuySpring extends AutoBuy {
 							//判断订单是否取消
 							String s = worderBody.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress'] .text_296oy-o_O-headerLabel_1lelydb")).getText();
 							logger.error("--->OrderStatusCode="+s);
-							if(!StringUtil.isBlank(s) && s.contains("Canceled")){
+							if(!StringUtil.isBlank(s) && s.contains("Cancelled")){
 								logger.error("--->商城订单:"+mallOrderNo+"已取消");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 							}else if(!StringUtil.isBlank(s) && s.contains("Placed")){
