@@ -944,7 +944,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 		try{
 			logger.debug("--->开始查找商品订单号");
 			wait = new WebDriverWait(driver, WAIT_TIME);
-			By byby = By.xpath("//p[@class='order-id']");
+			By byby = By.cssSelector(".order-number");
 			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
 			logger.debug("--->找到商品订单号 = "+orderElement.getText());
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText().substring(4));
