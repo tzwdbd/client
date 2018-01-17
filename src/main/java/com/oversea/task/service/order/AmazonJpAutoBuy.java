@@ -445,6 +445,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 		}else{
 			logger.debug("--->跳转到商品页面");
 			String url = param.get("url");
+			String orginalUrl = param.get("orginalUrl");
+			
 			logger.debug("--->url:" + url);
 	
 			for (int i = 0; i < 3; i++)
@@ -479,7 +481,23 @@ public class AmazonJpAutoBuy extends AutoBuy
 					}
 				}
 			}
-	
+			//点击off
+			try {
+				List<WebElement> touchs = driver.findElements(By.cssSelector("a.a-touch-link-noborder"));
+				for(WebElement touch:touchs){
+					if(touch.isDisplayed() && touch.getText().contains("10%OFF")){
+						touch.click();
+						Utils.sleep(1500);
+						driver.findElement(By.cssSelector(".apl_button")).click();
+						Utils.sleep(1000);
+						driver.navigate().to(orginalUrl);
+						break;
+					}
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			String productNum = param.get("num");
 			Object sku = param.get("sku");
 			if (sku != null)
@@ -4867,7 +4885,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B01N54X10O?psc=1");
+		param.put("url", "http://www.amazon.co.jp/dp/B07546MGKP?psc=1");
 		//param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
 		//param.put("sku", "[[\"種類\",\"単品\"]]");
 		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
