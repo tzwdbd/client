@@ -207,7 +207,7 @@ public class AutoBuySpring extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
 			logger.error("--->确认购物车是否清理完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".noItemsButton_1dk02ws")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class^='noItems']")));
 			return AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS;
 		} catch (Exception e) {
 			logger.debug("--->购物车数量清空异常");
