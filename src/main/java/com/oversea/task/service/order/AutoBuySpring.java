@@ -40,19 +40,19 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		AutoBuyStatus status = auto.login("tfgtbb@163.com", "Tfb001001");
-//		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
-			//status = auto.cleanCart();
-//			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-//				Map<String, String> param = new HashMap<String, String>();
-//				param.put("url", "https://www.shopspring.com/products/54394304");
-//				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
-//				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-//				param.put("sku", "[[\"Color\",\"CHILI PEPPER\"],[\"Size\",\"M\"]]");
-//				param.put("productEntityId", "1112");
-//				param.put("num", "2");
-				//auto.selectProduct(param);
+		AutoBuyStatus status = auto.login("guywmf@163.com", "Tfb001001");
+		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
+			status = auto.cleanCart();
+			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
+				Map<String, String> param = new HashMap<String, String>();
+				param.put("url", "https://www.shopspring.com/products/53468751?saleId=ES%3A2628");
+				//param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
+				//param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
+//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+				param.put("sku", "[[\"Size\",\"10\"],[\"Width\",\"Medium\"]]");
+				param.put("productEntityId", "1112");
+				param.put("num", "1");
+				auto.selectProduct(param);
 //				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
 ////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 ////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
@@ -61,19 +61,19 @@ public class AutoBuySpring extends AutoBuy {
 //				param.put("productEntityId", "1112");
 //				param.put("num", "3");
 //				auto.selectProduct(param);
-				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
-//					Map<String, String> param0 = new HashMap<String, String>();
-//					param0.put("my_price", "208.50");
-//					param0.put("count", "1");
-//					status = auto.pay(param0);
-//				//}
-//			}
-//		}
+				if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
+					Map<String, String> param0 = new HashMap<String, String>();
+					param0.put("my_price", "208.50");
+					param0.put("count", "1");
+					status = auto.pay(param0);
+				}
+			}
+		}
 		//auto.logout();
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("C7087270");
-		detail.setProductUrl("https://www.shopspring.com/products/53586784?page=1&refineFlags=on_sale");
-		auto.scribeExpress(detail);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("C7087270");
+//		detail.setProductUrl("https://www.shopspring.com/products/53586784?page=1&refineFlags=on_sale");
+//		auto.scribeExpress(detail);
 	}
 	
 	public static void main0(String[] args){
@@ -129,7 +129,7 @@ public class AutoBuySpring extends AutoBuy {
 			
 			//输入密码
 			WebElement password = driver.findElement(By.cssSelector("input[name='password']"));
-			logger.debug("--->开始输入密码");
+			logger.debug("--->开始输入密码"+passWord);
 			Utils.sleep(1100);
 			password.sendKeys(passWord);
 			
@@ -147,7 +147,7 @@ public class AutoBuySpring extends AutoBuy {
 		try
 		{
 			logger.debug("--->等待登录完成");
-			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart_fssplm")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[data-xfe-testid='user_name']")));
 			logger.debug("--->登录完成");
 		}
 		catch (Exception e)
