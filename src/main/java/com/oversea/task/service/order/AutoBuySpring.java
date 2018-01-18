@@ -40,19 +40,19 @@ public class AutoBuySpring extends AutoBuy {
 	public static void main(String[] args){
 		
 		AutoBuySpring auto = new AutoBuySpring();
-		//AutoBuyStatus status = auto.login("plmono@163.com", "Tfb001001");
+		AutoBuyStatus status = auto.login("tfgtbb@163.com", "Tfb001001");
 //		if (AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(status)){
 			//status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
-				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://www.shopspring.com/products/54394304");
+//				Map<String, String> param = new HashMap<String, String>();
+//				param.put("url", "https://www.shopspring.com/products/54394304");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
-//				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"Color\",\"CHILI PEPPER\"],[\"Size\",\"M\"]]");
-				param.put("productEntityId", "1112");
-				param.put("num", "2");
-				auto.selectProduct(param);
+////				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
+//				param.put("sku", "[[\"Color\",\"CHILI PEPPER\"],[\"Size\",\"M\"]]");
+//				param.put("productEntityId", "1112");
+//				param.put("num", "2");
+				//auto.selectProduct(param);
 //				param.put("url", "https://www.shopspring.com/products/52914274?sortBy=price&sortOrder=DESC");
 ////				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 ////				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
@@ -70,9 +70,10 @@ public class AutoBuySpring extends AutoBuy {
 //			}
 //		}
 		//auto.logout();
-//		RobotOrderDetail detail = new RobotOrderDetail();
-//		detail.setMallOrderNo("C4060048");
-//		auto.scribeExpress(detail);
+		RobotOrderDetail detail = new RobotOrderDetail();
+		detail.setMallOrderNo("C7087270");
+		detail.setProductUrl("https://www.shopspring.com/products/53586784?page=1&refineFlags=on_sale");
+		auto.scribeExpress(detail);
 	}
 	
 	public static void main0(String[] args){
@@ -146,7 +147,7 @@ public class AutoBuySpring extends AutoBuy {
 		try
 		{
 			logger.debug("--->等待登录完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart_fssplm")));
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart_fssplm")));
 			logger.debug("--->登录完成");
 		}
 		catch (Exception e)
@@ -220,7 +221,7 @@ public class AutoBuySpring extends AutoBuy {
 		}
 		try {
 			logger.error("--->确认购物车是否清理完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".noItemsButton_1dk02ws")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class^='noItems']")));
 		} catch (Exception e) {
 			logger.debug("--->购物车数量清空异常");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
