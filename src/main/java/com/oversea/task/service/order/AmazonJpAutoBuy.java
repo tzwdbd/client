@@ -70,7 +70,14 @@ public class AmazonJpAutoBuy extends AutoBuy
 			try
 			{
 				By bySignIn = By.xpath("//a[contains(text(),'サインイン')]");
-				WebElement signIn = driver.findElement(bySignIn);
+				By bySignIn1 = By.id("nav-logobar-greeting");
+				WebElement signIn = null;
+				try {
+					signIn = driver.findElement(bySignIn);
+				} catch (Exception e) {
+					signIn = driver.findElement(bySignIn1);
+				}
+				
 				logger.debug("--->跳转到登录页面");
 //				String url = signIn.getAttribute("href");
 //				driver.navigate().to(url);
