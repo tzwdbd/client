@@ -248,7 +248,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 			}
 		} catch (Exception e) {
 			try {
-				WebElement priceElment = driver.findElement(By.xpath("//div[@class='DetailNoDis PriceNow last_price_sing']"));
+				WebElement priceElment = driver.findElement(By.cssSelector(".last_price_sing"));
 				String priceStr = priceElment.getText();
 				String productEntityId = param.get("productEntityId");
 				if (!Utils.isEmpty(priceStr) && priceStr.startsWith("US$") && StringUtil.isNotEmpty(productEntityId)) {
@@ -279,7 +279,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try {
 			Utils.sleep(5000);
-			if (!driver.getTitle().equals("购物车Babyhaven")) {
+			if (!driver.getTitle().equals("购物车")) {
 				return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
 			}
 		} catch (Exception e) {
@@ -827,7 +827,12 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		// 提交订单
 		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = " + orderPayAccount.getPayPassword());
 		try {
-			WebElement placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
+			WebElement placeOrder = null;
+			try {
+				placeOrder = driver.findElement(By.id("onestepcheckout-place-order"));
+			} catch (Exception e) {
+				placeOrder = driver.findElement(By.id("priceConfirm"));
+			}
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrder);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
 			WebElement gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
