@@ -395,9 +395,10 @@ public class AmazonAutoBuy extends AutoBuy
 				//				By value = By.xpath(format1);
 				WebElement valueElement = wait1.until(ExpectedConditions.visibilityOfElementLocated(value));// ExpectedConditions.elementToBeClickable(value)
 				Utils.sleep(2000);
-				driver.executeScript("var tar=arguments[0];var top=tar.offsetTop;window.scrollTo(0,top);", valueElement);
-				Utils.sleep(6000);
-				valueElement.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", valueElement);
+				//driver.executeScript("var tar=arguments[0];var top=tar.offsetTop;window.scrollTo(0,top);", valueElement);
+				//Utils.sleep(6000);
+				//valueElement.click();
 			}
 			catch (Exception e)
 			{
@@ -5632,13 +5633,13 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B00016RLP0?psc=1");
-		param.put("sku", "[[\"Size\",\"4 oz\"]]");
+		param.put("url", "http://www.amazon.com/dp/B0085JI7B2?psc=1");
+		//param.put("sku", "[[\"Color\",\"A\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		//param.put("sku", "[[\"color\",\"714 Caresse\"]]");
+		param.put("sku", "[[\"Size\",\"Small (8/10)\"],[\"SpecialSizeType\",\"Big Boys\"],[\"Color\",\"Regal Red\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		//param.put("sign", "1");
+		param.put("sign", "1");
 		//param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
 		//param.put("title","Yoga pants Mesh Workout legging");
 		//param.put("position","30");
@@ -5877,7 +5878,9 @@ public class AmazonAutoBuy extends AutoBuy
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sp_phone_detail")));
 				driver.executeScript("(function(){window.scrollBy(0,450);})();");
 				Utils.sleep(1000);
-				driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a")).click();
+				WebElement detail = driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a"));
+				String href = detail.getAttribute("href");
+				driver.navigate().to("https://www.amazon.com"+href);
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->加载商品详情页异常");

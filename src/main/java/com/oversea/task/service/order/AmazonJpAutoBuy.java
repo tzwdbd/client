@@ -403,7 +403,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 				By value = By.xpath(format);
 				WebElement valueElement = wait1.until(ExpectedConditions.visibilityOfElementLocated(value));
 				Utils.sleep(2000);
-				valueElement.click();
+				driver.executeScript("var tar=arguments[0];tar.click();", valueElement);
+				//valueElement.findElement(By.cssSelector("a")).click();
 			}
 			catch (Exception e)
 			{
@@ -1848,7 +1849,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sp_phone_detail")));
 				driver.executeScript("(function(){window.scrollBy(0,450);})();");
 				Utils.sleep(1000);
-				driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a")).click();
+				WebElement detail = driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a"));
+				String href = detail.getAttribute("href");
+				driver.navigate().to("https://www.amazon.co.jp"+href);
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->加载商品详情页异常");
@@ -4892,11 +4895,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B07546MGKP?psc=1");
+		param.put("url", "http://www.amazon.co.jp/dp/B01BEJV68K");
 		//param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
-		//param.put("sku", "[[\"種類\",\"単品\"]]");
-		//param.put("sku", "[[\"バンド色\",\"ローズゴールド+ホワイト\"]]");
-		param.put("num", "2");
+		param.put("sku", "[[\"色\",\"ブラウン\"]]");
+		//param.put("sku", "[[\"サイズ\",\"480ml\"],[\"スタイル名\",\"単品\"],[\"カラー\",\"ボルドー\"]]");
+		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 //		param.put("sign", "0");
 //		param.put("productName","アイマスク 睡眠マスク");
