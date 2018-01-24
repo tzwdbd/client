@@ -1851,7 +1851,11 @@ public class AmazonJpAutoBuy extends AutoBuy
 				Utils.sleep(1000);
 				WebElement detail = driver.findElement(By.cssSelector("#sp_phone_detail .a-carousel li a"));
 				String href = detail.getAttribute("href");
-				driver.navigate().to("https://www.amazon.co.jp"+href);
+				if(href.startsWith("http")){
+					driver.navigate().to(href);
+				}else{
+					driver.navigate().to("https://www.amazon.co.jp"+href);
+				}
 				Utils.sleep(1500);
 			} catch (Exception e) {
 				logger.error("--->加载商品详情页异常");
