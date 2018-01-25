@@ -119,7 +119,9 @@ public class OrderNormalHandler implements OrderHandler {
 							String url = Utils.isEmpty(orderDetail.getProductRebateUrl()) ? orderDetail.getProductUrl() : orderDetail.getProductRebateUrl();
 							if (Utils.isEmpty(url)){
 								logger.error("商品链接url为空");
-								return;
+								if(orderDetail.getNum()>0){
+									return;
+								}
 							}
 							//添加优惠码
 							String promotionStr = orderDetail.getPromotionCodeList();
@@ -135,8 +137,13 @@ public class OrderNormalHandler implements OrderHandler {
 							parmas.put("productEntityId", String.valueOf(orderDetail.getProductEntityId()));
 							
 							isFirst = false;
-							status = autoBuy.selectProduct(parmas);
+							if(orderDetail.getNum()>0){
+								status = autoBuy.selectProduct(parmas);
+							}else{
+								status = AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS;
+							}
 							orderDetail.setStatus(status.getValue());
+							
 							if (AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
 								orderDetail.setSinglePrice(autoBuy.getPriceMap().get(String.valueOf(orderDetail.getProductEntityId())));
 							}else{
