@@ -783,23 +783,38 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						// 商城订单号一样 包裹号不一样
 						WebElement orderNoElement = o.findElement(By.cssSelector(".tracking-link-list a"));
 						String href = orderNoElement.getAttribute("href");
+						logger.error("href = "+href);
 						if(href.contains("ontrac")){
 							logger.error("expressCompany =narvar ");
 							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ONTRAC");
+							String expressNo = ExpressUtils.regularExperssNo(href);
+							String[] expressGroup = expressNo.split(",");
+							for(String s:expressGroup){
+								if(s.startsWith("D")){
+									expressNo = s;
+									break;
+								}
+							}
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+							return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+						}else if(href.contains("ups")){
+							logger.error("expressCompany =ups ");
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "UPS");
+							String expressNo = ExpressUtils.regularExperssNo(href);
+							String[] expressGroup = expressNo.split(",");
+							for(String s:expressGroup){
+								if(s.startsWith("1Z")){
+									expressNo = s;
+									break;
+								}
+							}
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+							return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 						}else{
 							logger.debug("未识别的物流状态"+str);
 							return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 						}
-						String expressNo = ExpressUtils.regularExperssNo(href);
-						String[] expressGroup = expressNo.split(",");
-						for(String s:expressGroup){
-							if(s.startsWith("D")){
-								expressNo = s;
-								break;
-							}
-						}
-						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+						
 					}else{
 						logger.debug("未识别的物流状态"+str);
 						return AutoBuyStatus.AUTO_SCRIBE_FAIL;
