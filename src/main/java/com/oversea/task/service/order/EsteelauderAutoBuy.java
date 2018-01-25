@@ -230,7 +230,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 							if(skuList.get(i-1).toLowerCase().equals("color")){
 								boolean mark = true;
 								for(WebElement w:skuChooseElement){
-									if(w.getAttribute("name").equals(skuList.get(i))){ 
+									if(w.getAttribute("name").equalsIgnoreCase(skuList.get(i))){ 
 										w.click();
 										logger.debug("--->选择"+w.getAttribute("name"));
 										mark = false;
@@ -254,7 +254,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						if (i % 2 == 1){
 							if(skuList.get(i-1).toLowerCase().equals("size")){
 								boolean mark = true;
-								if(sizeName.equals(skuList.get(i))){
+								if(sizeName.equalsIgnoreCase(skuList.get(i))){
 									mark = false;
 									logger.debug("--->选择"+skuList.get(i));
 								}
@@ -276,7 +276,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						if (i % 2 == 1){
 							if(skuList.get(i-1).toLowerCase().equals("size")){
 								boolean mark = true;
-								if(sizeName.equals(skuList.get(i))){
+								if(sizeName.equalsIgnoreCase(skuList.get(i))){
 									mark = false;
 									logger.debug("--->选择"+skuList.get(i));
 								}
@@ -710,11 +710,11 @@ public class EsteelauderAutoBuy extends AutoBuy {
 //		AutoBuyStatus status2 = auto.selectProduct(param);
 //		System.out.println(status2);
 		Map<String, String> param1 = new HashMap<String, String>();
-		param1.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=e521knNoY93x5UwPGkkyl5kX5mi2BG01bqF_apm_ay2D3e_an4EfhYZtBIl6BPqeaZQ8_ah36A_c_c&new=https%3A%2F%2Fwww.esteelauder.com%2Fproduct%2F643%2F31165%2Fproduct-catalog%2Fmakeup%2Fface%2Ffoundations%2Fperfectionist%2Fyouth-infusing-serum-makeup-spf-25&tag=");
+		param1.put("url", "https://www.esteelauder.com/product/681/26959/product-catalog/skincare/advanced-night-repair/synchronized-recovery-complex-ii");
 //		param.put("sku", "[[\"color\",\"Black\"],[\"size\",\"10\"],[\"width\",\"M\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param1.put("orginalUrl", "https://www.esteelauder.com/product/643/31165/product-catalog/makeup/face/foundations/perfectionist/youth-infusing-serum-makeup-spf-25");
-		param1.put("sku", "[[\"color\",\"4C3 Softan\"],[\"size\",\"1.0 oz.\"]]");
+		param1.put("orginalUrl", "https://www.esteelauder.com/product/681/26959/product-catalog/skincare/advanced-night-repair/synchronized-recovery-complex-ii");
+		param1.put("sku", "[[\"size\",\"1.0 oz.\"]]");
 		param1.put("num", "1");
 		param1.put("productEntityId", "7825898");
 		param1.put("isPay", "false");
