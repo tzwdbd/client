@@ -109,6 +109,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		{
 			logger.debug("--->确认是否登陆成功");
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".user-greeting")));
+			logger.debug("--->登陆成功");
 		}
 		catch (Exception e)
 		{
@@ -757,66 +758,48 @@ public class EsteelauderAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
 		}
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistory")));
-			WebElement orderListWeb = driver.findElement(By.cssSelector("#OrderHistory"));
-			orderListWeb.click();
-		} catch (Exception e) {
-			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
-		}
-		try {
+			String orderUrl ="https://www.esteelauder.com/account/order_history/index.tmpl";
+			driver.navigate().to(orderUrl);
 			logger.error("爬取物流开始");
 			Utils.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#OrderHistoryTable")));
-			List<WebElement> orders = driver.findElements(By.cssSelector("#OrderHistoryTable .orderRow"));
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-test-id='past_purchase_data']")));
+			List<WebElement> orders = driver.findElements(By.cssSelector("div[data-test-id='past_purchase_data']"));
 			int find = 0;
 			for(WebElement o:orders){
-				String str = o.getText().toLowerCase();
+				WebElement w = o.findElement(By.cssSelector("a"));
+				String str = w.getText().toLowerCase();
 				if(str.contains(mallOrderNo)){
-					WebElement orderStatus = o.findElement(By.cssSelector(".orderStatus"));
+					WebElement orderStatus = o.findElement(By.cssSelector(".order-status-data"));
 					find = 1;
 					logger.error("text:"+orderStatus.getText());
-					if(orderStatus.getText().contains("cancelled")){
+					if(orderStatus.getText().contains("Cancelled")){
 						logger.error("该订单被砍单了");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					}else if(orderStatus.getText().contains("Pending")){
+					}else if(orderStatus.getText().contains("Processing")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("New")){
-						logger.error("[1]该订单还没发货,没产生物流单号");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("Complete")){
+					}else if(orderStatus.getText().contains("Shipped")){
 						// 商城订单号一样 包裹号不一样
-						WebElement orderNoElement = o.findElement(By.cssSelector(".orderNumber"));
-						orderNoElement.click();
-						Utils.sleep(5000);
-						WebElement box = o.findElement(By.cssSelector("#LineItems"));
-						List<WebElement> orderItemList = box.findElements(By.cssSelector(".orderItem"));
-						for(WebElement orderI:orderItemList){
-							WebElement line = orderI.findElement(By.cssSelector(".lineItem"));
-							WebElement aWeb = line.findElement(By.cssSelector(".productDesc"));
-							logger.error("url="+aWeb.getText().toLowerCase());
-							if(detail.getProductUrl().toLowerCase().endsWith(aWeb.getText().toLowerCase())){
-								WebElement track = orderI.findElement(By.cssSelector("#Tracking a"));
-								String url = track.getAttribute("href");
-								logger.error("href="+url);
-								String expressCompany = "";
-								if(url.contains("ups")){
-									expressCompany = "UPS";
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-									String expressNo = ExpressUtils.regularExperssNo(url);
-									String[] expressGroup = expressNo.split(",");
-									for(String s:expressGroup){
-										if(s.startsWith("1Z")){
-											expressNo = s;
-											break;
-										}
-									}
-									logger.error("expressNo="+expressNo);
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
-								}
+						WebElement orderNoElement = o.findElement(By.cssSelector(".tracking-link-list a"));
+						String href = orderNoElement.getAttribute("href");
+						if(href.contains("ontrac")){
+							logger.error("expressCompany =narvar ");
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ONTRAC");
+						}else{
+							logger.debug("未识别的物流状态"+str);
+							return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+						}
+						String expressNo = ExpressUtils.regularExperssNo(href);
+						String[] expressGroup = expressNo.split(",");
+						for(String s:expressGroup){
+							if(s.startsWith("D")){
+								expressNo = s;
+								break;
 							}
 						}
+						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else{
 						logger.debug("未识别的物流状态"+str);
 						return AutoBuyStatus.AUTO_SCRIBE_FAIL;
