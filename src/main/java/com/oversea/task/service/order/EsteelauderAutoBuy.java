@@ -379,6 +379,17 @@ public class EsteelauderAutoBuy extends AutoBuy {
 			driver.executeScript("(function(){window.scrollBy(1,250);})();");
 			TimeUnit.SECONDS.sleep(1);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--01")));
+			List<WebElement> options = driver.findElements(By.cssSelector(".offer__kit__option--01"));
+			for(WebElement w:options){
+				if(w.getText().contains("SOLD OUT")){
+					logger.debug("--->礼品售罄");
+					return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+				}
+			}
+			if(options.size()!=2){
+				logger.debug("--->礼品售罄");
+				return AutoBuyStatus.AUTO_SKU_NOT_FIND;
+			}
 			List<WebElement> offers = driver.findElements(By.cssSelector(".offer__kit__option--01 input"));
 			for(WebElement w:offers){
 				driver.executeScript("var tar=arguments[0];tar.click();", w);
