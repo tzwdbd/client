@@ -596,76 +596,47 @@ public class EsteelauderAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_SCRIBE_MALL_ORDER_EMPTY;
 		}
 		try {
-			String orderUrl ="https://www.macys.com/service/order-status?cm_sp=navigation-_-top_nav-_-my_order_history";
+			String orderUrl ="https://www.esteelauder.com/account/order_history/index.tmpl";
 			driver.navigate().to(orderUrl);
 			logger.error("爬取物流开始");
 			Utils.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderHistoryDetail")));
-			List<WebElement> orders = driver.findElements(By.cssSelector(".orderHistoryDetail"));
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-test-id='past_purchase_data']")));
+			List<WebElement> orders = driver.findElements(By.cssSelector("div[data-test-id='past_purchase_data']"));
 			int find = 0;
 			for(WebElement o:orders){
-				WebElement w = o.findElement(By.cssSelector(".devider"));
+				WebElement w = o.findElement(By.cssSelector("a"));
 				String str = w.getText().toLowerCase();
 				if(str.contains(mallOrderNo)){
-					WebElement orderStatus = o.findElement(By.cssSelector(".orderStatus h2"));
+					WebElement orderStatus = o.findElement(By.cssSelector(".order-status-data"));
 					find = 1;
 					logger.error("text:"+orderStatus.getText());
-					if(orderStatus.getText().contains("cancelled")){
+					if(orderStatus.getText().contains("Cancelled")){
 						logger.error("该订单被砍单了");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
-					}else if(orderStatus.getText().contains("processing")){
+					}else if(orderStatus.getText().contains("Processing")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("order placed")){
-						logger.error("[1]该订单还没发货,没产生物流单号");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("preparing to ship")){
-						logger.error("[1]该订单还没发货,没产生物流单号");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("payment pending")){
-						logger.error("[1]该订单还没发货,没产生物流单号");
-						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("shipment")){
+					}else if(orderStatus.getText().contains("Shipped")){
 						// 商城订单号一样 包裹号不一样
-						WebElement orderNoElement = o.findElement(By.cssSelector(".trackShipmentBtn"));
-						orderNoElement.click();
-						//orderNoElement.click();
-						Utils.sleep(2000);
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".trackID")));
-						WebElement box = o.findElement(By.cssSelector(".trackID"));
-						String expressCompany = "";
-						String expressNo = ExpressUtils.regularExperssNo(box.getText());
+						WebElement orderNoElement = o.findElement(By.cssSelector(".tracking-link-list a"));
+						String href = orderNoElement.getAttribute("href");
+						if(href.contains("ontrac")){
+							logger.error("expressCompany =narvar ");
+							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "ONTRAC");
+						}else{
+							logger.debug("未识别的物流状态"+str);
+							return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+						}
+						String expressNo = ExpressUtils.regularExperssNo(href);
 						String[] expressGroup = expressNo.split(",");
 						for(String s:expressGroup){
-							if(!s.startsWith("t")){
+							if(s.startsWith("D")){
 								expressNo = s;
 								break;
 							}
 						}
-						WebElement boxs = o.findElement(By.cssSelector(".trackEventItem"));
 						data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
-						if(boxs.getText().contains("USPS")){
-							expressCompany = "USPS";
-							logger.error("expressCompany = " + expressCompany);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-							
-						}else if(boxs.getText().contains("UPS")){
-							expressCompany = "UPS";
-							logger.error("expressCompany = " + expressCompany);
-							data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-						}else{
-							WebElement trackCar = o.findElement(By.cssSelector(".trackCarrier"));
-							if(trackCar.getText().contains("USPS")){
-								expressCompany = "USPS";
-								logger.error("expressCompany = " + expressCompany);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-								
-							}else if(trackCar.getText().contains("UPS")){
-								expressCompany = "UPS";
-								logger.error("expressCompany = " + expressCompany);
-								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-							}
-						}
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else{
 						logger.debug("未识别的物流状态"+str);
