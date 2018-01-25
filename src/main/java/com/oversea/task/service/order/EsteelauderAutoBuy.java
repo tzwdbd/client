@@ -661,11 +661,11 @@ public class EsteelauderAutoBuy extends AutoBuy {
 	public boolean gotoMainPage() {
 		try {
 			Utils.sleep(2000);
-			driver.get("https://www.joesnewbalanceoutlet.com/customer/myaccount");
+			driver.get("https://www.esteelauder.com/");
 			Utils.sleep(5000);
 			return true;
 		} catch (Exception e) {
-			logger.error("--->跳转joesnewbalanceoutlet主页面碰到异常");
+			logger.error("--->跳转esteelauder主页面碰到异常");
 		}
 		return false;
 	}
