@@ -409,7 +409,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 //				}
 //			}
 			try {
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.SECONDS.sleep(3);
 				driver.navigate().to("https://www.esteelauder.com/checkout/viewcart.tmpl");
 			} catch (Exception e) {
 				logger.error("--->跳转到购物车失败",e);
