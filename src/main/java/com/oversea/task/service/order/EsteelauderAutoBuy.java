@@ -118,7 +118,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 			username.sendKeys(userName);
 			logger.debug("--->输入账号1");
 			WebElement btn = driver.findElement(By.cssSelector("input[data-test-id='gnav_form_login']"));
-			btn.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", btn);
 			logger.debug("--->点击登陆1");
 			try
 			{
