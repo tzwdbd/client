@@ -57,18 +57,18 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		}
 		try
 		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form--signin--field--EMAIL_ADDRESS")));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test-id='gnav_login_form_email']")));
 		}
 		catch (Exception e)
 		{
-			WebElement w = driver.findElement(By.cssSelector("#form--signin--field--EMAIL_ADDRESS"));
+			WebElement w = driver.findElement(By.cssSelector("span[data-test-id='gnav_account_menu_login']"));
 			driver.executeScript("var tar=arguments[0];tar.click();", w);
 		}
 
 		try
 		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form--signin--field--EMAIL_ADDRESS")));
-			WebElement username = driver.findElement(By.cssSelector("#form--signin--field--EMAIL_ADDRESS"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test-id='gnav_login_form_email']")));
+			WebElement username = driver.findElement(By.cssSelector("input[data-test-id='gnav_login_form_email']"));
 			username.sendKeys(userName);
 			logger.debug("--->输入账号");
 			TimeUnit.SECONDS.sleep(1);
@@ -114,7 +114,22 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		}
 		catch (Exception e)
 		{
-			return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+			WebElement username = driver.findElement(By.cssSelector("input[data-test-id='form_signin_email']"));
+			username.sendKeys(userName);
+			logger.debug("--->输入账号1");
+			WebElement btn = driver.findElement(By.cssSelector("input[data-test-id='gnav_form_login']"));
+			btn.click();
+			logger.debug("--->点击登陆1");
+			try
+			{
+				logger.debug("--->确认是否登陆成功");
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".user-greeting")));
+				logger.debug("--->登陆成功");
+			}
+			catch (Exception e1)
+			{
+				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+			}
 		}
 		return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 	}
