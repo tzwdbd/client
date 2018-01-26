@@ -57,18 +57,18 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		}
 		try
 		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test-id='gnav_login_form_email']")));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form--signin--field--EMAIL_ADDRESS")));
 		}
 		catch (Exception e)
 		{
-			WebElement w = driver.findElement(By.cssSelector("span[data-test-id='gnav_account_menu_login']"));
+			WebElement w = driver.findElement(By.cssSelector("#form--signin--field--EMAIL_ADDRESS"));
 			driver.executeScript("var tar=arguments[0];tar.click();", w);
 		}
 
 		try
 		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-test-id='gnav_login_form_email']")));
-			WebElement username = driver.findElement(By.cssSelector("input[data-test-id='gnav_login_form_email']"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form--signin--field--EMAIL_ADDRESS")));
+			WebElement username = driver.findElement(By.cssSelector("#form--signin--field--EMAIL_ADDRESS"));
 			username.sendKeys(userName);
 			logger.debug("--->输入账号");
 			TimeUnit.SECONDS.sleep(1);
