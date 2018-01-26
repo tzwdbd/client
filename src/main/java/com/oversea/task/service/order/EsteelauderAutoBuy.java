@@ -49,7 +49,8 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[data-test-id='gnav_account_menu_login']")));
-			driver.findElement(By.cssSelector("span[data-test-id='gnav_account_menu_login']")).click();
+			WebElement w = driver.findElement(By.cssSelector("span[data-test-id='gnav_account_menu_login']"));
+			driver.executeScript("var tar=arguments[0];tar.click();", w);
 		} catch (Exception e) {
 			logger.error("--->点击去登录页面异常",e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
@@ -616,6 +617,9 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						logger.error("该订单被砍单了");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
 					}else if(orderStatus.getText().contains("Processing")){
+						logger.error("[1]该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}else if(orderStatus.getText().contains("In Warehouse")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}else if(orderStatus.getText().contains("Shipped")){
