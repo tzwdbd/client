@@ -393,7 +393,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		//处理礼品
 		try {
 			WebElement panel = driver.findElement(By.cssSelector("#promo-panel div"));
-			panel.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", panel);
 			driver.executeScript("(function(){window.scrollBy(1,250);})();");
 			TimeUnit.SECONDS.sleep(1);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--01")));
@@ -415,7 +415,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 				Utils.sleep(2000);
 			}
 			WebElement addcard = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".offer__kit__button__add")));
-			addcard.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", addcard);
 //			TimeUnit.SECONDS.sleep(3);
 //			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__success__overlay__button")));
 //			List<WebElement> overlays = driver.findElements(By.cssSelector(".offer__kit__success__overlay__button"));
