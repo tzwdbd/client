@@ -159,10 +159,11 @@ public class EsteelauderAutoBuy extends AutoBuy {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
 				if(list!=null && size>0){
-					list.get(0).click();
+					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
 					TimeUnit.SECONDS.sleep(2);
 					try {
-						driver.findElement(By.cssSelector(".remove-buttons a")).click();
+						WebElement w = driver.findElement(By.cssSelector(".remove-buttons a"));
+						driver.executeScript("var tar=arguments[0];tar.click();", w);
 					} catch (Exception e) {
 						logger.error("--->.remove-buttons 点击异常");
 					}
