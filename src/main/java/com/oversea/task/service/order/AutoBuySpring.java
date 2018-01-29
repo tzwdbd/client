@@ -736,14 +736,14 @@ public class AutoBuySpring extends AutoBuy {
 				if(w.getText().contains(mallOrderNo.trim())){
 					logger.error("--->找到商城单号"+mallOrderNo);
 					isFind = true;
-					List<WebElement> orderBodys = panel.findElements(By.cssSelector(".orderBody_maj7wc"));
+					List<WebElement> orderBodys = panel.findElements(By.cssSelector("div[class^='orderBody']"));
 					for(WebElement worderBody:orderBodys){
 						WebElement aWeb = worderBody.findElement(By.cssSelector("a"));
 						String link = aWeb.getAttribute("href");
 						logger.error("--->商品链接:"+link);
 						if(detail.getProductUrl().contains(link)){
 							//判断订单是否取消
-							String s = worderBody.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress'] .text_296oy-o_O-headerLabel_1lelydb")).getText();
+							String s = worderBody.findElement(By.cssSelector("div[data-xfe-testid='order-shipping-progress']")).getText();
 							logger.error("--->OrderStatusCode="+s);
 							if(!StringUtil.isBlank(s) && s.contains("Cancelled")){
 								logger.error("--->商城订单:"+mallOrderNo+"已取消");
