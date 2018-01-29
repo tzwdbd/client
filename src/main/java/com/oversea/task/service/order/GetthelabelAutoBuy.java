@@ -669,7 +669,6 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 		boolean isEffective = false;
 		Set<String> promotionList = getPromotionList(param.get("promotion"));
-		logger.debug("--->promotionList size"+promotionList.size());
 		if (promotionList != null && promotionList.size() > 0) {
 			try {
 				try {
@@ -817,9 +816,18 @@ public class GetthelabelAutoBuy extends AutoBuy {
 		try{
 			WebElement placeOrder = driver.findElement(By.id("priceConfirm"));
 			placeOrder.click();;
-			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			WebElement gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
 			gotologin.click();
 			logger.error("支付宝登陆按钮点击");
+			//支付宝账号
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			} catch (Exception e) {
+				gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
+				gotologin.click();
+				logger.error("支付宝登陆按钮再次点击");
+			}
 			//支付宝账号
 			WebElement names = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
 			names.sendKeys(orderPayAccount.getAccount());
