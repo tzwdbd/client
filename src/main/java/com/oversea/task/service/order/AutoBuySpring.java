@@ -629,7 +629,7 @@ public class AutoBuySpring extends AutoBuy {
 		}
 		WebDriverWait wait0 = new WebDriverWait(driver, 20);
 		try {
-			By byby = By.cssSelector(".text_17p9f19");
+			By byby = By.cssSelector("div[class^='cashMessage']");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -642,7 +642,7 @@ public class AutoBuySpring extends AutoBuy {
 			
 		}
 		try {
-			By byby = By.cssSelector(".text_17p9f19");
+			By byby = By.cssSelector("div[class^='cashMessage']");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -655,7 +655,7 @@ public class AutoBuySpring extends AutoBuy {
 			
 		}
 		try {
-			By byby = By.cssSelector(".text_17p9f19");
+			By byby = By.cssSelector("div[class^='cashMessage']");
 			wait0.until(ExpectedConditions.visibilityOfElementLocated(byby));
 		} catch (Exception e) {
 			try {
@@ -671,30 +671,25 @@ public class AutoBuySpring extends AutoBuy {
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
-			By byby = By.cssSelector("button[class^='goShoppingButton']");
-			WebElement wi = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
-			wi.click();
+			By byby = By.cssSelector("div[class^='cashMessage']");
+			WebElement wi = driver.findElement(byby);
+			logger.debug("--->"+wi.getText());
 			logger.debug("--->开始跳转到订单页面");
 			driver.navigate().to("https://www.shopspring.com/me/orders");
 			
 			logger.debug("--->开始等待order页面加载完成");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderCard_z5kzmw")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-xfe-testid='order-container']")));
 			Utils.sleep(1500);
 			logger.debug("--->order页面加载完成");
-			List<WebElement> orderElements = driver.findElements(By.cssSelector(".orderCard_z5kzmw .orderHeader_1yzb2uh .text_10l4bzs-o_O-headerContent_pd4weg"));
-			for(WebElement w:orderElements){
-				if(w.getText().startsWith("C")){
-					logger.debug("--->找到商品订单号 = "+w.getText());
-					data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, w.getText());
-					savePng();
-					return AutoBuyStatus.AUTO_PAY_SUCCESS;
-				}
-			}
+			WebElement orderElement = driver.findElement(By.cssSelector("div[data-xfe-testid='order-container'] div[data-xfe-testid='order-id'] h6"));
+			logger.debug("--->找到商品订单号 = "+orderElement.getText());
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText());
+			savePng();
+			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常",e);
 			return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 		}
-		return AutoBuyStatus.AUTO_PAY_GET_MALL_ORDER_NO_FAIL;
 	}
 
 	@Override
