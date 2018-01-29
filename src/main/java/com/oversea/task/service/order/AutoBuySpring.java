@@ -718,7 +718,7 @@ public class AutoBuySpring extends AutoBuy {
 		//等待my account页面加载完成
 		try{
 			logger.debug("--->开始等待order页面加载完成");
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderCard_z5kzmw")));
+			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-xfe-testid='order-container']")));
 			Utils.sleep(1500);
 			logger.debug("--->order页面加载完成");
 		}
@@ -730,9 +730,9 @@ public class AutoBuySpring extends AutoBuy {
 		//查询所有可见的订单
 		boolean isFind = false; 
 		for(int i = 0;i<12;i++){
-			List<WebElement> list = driver.findElements(By.cssSelector(".orderCard_z5kzmw"));
+			List<WebElement> list = driver.findElements(By.cssSelector("div[data-xfe-testid='order-container']"));
 			for(WebElement panel : list){
-				WebElement w = panel.findElement(By.cssSelector(".orderHeader_1yzb2uh"));
+				WebElement w = panel.findElement(By.cssSelector("div[data-xfe-testid='order-id']"));
 				if(w.getText().contains(mallOrderNo.trim())){
 					logger.error("--->找到商城单号"+mallOrderNo);
 					isFind = true;
@@ -752,7 +752,7 @@ public class AutoBuySpring extends AutoBuy {
 								logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 							}else if(!StringUtil.isBlank(s) && (s.contains("Shipped") || s.contains("Delivered"))){
-								WebElement expressElement = worderBody.findElement(By.cssSelector(".orderCard_z5kzmw .shippingLink_1y5ph1v"));
+								WebElement expressElement = worderBody.findElement(By.cssSelector("div[data-xfe-testid='order-header'] a"));
 								String expressNo = expressElement.getText();
 								String expressCompany = "";
 								if(expressNo.startsWith("1Z")){
