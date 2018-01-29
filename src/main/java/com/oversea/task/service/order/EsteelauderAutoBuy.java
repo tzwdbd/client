@@ -46,7 +46,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 		driver.manage().window().maximize();
 		driver.get("https://www.esteelauder.com/");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
+		driver.navigate().to("https://www.esteelauder.com/");
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[data-test-id='gnav_account_menu_login']")));
 			WebElement w = driver.findElement(By.cssSelector("span[data-test-id='gnav_account_menu_login']"));
@@ -647,7 +647,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 					}else if(orderStatus.getText().contains("Processing")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
-					}else if(orderStatus.getText().contains("In Warehouse")){
+					}else if(orderStatus.getText().contains("Warehouse")){
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}else if(orderStatus.getText().contains("Shipped")){
