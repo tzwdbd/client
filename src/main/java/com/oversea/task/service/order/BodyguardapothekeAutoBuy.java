@@ -205,7 +205,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pd-container")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pds")));
 			logger.debug("--->商品页面加载完成");
 		} catch (Exception e) {
 			logger.debug("--->等待商品页面加载");
@@ -215,7 +215,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		// 寻找商品单价
 		try {
 			logger.debug("--->开始寻找商品单价");
-			WebElement priceElment = driver.findElement(By.cssSelector(".current-price"));
+			WebElement priceElment = driver.findElement(By.cssSelector("#end-price"));
 			String priceStr = priceElment.getText();
 			String productEntityId = param.get("productEntityId");
 			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("€") && StringUtil.isNotEmpty(productEntityId)) {
@@ -223,7 +223,14 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 				priceMap.put(productEntityId, priceStr.replace("€", ""));
 			}
 		} catch (Exception e) {
-			logger.error("--->单价获取失败");
+			logger.debug("--->开始寻找商品单价1");
+			WebElement priceElment = driver.findElement(By.cssSelector(".end-price"));
+			String priceStr = priceElment.getText();
+			String productEntityId = param.get("productEntityId");
+			if (!Utils.isEmpty(priceStr) && priceStr.startsWith("€") && StringUtil.isNotEmpty(productEntityId)) {
+				logger.debug("--->[2]找到商品单价 = " + priceStr.replace("€", ""));
+				priceMap.put(productEntityId, priceStr.replace("€", ""));
+			}
 		}
 		
 		String productNum = (String) param.get("num");
@@ -233,7 +240,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 			try
 			{
 				logger.debug("--->选择数量:" + productNum);
-				WebElement numInput = driver.findElement(By.id("qty"));
+				WebElement numInput = driver.findElement(By.cssSelector(".js-qty"));
 				numInput.clear();
 				TimeUnit.SECONDS.sleep(1);
 				numInput.sendKeys(productNum);
@@ -250,7 +257,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		logger.debug("--->开始加购物车");
 		try{
 			TimeUnit.SECONDS.sleep(1);
-			WebElement cart = driver.findElement(By.id("cart_btn"));
+			WebElement cart = driver.findElement(By.cssSelector(".btn-buy"));
 			if("已售罄".equals(cart.getText())){
 				logger.debug("--->加购物车按钮找不到"+cart.getText());
 				return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
@@ -791,9 +798,18 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 				placeOrder = driver.findElement(By.id("priceConfirm"));
 			}
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrder);
-			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			WebElement gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
 			gotologin.click();
 			logger.error("支付宝登陆按钮点击");
+			//支付宝账号
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			} catch (Exception e) {
+				gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
+				gotologin.click();
+				logger.error("支付宝登陆按钮再次点击");
+			}
 			
 			//支付宝账号
 			WebElement alipayName = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
@@ -1032,13 +1048,13 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 	
 	public static void main(String[] args) {
 		BodyguardapothekeAutoBuy auto = new BodyguardapothekeAutoBuy();
-		AutoBuyStatus status = auto.login("xnangnn2@126.com", "tfb001001");
-		System.out.println(status);
-		auto.cleanCart();
+		//AutoBuyStatus status = auto.login("xnangnn2@126.com", "tfb001001");
+		//System.out.println(status);
+		//auto.cleanCart();
 	
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("url", "https://www.linkhaitao.com/index.php?mod=lhdeal&track=f3ceMTHcH1xI6Y44JxqjTh3yFw5V3iGTai2kWcaja07f4APnzhOViTqluoB_ayMq_afiw_c&new=http%3A%2F%2Fwww.ba.de%2F1019391.html&tag=");
-		param.put("num", "1");
+		param.put("num", "2");
 		param.put("productEntityId", "8039475");
 		param.put("isPay", "false");
 		param.put("my_price", "99.00");
