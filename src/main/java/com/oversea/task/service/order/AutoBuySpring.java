@@ -733,6 +733,7 @@ public class AutoBuySpring extends AutoBuy {
 			List<WebElement> list = driver.findElements(By.cssSelector("div[data-xfe-testid='order-container']"));
 			for(WebElement panel : list){
 				WebElement w = panel.findElement(By.cssSelector("div[data-xfe-testid='order-id']"));
+				logger.error("--->商城单号:"+w.getText());
 				if(w.getText().contains(mallOrderNo.trim())){
 					logger.error("--->找到商城单号"+mallOrderNo);
 					isFind = true;
