@@ -673,7 +673,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
 					}else{
 						logger.debug("未识别的物流状态"+str);
-						return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}
 				}
 			}
