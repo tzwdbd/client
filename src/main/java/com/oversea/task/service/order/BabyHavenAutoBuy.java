@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -20,6 +22,7 @@ import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 public class BabyHavenAutoBuy extends AutoBuy {
@@ -918,6 +921,13 @@ public class BabyHavenAutoBuy extends AutoBuy {
 			logger.error("--->跳转到my account页面出现异常", e);
 			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
 		}
+		try {
+			logger.debug("--->开始跳转到订单页面");
+			driver.navigate().to("http://cn.babyhaven.com/sales/order/history/");
+		} catch (Exception e) {
+			logger.error("--->跳转到my account页面出现异常", e);
+			return AutoBuyStatus.AUTO_SCRIBE_FAIL;
+		}
 
 		WebDriverWait wait0 = new WebDriverWait(driver, 30);
 		// 等待my account页面加载完成
@@ -933,16 +943,16 @@ public class BabyHavenAutoBuy extends AutoBuy {
 
 		try {
 			logger.debug("--->找到对应的table");
-			loop: for (int i = 0; i < 6; i++) {// 最多翻6页
-				List<WebElement> orderList = driver.findElements(By.cssSelector("div.order-item table.order-table"));
+			for (int i = 0; i < 6; i++) {// 最多翻6页
+				List<WebElement> orderList = driver.findElements(By.cssSelector("table.order-table"));
 				if (orderList != null && orderList.size() > 0) {
 					for (WebElement orders : orderList) {
-						WebElement orderNo = orders.findElement(By.cssSelector("td.order-summary span.order-number"));
+						WebElement orderNo = orders.findElement(By.cssSelector(".order-num"));
 						boolean flag = orderNo.getText().trim().replaceAll("[^A-Z0-9]", "").contains(mallOrderNo.trim());
 						logger.debug("--->orderNo text:" + orderNo.getText().trim().replaceAll("[^A-Z0-9]", "") + "对比结果:" + flag);
 						if (flag) {
 							// 订单编号状态
-							WebElement status = orders.findElement(By.cssSelector("span.order-status"));
+							WebElement status = orders.findElement(By.cssSelector(".order-status"));
 							String str = status.getText().trim();
 							if (StringUtil.isNotEmpty(str) && str.contains("已取消")) {
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_CANCELED;
@@ -951,30 +961,52 @@ public class BabyHavenAutoBuy extends AutoBuy {
 								logger.error("--->商城订单:"+mallOrderNo+"还没有发货");
 								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY; 
 							}
-							if (str.equals("已发货")) {
+							if (str.contains("已发货")) {
 								Utils.sleep(2500);
 								logger.debug("--->查找物流单号");
-
-								List<WebElement> tarTds = orders.findElements(By.cssSelector("div.hb-shipment span"));
-								if (tarTds != null && tarTds.size() > 0) {
-									String expressNoEle = tarTds.get(0).getText();
-									String expressCompanyEle = tarTds.get(1).getText();
-
-									String expressCompany = expressNoEle.trim().replace("物流厂商:", "");
-									String expressNo = expressCompanyEle.trim().replace("运单号:", "");
-
-									if (StringUtil.isNotEmpty(expressCompany) && expressCompany.equals("EWE-AU")) {
-										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
-									} else {
-										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
-									}
-									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+								WebElement shipOrder = orders.findElement(By.cssSelector(".order-details"));
+								String url = shipOrder.getAttribute("href");
+								logger.debug("--->跳转url:"+url);
+								driver.navigate().to(url);
+								Utils.sleep(2500);
+								List<WebElement> tarTds = driver.findElements(By.cssSelector(".remark"));
+								int size = tarTds.size();
+								String expressNoEle = tarTds.get(size-1).getText();
+								logger.error("expressNoEle = " + expressNoEle);
+								String expressNo = ExpressUtils.regularExperssNo(expressNoEle);
+								
+								if(StringUtil.isNotEmpty(expressNoEle) && expressNoEle.contains("EWE-AU")){
+									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
+								} else {
+									String expressCompany = tarTds.get(size-1).findElement(By.cssSelector("a")).getText();
+									expressCompany = expressCompany.replace("官网", "");
 									logger.error("expressCompany = " + expressCompany);
-									logger.error("expressNo = " + expressNo);
-									return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+									data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, expressCompany);
 								}
+								
+								data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO, expressNo);
+								
+								logger.error("expressNo = " + expressNo);
+
+								return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+							} else{
+								try {
+									logger.debug("去EWE官网查一哈");
+									driver.navigate().to("https://ewe.com.au/track?cno="+mallOrderNo+"614816222553901#track-results");
+									Matcher m = Pattern.compile("SPOA[0-9]{5,7}").matcher(driver.getPageSource());
+									if(m.find()){
+										String trackNo =  m.group();
+										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_COMPANY, "EWE全球");
+										data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_EXPRESS_NO,trackNo);
+										logger.debug("trackNo:"+trackNo);
+										return AutoBuyStatus.AUTO_SCRIBE_SUCCESS;
+									}
+								} catch (Exception e) {
+
+								}
+								logger.error("[1]该订单还没发货,没产生物流单号");
+								return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 							}
-							break loop;
 						}
 					}
 				}
