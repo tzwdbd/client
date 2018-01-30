@@ -812,7 +812,10 @@ public class EsteelauderAutoBuy extends AutoBuy {
 						logger.error("[1]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}else if(orderStatus.getText().contains("Warehouse")){
-						logger.error("[1]该订单还没发货,没产生物流单号");
+						logger.error("[2]该订单还没发货,没产生物流单号");
+						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
+					}else if(orderStatus.getText().contains("Backordered")){
+						logger.error("[3]该订单还没发货,没产生物流单号");
 						return AutoBuyStatus.AUTO_SCRIBE_ORDER_NOT_READY;
 					}else if(orderStatus.getText().contains("Shipped")){
 						// 商城订单号一样 包裹号不一样
