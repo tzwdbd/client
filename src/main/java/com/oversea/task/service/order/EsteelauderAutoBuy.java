@@ -397,19 +397,19 @@ public class EsteelauderAutoBuy extends AutoBuy {
 			logger.debug("--->礼品点击");
 			TimeUnit.SECONDS.sleep(1);
 			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--01")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--02")));
 			} catch (Exception e) {
 				panel = driver.findElement(By.cssSelector("#promo-panel div"));
 				driver.executeScript("var tar=arguments[0];tar.click();", panel);
 				logger.debug("--->礼品点击1");
 				TimeUnit.SECONDS.sleep(1);
 			}
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--01")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--02")));
 			TimeUnit.SECONDS.sleep(1);
 			driver.executeScript("(function(){window.scrollBy(1,250);})();");
 			TimeUnit.SECONDS.sleep(1);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--01")));
-			List<WebElement> options = driver.findElements(By.cssSelector(".offer__kit__option--01"));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".offer__kit__option--02")));
+			List<WebElement> options = driver.findElements(By.cssSelector(".offer__kit__option--02"));
 			for(WebElement w:options){
 				if(w.getText().contains("SOLD OUT")){
 					logger.debug("--->礼品售罄");
@@ -420,7 +420,7 @@ public class EsteelauderAutoBuy extends AutoBuy {
 				logger.debug("--->礼品售罄");
 				return AutoBuyStatus.AUTO_SKU_NOT_FIND;
 			}
-			List<WebElement> offers = driver.findElements(By.cssSelector(".offer__kit__option--01 input"));
+			List<WebElement> offers = driver.findElements(By.cssSelector(".offer__kit__option--02 input"));
 			for(WebElement w:offers){
 				driver.executeScript("var tar=arguments[0];tar.click();", w);
 				driver.executeScript("(function(){window.scrollBy(1,250);})();");
