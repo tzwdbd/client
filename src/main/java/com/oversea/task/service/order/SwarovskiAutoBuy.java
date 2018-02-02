@@ -167,8 +167,11 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			logger.error("--->确认购物车是否清空");
 			WebElement bag = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error")));
 			if(!bag.getText().equals("Your Shopping Bag is empty.")){
-				logger.debug("--->购物车不为空！");
-				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+				logger.debug("--->购物车不为空！"+bag.getText());
+				List<WebElement> list = driver.findElements(By.cssSelector(".sub-actions"));
+				if(list.size()>0){
+					return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
+				}
 			}
 		} catch (Exception e) {
 			logger.debug("--->购物车不为空！");
