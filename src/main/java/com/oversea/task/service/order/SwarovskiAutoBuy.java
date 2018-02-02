@@ -52,7 +52,12 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			logger.error("--->点击去登录页面异常",e);
 			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 		}
-
+		try{
+			WebElement w = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".simplemodal-close")));
+			w.click();
+		}catch(Exception e){
+			logger.error("--->商品页面加载出现异常",e);
+		}
 		try
 		{
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='LoginForm_Login']")));
@@ -97,7 +102,10 @@ public class SwarovskiAutoBuy extends AutoBuy {
 		try
 		{
 			logger.debug("--->确认是否登陆成功");
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".user-greeting")));
+			WebElement ww = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".account")));
+			if(ww.getText().contains("LOGIN")){
+				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+			}
 			logger.debug("--->登陆成功");
 		}
 		catch (Exception e)
@@ -128,17 +136,20 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			Utils.sleep(800);
 			logger.error("--->购物车页面加载完成");
 			//清理
-			List<WebElement> list = driver.findElements(By.cssSelector(".sub-actions a"));
+			List<WebElement> list = driver.findElements(By.cssSelector(".sub-actions"));
 			logger.error("--->开始清理购物车"+list.size());
 			while (true) {
 				int size = list.size();
 				logger.error("--->开始清理"+list.size());
 				if(list!=null && size>0){
-					driver.executeScript("var tar=arguments[0];tar.click();", list.get(0));
+					WebElement w = list.get(0);
+					List<WebElement> as = w.findElements(By.cssSelector("a"));
+					
+					driver.executeScript("var tar=arguments[0];tar.click();", as.get(as.size()-1));
 					TimeUnit.SECONDS.sleep(1);
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".shoppingbag")));
 					if(size>1){
-						list = driver.findElements(By.cssSelector(".sub-actions a"));
+						list = driver.findElements(By.cssSelector(".sub-actions"));
 					}else{
 						break;
 					}
@@ -313,7 +324,7 @@ public class SwarovskiAutoBuy extends AutoBuy {
 		
 		String size = param.get("size");
 		try {
-			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".sub-actions a"));
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".sub-actions"));
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
@@ -379,14 +390,23 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		try {
-			Utils.sleep(800);
-			WebElement condition = driver.findElement(By.cssSelector("#terms_conditions"));
-			driver.executeScript("var tar=arguments[0];tar.click();", condition);
+			Utils.sleep(5800);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#anker-terms_conditions")));
+			try {
+				WebElement condition = driver.findElement(By.cssSelector("#anker-terms_conditions #terms_conditions"));
+				driver.executeScript("var tar=arguments[0];tar.click();", condition);
+			} catch (Exception e) {
+				logger.error("--->点击terms_conditions失败");
+				WebElement condition = driver.findElement(By.cssSelector("#anker-terms_conditions div div"));
+				driver.executeScript("var tar=arguments[0];tar.click();", condition);
+			}
+			
 			Utils.sleep(1800);
 			WebElement billing = driver.findElement(By.cssSelector("#btnContinueToPayment"));
 			driver.executeScript("var tar=arguments[0];tar.click();", billing);
 		} catch (Exception e) {
-			logger.error("--->点击billing失败");
+			logger.error("--->点击billing失败",e);
+			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		
 		String shipPriceStr = "0";
@@ -426,6 +446,9 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}
 		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#PaymentFrameContent")));
+			driver.switchTo().frame("PaymentFrameContent");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.handle")));
 			WebElement skuChooseElement = driver.findElement(By.cssSelector("a.handle"));
 			skuChooseElement.click();
 			TimeUnit.SECONDS.sleep(1);
@@ -447,6 +470,8 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			String expiry = param.get("expiryDate");
 			String[] ss = expiry.split(" ");
 			Utils.sleep(2000);
+			WebElement frameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#globalcollect iframe")));
+			driver.switchTo().frame(frameElement);
 			WebElement mm = driver.findElement(By.cssSelector("select[name='EXPIRYDATE_MM']"));
 			Select smm = new Select(mm);
 			smm.selectByVisibleText(ss[1]);
