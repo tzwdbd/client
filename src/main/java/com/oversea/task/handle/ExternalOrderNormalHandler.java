@@ -1,5 +1,6 @@
 package com.oversea.task.handle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -123,6 +124,7 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							}catch(Exception ee){}
 						}
 						int skuNum = 0;
+						List<String> productEnityList = new ArrayList<String>();
 						for(ExternalOrderDetail externalOrderDetail : externalOrderDetailList){
 							Map<String, String> parmas = new HashMap<String, String>();
 							String url = Utils.isEmpty(externalOrderDetail.getProductRebateUrl()) ? externalOrderDetail.getProductUrl() : externalOrderDetail.getProductRebateUrl();
@@ -131,7 +133,11 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 								return;
 							}
 							skuNum += externalOrderDetail.getItemCount();
-							
+							if(externalOrderDetail.getSkuId()!=null){
+								if(!productEnityList.contains(externalOrderDetail.getSkuId())){
+									productEnityList.add(externalOrderDetail.getSkuId());
+								}
+							}
 							//添加优惠码
 							String promotionStr = externalOrderDetail.getDiscountCode();
 							if(StringUtil.isNotEmpty(promotionStr)){
@@ -181,7 +187,11 @@ public class ExternalOrderNormalHandler implements ExternalOrderHandler {
 							params.put("my_price", String.valueOf(myPrice));
 							params.put("count", count);
 							params.put("isPay", String.valueOf(true));
-							params.put("size", String.valueOf(externalOrderDetailList.size()));
+							if(productEnityList.size()>0){
+								params.put("size", String.valueOf(productEnityList.size()));
+							}else{
+								params.put("size", String.valueOf(externalOrderDetailList.size()));
+							}
 							params.put("isPrime", isPrime);
 							params.put("expressAddress",expressAddress);
 							params.put("userName", account.getPayAccount());
