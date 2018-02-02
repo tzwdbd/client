@@ -467,14 +467,16 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			WebElement cardname = driver.findElement(By.cssSelector("#cardholder"));
 			cardname.sendKeys(param.get("owner"));
 			TimeUnit.SECONDS.sleep(1);
+			driver.executeScript("(function(){window.scrollBy(1,250);})();");
+			TimeUnit.SECONDS.sleep(1);
+			WebElement frameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#globalcollect iframe")));
+			driver.switchTo().frame(frameElement);
 			WebElement cardno = driver.findElement(By.cssSelector("input[name='CREDITCARDNUMBER']"));
 			cardno.sendKeys(param.get("cardNo"));
 			TimeUnit.SECONDS.sleep(1);
 			String expiry = param.get("expiryDate");
 			String[] ss = expiry.split(" ");
 			Utils.sleep(2000);
-			WebElement frameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#globalcollect iframe")));
-			driver.switchTo().frame(frameElement);
 			WebElement mm = driver.findElement(By.cssSelector("select[name='EXPIRYDATE_MM']"));
 			Select smm = new Select(mm);
 			smm.selectByVisibleText(ss[1]);
