@@ -519,9 +519,16 @@ public class SwarovskiAutoBuy extends AutoBuy {
 		// 查询商城订单号
 		try {
 			logger.debug("--->等待订单页面加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderdetails li")));
+			WebElement order = null;
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".orderdetails li")));
+				order = driver.findElement(By.cssSelector(".orderdetails li"));
+			} catch (Exception e) {
+				order = driver.findElement(By.cssSelector(".sub-leftcol p"));
+			}
+			
 			logger.debug("--->订单页面加载完成");
-			WebElement order = driver.findElement(By.cssSelector(".orderdetails li"));
+			
 			String orderNumber = order.getText().trim();
 
 			if (!Utils.isEmpty(orderNumber)) {
