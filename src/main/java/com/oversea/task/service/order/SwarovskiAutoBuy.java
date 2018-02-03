@@ -252,7 +252,7 @@ public class SwarovskiAutoBuy extends AutoBuy {
 		try {
 			logger.debug("--->[1]开始寻找商品单价");
 			String productEntityId = param.get("productEntityId");
-			WebElement priceFilter = driver.findElement(By.cssSelector(".shopping-box .price"));
+			WebElement priceFilter = driver.findElement(By.cssSelector(".shopping-box .price .new"));
 			String text = priceFilter.getText().trim();
 			if (!Utils.isEmpty(text) && text.indexOf("$") != -1) {
 				String priceStr = text.substring(text.indexOf("$") + 1).trim();
@@ -453,13 +453,13 @@ public class SwarovskiAutoBuy extends AutoBuy {
 			driver.switchTo().frame("PaymentFrameContent");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.handle")));
 			WebElement skuChooseElement = driver.findElement(By.cssSelector("a.handle"));
-			skuChooseElement.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", skuChooseElement);
 			TimeUnit.SECONDS.sleep(1);
 			WebElement ops = driver.findElement(By.cssSelector("#credit_card-mirror-pd"));
 			List<WebElement> lis =ops.findElements(By.cssSelector("li a"));
 			for(WebElement w:lis){
 				if(w.getText().trim().equals("VISA")){
-					w.click();
+					driver.executeScript("var tar=arguments[0];tar.click();", w);
 					break;
 				}
 			}
