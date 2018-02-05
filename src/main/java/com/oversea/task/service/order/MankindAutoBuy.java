@@ -718,7 +718,7 @@ public class MankindAutoBuy extends AutoBuy {
 			countrySelect.selectByVisibleText("China");
 			Utils.sleep(3000);
 			
-			driver.findElement(By.id("delivery-post-code")).sendKeys(address.getZip());
+			driver.findElement(By.id("delivery-post-zip-code")).sendKeys(address.getZip());
 			Utils.sleep(1500);
 			
 			driver.findElement(By.id("delivery-name-number")).sendKeys("x");
@@ -727,13 +727,13 @@ public class MankindAutoBuy extends AutoBuy {
 			driver.findElement(By.id("delivery-street-name")).sendKeys(address.getAddress());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.id("delivery-address-line2")).sendKeys(address.getDistrict());
+			driver.findElement(By.id("delivery-address-line-2")).sendKeys(address.getDistrict());
 			Utils.sleep(1500);
 			
 			driver.findElement(By.id("delivery-town-city")).sendKeys(address.getCity());
 			Utils.sleep(1500);
 			
-			driver.findElement(By.id("delivery-county")).sendKeys(address.getState());
+			driver.findElement(By.id("delivery-state-province")).sendKeys(address.getState());
 			Utils.sleep(1500);
 			
 			driver.findElement(By.id("order-contact-number")).sendKeys("+86"+address.getMobile());
