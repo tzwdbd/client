@@ -144,11 +144,12 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_CLICK_CART_FAIL;
 		}
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		logger.debug("--->清空购物车");
 		try {
 			logger.error("--->等待购物车加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".deleteSelect")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".operation-delete")));
 			logger.error("--->开始清理购物车");
-			WebElement deleteall = driver.findElement(By.cssSelector(".deleteSelect"));
+			WebElement deleteall = driver.findElement(By.cssSelector(".operation-delete"));
 			deleteall.click();
 			Utils.sleep(1000);
 			driver.findElement(By.id("easyDialogYesBtn")).click();
@@ -156,13 +157,47 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.error("--->购物车页面清理完成");
 		}
+		try {
+			logger.error("--->等待购物车加载");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".settlement-operation")));
+			logger.error("--->开始清理购物车");
+			WebElement deleteall = driver.findElement(By.cssSelector(".settlement-operation"));
+			deleteall.click();
+			Utils.sleep(1000);
+			driver.findElement(By.id("easyDialogYesBtn")).click();
+			logger.error("--->购物车页面清理完成");
+		} catch (Exception e2) {
+			logger.debug("--->购物车页面清理完成！");
+		}
 			
 		try {
-			logger.error("--->确认购物车是否清空");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-empty")));
+			driver.navigate().to("http://www.perfumesclub.cn/customer/address/");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#addressCard li")));
+			List<WebElement> deleteList = driver.findElements(By.cssSelector("#addressCard li"));
+			while (true) {
+				int size = deleteList.size();
+				if(deleteList!=null && size>0){
+					WebElement dw = deleteList.get(0);
+					List<WebElement> operations =  dw.findElements(By.cssSelector("a.operation-type"));
+					for(WebElement w:operations){
+						if(w.getText().contains("删除")){
+							w.click();
+							break;
+						}
+					}
+					Utils.sleep(500);
+					driver.findElement(By.id("easyDialogYesBtn")).click();
+					Utils.sleep(500);
+					if(size>1){
+						deleteList = driver.findElements(By.cssSelector("#addressCard li"));
+					}else{
+						break;
+					}
+				}else{
+					break;
+				}
+			}
 		} catch (Exception e) {
-			logger.debug("--->购物车不为空！");
-			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
 		}
 		
 		
@@ -294,7 +329,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		logger.error("--->myPrice = "+myPrice);
 		String size = param.get("size");
 		try {
-			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".cart-btn-remove"));
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".operation-delete"));
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
@@ -311,13 +346,13 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("cart-btn-settle")));
+					By.id("checkoutBtn")));
 			goPay.click();
 			Utils.sleep(3000);
 		} catch (Exception e) {
 			logger.debug("--->加载Pharmacyonline结账出现异常");
 			WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.id("cart-btn-settle")));
+					By.id("checkoutBtn")));
 			goPay.click();
 		}
 		try {
@@ -325,7 +360,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->重试结账1");
 			try {
-				driver.findElement(By.id("cart-btn-settle")).click();
+				driver.findElement(By.id("checkoutBtn")).click();
 				Utils.sleep(3000);
 			} catch (Exception e2) {
 				
@@ -337,7 +372,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		} catch (Exception e) {
 			logger.debug("--->重试结账2");
 			try {
-				WebElement settle = driver.findElement(By.id("cart-btn-settle"));
+				WebElement settle = driver.findElement(By.id("checkoutBtn"));
 				driver.executeScript("var tar=arguments[0];tar.click();", settle);
 			} catch (Exception e2) {
 				
@@ -377,7 +412,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 				driver.executeScript("(function(){window.scrollBy(300,600);})();");
 				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("cart-btn-settle")));
+						By.id("checkoutBtn")));
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
@@ -385,24 +420,24 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 				if (promotionList != null && promotionList.size() > 0) {
 					for (String code : promotionList) {
 						logger.debug("couponCode："+code);
-						WebElement element = driver.findElement(By.id("cart-text-coupon"));
+						WebElement element = driver.findElement(By.id("usedCouponCode"));
 						element.clear();
 						element.sendKeys(code);
 						TimeUnit.SECONDS.sleep(2);
 						
-						WebElement use = driver.findElement(By.cssSelector(".use-code-btn"));
+						WebElement use = driver.findElement(By.cssSelector("#useCouponCode"));
 						use.click();
 						TimeUnit.SECONDS.sleep(2);
 						
 						try {
-							driver.findElement(By.cssSelector(".fu_succeed"));
+							driver.findElement(By.cssSelector("#useCodeSuccessTips"));
 							isEffective = true;
 							statusMap.put(code, 10);
 							logger.debug("优惠码有效："+code);
 						} catch (Exception e) {
 							logger.debug("优惠码无效："+code);
 							try {
-								driver.findElement(By.id("couponTipsHandler"));
+								driver.findElement(By.id("useCodeFailTips"));
 								statusMap.put(code, 0);
 							} catch (Exception e2) {
 								logger.debug("异常："+e);
@@ -431,45 +466,52 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		logger.debug("--->等待支付页面加载");
 		try {
 			TimeUnit.SECONDS.sleep(2);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".col-main")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".checkout-section")));
 			logger.debug("--->支付页面加载完成");
 			TimeUnit.SECONDS.sleep(3);
 		} catch (Exception e) {
 			logger.debug("--->支付页面加载异常");
-			return AutoBuyStatus.AUTO_PAY_FAIL;
+			//return AutoBuyStatus.AUTO_PAY_FAIL;
 		}
 		
 		String usedEmail = (String) param.get("userName");
 		boolean mark = false;
 		//找到添加新地址
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settle-link-new-address")));
-			WebElement w = driver.findElement(By.id("settle-link-new-address"));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".address-btn-create")));
+			WebElement w = driver.findElement(By.cssSelector(".address-btn-create"));
 			w.click();
 			Utils.sleep(1000);
 		}catch(Exception e){
 			logger.debug("--->添加出错");
 			mark = true;
 		}
-		
+		String name = userTradeAddress.getName();
+		String address = userTradeAddress.getAddress();
+		String zipcode = userTradeAddress.getZip();
+		String mobile = userTradeAddress.getMobile();
 		//输入收货地址
 		try{
 			
-			//姓名
-			WebElement w = driver.findElement(By.id("addr-text-consignee"));
-			w.clear();
+			WebElement firstname = driver.findElement(By.id("firstname"));
+			logger.debug("--->输入收货人姓名"+name);
 			Utils.sleep(1500);
-			w.sendKeys(userTradeAddress.getName());
-			Utils.sleep(1500);
+			firstname.sendKeys(name);
 			
-			//电话
-			WebElement telephone = driver.findElement(By.id("addr-text-cellphone"));
-			telephone.clear();
-			Utils.sleep(1000);
-			logger.debug("--->输入电话");
-			telephone.sendKeys(userTradeAddress.getMobile());
-			Utils.sleep(1500);
-			
+			logger.debug("--->选择收货地址");
+			WebElement countrySelect = driver.findElement(By.id("country"));
+			Select select = new Select(countrySelect);
+			List<WebElement> countrys = select.getOptions();
+			if (countrys != null && countrys.size() > 1) {
+				for(WebElement country : countrys){
+					String countryVal =  country.getAttribute("value").trim();
+					if(countryVal.equals("中国大陆")){
+						select.selectByVisibleText(countryVal);
+						break;
+					}
+				}
+			}
+			TimeUnit.SECONDS.sleep(2);
 			
 			//省份
 			String stateStr = userTradeAddress.getState().trim();
@@ -484,13 +526,20 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			}else if("内蒙古自治区".equals(stateStr)){
 				stateStr = "内蒙古";
 			}
-			WebElement state = driver.findElement(By.id("addr-select-province"));	
+			WebElement state = null;
+			try {
+				state = driver.findElement(By.id("region_id"));
+			} catch (Exception e) {
+				state = driver.findElement(By.id("region"));
+			}
+				
 			Select selectState = new Select(state);
 			selectState.selectByVisibleText(stateStr);
+			logger.debug("--->输入省");
 			Utils.sleep(2000);
 			
 			//市
-			WebElement city = driver.findElement(By.id("addr-select-city"));	
+			WebElement city = driver.findElement(By.xpath("//select[@id='city']"));	
 			Select selectCity = new Select(city);
 			String cityStr = userTradeAddress.getCity().trim();
 			try {
@@ -504,6 +553,8 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					cityStr = "重庆市";
 				} else if("天津市".equals(stateStr)){
 					cityStr = "天津市";
+				} else if("大理市".equals(cityStr)){
+					cityStr = "大理州";
 				} else if("陵水黎族自治县".equals(cityStr)){
 					cityStr = "陵水县";
 				}
@@ -523,12 +574,18 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			
 			//区
 			String districtStr = userTradeAddress.getDistrict().trim();
-			WebElement district = driver.findElement(By.id("addr-select-county"));	
+			WebElement district = null;
+			try {
+				district = driver.findElement(By.xpath("//select[@id='s_county']"));	
+			} catch (Exception e) {
+				district = driver.findElement(By.id("county"));	
+			}
+			
+			
 			Select selectdistrict = new Select(district);
 			try{
 				selectdistrict.selectByVisibleText(districtStr);
-			}catch(Exception e){				
-				
+			}catch(Exception e){
 				if(districtStr.endsWith("区")){//区改市
 					districtStr = districtStr.subSequence(0, districtStr.length()-1)+"市";
 				} else if(districtStr.equals("经济开发区")){
@@ -540,58 +597,52 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					selectdistrict.selectByIndex(1);
 				}
 			}
+			logger.debug("--->输入区");
 			Utils.sleep(2000);
-			/*//地址
-			driver.findElement(By.xpath("//input[@id='street_1']")).sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
-			Utils.sleep(1500);
-			//邮编
-			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(userTradeAddress.getZip());
-			Utils.sleep(1500);
-			//电话
-			driver.findElement(By.xpath("//input[@id='telephone']")).sendKeys(userTradeAddress.getMobile());
-			Utils.sleep(1500);
-			//常用邮箱
-			driver.findElement(By.xpath("//input[@id='email']")).sendKeys(email);
-			Utils.sleep(1500);*/
+			WebElement street = null;
+			try {
+				street = driver.findElement(By.id("street_1"));
+			} catch (Exception e) {
+				street = driver.findElement(By.cssSelector(".input-textarea"));
+			}
 			
-			//地址
-			WebElement street = driver.findElement(By.id("addr-text-street"));
 			street.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入街道地址");
 			Utils.sleep(1500);
-			street.sendKeys(userTradeAddress.getDistrict()+userTradeAddress.getAddress());
+			street.sendKeys(userTradeAddress.getDistrict()+address);
 			
-			//邮编
-			WebElement postcode = driver.findElement(By.id("addr-text-postcode"));
+			WebElement postcode = driver.findElement(By.id("postcode"));
 			postcode.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入邮编");
 			Utils.sleep(1500);
-			postcode.sendKeys(userTradeAddress.getZip());
+			postcode.sendKeys(zipcode);
 			
+			WebElement telephone = driver.findElement(By.id("telephone"));
+			telephone.clear();
+			Utils.sleep(1000);
+			logger.debug("--->输入电话");
+			Utils.sleep(1500);
+			telephone.sendKeys(mobile);
 			
-			
-			//常用邮箱
-			WebElement emailEle = driver.findElement(By.id("addr-text-email"));
-			emailEle.clear();
+			WebElement email = driver.findElement(By.id("email"));
+			email.clear();
 			Utils.sleep(1000);
 			logger.debug("--->输入常用邮箱");
 			Utils.sleep(1500);
-			emailEle.sendKeys(usedEmail);
+			email.sendKeys(usedEmail);
 			
-			//设置默认
-			if(mark){
-				try {
-					driver.findElement(By.id("addr-checkbox-set-default")).click();
-				} catch (Exception e) {
-					logger.debug("--->点击默认出错");
-				}
-				
+			Utils.sleep(1500);
+			WebElement saveAddrBtn = null;
+			try {
+				saveAddrBtn = driver.findElement(By.id("AjaxSaveAddress"));
+			} catch (Exception e) {
+				saveAddrBtn = driver.findElement(By.cssSelector(".btn-save"));
 			}
-			//保存地址
-			driver.findElement(By.id("addr-btn-save")).click();
+			saveAddrBtn.click();
 			Utils.sleep(3000);
+			logger.debug("--->点击保存地址");
 			
 		}catch(Exception e){
 			logger.debug("--->设置收货地址出错",e);
@@ -602,7 +653,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		
 		//选中支付宝
 		try{
-			WebElement alipayPayment = driver.findElement(By.id("p_method_alipay_payment"));
+			WebElement alipayPayment = driver.findElement(By.id("payment-alipay_payment"));
 			//driver.findElement(By.xpath("//input[@id='p_method_alipay_payment']")).click();
 			driver.executeScript("var tar=arguments[0];tar.click();", alipayPayment);
 			Utils.sleep(3000);
@@ -616,7 +667,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
-			WebElement totalPriceElement = driver.findElement(By.id("settle-stat-price"));
+			WebElement totalPriceElement = driver.findElement(By.id("grandTotal"));
 			String text = totalPriceElement.getText();
 			String priceStr = text.substring(0,text.length()-1);
 			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_TOTAL_PRICE, priceStr);
@@ -645,17 +696,6 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			return AutoBuyStatus.AUTO_PAY_TOTAL_GAP_OVER_APPOINT;
 		}
 		
-		// 查询优惠
-		try {
-			logger.debug("--->开始查询优惠");
-			WebElement totalElement = driver
-					.findElement(By.id("settle-total-freight"));
-			
-			String text = totalElement.getText().substring(0,totalElement.getText().length()-1);
-			data.put(AutoBuyConst.KEY_AUTO_BUY_MALL_EXPRESS_FEE,String.valueOf(text));
-		} catch (Exception e) {
-			logger.debug("--->查询总运费出现异常=", e);
-		}
 		Boolean isPay = Boolean.valueOf((String) param.get("isPay"));
 		if(!isPay){
 			return AutoBuyStatus.AUTO_PAY_SERVER_SIDE_DISALLOW;
@@ -664,11 +704,20 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		//提交订单
 		//logger.debug("--->开始点击提交订单 orderPayAccount.getPayPassword() = "+orderPayAccount.getPayPassword());
 		try{
-			WebElement placeOrder = driver.findElement(By.id("settle-btn-submit"));
+			WebElement placeOrder = driver.findElement(By.id("priceConfirm"));
 			placeOrder.click();;
-			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			WebElement gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
 			gotologin.click();
 			logger.error("支付宝登陆按钮点击");
+			//支付宝账号
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			} catch (Exception e) {
+				gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
+				gotologin.click();
+				logger.error("支付宝登陆按钮再次点击");
+			}
 			//支付宝账号
 			WebElement names = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
 			names.sendKeys(orderPayAccount.getAccount());
