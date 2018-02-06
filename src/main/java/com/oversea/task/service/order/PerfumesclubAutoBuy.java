@@ -767,24 +767,12 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		//查询商城订单号
 		try{
 			logger.debug("--->开始查找商品订单号");
-			wait = new WebDriverWait(driver, 2*WAIT_TIME);
-			By byby = By.cssSelector(".pay-left");
+			wait = new WebDriverWait(driver, WAIT_TIME);
+			By byby = By.cssSelector(".order-number");
 			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
-			orderElement.click();
-			Utils.sleep(1000);
-			logger.debug("--->开始查找商品订单号1");
-			driver.get("http://www.perfumesclub.cn/sales/order/history/");
-			//等待my account页面加载完成
-			logger.debug("--->开始等待order页面加载完成");
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-item")));
-			Utils.sleep(1500);
-			logger.debug("--->order页面加载完成");
-			WebElement w = driver.findElement(By.cssSelector(".order-item .order-number"));
-			String orderNo = w.getText();
-			logger.debug("--->订单号:"+orderNo);
-			orderNo = orderNo.replaceAll("[^(A-Za-z0-9)]","");
-			logger.debug("--->订单号为:"+orderNo);
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderNo);
+			logger.debug("--->找到商品订单号 = "+orderElement.getText());
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText().substring(4));
+			savePng();
 			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
 			logger.debug("--->查找商品订单号出现异常",e);
