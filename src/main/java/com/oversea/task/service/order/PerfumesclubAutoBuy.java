@@ -25,6 +25,7 @@ import com.oversea.task.domain.RobotOrderDetail;
 import com.oversea.task.domain.UserTradeAddress;
 import com.oversea.task.enums.AutoBuyStatus;
 import com.oversea.task.util.StringUtil;
+import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
 public class PerfumesclubAutoBuy extends AutoBuy {
@@ -771,7 +772,9 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			By byby = By.cssSelector(".order-number");
 			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
 			logger.debug("--->找到商品订单号 = "+orderElement.getText());
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText().substring(4));
+			String mallOrderNo = ExpressUtils.regularExperssNo(orderElement.getText());
+			logger.debug("--->找到商品订单号1 = "+mallOrderNo);
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, mallOrderNo);
 			savePng();
 			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
