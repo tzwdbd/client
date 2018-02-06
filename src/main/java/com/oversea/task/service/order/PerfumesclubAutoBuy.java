@@ -417,8 +417,14 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			try {
 				driver.executeScript("(function(){window.scrollBy(300,600);})();");
 				TimeUnit.SECONDS.sleep(5);
-				WebElement goPay = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.id("checkoutBtn")));
+				WebElement goPay = null;
+				try {
+					 wait.until(ExpectedConditions.visibilityOfElementLocated(
+								By.id("checkoutBtn")));
+					goPay = driver.findElement(By.id("checkoutBtn"));
+				} catch (Exception e) {
+					goPay = driver.findElement(By.id("checkoutBtn"));
+				}
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
