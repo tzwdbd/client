@@ -415,8 +415,6 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			// 等待购物车页面加载完成
 			logger.debug("--->等待购物车页面加载");
 			try {
-				driver.executeScript("(function(){window.scrollBy(300,600);})();");
-				TimeUnit.SECONDS.sleep(5);
 				WebElement goPay = null;
 				try {
 					 wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -468,8 +466,8 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 				goPay.click();
 				Utils.sleep(5000);
 			} catch (Exception e) {
-				logger.debug("--->加载Pharmacyonline结账出现异常");
-				return AutoBuyStatus.AUTO_PAY_FAIL;
+				logger.debug("--->加载Pharmacyonline结账出现异常",e);
+				//return AutoBuyStatus.AUTO_PAY_FAIL;
 			}
 		} catch (Exception e) {
 			logger.debug("--->不需要重新登录");
