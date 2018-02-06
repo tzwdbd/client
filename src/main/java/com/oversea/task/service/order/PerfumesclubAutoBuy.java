@@ -268,8 +268,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		logger.debug("--->开始加购物车");
 		try{
 			WebElement cart = driver.findElement(By.id("detail-btn-addcart"));
-			Utils.sleep(1500);
-			cart.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", cart);
 		}catch(Exception e){
 			logger.debug("--->加购物车按钮找不到");
 			return AutoBuyStatus.AUTO_SKU_CART_NOT_FIND;
@@ -280,24 +279,23 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 		try{
 			WebElement panel = wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.id("easyDialogYesBtn")));
-			panel.click();
-			Utils.sleep(1500);
+			driver.executeScript("var tar=arguments[0];tar.click();", panel);
 			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cart']")));
-			
-			List<WebElement> trs = driver.findElements(By.cssSelector(".tr-selected"));
-			for(WebElement w:trs){
-				WebElement aw = w.findElement(By.cssSelector(".product-name a"));
-				if(aw.getAttribute("href").contains(orginalUrl)){
-					WebElement inputNum = w.findElement(By.cssSelector(".cart-text-quantity"));
-					Utils.sleep(2000);
-					inputNum.clear();
-					Utils.sleep(2000);
-					inputNum.sendKeys(productNum);
-					Utils.sleep(2000);
-					break;
-				}
-			}
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='cart']")));
+//			
+//			List<WebElement> trs = driver.findElements(By.cssSelector(".tr-selected"));
+//			for(WebElement w:trs){
+//				WebElement aw = w.findElement(By.cssSelector(".product-name a"));
+//				if(aw.getAttribute("href").contains(orginalUrl)){
+//					WebElement inputNum = w.findElement(By.cssSelector(".cart-text-quantity"));
+//					Utils.sleep(2000);
+//					inputNum.clear();
+//					Utils.sleep(2000);
+//					inputNum.sendKeys(productNum);
+//					Utils.sleep(2000);
+//					break;
+//				}
+//			}
 			
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常,",e);
