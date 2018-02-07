@@ -1309,6 +1309,12 @@ public class AmazonAutoBuy extends AutoBuy
 	
 	public void selectsku(Object sku){
 		if (sku != null){
+			driver.executeScript("(function(){window.scrollBy(0,250);})();");
+			try {
+				TimeUnit.SECONDS.sleep(5);
+			} catch (Exception e) {
+			}
+			
 			List<String> skuList = Utils.getSku((String) sku);
 			for (int i = 0; i < skuList.size(); i++)
 			{
