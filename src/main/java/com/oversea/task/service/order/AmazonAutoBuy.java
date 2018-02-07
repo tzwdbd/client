@@ -360,7 +360,7 @@ public class AmazonAutoBuy extends AutoBuy
 			if(list != null && list.size() > 0 && StringUtil.isNotEmpty(valueStr)){
 				for(WebElement w : list){
 					if(w != null && valueStr.equalsIgnoreCase(w.getText())){
-						w.click();
+						driver.executeScript("var tar=arguments[0];tar.click();", w);
 						break;
 					}
 				}
@@ -433,7 +433,7 @@ public class AmazonAutoBuy extends AutoBuy
 	private static WebElement waitForMainPanel(WebDriver driver)
 	{
 		// 等待最大的选择面板可见
-		By byPanel = By.xpath("//div[@id='ppd']");
+		By byPanel = By.id("ppd");
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		WebElement panel = wait.until(ExpectedConditions.visibilityOfElementLocated(byPanel));
 		Utils.sleep(2000);
@@ -2847,8 +2847,21 @@ public class AmazonAutoBuy extends AutoBuy
 			try {
 				List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 				if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-					radios.get(1).click();
-					logger.debug("--->credit 点击");
+					int i=1;
+					try {
+						List<WebElement> inputradios = driver.findElements(By.cssSelector("input[type='radio']"));
+						i=0;
+						for(WebElement w:inputradios){
+							if(w.getAttribute("value").startsWith("creditCard")){
+								break;
+							}
+							i++;
+						}
+					} catch (Exception e) {
+						logger.debug("--->input radio"+i);
+					}
+					radios.get(i).click();
+					logger.debug("--->credit 点击"+i);
 					Utils.sleep(1000);
 					try {
 						WebElement card = driver.findElement(By.id("addCreditCardNumber"));
@@ -2978,8 +2991,21 @@ public class AmazonAutoBuy extends AutoBuy
 						try {
 							List<WebElement> radios = driver.findElements(By.cssSelector(".a-icon-radio"));
 							if(!StringUtil.isBlank(payType) && payType.equals("credit")){
-								radios.get(1).click();
-								logger.debug("--->credit 2点击");
+								int i=1;
+								try {
+									List<WebElement> inputradios = driver.findElements(By.cssSelector("input[type='radio']"));
+									i=0;
+									for(WebElement w:inputradios){
+										if(w.getAttribute("value").startsWith("creditCard")){
+											break;
+										}
+										i++;
+									}
+								} catch (Exception e) {
+									logger.debug("--->input radio"+i);
+								}
+								radios.get(i).click();
+								logger.debug("--->credit2 点击"+i);
 								Utils.sleep(1000);
 								try {
 									WebElement card = driver.findElement(By.id("addCreditCardNumber"));
@@ -3306,7 +3332,9 @@ public class AmazonAutoBuy extends AutoBuy
 			logger.error("点击usd");
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("marketplaceRadio")));
-				driver.findElement(By.id("marketplaceRadio")).click();
+				Utils.sleep(5000);
+				WebElement w =driver.findElement(By.id("marketplaceRadio"));
+				driver.executeScript("var tar=arguments[0];tar.click();", w);
 				Utils.sleep(5000);
 			} catch (Exception e) {
 				logger.error("点击usd出错");
@@ -5633,16 +5661,17 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B0085JI7B2?psc=1");
+		param.put("url", "http://www.amazon.com/dp/B071GF32W2");
 		//param.put("sku", "[[\"Color\",\"A\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("sku", "[[\"Size\",\"Small (8/10)\"],[\"SpecialSizeType\",\"Big Boys\"],[\"Color\",\"Regal Red\"]]");
+		param.put("sku", "[[\"Color\",\"White\"],[\"Size\",\"9 B(M) US\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-		param.put("sign", "1");
-		//param.put("productName","ONGASOFT Womens Capri Yoga pants Mesh Workout legging Exercise capri With Pocket");
-		//param.put("title","Yoga pants Mesh Workout legging");
+		//param.put("sign", "0");
+		//param.put("productName","ApudArmis Knee Support Strap for Pain Relief Knee Brace for Patella Tendonitis, Jumpers & Runner, Hiking Basketball - One Size Adjustable, Black");
+		//param.put("title","knee brace");
 		//param.put("position","30");
+		//param.put("keywordUrl", "http://www.amazon.com/dp/B073PQ7H55");
 		autoBuy.selectProduct(param);
 		// autoBuy.review(detail, param);
 		//autoBuy.feedBackAndReview(detail, param);
@@ -5955,7 +5984,8 @@ public class AmazonAutoBuy extends AutoBuy
 					logger.error("--->title2="+title);
 					if(!StringUtil.isBlank(smallTitle) && title.startsWith(smallTitle)){
 						logger.error("--->title"+titleWeb.getText());
-						w.findElement(By.cssSelector("a")).click();
+						WebElement ww = w.findElement(By.cssSelector("a"));
+						driver.executeScript("var tar=arguments[0];tar.click();", ww);
 						mark = true;
 						break;
 					}
