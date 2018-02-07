@@ -786,6 +786,7 @@ public class AmazonAutoBuy extends AutoBuy
 						logger.debug("--->sku findCount = "+findCount+" && skuList.size/2 = "+skuList.size()/2+" && dimensions.size="+dimensions.size());
 						if(findCount < dimensions.size() ){
 							logger.debug("--->缺少匹配的sku findCount = "+findCount+" && skuList.size()/2 = "+skuList.size()/2);
+							driver.navigate().refresh();
 							selectsku(sku);
 							
 							int findCount1 = 0;
