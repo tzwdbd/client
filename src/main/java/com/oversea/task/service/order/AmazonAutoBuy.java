@@ -360,7 +360,8 @@ public class AmazonAutoBuy extends AutoBuy
 			if(list != null && list.size() > 0 && StringUtil.isNotEmpty(valueStr)){
 				for(WebElement w : list){
 					if(w != null && valueStr.equalsIgnoreCase(w.getText())){
-						driver.executeScript("var tar=arguments[0];tar.click();", w);
+						//driver.executeScript("var tar=arguments[0];tar.click();", w);
+						w.click();
 						break;
 					}
 				}
