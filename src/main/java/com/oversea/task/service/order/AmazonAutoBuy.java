@@ -705,7 +705,7 @@ public class AmazonAutoBuy extends AutoBuy
 							}
 							
 							if(keyElement == null){
-								List<WebElement> l = driver.findElements(By.xpath("//button[@class='a-button-text a-text-left']"));
+								List<WebElement> l = driver.findElements(By.cssSelector(".a-button-text.a-text-left"));
 								if(l != null && l.size() > 0){
 									for(WebElement w : l){
 										if(w != null){
@@ -1775,7 +1775,7 @@ public class AmazonAutoBuy extends AutoBuy
 						}
 						
 						if(keyElement == null){
-							List<WebElement> l = driver.findElements(By.xpath("//button[@class='a-button-text a-text-left']"));
+							List<WebElement> l = driver.findElements(By.cssSelector(".a-button-text.a-text-left"));
 							if(l != null && l.size() > 0){
 								for(WebElement w : l){
 									if(w != null){
@@ -5669,10 +5669,10 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B071GF32W2");
+		param.put("url", "http://www.amazon.com/dp/B074W66D5");
 		//param.put("sku", "[[\"Color\",\"A\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("sku", "[[\"Color\",\"White\"],[\"Size\",\"9 B(M) US\"]]");
+		param.put("sku", "[[\"Color\",\"Car Charger+Cable\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 		//param.put("sign", "0");
@@ -6188,7 +6188,7 @@ public class AmazonAutoBuy extends AutoBuy
 						}
 						
 						if(keyElement == null){
-							List<WebElement> l = driver.findElements(By.xpath("//button[@class='a-button-text a-text-left']"));
+							List<WebElement> l = driver.findElements(By.cssSelector(".a-button-text.a-text-left"));
 							if(l != null && l.size() > 0){
 								for(WebElement w : l){
 									if(w != null){
