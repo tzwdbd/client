@@ -444,6 +444,9 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					}
 					
 				}
+				
+				driver.executeScript("(function(){window.scrollBy(0,400);})();");
+				TimeUnit.SECONDS.sleep(2);
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
 				boolean isEffective = false;
