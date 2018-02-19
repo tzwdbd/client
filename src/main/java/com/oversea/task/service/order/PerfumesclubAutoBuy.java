@@ -340,6 +340,44 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 				if(!size.equals(String.valueOf(goodsInCart.size()))){
 					return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
 				}
+				//结账
+				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
+				boolean isEffective = false;
+				Set<String> promotionList = getPromotionList(param.get("promotion"));
+				if (promotionList != null && promotionList.size() > 0) {
+					for (String code : promotionList) {
+						logger.debug("couponCode："+code);
+						WebElement element = driver.findElement(By.id("usedCouponCode"));
+						element.clear();
+						element.sendKeys(code);
+						TimeUnit.SECONDS.sleep(2);
+						
+						WebElement use = driver.findElement(By.cssSelector("#useCouponCode"));
+						use.click();
+						TimeUnit.SECONDS.sleep(2);
+						
+						try {
+							driver.findElement(By.cssSelector("#useCodeSuccessTips"));
+							isEffective = true;
+							statusMap.put(code, 10);
+							logger.debug("优惠码有效："+code);
+						} catch (Exception e1) {
+							logger.debug("优惠码无效："+code);
+							try {
+								driver.findElement(By.id("useCodeFailTips"));
+								statusMap.put(code, 0);
+							} catch (Exception e2) {
+								logger.debug("异常："+e2);
+							}
+						}
+					}
+					setPromotionCodelistStatus(statusMap);
+					System.out.println(statusMap.toString());
+					if("true".equals(param.get("isStock")) && !isEffective){
+						logger.debug("--->优惠码失效,中断采购");
+						return AutoBuyStatus.AUTO_PAY_FAIL;
+					}
+				}
 			} catch (Exception e1) {
 				logger.debug("--->购物车验证数量出错",e1);
 				return AutoBuyStatus.AUTO_SKU_SELECT_NUM_FAIL;
@@ -436,44 +474,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 					}
 					
 				}
-				//结账
-				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
-				boolean isEffective = false;
-				Set<String> promotionList = getPromotionList(param.get("promotion"));
-				if (promotionList != null && promotionList.size() > 0) {
-					for (String code : promotionList) {
-						logger.debug("couponCode："+code);
-						WebElement element = driver.findElement(By.id("usedCouponCode"));
-						element.clear();
-						element.sendKeys(code);
-						TimeUnit.SECONDS.sleep(2);
-						
-						WebElement use = driver.findElement(By.cssSelector("#useCouponCode"));
-						use.click();
-						TimeUnit.SECONDS.sleep(2);
-						
-						try {
-							driver.findElement(By.cssSelector("#useCodeSuccessTips"));
-							isEffective = true;
-							statusMap.put(code, 10);
-							logger.debug("优惠码有效："+code);
-						} catch (Exception e) {
-							logger.debug("优惠码无效："+code);
-							try {
-								driver.findElement(By.id("useCodeFailTips"));
-								statusMap.put(code, 0);
-							} catch (Exception e2) {
-								logger.debug("异常："+e);
-							}
-						}
-					}
-					setPromotionCodelistStatus(statusMap);
-					System.out.println(statusMap.toString());
-					if("true".equals(param.get("isStock")) && !isEffective){
-						logger.debug("--->优惠码失效,中断采购");
-						return AutoBuyStatus.AUTO_PAY_FAIL;
-					}
-				}
+				
 				
 				Utils.sleep(1500);
 				goPay.click();
