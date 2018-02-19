@@ -422,7 +422,19 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 								By.id("checkoutBtn")));
 					goPay = driver.findElement(By.id("checkoutBtn"));
 				} catch (Exception e) {
-					goPay = driver.findElement(By.id("checkoutBtn"));
+					try {
+						goPay = driver.findElement(By.id("checkoutBtn"));
+						logger.debug("1111");
+					} catch (Exception e2) {
+						try {
+							goPay = driver.findElement(By.id("checkoutBtn"));
+							logger.debug("333");
+						} catch (Exception e3) {
+							logger.debug("222");
+						}
+						
+					}
+					
 				}
 				//结账
 				HashMap<String, Integer> statusMap = new HashMap<String, Integer>();
