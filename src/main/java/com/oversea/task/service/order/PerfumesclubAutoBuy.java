@@ -415,7 +415,7 @@ public class PerfumesclubAutoBuy extends AutoBuy {
 			//跳转到购物车
 			try{
 				Utils.sleep(1000);
-				driver.get("http://www.perfumesclub.cn/checkout/cart/");
+				driver.get("http://www.perfumesclub.cn/cart/index/");
 				logger.error("--->开始跳转到购物车");
 			}catch(Exception e){
 				logger.error("--->跳转到购物车失败",e);
