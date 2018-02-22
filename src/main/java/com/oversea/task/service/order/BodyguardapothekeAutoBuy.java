@@ -109,8 +109,16 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		}
 		catch (Exception e)
 		{
-			logger.error("--->登录碰到异常", e);
-			return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			try
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".header")));
+				logger.debug("--->登录完成1");
+			}
+			catch (Exception e1)
+			{
+				logger.error("--->登录碰到异常1", e1);
+				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+			}
 		}
 		
 		return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
