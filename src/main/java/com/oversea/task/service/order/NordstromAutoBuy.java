@@ -6,16 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -85,7 +80,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		}
 		try
 		{
-			WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_mainContentPlaceHolder_signIn_email")));
+			WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#signin input[name='username']")));
 			username.clear();
 			username.sendKeys(userName);
 			logger.debug("--->输入账号");
@@ -99,7 +94,7 @@ public class NordstromAutoBuy extends AutoBuy {
 
 		try
 		{
-			WebElement password = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_password"));
+			WebElement password = driver.findElement(By.cssSelector("#signin input[name='password']"));
 			password.sendKeys(passWord);
 			logger.debug("--->输入密码");
 			TimeUnit.SECONDS.sleep(3);
@@ -112,7 +107,7 @@ public class NordstromAutoBuy extends AutoBuy {
 		
 		try
 		{
-			WebElement btn = driver.findElement(By.id("ctl00_mainContentPlaceHolder_signIn_enterButton"));
+			WebElement btn = driver.findElement(By.cssSelector("#signin button[type='submit']"));
 			driver.executeScript("var tar=arguments[0];tar.click();", btn);
 			//btn.click();
 			logger.debug("--->开始登陆");
@@ -857,6 +852,13 @@ public class NordstromAutoBuy extends AutoBuy {
 		try {
 			driver.executeScript("(function(){window.scrollBy(300,500);})();");
 			TimeUnit.SECONDS.sleep(5);
+			try {
+				driver.findElement(By.cssSelector("#ctl00_backgroundOverlay")).click();
+				logger.error("--->点击background");
+			} catch (Exception e) {
+				logger.error("--->点击background异常");
+			}
+			
 			WebElement checkOut = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ctl00_mainContentPlaceHolder_shoppingBagTotals_proceedToCheckoutButton2")));
 			TimeUnit.SECONDS.sleep(5);
 			checkOut.click();
