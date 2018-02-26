@@ -268,8 +268,8 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		logger.debug("--->开始加购物车");
 		try {
 			WebElement addCart = driver.findElement(By.id("DetailAddCart"));
-			addCart.click();
-			Utils.sleep(5000);
+			driver.executeScript("var tar=arguments[0];tar.click();", addCart);
+			Utils.sleep(500);
 			WebElement settlement = driver.findElement(By.id("easyDialogYesBtn"));
 			settlement.click();
 			Utils.sleep(1500);
