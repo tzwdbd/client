@@ -162,12 +162,12 @@ public class AutoBuy6PM extends AutoBuy {
 			//等待购物车页面加载完成
 			logger.error("--->开始等待购物车页面加载");
 			WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='content' and @class='cart']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("root")));
 			Utils.sleep(2000);
 			logger.error("--->购物车页面加载完成");
 			//清理
 			logger.error("--->开始清理购物车");
-			List<WebElement> list = driver.findElements(By.xpath("//a[@class='remove' and contains(text(),'Remove')]"));
+			List<WebElement> list = driver.findElements(By.cssSelector("._2hw6N"));
 			if(list != null && list.size() > 0){
 				logger.error("--->购物车list size="+list.size());
 				for(WebElement remove : list){
@@ -187,7 +187,7 @@ public class AutoBuy6PM extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		try {
 			logger.error("--->确认购物车是否清理完成");
-			WebElement cartBag = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".z-hd-beret")));
+			WebElement cartBag = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".migIN h2")));
 			logger.debug("--->购物车内容:"+cartBag.getText());
 			if(!cartBag.getText().equals("Your shopping bag is empty") && !cartBag.getText().equals("You have 0 items in your bag!")){
 				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
@@ -458,7 +458,7 @@ public class AutoBuy6PM extends AutoBuy {
 		logger.error("--->myPrice = "+myPrice);
 		String size = param.get("size");
 		try {
-			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='remove' and contains(text(),'Remove')]"));
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector("._2hw6N"));
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
@@ -480,7 +480,7 @@ public class AutoBuy6PM extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try{
 			WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//button[@class='z-btn-cart' and contains(text(),'Proceed to Checkout')]")));
+					By.cssSelector("._2-OrP")));
 			Utils.sleep(1500);
 			logger.debug("--->购物车页面加载完成");
 			checkout.click();
