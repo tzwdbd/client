@@ -415,7 +415,7 @@ public class AutoBuy6PM extends AutoBuy {
 			for(WebElement w:details){
 				for (int i = 0; i < skuList.size(); i++){
 					if (i % 2 == 1){
-						if(w.getText().trim().split(":")[1].trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
+						if(w.isDisplayed() && w.getText().trim().split(":")[1].trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
 							logger.debug("--->属性"+w.getText().trim()+"对的");
 							attnum++;
 						}
