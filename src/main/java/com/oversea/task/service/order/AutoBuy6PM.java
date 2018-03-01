@@ -367,7 +367,7 @@ public class AutoBuy6PM extends AutoBuy {
 		logger.debug("--->等待购物车页面加载");
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//a[@class='z-btn-secondary back' and contains(text(),'Back to Shopping')]")));
+					By.id("root")));
 			Utils.sleep(1500);
 		}catch(Exception e){
 			logger.debug("--->加载Proceed to Checkout出现异常");
@@ -388,14 +388,14 @@ public class AutoBuy6PM extends AutoBuy {
 		if(!Utils.isEmpty(productNum) && !productNum.equals("1")){
 			try{
 				logger.debug("--->商品数量 = "+productNum);
-				WebElement inputNum = driver.findElement(By.xpath("//input[@type='text' and @name='changeQuantity']"));
+				WebElement inputNum = driver.findElement(By.cssSelector("input[type='number']"));
 				Utils.sleep(2000);
 				inputNum.clear();
 				Utils.sleep(2000);
 				inputNum.sendKeys(productNum);
 				Utils.sleep(2000);
 //				WebElement upate = driver.findElement(By.xpath("//button[@class='z-btn-primary' and contains(text(),'Update')]"));
-				WebElement upate = driver.findElement(By.xpath("//a[@class='changeQuantity' and contains(text(),'Update')]"));
+				WebElement upate = driver.findElement(By.cssSelector("#root button[type='submit']"));
 				Utils.sleep(2000);
 				upate.click();
 				Utils.sleep(4000);
@@ -410,8 +410,8 @@ public class AutoBuy6PM extends AutoBuy {
 		}
 		int attnum = 0;
 		try {
-			WebElement detail = driver.findElement(By.cssSelector(".details"));
-			List<WebElement> details = detail.findElements(By.cssSelector("li"));
+			WebElement detail = driver.findElement(By.cssSelector("._3cSC8"));
+			List<WebElement> details = detail.findElements(By.cssSelector("span"));
 			for(WebElement w:details){
 				for (int i = 0; i < skuList.size(); i++){
 					if (i % 2 == 1){
