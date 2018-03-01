@@ -43,11 +43,11 @@ public class AutoBuy6PM extends AutoBuy {
 //			status = auto.cleanCart();
 //			if(AutoBuyStatus.AUTO_CLEAN_CART_SUCCESS.equals(status)){
 				Map<String, String> param = new HashMap<String, String>();
-				param.put("url", "https://p.gouwuke.com/c?w=858413&c=18133&i=43784&pf=y&e=&t=http://www.6pm.com/p/ugg-haylie-red/product/8906050/color/585");
+				param.put("url", "https://www.6pm.com/p/michael-michael-kors-morgan-large-tote/product/8976725?PID=6148013&AID=10705449&utm_source=VigLink&splash=none&utm_medium=affiliate");
 //				param.put("url", "http://www.6pm.com/ugg-sea-glisten-anchor-red-suede");
 //				param.put("url", "http://www.6pm.com/gabriella-rocha-alena-evening-purse-with-tassel-black");
 //				param.put("sku", "[[\"color\",\"Anchor Navy Suede\"],[\"size\",\"9\"],[\"width\",\"B - Medium\"]]");
-				param.put("sku", "[[\"color\",\"Navy\"],[\"size\",\"7\"],[\"width\",\"B - Medium\"]]");
+				param.put("sku", "[[\"color\",\"Acorn\"]]");
 				param.put("num", "1");
 				auto.selectProduct(param);
 				//if(AutoBuyStatus.AUTO_SKU_SELECT_SUCCESS.equals(status)){
@@ -415,7 +415,7 @@ public class AutoBuy6PM extends AutoBuy {
 			for(WebElement w:details){
 				for (int i = 0; i < skuList.size(); i++){
 					if (i % 2 == 1){
-						if(w.isDisplayed() && w.getText().trim().split(":")[1].trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
+						if(w.isDisplayed() && w.getText().contains(":") && w.getText().trim().split(":")[1].trim().toUpperCase().equals(skuList.get(i).toUpperCase())){
 							logger.debug("--->属性"+w.getText().trim()+"对的");
 							attnum++;
 						}
