@@ -5669,10 +5669,10 @@ public class AmazonAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.com/dp/B074W66D5");
+		param.put("url", "http://www.amazon.com/dp/B01N2UJZDB");
 		//param.put("sku", "[[\"Color\",\"A\"]]");
 		//param.put("sku", "[[\"color\",\"Red\"]]");
-		param.put("sku", "[[\"Color\",\"Car Charger+Cable\"]]");
+		param.put("sku", "[[\"Color\",\"Puma Black/Baja Blue\"],[\"Special Size\",\"Little Kid (4-8 Years)\"],[\"Size\",\"1 M US Little Kid\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
 		//param.put("sign", "0");
@@ -5953,6 +5953,7 @@ public class AmazonAutoBuy extends AutoBuy
 		String signs = param.get("signs");
 		
 		String keywordUrl = param.get("keywordUrl");
+		String shopName = param.get("shopName");
 		position = 30;
 		
 		WebDriverWait wait = new WebDriverWait(driver, 45);
@@ -6502,6 +6503,9 @@ public class AmazonAutoBuy extends AutoBuy
 					String text = third.getText();
 					if (!Utils.isEmpty(text))
 					{
+						if(text.indexOf(shopName) == -1) {
+							return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+						}
 						if (!(text.indexOf("sold by Amazon") != -1 || text.indexOf("Fulfilled by Amazon") != -1))
 						{
 							logger.debug("第三方商品支持购买 " );

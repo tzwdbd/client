@@ -614,7 +614,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 	
 							logger.debug("--->[1]try selectYou");
 							WebElement btnElem = null;
-	
+							Utils.sleep(1500);
 							try
 							{
 								switch (attrName)
@@ -731,7 +731,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 							else
 							{
 								Utils.sleep(1500);
-								btnElem.click();
+								driver.executeScript("var tar=arguments[0];tar.click();", btnElem);
+								//btnElem.click();
 	
 								try
 								{
@@ -1185,6 +1186,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 		int position = Integer.parseInt(param.get("position"));
 		String signs = param.get("signs");
 		String keywordUrl = param.get("keywordUrl");
+		String shopName = param.get("shopName");
+		
 		position = 30;
 		
 		WebDriverWait wait = new WebDriverWait(driver, 45);
@@ -1224,7 +1227,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 					logger.error("--->title2="+title);
 					if(!StringUtil.isBlank(smallTitle) && title.startsWith(smallTitle)){
 						logger.error("--->title"+titleWeb.getText());
-						w.findElement(By.cssSelector("a")).click();
+						WebElement ww = w.findElement(By.cssSelector("a"));
+						driver.executeScript("var tar=arguments[0];tar.click();", ww);
 						mark = true;
 						break;
 					}
@@ -1358,7 +1362,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 
 						logger.debug("--->[1]try selectYou");
 						WebElement btnElem = null;
-
+						Utils.sleep(1500);
 						try
 						{
 							switch (attrName)
@@ -1472,7 +1476,8 @@ public class AmazonJpAutoBuy extends AutoBuy
 						else
 						{
 							Utils.sleep(1500);
-							btnElem.click();
+							driver.executeScript("var tar=arguments[0];tar.click();", btnElem);
+							//btnElem.click();
 
 							try
 							{
@@ -1702,6 +1707,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 				String text = third.getText();
 				if (!Utils.isEmpty(text))
 				{
+					if(text.indexOf(shopName) == -1) {
+						return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+					}
 					if (!(text.indexOf("Amazon.co.jp が販売、") != -1 || text.indexOf("Amazon.co.jp が発送します") != -1))
 					{
 						logger.debug("第三方商品不支持购买 +url = ");
@@ -4899,16 +4907,17 @@ public class AmazonJpAutoBuy extends AutoBuy
 //		detail.setProductEntityId(4999961L);
 		//detail.setProductSku("[[\"Color\",\"Luggage/Black\"]]");
 		Map<String, String> param = new HashMap<>();
-		param.put("url", "http://www.amazon.co.jp/dp/B01BEJV68K");
+		param.put("url", "http://www.amazon.co.jp/dp/B0732J856C");
 		//param.put("sku", "[[\"サイズ\",\"90粒/約1ヶ月分.\"]]");
-		param.put("sku", "[[\"色\",\"ブラウン\"]]");
+		param.put("sku", "[[\"色\",\"薄ピンク\"]]");
 		//param.put("sku", "[[\"サイズ\",\"480ml\"],[\"スタイル名\",\"単品\"],[\"カラー\",\"ボルドー\"]]");
 		param.put("num", "1");
 		param.put("productEntityId", "4780644");
-//		param.put("sign", "0");
-//		param.put("productName","アイマスク 睡眠マスク");
-//		param.put("title","Azomovic アイマスク 睡眠マスク 目隠し 天然シルク 遮光性・通気性抜群 圧迫感なし 睡眠、旅行、昼寝に最適 フリーサイズ 超ソフト 軽量 耳栓付き 収納袋付き ブラック");
-//		param.put("position","30");
+		param.put("sign", "0");
+		param.put("productName","iPhone SE ケース");
+		param.put("title","iPhone 5 カバー iPhone se ケース BENTOBEN iphone 5s ケース スリム 超薄 Diamonds ダイヤモンド 　電波影響無しソフトTPU 衝撃吸収 バンパー 落下防止 アイフォン 7 カバー ピンク");
+		param.put("position","30");
+		param.put("keywordUrl","http://www.amazon.co.jp/dp/B0732J856C");
 		System.out.println(autoBuy.selectProduct(param));
 //		Map<String, String> param1 = new HashMap<>();
 //		param1.put("url", "http://haitao.bibiwo.com/j?t=http://www.amazon.co.jp/dp/B01EL660V6?tag=adiemar100052-22");
