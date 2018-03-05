@@ -1186,7 +1186,7 @@ public class AmazonJpAutoBuy extends AutoBuy
 		int position = Integer.parseInt(param.get("position"));
 		String signs = param.get("signs");
 		String keywordUrl = param.get("keywordUrl");
-		String shopName = param.get("shopName");
+		//String shopName = param.get("shopName");
 		
 		position = 30;
 		
@@ -1707,9 +1707,9 @@ public class AmazonJpAutoBuy extends AutoBuy
 				String text = third.getText();
 				if (!Utils.isEmpty(text))
 				{
-					if(text.indexOf(shopName) == -1) {
-						return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
-					}
+//					if(text.indexOf(shopName) == -1) {
+//						return AutoBuyStatus.AUTO_SKU_THIRD_PRODUCT;
+//					}
 					if (!(text.indexOf("Amazon.co.jp が販売、") != -1 || text.indexOf("Amazon.co.jp が発送します") != -1))
 					{
 						logger.debug("第三方商品不支持购买 +url = ");

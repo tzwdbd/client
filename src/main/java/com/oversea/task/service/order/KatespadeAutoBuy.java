@@ -32,6 +32,8 @@ import com.oversea.task.util.StringUtil;
 import com.oversea.task.utils.ExpressUtils;
 import com.oversea.task.utils.Utils;
 
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
+
 public class KatespadeAutoBuy extends AutoBuy {
 
     private final Logger logger = Logger.getLogger(getClass());
@@ -1042,6 +1044,17 @@ public class KatespadeAutoBuy extends AutoBuy {
 		}catch(Exception e){
 			logger.debug("--->选择地址出错 = ",e);
 			return AutoBuyStatus.AUTO_PAY_SELECT_ADDR_FAIL;
+		}
+		//输入邮箱
+		try{
+			WebElement emailinput = driver.findElement(By.id("dwfrm_singleshipping_shippingAddress_addressFields_email"));
+			emailinput.clear();
+			emailinput.sendKeys(param.get("userName"));
+			Utils.sleep(1000);
+			WebElement singleshipping = driver.findElement(By.id("dwfrm_singleshipping_shippingAddress_addressFields_email-error"));
+			singleshipping.click();
+		}catch(Exception e){
+			logger.debug("--->输入邮箱");
 		}
 		
 		//去选择快递方式
