@@ -79,18 +79,18 @@ public class VersionCheckProcessor extends Thread implements InitializingBean{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		log.error("start version check");
-		while(true){
-			try {
-				if(isUpdate()){
-					updateJar();
-					break;
-				}
-	        } catch (Throwable e) {
-	        	log.error(e);
-	        }
-			Utils.sleep(9500);
-		}
+//		log.error("start version check");
+//		while(true){
+//			try {
+//				if(isUpdate()){
+//					updateJar();
+//					break;
+//				}
+//	        } catch (Throwable e) {
+//	        	log.error(e);
+//	        }
+//			Utils.sleep(9500);
+//		}
 	}
 	
 	private void updateJar() {
@@ -126,7 +126,7 @@ public class VersionCheckProcessor extends Thread implements InitializingBean{
 			}
 		}
 		
-		String url = versionCheck+"?version="+version;
+		String url = versionCheck+"?version="+version+"&type=new";
 		String result = "";
 		HttpGet httpRequst = new HttpGet(url);
 		CloseableHttpResponse httpResponse = null;
