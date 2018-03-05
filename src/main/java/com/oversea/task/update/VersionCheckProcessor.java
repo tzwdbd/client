@@ -126,7 +126,7 @@ public class VersionCheckProcessor extends Thread implements InitializingBean{
 			}
 		}
 		
-		String url = versionCheck+"?version="+version+"&type=new";
+		String url = versionCheck+"?version="+version;
 		String result = "";
 		HttpGet httpRequst = new HttpGet(url);
 		CloseableHttpResponse httpResponse = null;
