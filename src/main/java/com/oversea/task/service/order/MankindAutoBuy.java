@@ -153,12 +153,12 @@ public class MankindAutoBuy extends AutoBuy {
 		//清理购物车
 		try{
 			logger.debug("--->开始等待购物车页面加载");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='basket-table']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".responsiveBasket")));
 			logger.debug("--->购物车页面加载完成");
 			
 			//清理
 			logger.debug("--->开始清理购物车");
-			List<WebElement> items = driver.findElements(By.xpath("//a[@class='auto-basketaction-trash productdelete']"));
+			List<WebElement> items = driver.findElements(By.cssSelector(".responsiveBasket_removeItem"));
 			while(true){
 				int size = items.size();
 				logger.debug("--->总共有" + size + "个商品");
@@ -166,9 +166,9 @@ public class MankindAutoBuy extends AutoBuy {
 					items.get(0).click(); // 删除商品
 					logger.debug("--->成功清理了一个");
 					if(size > 1){
-						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='basket-table']"))); // 等待刷新
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".responsiveBasket"))); // 等待刷新
 						
-						items = driver.findElements(By.xpath("//a[@class='auto-basketaction-trash productdelete']"));
+						items = driver.findElements(By.cssSelector(".responsiveBasket_removeItem"));
 					}else{
 						break;
 					}
@@ -184,12 +184,7 @@ public class MankindAutoBuy extends AutoBuy {
 		
 		// 检验购物车数量
 		try{
-			WebElement we = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='basket-item-qty']")));
-			String cartNum = we.getText();
-			logger.debug("--->购物车数量="+cartNum);
-			if(!"0".equals(cartNum)){
-				return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
-			}
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".responsiveBasket_emptyBasketMessage")));
 		}catch(Exception e){
 			logger.error("--->检验购物车数量异常");
 			return AutoBuyStatus.AUTO_CLEAN_CART_FAIL;
@@ -613,7 +608,7 @@ public class MankindAutoBuy extends AutoBuy {
 		WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
 		//等待购物车页面加载完成
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='gotocheckout1']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".responsiveBasket")));
 			logger.debug("--->购物车页面加载完成");
 		}catch(Exception e){
 			logger.error("--->加载Checkout Securely Now出现异常");
@@ -621,7 +616,7 @@ public class MankindAutoBuy extends AutoBuy {
 		}
 		String size = param.get("size");
 		try {
-			List<WebElement> goodsInCart = driver.findElements(By.xpath("//a[@class='auto-basketaction-trash productdelete']"));
+			List<WebElement> goodsInCart = driver.findElements(By.cssSelector(".responsiveBasket_removeItem"));
 			logger.debug("--->购物车有 [" + goodsInCart.size() + "]件商品");
 			logger.debug("--->size有 [" + size + "]件商品");
 			if(!size.equals(String.valueOf(goodsInCart.size()))){
@@ -650,17 +645,12 @@ public class MankindAutoBuy extends AutoBuy {
 						Utils.sleep(5500);
 						
 						try{
-							driver.findElement(By.xpath("//div[@class='alert alert-danger']"));
+							driver.findElement(By.cssSelector(".responsiveBasket_errorAlert"));
 							statusMap.put(code, 0);
 						}catch(Exception e){
 							logger.error("promotionCode:"+code,e);
-							try{
-								driver.findElement(By.xpath("//div[@class='alert discount-alert']"));
-								statusMap.put(code, 10);
-								isEffective = true;
-							}catch(Exception ee){
-								logger.error("promotionCode:"+code,ee);
-							}
+							statusMap.put(code, 10);
+							isEffective = true;
 						}
 					}catch(Exception e){
 						logger.error("输入优惠码的时候错误",e);
@@ -678,7 +668,7 @@ public class MankindAutoBuy extends AutoBuy {
 		//点击checkout
 		try{
 			logger.debug("--->点击Checkout Securely Now");
-			driver.findElement(By.xpath("//a[@id='gotocheckout1']")).click();
+			driver.findElement(By.cssSelector(".responsiveBasket_basketButton")).click();
 		}catch(Exception e){
 			logger.error("--->点击Checkout Securely Now出现异常" , e);
 			return AutoBuyStatus.AUTO_PAY_FAIL;
