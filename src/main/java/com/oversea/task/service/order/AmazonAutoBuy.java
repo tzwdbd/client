@@ -5387,6 +5387,7 @@ public class AmazonAutoBuy extends AutoBuy
 			WebElement content = driver.findElement(By.cssSelector("#primeCentralResponsiveGreetingContentFromMS3"));
 			if(content.getText().contains("You are no longer an Amazon Prime member")){
 				//不是会员
+				account.setCardNo("You are no longer an Amazon Prime member");
 			}else{
 				List<WebElement> rows = content.findElements(By.cssSelector(".a-row"));
 				for(WebElement w:rows){
