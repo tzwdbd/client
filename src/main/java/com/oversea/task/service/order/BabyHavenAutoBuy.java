@@ -440,7 +440,7 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		logger.debug("--->等待支付页面加载");
 		try {
 			TimeUnit.SECONDS.sleep(2);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-main']")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".checkout-wrapper")));
 			logger.debug("--->支付页面加载完成");
 			TimeUnit.SECONDS.sleep(3);
 		} catch (Exception e) {
@@ -470,8 +470,12 @@ public class BabyHavenAutoBuy extends AutoBuy {
 			}
 			
 			TimeUnit.SECONDS.sleep(2);
-			
-			WebElement firstname = driver.findElement(By.id("firstname"));
+			WebElement firstname = null;
+			try {
+				firstname = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstname")));
+			} catch (Exception e) {
+				firstname = driver.findElement(By.id("firstname"));
+			}
 			logger.debug("--->输入收货人姓名"+name);
 			Utils.sleep(1500);
 			firstname.sendKeys(name);
