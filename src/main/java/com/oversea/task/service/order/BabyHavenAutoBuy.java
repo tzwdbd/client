@@ -269,9 +269,12 @@ public class BabyHavenAutoBuy extends AutoBuy {
 		try {
 			WebElement addCart = driver.findElement(By.id("DetailAddCart"));
 			driver.executeScript("var tar=arguments[0];tar.click();", addCart);
-			Utils.sleep(500);
-			WebElement settlement = driver.findElement(By.id("easyDialogYesBtn"));
-			settlement.click();
+			WebElement panel = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.id("easyDialogWrapper")));
+			Utils.sleep(1000);
+			panel.findElement(By.cssSelector(".tip-success-content"));
+			Utils.sleep(1000);
+			panel.findElement(By.id("easyDialogYesBtn")).click();
 			Utils.sleep(1500);
 		} catch (Exception e) {
 			logger.error("--->加购物车按钮找不到", e);
