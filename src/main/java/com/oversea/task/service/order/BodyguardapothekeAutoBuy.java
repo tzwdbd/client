@@ -270,7 +270,7 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 				logger.debug("--->加购物车按钮找不到"+cart.getText());
 				return AutoBuyStatus.AUTO_SKU_IS_OFFLINE;
 			}
-			cart.click();
+			driver.executeScript("var tar=arguments[0];tar.click();", cart);
 			logger.debug("--->加购物车成功");
 		}catch(Exception e){
 			logger.debug("--->加购物车按钮找不到");
