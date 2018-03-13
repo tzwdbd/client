@@ -264,7 +264,8 @@ public class BodyguardapothekeAutoBuy extends AutoBuy {
 		//加购物车
 		logger.debug("--->开始加购物车");
 		try{
-			TimeUnit.SECONDS.sleep(1);
+			driver.executeScript("(function(){window.scrollBy(0,200);})();");
+			TimeUnit.SECONDS.sleep(2);
 			WebElement cart = driver.findElement(By.cssSelector(".btn-buy"));
 			if("已售罄".equals(cart.getText())){
 				logger.debug("--->加购物车按钮找不到"+cart.getText());
