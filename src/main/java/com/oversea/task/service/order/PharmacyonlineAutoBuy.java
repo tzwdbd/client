@@ -897,15 +897,24 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			} catch (Exception e) {
 				placeOrder = driver.findElement(By.id("priceConfirm"));
 			}
-			
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
 			driver.executeScript("var tar=arguments[0];tar.click();", placeOrder);
 			//driver.findElement(By.xpath("//button[@id='onestepcheckout-place-order']")).click();
-			WebElement gotologin = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#J_tip_qr a.switch-tip-btn")));
+			WebElement gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
 			gotologin.click();
 			logger.error("支付宝登陆按钮点击");
+			//支付宝账号
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			} catch (Exception e) {
+				gotologin = driver.findElement(By.cssSelector("div#J_tip_qr a.switch-tip-btn"));
+				gotologin.click();
+				logger.error("支付宝登陆按钮再次点击");
+			}
 			
 			//支付宝账号
-			WebElement alipayName = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
+			WebElement alipayName = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='J_tLoginId']")));
 			alipayName.sendKeys(orderPayAccount.getAccount());
 			Utils.sleep(1500);
 			//密码
@@ -916,7 +925,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			Utils.sleep(1500);
 			
 			//输入支付密码
-			wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sixDigitPassword']")));
+			wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sixDigitPassword']")));
 			String payPwd = orderPayAccount.getPayPassword();
 			String str = "(function(){var els = document.getElementById('payPassword_rsainput');if(els){els.value='%s';}})();";
 			String ss = String.format(str, payPwd);
@@ -926,7 +935,7 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			
 			//输入银行卡号
 			try{
-				WebElement bank = wait0.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='bankCardNo']")));
+				WebElement bank = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='bankCardNo']")));
 				bank.sendKeys(cardNo);
 			}catch(Exception e){
 				logger.debug("--->没找到输入银行卡的输入框",e);
@@ -947,7 +956,8 @@ public class PharmacyonlineAutoBuy extends AutoBuy {
 			By byby = By.cssSelector(".order-number");
 			WebElement orderElement = wait.until(ExpectedConditions.visibilityOfElementLocated(byby));
 			logger.debug("--->找到商品订单号 = "+orderElement.getText());
-			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, orderElement.getText().substring(4));
+			String mallOrderNo = ExpressUtils.regularExperssNo(orderElement.getText());
+			data.put(AutoBuyConst.KEY_AUTO_BUY_PRO_ORDER_NO, mallOrderNo);
 			savePng();
 			return AutoBuyStatus.AUTO_PAY_SUCCESS;
 		}catch(Exception e){
