@@ -107,8 +107,8 @@ public class IherbAutoBuy extends AutoBuy
 		catch (Exception e)
 		{
 			logger.error("--->没有找到输入框", e);
-			AutoBuyStatus code = getCode();
-			 if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(code)){
+			//AutoBuyStatus code = getCode();
+			 //if(AutoBuyStatus.AUTO_LOGIN_SUCCESS.equals(code)){
 				 try
 					{
 						WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By
@@ -121,9 +121,9 @@ public class IherbAutoBuy extends AutoBuy
 				 	{
 					 return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
 					}
-			 }else{
-				 return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-			 }
+//			 }else{
+//				 return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//			 }
 		}
 
 		try
@@ -174,101 +174,101 @@ public class IherbAutoBuy extends AutoBuy
 		catch (Exception e)
 		{
 			
-			for(int i=0;i<3;i++){
-				boolean mark = true;
-				try {
-					WebElement capImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("recaptcha_challenge_image")));
-					logger.error("--->开始破解验证码");
-					String src = capImage.getAttribute("src");
-					logger.error("--->src:" + src);
-					String cap = ReCaptchasHelper.getCaptchas(src, "iherb");
-					if(!StringUtils.isBlank(cap)){
-						try
-						{
-							WebElement	capGuess = driver.findElement(By.id("recaptcha_response_field"));
-							logger.debug("--->输入验证码"+cap);
-							capGuess.sendKeys(cap);
-							TimeUnit.SECONDS.sleep(5);
-							WebElement btn = driver.findElement(By.id("dCF_input_complete"));
-							logger.debug("--->验证验证码");
-							btn.click();
-						}
-						catch (Exception ex)
-						{
-							logger.error("--->没有找到验证码框", ex);
-							return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-						}
-						
-						try
-						{
-							WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("iherb-my-account")));
-							signIn.click();
-							logger.debug("--->重试--->跳转到登录页面");
-						}
-						catch (Exception e1)
-						{
-							logger.error("--->重试--->没有找到登陆按钮", e1);
-							if(i==2){
-								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-							}else{
-								mark = false;
-							}
-						}
-						if(mark){
-							try
-							{
-								WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By
-										.xpath("//input[@id = 'UserName' and @placeholder = 'Email Address']")));
-								username.sendKeys(userName);
-								logger.debug("--->重试--->输入账号");
-								TimeUnit.SECONDS.sleep(5);
-							}
-							catch (Exception e1)
-							{
-								logger.error("--->重试--->没有找到输入框", e1);
-								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-							}
-	
-							try
-							{
-								WebElement password = driver.findElement(By
-										.xpath("//input[@id = 'Password' and @placeholder = 'Password']"));
-								password.sendKeys(passWord);
-								logger.debug("--->重试--->输入密码");
-								TimeUnit.SECONDS.sleep(5);
-							}
-							catch (Exception e1)
-							{
-								logger.error("--->重试--->没有找到密码框", e1);
-								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-							}
-	
-							try
-							{
-								WebElement btn = driver.findElement(By.name("save"));
-								TimeUnit.SECONDS.sleep(5);
-								btn.click();
-								logger.debug("--->重试--->开始登陆");
-								
-								try {
-									driver.findElement(By.xpath("//span[contains(text(),'something')"));
-									TimeUnit.SECONDS.sleep(30);
-								} catch (Exception e1) {
-								}
-							}
-							catch (Exception e1)
-							{
-								logger.error("--->重试--->没有找到登陆确定按钮", e);
-								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
-								
-							}
-							break;
-						}
-					}
-				} catch (Exception e2) {
-					logger.error("重试222--->登录失败", e);
-					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
-				}
+//			for(int i=0;i<3;i++){
+//				boolean mark = true;
+//				try {
+//					WebElement capImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("recaptcha_challenge_image")));
+//					logger.error("--->开始破解验证码");
+//					String src = capImage.getAttribute("src");
+//					logger.error("--->src:" + src);
+//					String cap = ReCaptchasHelper.getCaptchas(src, "iherb");
+//					if(!StringUtils.isBlank(cap)){
+//						try
+//						{
+//							WebElement	capGuess = driver.findElement(By.id("recaptcha_response_field"));
+//							logger.debug("--->输入验证码"+cap);
+//							capGuess.sendKeys(cap);
+//							TimeUnit.SECONDS.sleep(5);
+//							WebElement btn = driver.findElement(By.id("dCF_input_complete"));
+//							logger.debug("--->验证验证码");
+//							btn.click();
+//						}
+//						catch (Exception ex)
+//						{
+//							logger.error("--->没有找到验证码框", ex);
+//							return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//						}
+//						
+//						try
+//						{
+//							WebElement signIn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("iherb-my-account")));
+//							signIn.click();
+//							logger.debug("--->重试--->跳转到登录页面");
+//						}
+//						catch (Exception e1)
+//						{
+//							logger.error("--->重试--->没有找到登陆按钮", e1);
+//							if(i==2){
+//								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//							}else{
+//								mark = false;
+//							}
+//						}
+//						if(mark){
+//							try
+//							{
+//								WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By
+//										.xpath("//input[@id = 'UserName' and @placeholder = 'Email Address']")));
+//								username.sendKeys(userName);
+//								logger.debug("--->重试--->输入账号");
+//								TimeUnit.SECONDS.sleep(5);
+//							}
+//							catch (Exception e1)
+//							{
+//								logger.error("--->重试--->没有找到输入框", e1);
+//								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//							}
+//	
+//							try
+//							{
+//								WebElement password = driver.findElement(By
+//										.xpath("//input[@id = 'Password' and @placeholder = 'Password']"));
+//								password.sendKeys(passWord);
+//								logger.debug("--->重试--->输入密码");
+//								TimeUnit.SECONDS.sleep(5);
+//							}
+//							catch (Exception e1)
+//							{
+//								logger.error("--->重试--->没有找到密码框", e1);
+//								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//							}
+//	
+//							try
+//							{
+//								WebElement btn = driver.findElement(By.name("save"));
+//								TimeUnit.SECONDS.sleep(5);
+//								btn.click();
+//								logger.debug("--->重试--->开始登陆");
+//								
+//								try {
+//									driver.findElement(By.xpath("//span[contains(text(),'something')"));
+//									TimeUnit.SECONDS.sleep(30);
+//								} catch (Exception e1) {
+//								}
+//							}
+//							catch (Exception e1)
+//							{
+//								logger.error("--->重试--->没有找到登陆确定按钮", e);
+//								return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+//								
+//							}
+//							break;
+//						}
+//					}
+//				} catch (Exception e2) {
+//					logger.error("重试222--->登录失败", e);
+//					return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
+//				}
 			}
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("yvffrxxscbrxxb")));
@@ -283,10 +283,10 @@ public class IherbAutoBuy extends AutoBuy
 			}
 			catch (Exception e1)
 			{
-				logger.error("重试--->登录失败", e);
+				logger.error("重试--->登录失败", e1);
 				return AutoBuyStatus.AUTO_LOGIN_EXP_UNKNOWN;
 			}
-		}
+		//}
 		return AutoBuyStatus.AUTO_LOGIN_SUCCESS;
 	}
 	
@@ -655,6 +655,15 @@ public class IherbAutoBuy extends AutoBuy
 					logger.error("--->跳转到结算页面异常",e);
 					return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
+			}else{
+				if(ships!=null && ships.size()==3){
+					WebElement radio = driver.findElement(By.id("radio0"));
+					radio.click();
+					Utils.sleep(2000);
+					WebElement con = driver.findElement(By.cssSelector(".ship-continue"));
+					con.click();
+					Utils.sleep(2000);
+				}
 			}
 		} catch (Exception e) {
 			logger.error("--->okok");
@@ -709,6 +718,7 @@ public class IherbAutoBuy extends AutoBuy
 					logger.error("--->shipAddrChng click");
 					Utils.sleep(2000);
 				} catch (Exception e2) {
+					ensureCard(param);
 					//return AutoBuyStatus.AUTO_PAY_FAIL;
 				}
 			}
@@ -798,6 +808,13 @@ public class IherbAutoBuy extends AutoBuy
 			Utils.sleep(1500);
 		} catch (Exception e) {
 			logger.debug("--->ship-continue id");
+			try {
+				WebElement radio = driver.findElement(By.id("radio0"));
+				radio.click();
+				Utils.sleep(2000);
+			} catch (Exception e2) {
+				logger.debug("--->radio0");
+			}
 			try {
 				WebElement shipcontinue = driver.findElement(By.cssSelector(".ship-continue"));
 				shipcontinue.click();
@@ -947,7 +964,7 @@ public class IherbAutoBuy extends AutoBuy
 //			logger.error("--->选择地址,visa卡,物流出错",e);
 //			return AutoBuyStatus.AUTO_PAY_FAIL;
 //		}
-		validateVisaCard(param);
+		//validateVisaCard(param);
 		//查询总价
 		try{
 			logger.debug("--->开始查询总价");
@@ -1288,20 +1305,20 @@ public class IherbAutoBuy extends AutoBuy
 		//47.88.9.209
 		IherbAutoBuy iherb = new IherbAutoBuy();
 		iherb.login("1113973076@qq.com", "qq258369");
-		iherb.cleanCart();
-
-		Map<String, String> param = new LinkedHashMap<>();
-		param.put("url", "http://www.iherb.com/Gummi-King-Calcium-Plus-Vitamin-D-for-Kids-60-Gummies/34010");
-		param.put("url", "http://www.iherb.com/Now-Foods-Maca-Raw-750-mg-90-Veg-Caps/18046");
-		param.put("num", "20");
-		param.put("count", "4");
-		param.put("isPay", "false");
-		param.put("my_price", "318");
-		param.put("cardNo", "5273380300218539");
-		iherb.selectProduct(param);
-		iherb.pay(param);
-		RobotOrderDetail detail = new RobotOrderDetail();
-		detail.setMallOrderNo("43472437");
+//		iherb.cleanCart();
+//
+//		Map<String, String> param = new LinkedHashMap<>();
+//		param.put("url", "http://www.iherb.com/Gummi-King-Calcium-Plus-Vitamin-D-for-Kids-60-Gummies/34010");
+//		param.put("url", "http://www.iherb.com/Now-Foods-Maca-Raw-750-mg-90-Veg-Caps/18046");
+//		param.put("num", "20");
+//		param.put("count", "4");
+//		param.put("isPay", "false");
+//		param.put("my_price", "318");
+//		param.put("cardNo", "5273380300218539");
+//		iherb.selectProduct(param);
+//		iherb.pay(param);
+//		RobotOrderDetail detail = new RobotOrderDetail();
+//		detail.setMallOrderNo("43472437");
 		//iherb.scribeExpress(detail);
 		
 		/*Map<String, String> param = new LinkedHashMap<>();
