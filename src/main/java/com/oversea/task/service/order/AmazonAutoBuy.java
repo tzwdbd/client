@@ -78,8 +78,14 @@ public class AmazonAutoBuy extends AutoBuy
 			}
 			catch (Exception e)
 			{
-				logger.error("--->没有找到登陆按钮", e);
-				return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				try {
+					WebElement signIn = driver.findElement(By.id("gw-sign-in-button"));
+					signIn.click();
+				} catch (Exception e2) {
+					logger.error("--->没有找到登陆按钮", e);
+					return AutoBuyStatus.AUTO_CLIENT_NETWORK_TIMEOUT;
+				}
+				
 			}
 			
 			try {
